@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*", "index.d.ts"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "typeRoots": [
+    "node_modules/@types",
+    "node_module/phaser/types"
+  ],
+  "types": [
+    "Phaser"
+  ]
+}
