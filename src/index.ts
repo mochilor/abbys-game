@@ -6,16 +6,13 @@ const config = {
   width: 256,
   height: 256,
   transparent: false,
-  backgroundColor: '#98ddaa',
+  backgroundColor: '#000000',
   render: {
     pixelArt: true,
   },
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: {
-        y: 200,
-      },
       debug: false,
     },
   },
