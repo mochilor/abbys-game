@@ -11,6 +11,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.controller = controller;
+    this.setOrigin();
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
   }
@@ -23,5 +24,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     if (velocity.velocityY) {
       this.body.setVelocityY(baseVelocityY * velocity.velocityY);
     }
+  }
+
+  positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
+    return {
+      x: this.x - roomX,
+      y: this.y - roomY,
+    };
   }
 }

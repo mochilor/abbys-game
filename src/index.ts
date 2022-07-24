@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
+import configuration from '../config/config.json';
 
 const config = {
   type: Phaser.AUTO,
-  width: 256,
-  height: 256,
+  width: configuration.gameWidth,
+  height: configuration.gameHeight,
   transparent: false,
   backgroundColor: '#000000',
   render: {
