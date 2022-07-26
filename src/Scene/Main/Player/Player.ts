@@ -6,6 +6,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   private controller: Controller;
 
+  private canJump: boolean = false;
+
   constructor(scene: Phaser.Scene, x: number, y: number, controller: Controller) {
     super(scene, x, y, 'player');
     scene.physics.world.enable(this);
@@ -21,7 +23,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     const baseVelocityY: number = 80;
     const velocity: PlayerVelocity = this.controller.move();
     this.body.setVelocityX(baseVelocityX * velocity.velocityX);
-    if (velocity.velocityY) {
+    if (velocity.velocityY && this.canJump) {
       this.body.setVelocityY(baseVelocityY * velocity.velocityY);
     }
   }
