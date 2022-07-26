@@ -14,7 +14,7 @@ export default class MapManager {
     this.map = scene.add.tilemap(tilemap);
     this.tilesetImage = this.map.addTilesetImage(tilemap, tilesetImage);
     const layer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer(0, this.tilesetImage, 0, 0);
-    this.map.setCollision(1);
+    this.map.setCollisionBetween(1, 16);
     this.scene.physics.add.collider(player, layer);
   }
 
