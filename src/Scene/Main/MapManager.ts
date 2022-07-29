@@ -13,12 +13,12 @@ export default class MapManager {
     this.scene = scene;
     this.map = scene.add.tilemap(tilemap);
     this.tilesetImage = this.map.addTilesetImage(tilemap, tilesetImage);
-    const layer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer(0, this.tilesetImage, 0, 0);
+    const layer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer('main', this.tilesetImage, 0, 0);
     this.map.setCollisionBetween(1, 16);
     this.scene.physics.add.collider(player, layer);
   }
 
-  updateCurrentRoom(player: Player): void {
+  public updateCurrentRoom(player: Player): void {
     if (this.playerIsOutOfRoom(player)) {
       this.setupCameras(player);
     }

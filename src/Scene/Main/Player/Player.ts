@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Backpack from './Backpack';
 import { Controller, PlayerVelocity } from './Controller';
 
 export default class Player extends Phaser.GameObjects.Sprite {
@@ -7,6 +8,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   private controller: Controller;
 
   private canJump: boolean = false;
+
+  private backpack: Backpack;
 
   constructor(scene: Phaser.Scene, x: number, y: number, controller: Controller) {
     super(scene, x, y, 'player');
