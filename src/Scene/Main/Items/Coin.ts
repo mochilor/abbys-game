@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
 
 export default class Coin extends Phaser.GameObjects.Sprite {
-  private key: string = 'coin';
-
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'objects');
 
@@ -17,9 +15,5 @@ export default class Coin extends Phaser.GameObjects.Sprite {
     });
 
     this.play('coin');
-  }
-
-  public getkey(): string {
-    return this.key;
   }
 }

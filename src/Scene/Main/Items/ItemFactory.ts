@@ -2,7 +2,7 @@ import { GameItem } from '../Interfaces';
 import Coin from './Coin';
 
 export default class ItemFactory {
-  private itemClases = {
+  private itemClasses = {
     1: Coin,
   };
 
@@ -13,7 +13,7 @@ export default class ItemFactory {
   }
 
   public make(gameItem: GameItem): Phaser.GameObjects.Sprite {
-    const ItemClass = this.itemClases[gameItem.id];
+    const ItemClass = this.itemClasses[gameItem.id];
 
     return new ItemClass(this.scene, gameItem.x, gameItem.y);
   }

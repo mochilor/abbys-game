@@ -11,11 +11,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   private backpack: Backpack;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, controller: Controller) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    controller: Controller,
+    backpack: Backpack,
+  ) {
     super(scene, x, y, 'player');
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.controller = controller;
+    this.backpack = backpack;
     this.setOrigin();
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
@@ -31,10 +38,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
   }
 
-  positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
+  public positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
     return {
       x: this.x - roomX,
       y: this.y - roomY,
     };
+  }
+
+  public collectItem(player: this, item: Phaser.GameObjects.Sprite) {
+    this.backpack.addItem(item);
+    item.destroy();
   }
 }

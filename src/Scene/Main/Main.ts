@@ -10,6 +10,7 @@ import LayerIterator from '../LayerIterator';
 import ItemFactory from './Items/ItemFactory';
 import { GameItem } from './Interfaces';
 import Coin from './Items/Coin';
+import Backpack from './Player/Backpack';
 
 export default class Main extends Phaser.Scene {
   private player: Player;
@@ -41,7 +42,7 @@ export default class Main extends Phaser.Scene {
       this.input.keyboard.addKey('UP'),
     );
 
-    this.player = new Player(this, 32, 32, controller);
+    this.player = new Player(this, 32, 32, controller, new Backpack());
 
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
 
@@ -54,6 +55,14 @@ export default class Main extends Phaser.Scene {
       const coin = this.itemFactory.make(item) as Coin;
       this.coinGroup.add(coin);
     });
+
+    this.physics.add.overlap(
+      this.player,
+      this.coinGroup,
+      this.player.collectItem as ArcadePhysicsCallback,
+      null,
+      this.player,
+    );
   }
 
   update(): void {
