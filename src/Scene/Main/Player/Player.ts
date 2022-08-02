@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Door from '../Object/Door';
 import Backpack from './Backpack';
 import { Controller, PlayerVelocity } from './Controller';
 
@@ -48,5 +49,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
   public collectItem(player: this, item: Phaser.GameObjects.Sprite) {
     this.backpack.addItem(item);
     item.destroy();
+  }
+
+  public openDoor(player: Player, door: Door): void {
+    door.open();
   }
 }

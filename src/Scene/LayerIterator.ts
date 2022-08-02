@@ -4,6 +4,10 @@ interface MapItem {
   gid: number,
   x: number,
   y: number,
+  properties?: {
+    name: string,
+    value: number | string,
+  }[],
 }
 
 interface Map {
@@ -50,7 +54,9 @@ export default class LayerIterator {
           id: itemId,
           x: mapItem.x,
           y: mapItem.y,
+          properties: mapItem.properties ?? [],
         };
+
         result.push(item);
       }
     });
