@@ -1,4 +1,5 @@
 import { GameItem } from './Main/Interfaces';
+import ItemFactory from './Main/Object/ItemFactory';
 
 interface MapItem {
   gid: number,

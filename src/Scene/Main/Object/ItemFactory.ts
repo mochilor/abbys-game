@@ -1,11 +1,15 @@
 import Door from './Door';
 import { GameItem } from '../Interfaces';
 import Coin from './Coin';
+import Scuba from './Scuba';
+import Fins from './Fins';
 
 export default class ItemFactory {
   private itemClasses = {
     1: Coin,
     3: Door,
+    4: Scuba,
+    5: Fins,
   };
 
   private scene: Phaser.Scene;

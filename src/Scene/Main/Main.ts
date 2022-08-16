@@ -19,13 +19,15 @@ export default class Main extends Phaser.Scene {
 
   private mapManager: MapManager;
 
-  private coinGroup: Phaser.GameObjects.Group;
+  private objectsGroup: Phaser.GameObjects.Group;
 
   private doorsGroup: Phaser.GameObjects.Group;
 
   private layerIterator: LayerIterator;
 
   private itemFactory: ItemFactory;
+
+  private scuba: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({ key: 'Main' });
@@ -55,39 +57,57 @@ export default class Main extends Phaser.Scene {
 
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
 
-    this.coinGroup = this.add.group();
+    this.objectsGroup = this.prepareObjects();
+
+    this.doorsGroup = this.prepareDoors();
+  }
+
+  private prepareObjects(): Phaser.GameObjects.Group {
+    const objectsGroup = this.add.group();
 
     const coinPositions = this.layerIterator.getObjectPositions(1);
 
     coinPositions.forEach((item: GameItem) => {
       const coin = this.itemFactory.make(item) as Coin;
-      this.coinGroup.add(coin);
+      objectsGroup.add(coin);
     });
+
+    const scubaPosition = this.layerIterator.getObjectPositions(4);
+    objectsGroup.add(this.itemFactory.make(scubaPosition[0]));
+
+    const finsPosition = this.layerIterator.getObjectPositions(5);
+    objectsGroup.add(this.itemFactory.make(finsPosition[0]));
 
     this.physics.add.overlap(
       this.player,
-      this.coinGroup,
+      objectsGroup,
       this.player.collectItem as ArcadePhysicsCallback,
       null,
       this.player,
     );
 
-    this.doorsGroup = this.add.group();
+    return objectsGroup;
+  }
+
+  private prepareDoors(): Phaser.GameObjects.Group {
+    const doorsGroup = this.add.group();
 
     const doorsPositions = this.layerIterator.getObjectPositions(3);
 
     doorsPositions.forEach((item: GameItem) => {
       const door = this.itemFactory.make(item) as Door;
-      this.doorsGroup.add(door);
+      doorsGroup.add(door);
     });
 
     this.physics.add.collider(
       this.player,
-      this.doorsGroup,
+      doorsGroup,
       this.player.openDoor,
       null,
       this.player,
     );
+
+    return doorsGroup;
   }
 
   update(): void {
