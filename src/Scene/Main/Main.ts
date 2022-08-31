@@ -7,8 +7,8 @@ import Player from './Player/Player';
 import map from '../../../maps/map.json';
 import MapManager from './MapManager';
 import { Controller } from './Player/Controller';
-import LayerIterator from '../LayerIterator';
-import ItemFactory from './Object/ItemFactory';
+import LayerIterator from './LayerIterator';
+import { make } from './Object/factory';
 import { GameItem } from './Interfaces';
 import Coin from './Object/Coin';
 import Backpack from './Player/Backpack';
@@ -19,19 +19,12 @@ export default class Main extends Phaser.Scene {
 
   private mapManager: MapManager;
 
-  private objectsGroup: Phaser.GameObjects.Group;
-
-  private doorsGroup: Phaser.GameObjects.Group;
-
   private layerIterator: LayerIterator;
-
-  private itemFactory: ItemFactory;
 
   private scuba: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({ key: 'Main' });
-    this.itemFactory = new ItemFactory(this);
   }
 
   preload(): void {
@@ -45,7 +38,7 @@ export default class Main extends Phaser.Scene {
   }
 
   create(): void {
-    const playerPosition = this.layerIterator.getObjectPositions(2)[0];
+    const playerPosition = this.layerIterator.getPlayerPosition();
 
     const controller = new Controller(
       this.input.keyboard.addKey('LEFT'),
@@ -57,26 +50,26 @@ export default class Main extends Phaser.Scene {
 
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
 
-    this.objectsGroup = this.prepareObjects();
+    this.prepareObjects();
 
-    this.doorsGroup = this.prepareDoors();
+    this.prepareDoors();
   }
 
-  private prepareObjects(): Phaser.GameObjects.Group {
+  private prepareObjects(): void {
     const objectsGroup = this.add.group();
 
-    const coinPositions = this.layerIterator.getObjectPositions(1);
+    const coinPositions = this.layerIterator.getCoinPositions();
 
     coinPositions.forEach((item: GameItem) => {
-      const coin = this.itemFactory.make(item) as Coin;
+      const coin = make(this, item) as Coin;
       objectsGroup.add(coin);
     });
 
-    const scubaPosition = this.layerIterator.getObjectPositions(4);
-    objectsGroup.add(this.itemFactory.make(scubaPosition[0]));
+    const scubaPosition = this.layerIterator.getScubaPosition();
+    objectsGroup.add(make(this, scubaPosition));
 
-    const finsPosition = this.layerIterator.getObjectPositions(5);
-    objectsGroup.add(this.itemFactory.make(finsPosition[0]));
+    const finsPosition = this.layerIterator.getFinsPosition();
+    objectsGroup.add(make(this, finsPosition));
 
     this.physics.add.overlap(
       this.player,
@@ -85,17 +78,15 @@ export default class Main extends Phaser.Scene {
       null,
       this.player,
     );
-
-    return objectsGroup;
   }
 
-  private prepareDoors(): Phaser.GameObjects.Group {
+  private prepareDoors(): void {
     const doorsGroup = this.add.group();
 
-    const doorsPositions = this.layerIterator.getObjectPositions(3);
+    const doorsPositions = this.layerIterator.getDoorsPositions();
 
     doorsPositions.forEach((item: GameItem) => {
-      const door = this.itemFactory.make(item) as Door;
+      const door = make(this, item) as Door;
       doorsGroup.add(door);
     });
 
@@ -106,8 +97,6 @@ export default class Main extends Phaser.Scene {
       null,
       this.player,
     );
-
-    return doorsGroup;
   }
 
   update(): void {

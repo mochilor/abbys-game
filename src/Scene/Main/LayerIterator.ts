@@ -1,5 +1,9 @@
-import { GameItem } from './Main/Interfaces';
-import ItemFactory from './Main/Object/ItemFactory';
+import { GameItem } from './Interfaces';
+import { itemClasses } from './Object/factory';
+import Coin from './Object/Coin';
+import Door from './Object/Door';
+import Fins from './Object/Fins';
+import Scuba from './Object/Scuba';
 
 interface MapItem {
   gid: number,
@@ -45,7 +49,42 @@ export default class LayerIterator {
     return 1;
   }
 
-  public getObjectPositions(itemId: number): GameItem[] {
+  public getPlayerPosition(): GameItem {
+    return this.getObjectPositions(2)[0];
+  }
+
+  public getCoinPositions(): GameItem[] {
+    const itemId = this.getObjectKey(Coin);
+    return this.getObjectPositions(itemId);
+  }
+
+  public getScubaPosition(): GameItem {
+    const itemId = this.getObjectKey(Scuba);
+    return this.getObjectPositions(itemId)[0];
+  }
+
+  public getFinsPosition(): GameItem {
+    const itemId = this.getObjectKey(Fins);
+    return this.getObjectPositions(itemId)[0];
+  }
+
+  public getDoorsPositions(): GameItem[] {
+    const itemId = this.getObjectKey(Door);
+    return this.getObjectPositions(itemId);
+  }
+
+  private getObjectKey(object: any): number {
+    const keys = Object.keys(itemClasses);
+    for (let n = 0; n < keys.length; n += 1) {
+      if (itemClasses[keys[n]] === object) {
+        return parseInt(keys[n], 10);
+      }
+    }
+
+    return 0;
+  }
+
+  private getObjectPositions(itemId: number): GameItem[] {
     const data = this.getLayerData();
     const result = [];
 
