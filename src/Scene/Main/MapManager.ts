@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Player from './Player/Player';
+import Player from './Object/Player/Player';
 import config from '../../../config/config.json';
 
 export default class MapManager {

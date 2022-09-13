@@ -3,6 +3,8 @@ import EventDispatcher from '../../../Service/EventDispatcher';
 import { GameItem } from '../Interfaces';
 
 export default class Door extends Phaser.GameObjects.Sprite {
+  public static key = 'Door';
+
   private level: number;
 
   private locks: Phaser.GameObjects.Rectangle[] = [];

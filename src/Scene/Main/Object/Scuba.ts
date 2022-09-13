@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 
 export default class Scuba extends Phaser.GameObjects.Sprite {
+  public static key = 'Scuba';
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'objects');
 

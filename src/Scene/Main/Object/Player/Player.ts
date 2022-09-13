@@ -1,9 +1,12 @@
 import Phaser from 'phaser';
-import Door from '../Object/Door';
+import Door from '../Door';
 import Backpack from './Backpack';
 import { Controller, PlayerVelocity } from './Controller';
+import EventDispatcher from '../../../../Service/EventDispatcher';
 
 export default class Player extends Phaser.GameObjects.Sprite {
+  public static key = 'Player';
+
   public static texture: string = 'player';
 
   private controller: Controller;
@@ -48,10 +51,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   public collectItem(player: this, item: Phaser.GameObjects.Sprite) {
     this.backpack.addItem(item);
-    item.destroy();
   }
 
   public openDoor(player: Player, door: Door): void {
     door.open();
+  }
+
+  public die(): void {
+    EventDispatcher.getInstance().emit('playerHasDied');
   }
 }

@@ -1,9 +1,6 @@
-import { GameItem } from './Interfaces';
-import { itemClasses } from './Object/factory';
-import Coin from './Object/Coin';
-import Door from './Object/Door';
-import Fins from './Object/Fins';
-import Scuba from './Object/Scuba';
+import { GameItem, GameItemCollection, GameItemLocator } from '../../Interfaces';
+import { itemClasses } from '../../Object/factory';
+import Collection from '../Collection';
 
 interface MapItem {
   gid: number,
@@ -29,8 +26,13 @@ interface Map {
   }[],
 }
 
-export default class LayerIterator {
+/**
+ * Loads game items from map (new game)
+ */
+export default class MapLocator implements GameItemLocator {
   private map: Map;
+
+  private itemClasses = itemClasses;
 
   private firstGid: number;
 
@@ -49,51 +51,30 @@ export default class LayerIterator {
     return 1;
   }
 
-  public getPlayerPosition(): GameItem {
-    return this.getObjectPositions(2)[0];
-  }
-
-  public getCoinPositions(): GameItem[] {
-    const itemId = this.getObjectKey(Coin);
-    return this.getObjectPositions(itemId);
-  }
-
-  public getScubaPosition(): GameItem {
-    const itemId = this.getObjectKey(Scuba);
-    return this.getObjectPositions(itemId)[0];
-  }
-
-  public getFinsPosition(): GameItem {
-    const itemId = this.getObjectKey(Fins);
-    return this.getObjectPositions(itemId)[0];
-  }
-
-  public getDoorsPositions(): GameItem[] {
-    const itemId = this.getObjectKey(Door);
-    return this.getObjectPositions(itemId);
-  }
-
-  private getObjectKey(object: any): number {
-    const keys = Object.keys(itemClasses);
+  public getGameItemCollection(): GameItemCollection {
+    let items = [];
+    const keys = Object.keys(this.itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
-      if (itemClasses[keys[n]] === object) {
-        return parseInt(keys[n], 10);
-      }
+      const itemClass = itemClasses[keys[n]];
+      items = items.concat(this.getObjectPositions(itemClass.key));
     }
 
-    return 0;
+    return new Collection(items);
   }
 
-  private getObjectPositions(itemId: number): GameItem[] {
+  private getObjectPositions(className: string): GameItem[] {
+    const itemId = this.getItemId(className);
     const data = this.getLayerData();
     const result = [];
 
     data.forEach((mapItem: MapItem) => {
       if (itemId === mapItem.gid - this.firstGid + 1) {
         const item = {
+          uuid: Phaser.Utils.String.UUID(),
           id: itemId,
           x: mapItem.x,
           y: mapItem.y,
+          key: className,
           properties: mapItem.properties ?? [],
         };
 
@@ -102,6 +83,18 @@ export default class LayerIterator {
     });
 
     return result;
+  }
+
+  private getItemId(className: string): number {
+    const keys = Object.keys(this.itemClasses);
+    for (let n = 0; n < keys.length; n += 1) {
+      const itemClass = itemClasses[keys[n]];
+      if (itemClass.key === className) {
+        return parseInt(keys[n], 10);
+      }
+    }
+
+    return 0;
   }
 
   private getLayerData(): MapItem[] {
