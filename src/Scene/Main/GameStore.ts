@@ -1,4 +1,4 @@
-import { GameItemCollection } from './Interfaces';
+import { GameItemCollection } from './GameItem/Interfaces';
 
 const fileName = 'saveFile';
 

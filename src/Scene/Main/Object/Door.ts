@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import EventDispatcher from '../../../Service/EventDispatcher';
-import { GameItem } from '../Interfaces';
+import { GameItem } from '../GameItem/Interfaces';
 
 export default class Door extends Phaser.GameObjects.Sprite {
   public static key = 'Door';

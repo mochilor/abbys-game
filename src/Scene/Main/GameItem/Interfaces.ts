@@ -15,12 +15,6 @@ export interface GameItem {
 
 export interface GameItemCollection {
   items: GameItem[],
-  getPlayerPosition: () => GameItem,
-  getCoinPositions: () => GameItem[],
-  getScubaPosition: () => GameItem,
-  getFinsPosition: () => GameItem,
-  getDoorsPositions: () => GameItem[],
-  getSavesPositions: () => GameItem[],
 }
 
 export interface GameItemLocator {

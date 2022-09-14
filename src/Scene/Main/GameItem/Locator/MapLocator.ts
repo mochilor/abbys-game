@@ -1,6 +1,5 @@
-import { GameItem, GameItemCollection, GameItemLocator } from '../../Interfaces';
+import { GameItem, GameItemCollection, GameItemLocator } from '../Interfaces';
 import { itemClasses } from '../../Object/factory';
-import Collection from '../Collection';
 
 interface MapItem {
   gid: number,
@@ -59,7 +58,7 @@ export default class MapLocator implements GameItemLocator {
       items = items.concat(this.getObjectPositions(itemClass.key));
     }
 
-    return new Collection(items);
+    return { items };
   }
 
   private getObjectPositions(className: string): GameItem[] {
@@ -74,7 +73,6 @@ export default class MapLocator implements GameItemLocator {
           id: itemId,
           x: mapItem.x,
           y: mapItem.y,
-          key: className,
           properties: mapItem.properties ?? [],
         };
 
