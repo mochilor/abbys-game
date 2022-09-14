@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
+import GameObject from '../GameObject';
 
-export default class Coin extends Phaser.GameObjects.Sprite {
+export default class Coin extends GameObject {
   public static key = 'Coin';
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, 'objects');
+  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string) {
+    super(scene, x, y, 'objects', uuid);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

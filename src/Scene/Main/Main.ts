@@ -5,10 +5,13 @@ import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.pn
 import blocksImagePath from '../../../assets/img/blocks.png';
 import Player from './Object/Player/Player';
 import map from '../../../maps/map.json';
-import MapManager from './MapManager';
+import MapManager from './Map/MapManager';
 import MapLocator from './GameItem/Locator/MapLocator';
-import Door from './Object/Door';
+import Door from './Object/GameObject/Door';
 import { makeObjects } from './Object/factory';
+import listenGameItemEvents from './GameItem/eventListeners';
+import GameItemCollection from './GameItem/GameItemCollection';
+import SaveGameLocator from './GameItem/Locator/SaveGameLocator';
 
 export default class Main extends Phaser.Scene {
   private player: Player;
@@ -30,14 +33,12 @@ export default class Main extends Phaser.Scene {
   public create(): void {
     this.prepareObjects();
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
-
-    // todo: listen to 'itemDestroyed' event and modify this.gameItems based on the item uuid
   }
 
   private prepareObjects(): void {
-    // A different implementation of GameItemLocator is needed when loading a saved game:
-    const gameItemLocator = new MapLocator(map);
-    const gameItems = gameItemLocator.getGameItemCollection();
+    const gameItems = this.getGameItems();
+    listenGameItemEvents(gameItems);
+
     const objects = makeObjects(this, gameItems);
 
     const objectsGroup = this.add.group();
@@ -72,6 +73,17 @@ export default class Main extends Phaser.Scene {
       null,
       this.player,
     );
+  }
+
+  private getGameItems(): GameItemCollection {
+    const saveGameLocator = new SaveGameLocator();
+
+    try {
+      return saveGameLocator.getGameItemCollection();
+    } catch (error) {
+      const gameItemLocator = new MapLocator(map);
+      return gameItemLocator.getGameItemCollection();
+    }
   }
 
   update(): void {

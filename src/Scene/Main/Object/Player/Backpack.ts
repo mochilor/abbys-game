@@ -1,8 +1,8 @@
-import Coin from '../Coin';
+import Coin from '../GameObject/Coin';
 import EventDispatcher from '../../../../Service/EventDispatcher';
-import Scuba from '../Scuba';
-import Fins from '../Fins';
-import Save from '../Save';
+import Scuba from '../GameObject/Scuba';
+import Fins from '../GameObject/Fins';
+import Save from '../GameObject/Save';
 
 export default class Backpack {
   private content = {
@@ -29,7 +29,7 @@ export default class Backpack {
     }
 
     if (item instanceof Save) {
-      EventDispatcher.getInstance().emit('playerGotSave');
+      EventDispatcher.getInstance().emit('gameSaved', item);
       destroy = false;
     }
 

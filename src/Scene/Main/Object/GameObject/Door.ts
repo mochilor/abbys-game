@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
-import EventDispatcher from '../../../Service/EventDispatcher';
-import { GameItem } from '../GameItem/Interfaces';
+import EventDispatcher from '../../../../Service/EventDispatcher';
+import { GameItem } from '../../GameItem/Interfaces';
+import GameObject from '../GameObject';
 
-export default class Door extends Phaser.GameObjects.Sprite {
+export default class Door extends GameObject {
   public static key = 'Door';
 
   private level: number;
@@ -13,10 +14,8 @@ export default class Door extends Phaser.GameObjects.Sprite {
 
   private isOpen: boolean = false;
 
-  eventDispatcher: EventDispatcher;
-
-  constructor(scene: Phaser.Scene, x: number, y: number, level: GameItem['properties'][number]) {
-    super(scene, x, y, 'blocksImage');
+  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, level: GameItem['properties'][number]) {
+    super(scene, x, y, 'blocksImage', uuid);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
@@ -26,8 +25,7 @@ export default class Door extends Phaser.GameObjects.Sprite {
 
     this.setupLocks(scene);
 
-    this.eventDispatcher = EventDispatcher.getInstance();
-    this.eventDispatcher.on('getCoin', this.unlock, this);
+    EventDispatcher.getInstance().on('getCoin', this.unlock, this);
   }
 
   private setupLocks(scene: Phaser.Scene): void {
@@ -40,6 +38,7 @@ export default class Door extends Phaser.GameObjects.Sprite {
     }
   }
 
+  // TODO: store in savegame current level for each door
   private unlock(): void {
     if (this.isOpen) {
       return;

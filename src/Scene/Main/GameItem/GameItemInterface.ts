@@ -1,7 +1,7 @@
 /**
  * Interface with minimal information needed to instantiate real game objects
  */
-export interface GameItem {
+export default interface GameItem {
   uuid: string,
   id: number,
   x: number,
@@ -11,12 +11,4 @@ export interface GameItem {
     name: string,
     value: number | string,
   }[],
-}
-
-export interface GameItemCollection {
-  items: GameItem[],
-}
-
-export interface GameItemLocator {
-  getGameItemCollection: () => GameItemCollection,
 }

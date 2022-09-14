@@ -1,12 +1,14 @@
-import Door from './Door';
-import { GameItem, GameItemCollection } from '../GameItem/Interfaces';
-import Coin from './Coin';
-import Scuba from './Scuba';
-import Fins from './Fins';
-import Save from './Save';
+import Door from './GameObject/Door';
+import Coin from './GameObject/Coin';
+import Scuba from './GameObject/Scuba';
+import Fins from './GameObject/Fins';
+import Save from './GameObject/Save';
 import Player from './Player/Player';
 import { Controller } from './Player/Controller';
 import Backpack from './Player/Backpack';
+import GameObject from './GameObject';
+import GameItemCollection from '../GameItem/GameItemCollection';
+import GameItem from '../GameItem/GameItemInterface';
 
 const itemClasses = {
   1: Coin,
@@ -27,7 +29,7 @@ function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
   return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack());
 }
 
-function makeSingleObject(scene: Phaser.Scene, gameItem: GameItem): Phaser.GameObjects.Sprite {
+function makeSingleObject(scene: Phaser.Scene, gameItem: GameItem): GameObject|Player {
   const ItemClass = itemClasses[gameItem.id];
 
   const offset = 4;
@@ -40,15 +42,13 @@ function makeSingleObject(scene: Phaser.Scene, gameItem: GameItem): Phaser.GameO
     scene,
     gameItem.x + offset,
     gameItem.y - offset,
+    gameItem.uuid,
     ...gameItem.properties,
   );
 }
 
-function makeObjects(
-  scene: Phaser.Scene,
-  gameItems: GameItemCollection,
-): Phaser.GameObjects.Sprite[] {
-  const { items } = gameItems;
+function makeObjects(scene: Phaser.Scene, gameItems: GameItemCollection): GameObject[] {
+  const items = gameItems.getItems();
   const objects = [];
 
   items.forEach((item: GameItem) => {

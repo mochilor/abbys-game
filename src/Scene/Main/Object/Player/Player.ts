@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Door from '../Door';
+import Door from '../GameObject/Door';
 import Backpack from './Backpack';
 import { Controller, PlayerVelocity } from './Controller';
 import EventDispatcher from '../../../../Service/EventDispatcher';

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import Player from './Object/Player/Player';
-import config from '../../../config/config.json';
+import Player from '../Object/Player/Player';
+import config from '../../../../config/config.json';
+import EventDispatcher from '../../../Service/EventDispatcher';
 
 export default class MapManager {
   private map: Phaser.Tilemaps.Tilemap;
@@ -21,6 +22,7 @@ export default class MapManager {
   public updateCurrentRoom(player: Player): void {
     if (this.playerIsOutOfRoom(player)) {
       this.setupCameras(player);
+      EventDispatcher.getInstance().emit('newRoomReached');
     }
   }
 
