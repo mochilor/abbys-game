@@ -3,15 +3,11 @@ import playerSpritePath from '../../../assets/img/player.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
 import blocksImagePath from '../../../assets/img/blocks.png';
-import Player from './Object/Player/Player';
 import map from '../../../maps/map.json';
 import MapManager from './Map/MapManager';
-import MapLocator from './GameItem/Locator/MapLocator';
-import Door from './Object/GameObject/Door';
-import { makeObjects } from './Object/factory';
-import listenGameItemEvents from './GameItem/eventListeners';
-import GameItemCollection from './GameItem/GameItemCollection';
-import SaveGameLocator from './GameItem/Locator/SaveGameLocator';
+import Player from './Sprite/Player/Player';
+import SpriteManager from './Sprite/SpriteManager';
+import EventDispatcher from '../../Service/EventDispatcher';
 
 export default class Main extends Phaser.Scene {
   private player: Player;
@@ -31,59 +27,16 @@ export default class Main extends Phaser.Scene {
   }
 
   public create(): void {
-    this.prepareObjects();
+    EventDispatcher.getInstance().removeAllListeners();
+    EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
+    const spriteManager = new SpriteManager(this);
+    spriteManager.prepareObjects();
+    this.player = spriteManager.getPlayer();
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
   }
 
-  private prepareObjects(): void {
-    const gameItems = this.getGameItems();
-    listenGameItemEvents(gameItems);
-
-    const objects = makeObjects(this, gameItems);
-
-    const objectsGroup = this.add.group();
-    const doorsGroup = this.add.group();
-
-    objects.forEach((item: Phaser.GameObjects.Sprite) => {
-      if (item instanceof Door) {
-        doorsGroup.add(item);
-        return;
-      }
-
-      if (item instanceof Player) {
-        this.player = item;
-        return;
-      }
-
-      objectsGroup.add(item);
-    });
-
-    this.physics.add.overlap(
-      this.player,
-      objectsGroup,
-      this.player.collectItem as ArcadePhysicsCallback,
-      null,
-      this.player,
-    );
-
-    this.physics.add.collider(
-      this.player,
-      doorsGroup,
-      this.player.openDoor,
-      null,
-      this.player,
-    );
-  }
-
-  private getGameItems(): GameItemCollection {
-    const saveGameLocator = new SaveGameLocator();
-
-    try {
-      return saveGameLocator.getGameItemCollection();
-    } catch (error) {
-      const gameItemLocator = new MapLocator(map);
-      return gameItemLocator.getGameItemCollection();
-    }
+  private playerHasDied(): void {
+    this.scene.restart();
   }
 
   update(): void {

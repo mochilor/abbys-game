@@ -9,14 +9,20 @@ import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
 import GameItem from '../GameItem/GameItemInterface';
+import Spike from './Static/Spike';
+import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 
-const itemClasses = {
+const dynamicItemClasses = {
   1: Coin,
   2: Player,
   3: Door,
   4: Scuba,
   5: Fins,
   6: Save,
+};
+
+const staticItemClasses = {
+  7: Spike,
 };
 
 function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
@@ -29,8 +35,8 @@ function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
   return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack());
 }
 
-function makeSingleObject(scene: Phaser.Scene, gameItem: GameItem): GameObject|Player {
-  const ItemClass = itemClasses[gameItem.id];
+function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject | Player {
+  const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
   const offset = 4;
 
@@ -47,15 +53,23 @@ function makeSingleObject(scene: Phaser.Scene, gameItem: GameItem): GameObject|P
   );
 }
 
-function makeObjects(scene: Phaser.Scene, gameItems: GameItemCollection): GameObject[] {
-  const items = gameItems.getItems();
-  const objects = [];
+function makeSprites(
+  scene: Phaser.Scene,
+  dynamicGameItems: GameItemCollection,
+  staticGameItems: StaticGameItemCollection,
+): GameObject[] {
+  const dynamicItems = dynamicGameItems.getItems();
+  const staticItems = staticGameItems.getItems();
+
+  const items = dynamicItems.concat(staticItems);
+
+  const sprites = [];
 
   items.forEach((item: GameItem) => {
-    objects.push(makeSingleObject(scene, item));
+    sprites.push(makeSingleSprite(scene, item));
   });
 
-  return objects;
+  return sprites;
 }
 
-export { itemClasses, makeObjects };
+export { dynamicItemClasses, staticItemClasses, makeSprites };

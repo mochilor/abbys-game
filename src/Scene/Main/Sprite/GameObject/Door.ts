@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import EventDispatcher from '../../../../Service/EventDispatcher';
-import { GameItem } from '../../GameItem/Interfaces';
+import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
 
 export default class Door extends GameObject {

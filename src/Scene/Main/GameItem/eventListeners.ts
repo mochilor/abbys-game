@@ -1,6 +1,6 @@
 import EventDispatcher from '../../../Service/EventDispatcher';
 import { saveGame } from '../../../Service/gameStore';
-import GameObject from '../Object/GameObject';
+import GameObject from '../Sprite/GameObject';
 import GameItemCollection from './GameItemCollection';
 
 let gameItems: GameItemCollection;
@@ -25,5 +25,4 @@ export default function listenGameItemEvents(gameItemCollection: GameItemCollect
   gameItems = gameItemCollection;
   EventDispatcher.getInstance().on('itemDestroyed', itemDestroyed);
   EventDispatcher.getInstance().on('gameSaved', gameSaved);
-  console.log(gameItemCollection);
 }

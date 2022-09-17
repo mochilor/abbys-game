@@ -1,7 +1,9 @@
 import GameItemLocator from '../GameItemLocatorInterface';
-import { itemClasses } from '../../Object/factory';
+import { dynamicItemClasses, staticItemClasses } from '../../Sprite/factory';
 import GameItemCollection from '../GameItemCollection';
 import GameItem from '../GameItemInterface';
+import StaticGameItemLocator from '../StaticGameItemLocatorInterface';
+import StaticGameItemCollection from '../StaticGameItemCollection';
 
 interface MapItem {
   gid: number,
@@ -30,10 +32,12 @@ interface Map {
 /**
  * Loads game items from map (new game)
  */
-export default class MapLocator implements GameItemLocator {
+export default class MapLocator implements GameItemLocator, StaticGameItemLocator {
   private map: Map;
 
-  private itemClasses = itemClasses;
+  private dynamicItemClasses = dynamicItemClasses;
+
+  private staticItemClasses = staticItemClasses;
 
   private firstGid: number;
 
@@ -53,18 +57,28 @@ export default class MapLocator implements GameItemLocator {
   }
 
   public getGameItemCollection(): GameItemCollection {
-    let items = [];
-    const keys = Object.keys(this.itemClasses);
-    for (let n = 0; n < keys.length; n += 1) {
-      const itemClass = itemClasses[keys[n]];
-      items = items.concat(this.getObjectPositions(itemClass.key));
-    }
-
+    const items = this.getGameItems(this.dynamicItemClasses);
     return new GameItemCollection(items);
   }
 
-  private getObjectPositions(className: string): GameItem[] {
-    const itemId = this.getItemId(className);
+  public getStaticGameItemCollection(): StaticGameItemCollection {
+    const items = this.getGameItems(this.staticItemClasses);
+    return new StaticGameItemCollection(items);
+  }
+
+  private getGameItems(itemClasses: object): GameItem[] {
+    let items = [];
+    const keys = Object.keys(itemClasses);
+    for (let n = 0; n < keys.length; n += 1) {
+      const itemClass = itemClasses[keys[n]];
+      items = items.concat(this.getObjectPositions(itemClass.key, itemClasses));
+    }
+
+    return items;
+  }
+
+  private getObjectPositions(className: string, itemClasses: object): GameItem[] {
+    const itemId = this.getItemId(className, itemClasses);
     const data = this.getLayerData();
     const result = [];
 
@@ -86,8 +100,8 @@ export default class MapLocator implements GameItemLocator {
     return result;
   }
 
-  private getItemId(className: string): number {
-    const keys = Object.keys(this.itemClasses);
+  private getItemId(className: string, itemClasses: object): number {
+    const keys = Object.keys(itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
       const itemClass = itemClasses[keys[n]];
       if (itemClass.key === className) {

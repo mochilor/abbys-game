@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import Player from '../Object/Player/Player';
 import config from '../../../../config/config.json';
 import EventDispatcher from '../../../Service/EventDispatcher';
+import Player from '../Sprite/Player/Player';
 
 export default class MapManager {
   private map: Phaser.Tilemaps.Tilemap;
