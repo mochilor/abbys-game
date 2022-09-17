@@ -57,7 +57,7 @@ export default class SpriteManager {
     this.scene.physics.add.collider(
       this.player,
       this.spikesGroup,
-      this.player.die,
+      this.player.touchSpike,
       null,
       this.player,
     );

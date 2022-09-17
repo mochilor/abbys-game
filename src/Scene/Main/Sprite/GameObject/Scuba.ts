@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import GameObject from '../GameObject';
+import GameSprite from '../GameSpriteInterface';
 
-export default class Scuba extends GameObject {
+export default class Scuba extends GameObject implements GameSprite {
   public static key = 'Scuba';
 
   constructor(scene: Phaser.Scene, x: number, y: number, uuid: string) {

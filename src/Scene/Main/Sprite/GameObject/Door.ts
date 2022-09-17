@@ -2,8 +2,9 @@ import Phaser from 'phaser';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
+import GameSprite from '../GameSpriteInterface';
 
-export default class Door extends GameObject {
+export default class Door extends GameObject implements GameSprite {
   public static key = 'Door';
 
   private level: number;
@@ -14,14 +15,14 @@ export default class Door extends GameObject {
 
   private isOpen: boolean = false;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, level: GameItem['properties'][number]) {
-    super(scene, x, y, 'blocksImage', uuid);
+  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
+    super(scene, x, y, 'blocksImage', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.body.setImmovable();
 
-    this.level = level.value as number;
+    this.level = this.getProperty('level').value as number;
 
     this.setupLocks(scene);
 

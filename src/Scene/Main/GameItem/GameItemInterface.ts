@@ -7,6 +7,7 @@ export default interface GameItem {
   x: number,
   y: number,
   key: string,
+  rotation: number,
   properties: {
     name: string,
     value: number | string,

@@ -9,6 +9,7 @@ interface MapItem {
   gid: number,
   x: number,
   y: number,
+  rotation: number,
   properties?: {
     name: string,
     value: number | string,
@@ -90,6 +91,7 @@ export default class MapLocator implements GameItemLocator, StaticGameItemLocato
           x: mapItem.x,
           y: mapItem.y,
           key: className,
+          rotation: mapItem.rotation,
           properties: mapItem.properties ?? [],
         };
 

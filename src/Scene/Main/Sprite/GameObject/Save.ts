@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameObject from '../GameObject';
+import GameSprite from '../GameSpriteInterface';
 
-export default class Save extends GameObject {
+export default class Save extends GameObject implements GameSprite {
   public static key = 'Save';
 
   constructor(scene: Phaser.Scene, x: number, y: number, uuid: string) {

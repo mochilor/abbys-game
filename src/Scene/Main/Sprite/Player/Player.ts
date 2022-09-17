@@ -3,15 +3,17 @@ import Door from '../GameObject/Door';
 import Backpack from './Backpack';
 import { Controller, PlayerVelocity } from './Controller';
 import EventDispatcher from '../../../../Service/EventDispatcher';
+import GameSprite from '../GameSpriteInterface';
+import Spike from '../Static/Spike';
 
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Player extends Phaser.GameObjects.Sprite implements GameSprite {
   public static key = 'Player';
 
   public static texture: string = 'player';
 
   private controller: Controller;
 
-  private canJump: boolean = false;
+  private canJump: boolean = true;
 
   private backpack: Backpack;
 
@@ -55,6 +57,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   public openDoor(player: Player, door: Door): void {
     door.open();
+  }
+
+  public touchSpike(player: this, spike: Spike): void {
+    if (
+      (player.body.touching.down && spike.isFacingUp())
+      || (player.body.touching.right && spike.isFacingLeft())
+      || (player.body.touching.up && spike.isFacingDown())
+      || (player.body.touching.left && spike.isFacingRight())
+    ) {
+      player.die();
+    }
   }
 
   public die(): void {

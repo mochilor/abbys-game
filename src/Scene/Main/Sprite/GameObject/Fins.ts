@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import GameObject from '../GameObject';
+import GameSprite from '../GameSpriteInterface';
 
-export default class Fins extends GameObject {
+export default class Fins extends GameObject implements GameSprite {
   public static key = 'Fins';
 
   constructor(scene: Phaser.Scene, x: number, y: number, uuid: string) {

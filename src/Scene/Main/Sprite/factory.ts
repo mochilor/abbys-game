@@ -11,6 +11,7 @@ import GameItemCollection from '../GameItem/GameItemCollection';
 import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
+import GameSprite from './GameSpriteInterface';
 
 const dynamicItemClasses = {
   1: Coin,
@@ -35,7 +36,7 @@ function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
   return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack());
 }
 
-function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject | Player {
+function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
   const offset = 4;
@@ -44,12 +45,38 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject |
     return makePlayer(scene, gameItem);
   }
 
+  if (ItemClass === Spike) {
+    let spikeOffsetY: number;
+    let spikeOffsetX: number;
+
+    if (gameItem.rotation === -180) { // V
+      spikeOffsetX = -offset;
+      spikeOffsetY = -offset;
+    } else if (gameItem.rotation === -90) { // <
+      spikeOffsetX = -offset;
+      spikeOffsetY = offset;
+    } else if (gameItem.rotation === 0) { // ^
+      spikeOffsetX = offset;
+      spikeOffsetY = offset;
+    } else if (gameItem.rotation === 90) { // >
+      spikeOffsetY = -offset;
+      spikeOffsetX = offset;
+    }
+
+    return new Spike(
+      scene,
+      gameItem.x + spikeOffsetX,
+      gameItem.y - spikeOffsetY,
+      gameItem.rotation,
+    );
+  }
+
   return new ItemClass(
     scene,
     gameItem.x + offset,
     gameItem.y - offset,
     gameItem.uuid,
-    ...gameItem.properties,
+    gameItem.properties,
   );
 }
 
