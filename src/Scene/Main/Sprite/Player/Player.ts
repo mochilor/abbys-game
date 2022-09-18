@@ -1,19 +1,20 @@
 import Phaser from 'phaser';
-import Door from '../GameObject/Door';
+import Door from '../Dynamic/Door';
 import Backpack from './Backpack';
-import { Controller, PlayerVelocity } from './Controller';
+import { Controller, PlayerDirections } from './Controller';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
+import GameObject from '../GameObject';
 
-export default class Player extends Phaser.GameObjects.Sprite implements GameSprite {
+export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
 
   public static texture: string = 'player';
 
   private controller: Controller;
 
-  private canJump: boolean = true;
+  private hasFeet: boolean = false;
 
   private backpack: Backpack;
 
@@ -32,16 +33,25 @@ export default class Player extends Phaser.GameObjects.Sprite implements GameSpr
     this.setOrigin();
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
+    EventDispatcher.getInstance().on('playerGotFeet', this.playerGotFeet, this);
   }
 
   update() {
     const baseVelocityX: number = 100;
-    const baseVelocityY: number = 80;
-    const velocity: PlayerVelocity = this.controller.move();
-    this.body.setVelocityX(baseVelocityX * velocity.velocityX);
-    if (velocity.velocityY && this.canJump) {
-      this.body.setVelocityY(baseVelocityY * velocity.velocityY);
+    const baseVelocityY: number = 100;
+
+    const directions: PlayerDirections = this.controller.move();
+
+    this.body.setVelocityX(baseVelocityX * directions.directionX);
+
+    if (directions.directionY && this.canJump()) {
+      this.body.setMaxVelocityY(100);
+      this.body.setVelocityY(baseVelocityY * directions.directionY);
     }
+  }
+
+  private canJump(): boolean {
+    return this.hasFeet && this.body.blocked.down;
   }
 
   public positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
@@ -72,5 +82,9 @@ export default class Player extends Phaser.GameObjects.Sprite implements GameSpr
 
   public die(): void {
     EventDispatcher.getInstance().emit('playerHasDied');
+  }
+
+  private playerGotFeet(): void {
+    this.hasFeet = true;
   }
 }

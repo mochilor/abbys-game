@@ -12,7 +12,7 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     x: number,
     y: number,
     texture: string,
-    uuid: string,
+    uuid: string = '',
     properties: GameItem['properties'] = [],
   ) {
     super(scene, x, y, texture);

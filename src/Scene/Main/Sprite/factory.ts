@@ -1,8 +1,8 @@
-import Door from './GameObject/Door';
-import Coin from './GameObject/Coin';
-import Scuba from './GameObject/Scuba';
-import Fins from './GameObject/Fins';
-import Save from './GameObject/Save';
+import Door from './Dynamic/Door';
+import Coin from './Dynamic/Coin';
+import Scuba from './Dynamic/Scuba';
+import Hands from './Dynamic/Hands';
+import Save from './Dynamic/Save';
 import Player from './Player/Player';
 import { Controller } from './Player/Controller';
 import Backpack from './Player/Backpack';
@@ -12,18 +12,22 @@ import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import GameSprite from './GameSpriteInterface';
+import Feet from './Dynamic/Feet';
+import Platform from './Static/Platform';
 
 const dynamicItemClasses = {
   1: Coin,
   2: Player,
   3: Door,
   4: Scuba,
-  5: Fins,
+  5: Hands,
   6: Save,
+  8: Feet,
 };
 
 const staticItemClasses = {
   7: Spike,
+  9: Platform,
 };
 
 function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
@@ -49,7 +53,7 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
     let spikeOffsetY: number;
     let spikeOffsetX: number;
 
-    if (gameItem.rotation === -180) { // V
+    if (Math.abs(gameItem.rotation) === 180) { // V
       spikeOffsetX = -offset;
       spikeOffsetY = -offset;
     } else if (gameItem.rotation === -90) { // <

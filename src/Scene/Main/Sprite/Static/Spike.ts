@@ -1,6 +1,7 @@
+import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
-export default class Spike extends Phaser.GameObjects.Sprite implements GameSprite {
+export default class Spike extends GameObject implements GameSprite {
   constructor(scene: Phaser.Scene, x: number, y: number, rotation: number) {
     super(scene, x, y, 'objects');
 
@@ -22,7 +23,7 @@ export default class Spike extends Phaser.GameObjects.Sprite implements GameSpri
   }
 
   public isFacingDown(): boolean {
-    return this.angle === -180;
+    return Math.abs(this.angle) === 180;
   }
 
   public isFacingLeft(): boolean {

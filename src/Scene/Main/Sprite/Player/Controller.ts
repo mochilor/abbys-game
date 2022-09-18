@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 
-export interface PlayerVelocity {
-  velocityX: number,
-  velocityY: number,
+export interface PlayerDirections {
+  directionX: number,
+  directionY: number,
 }
 
 export class Controller {
@@ -11,8 +11,6 @@ export class Controller {
   private rightKey: Phaser.Input.Keyboard.Key;
 
   private upKey: Phaser.Input.Keyboard.Key;
-
-  private canJump: boolean = true;
 
   constructor(
     leftKey: Phaser.Input.Keyboard.Key,
@@ -24,27 +22,22 @@ export class Controller {
     this.upKey = upKey;
   }
 
-  move(): PlayerVelocity {
-    let velocityX: number = 0;
-    let velocityY: number = 0;
+  move(): PlayerDirections {
+    let directionX: number = 0;
+    let directionY: number = 0;
 
     if (this.leftKey.isDown) {
-      velocityX -= 1;
+      directionX -= 1;
     }
 
     if (this.rightKey.isDown) {
-      velocityX += 1;
+      directionX += 1;
     }
 
-    if (this.upKey.isUp) {
-      this.canJump = true;
+    if (this.upKey.isDown) {
+      directionY -= 1;
     }
 
-    if (this.upKey.isDown && this.canJump) {
-      velocityY -= 1;
-      this.canJump = false;
-    }
-
-    return { velocityX, velocityY };
+    return { directionX, directionY };
   }
 }

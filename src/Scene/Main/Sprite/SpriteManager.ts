@@ -4,11 +4,12 @@ import SaveGameLocator from '../GameItem/Locator/SaveGameLocator';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import { makeSprites } from './factory';
 import GameObject from './GameObject';
-import Door from './GameObject/Door';
+import Door from './Dynamic/Door';
 import Player from './Player/Player';
 import Spike from './Static/Spike';
 import map from '../../../../maps/map.json';
 import GameItemCollection from '../GameItem/GameItemCollection';
+import Platform from './Static/Platform';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -21,6 +22,8 @@ export default class SpriteManager {
 
   private objectsGroup: Phaser.GameObjects.Group;
 
+  private platformsGroup: Phaser.GameObjects.Group;
+
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
   }
@@ -28,12 +31,14 @@ export default class SpriteManager {
   public prepareObjects(): void {
     const dynamicGameItems = this.getGameItems();
     const staticGameItems = this.getStaticGameItems();
+    console.log(staticGameItems);
 
     const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems);
 
     this.spikesGroup = this.scene.add.group();
     this.doorsGroup = this.scene.add.group();
     this.objectsGroup = this.scene.add.group();
+    this.platformsGroup = this.scene.add.group();
 
     objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -43,6 +48,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Door) {
         this.doorsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof Platform) {
+        this.platformsGroup.add(sprite);
         return;
       }
 
@@ -68,6 +78,11 @@ export default class SpriteManager {
       this.player.openDoor,
       null,
       this.player,
+    );
+
+    this.scene.physics.add.collider(
+      this.player,
+      this.platformsGroup,
     );
 
     this.scene.physics.add.overlap(
@@ -99,5 +114,11 @@ export default class SpriteManager {
 
   public getPlayer(): Player {
     return this.player;
+  }
+
+  public update(): void {
+    this.platformsGroup.children.iterate((child: Platform) => {
+      child.update();
+    });
   }
 }

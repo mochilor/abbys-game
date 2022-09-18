@@ -1,14 +1,16 @@
-import Coin from '../GameObject/Coin';
+import Coin from '../Dynamic/Coin';
 import EventDispatcher from '../../../../Service/EventDispatcher';
-import Scuba from '../GameObject/Scuba';
-import Fins from '../GameObject/Fins';
-import Save from '../GameObject/Save';
+import Scuba from '../Dynamic/Scuba';
+import Hands from '../Dynamic/Hands';
+import Save from '../Dynamic/Save';
+import Feet from '../Dynamic/Feet';
 
 export default class Backpack {
   private content = {
     coins: 0,
     scuba: 0,
-    fins: 0,
+    hands: 0,
+    feet: 0,
   };
 
   public addItem(item: Phaser.GameObjects.Sprite) {
@@ -23,9 +25,14 @@ export default class Backpack {
       EventDispatcher.getInstance().emit('playerGotScuba');
     }
 
-    if (item instanceof Fins) {
-      this.content.fins = 1;
-      EventDispatcher.getInstance().emit('playerGotFins');
+    if (item instanceof Hands) {
+      this.content.hands = 1;
+      EventDispatcher.getInstance().emit('playerGotHands');
+    }
+
+    if (item instanceof Feet) {
+      this.content.feet = 1;
+      EventDispatcher.getInstance().emit('playerGotFeet');
     }
 
     if (item instanceof Save) {
