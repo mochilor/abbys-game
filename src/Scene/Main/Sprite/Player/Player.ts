@@ -34,6 +34,8 @@ export default class Player extends GameObject implements GameSprite {
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
     EventDispatcher.getInstance().on('playerGotFeet', this.playerGotFeet, this);
+
+    backpack.init();
   }
 
   update() {

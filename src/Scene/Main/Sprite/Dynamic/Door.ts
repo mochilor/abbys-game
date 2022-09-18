@@ -26,7 +26,7 @@ export default class Door extends GameObject implements GameSprite {
 
     this.setupLocks(scene);
 
-    EventDispatcher.getInstance().on('getCoin', this.unlock, this);
+    EventDispatcher.getInstance().on('playerGotCoin', this.unlock, this);
   }
 
   private setupLocks(scene: Phaser.Scene): void {

@@ -30,6 +30,8 @@ const staticItemClasses = {
   9: Platform,
 };
 
+let playerItem: GameItem = null;
+
 function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
   const controller = new Controller(
     scene.input.keyboard.addKey('LEFT'),
@@ -37,17 +39,13 @@ function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
     scene.input.keyboard.addKey('UP'),
   );
 
-  return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack());
+  return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack(gameItem.properties));
 }
 
 function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
   const offset = 4;
-
-  if (ItemClass === Player) {
-    return makePlayer(scene, gameItem);
-  }
 
   if (ItemClass === Spike) {
     let spikeOffsetY: number;
@@ -97,8 +95,17 @@ function makeSprites(
   const sprites = [];
 
   items.forEach((item: GameItem) => {
+    // make sure player is created in the last place:
+    if (item.key === 'Player') {
+      playerItem = item;
+      return;
+    }
     sprites.push(makeSingleSprite(scene, item));
   });
+
+  if (playerItem) {
+    sprites.push(makePlayer(scene, playerItem));
+  }
 
   return sprites;
 }

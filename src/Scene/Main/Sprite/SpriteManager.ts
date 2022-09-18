@@ -31,7 +31,6 @@ export default class SpriteManager {
   public prepareObjects(): void {
     const dynamicGameItems = this.getGameItems();
     const staticGameItems = this.getStaticGameItems();
-    console.log(staticGameItems);
 
     const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems);
 
