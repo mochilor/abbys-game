@@ -1,9 +1,9 @@
 import GameItemLocator from '../GameItemLocatorInterface';
-import { dynamicItemClasses, staticItemClasses } from '../../Sprite/factory';
+import { dynamicItemClasses, staticItemClasses, mapEventItemClasses } from '../../Sprite/factory';
 import GameItemCollection from '../GameItemCollection';
 import GameItem from '../GameItemInterface';
-import StaticGameItemLocator from '../StaticGameItemLocatorInterface';
 import StaticGameItemCollection from '../StaticGameItemCollection';
+import MapEventsGameItemCollection from '../MapEventsGameItemCollection';
 
 interface MapItem {
   gid: number,
@@ -33,28 +33,17 @@ interface Map {
 /**
  * Loads game items from map (new game)
  */
-export default class MapLocator implements GameItemLocator, StaticGameItemLocator {
+export default class MapLocator implements GameItemLocator {
   private map: Map;
 
   private dynamicItemClasses = dynamicItemClasses;
 
   private staticItemClasses = staticItemClasses;
 
-  private firstGid: number;
+  private mapEventItemClasses = mapEventItemClasses;
 
   constructor(map: Map) {
     this.map = map;
-    this.firstGid = this.getFirstgid();
-  }
-
-  private getFirstgid(): number {
-    for (let n = 0; n < this.map.tilesets.length; n += 1) {
-      if (this.map.tilesets[n].name === 'objects') {
-        return this.map.tilesets[n].firstgid;
-      }
-    }
-
-    return 1;
   }
 
   public getGameItemCollection(): GameItemCollection {
@@ -67,24 +56,30 @@ export default class MapLocator implements GameItemLocator, StaticGameItemLocato
     return new StaticGameItemCollection(items);
   }
 
+  public getMapEventsGameItemCollection(): MapEventsGameItemCollection {
+    const items = this.getGameItems(this.mapEventItemClasses);
+    return new MapEventsGameItemCollection(items);
+  }
+
   private getGameItems(itemClasses: object): GameItem[] {
     let items = [];
     const keys = Object.keys(itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
       const itemClass = itemClasses[keys[n]];
-      items = items.concat(this.getObjectPositions(itemClass.key, itemClasses));
+      items = items.concat(this.makeGameItems(itemClass.key, itemClasses));
     }
 
     return items;
   }
 
-  private getObjectPositions(className: string, itemClasses: object): GameItem[] {
+  private makeGameItems(className: string, itemClasses: object): GameItem[] {
     const itemId = this.getItemId(className, itemClasses);
-    const data = this.getLayerData();
+    const data = this.getLayerData('objects');
     const result = [];
+    const firstGid = this.getFirstgid('objects');
 
     data.forEach((mapItem: MapItem) => {
-      if (itemId === mapItem.gid - this.firstGid + 1) {
+      if (itemId === mapItem.gid - firstGid + 1) {
         const item = {
           uuid: Phaser.Utils.String.UUID(),
           id: itemId,
@@ -114,13 +109,23 @@ export default class MapLocator implements GameItemLocator, StaticGameItemLocato
     return 0;
   }
 
-  private getLayerData(): MapItem[] {
+  private getLayerData(layerName: string): MapItem[] {
     for (let n = 0; n < this.map.layers.length; n += 1) {
-      if (this.map.layers[n].name === 'objects') {
+      if (this.map.layers[n].name === layerName) {
         return this.map.layers[n].objects;
       }
     }
 
     return [];
+  }
+
+  private getFirstgid(tilesetName: string): number {
+    for (let n = 0; n < this.map.tilesets.length; n += 1) {
+      if (this.map.tilesets[n].name === tilesetName) {
+        return this.map.tilesets[n].firstgid;
+      }
+    }
+
+    return 1;
   }
 }

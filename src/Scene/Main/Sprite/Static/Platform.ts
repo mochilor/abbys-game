@@ -71,4 +71,8 @@ export default class Platform extends GameObject implements GameSprite {
       }
     }
   }
+
+  public getSpeed(): number {
+    return this.speed;
+  }
 }

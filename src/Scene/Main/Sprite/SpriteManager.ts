@@ -7,9 +7,13 @@ import GameObject from './GameObject';
 import Door from './Dynamic/Door';
 import Player from './Player/Player';
 import Spike from './Static/Spike';
-import map from '../../../../maps/map.json';
 import GameItemCollection from '../GameItem/GameItemCollection';
 import Platform from './Static/Platform';
+import Button from './Dynamic/Button';
+import { listenButtonEvents, listenSaveEvents } from './Static/eventListeners';
+import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
+import listenDoorEvents from './Dynamic/eventListeners';
+import listenPlayerEvents from './Player/eventListeners';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -24,13 +28,26 @@ export default class SpriteManager {
 
   private platformsGroup: Phaser.GameObjects.Group;
 
-  constructor(scene: Phaser.Scene) {
+  private buttonsGroup: Phaser.GameObjects.Group;
+
+  private saveGameLocator: SaveGameLocator;
+
+  private mapLocator: MapLocator;
+
+  constructor(
+    scene: Phaser.Scene,
+    saveGameLocator: SaveGameLocator,
+    mapLocator: MapLocator,
+  ) {
     this.scene = scene;
+    this.saveGameLocator = saveGameLocator;
+    this.mapLocator = mapLocator;
   }
 
   public prepareObjects(): void {
     const dynamicGameItems = this.getGameItems();
     const staticGameItems = this.getStaticGameItems();
+    const mapEventGameItems = this.getMapEventGameItems();
 
     const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems);
 
@@ -38,6 +55,7 @@ export default class SpriteManager {
     this.doorsGroup = this.scene.add.group();
     this.objectsGroup = this.scene.add.group();
     this.platformsGroup = this.scene.add.group();
+    this.buttonsGroup = this.scene.add.group();
 
     objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -52,6 +70,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Platform) {
         this.platformsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof Button) {
+        this.buttonsGroup.add(sprite);
         return;
       }
 
@@ -81,7 +104,18 @@ export default class SpriteManager {
 
     this.scene.physics.add.collider(
       this.player,
+      this.buttonsGroup,
+      this.player.activateButton,
+      null,
+      this.player,
+    );
+
+    this.scene.physics.add.collider(
+      this.player,
       this.platformsGroup,
+      this.player.touchPlatform,
+      null,
+      this.player,
     );
 
     this.scene.physics.add.overlap(
@@ -93,22 +127,26 @@ export default class SpriteManager {
     );
 
     listenGameItemEvents(dynamicGameItems);
+    listenButtonEvents(this.scene, mapEventGameItems);
+    listenDoorEvents(this.doorsGroup);
+    listenPlayerEvents(this.player);
+    listenSaveEvents(this.objectsGroup);
   }
 
   private getGameItems(): GameItemCollection {
-    const saveGameLocator = new SaveGameLocator();
-
     try {
-      return saveGameLocator.getGameItemCollection();
+      return this.saveGameLocator.getGameItemCollection();
     } catch (error) {
-      const gameItemLocator = new MapLocator(map);
-      return gameItemLocator.getGameItemCollection();
+      return this.mapLocator.getGameItemCollection();
     }
   }
 
   private getStaticGameItems(): StaticGameItemCollection {
-    const gameItemLocator = new MapLocator(map);
-    return gameItemLocator.getStaticGameItemCollection();
+    return this.mapLocator.getStaticGameItemCollection();
+  }
+
+  private getMapEventGameItems(): MapEventsGameItemCollection {
+    return this.mapLocator.getMapEventsGameItemCollection();
   }
 
   public getPlayer(): Player {

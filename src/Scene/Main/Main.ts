@@ -9,6 +9,8 @@ import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
 import EventDispatcher from '../../Service/EventDispatcher';
+import SaveGameLocator from './GameItem/Locator/SaveGameLocator';
+import MapLocator from './GameItem/Locator/MapLocator';
 
 export default class Main extends Phaser.Scene {
   private player: Player;
@@ -33,10 +35,11 @@ export default class Main extends Phaser.Scene {
   public create(): void {
     EventDispatcher.getInstance().removeAllListeners();
     EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
-    this.spriteManager = new SpriteManager(this);
+    this.spriteManager = new SpriteManager(this, new SaveGameLocator(), new MapLocator(map));
     this.spriteManager.prepareObjects();
     this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, this.player, 'tileset', 'tilesetImage');
+    this.player.initBackpack();
   }
 
   private playerHasDied(): void {

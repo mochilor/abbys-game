@@ -2,7 +2,7 @@ import Door from './Dynamic/Door';
 import Coin from './Dynamic/Coin';
 import Scuba from './Dynamic/Scuba';
 import Hands from './Dynamic/Hands';
-import Save from './Dynamic/Save';
+import Save from './Static/Save';
 import Player from './Player/Player';
 import { Controller } from './Player/Controller';
 import Backpack from './Player/Backpack';
@@ -14,6 +14,8 @@ import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import GameSprite from './GameSpriteInterface';
 import Feet from './Dynamic/Feet';
 import Platform from './Static/Platform';
+import Button from './Dynamic/Button';
+import GameEvent from './GameEvent/GameEvent';
 
 const dynamicItemClasses = {
   1: Coin,
@@ -21,13 +23,18 @@ const dynamicItemClasses = {
   3: Door,
   4: Scuba,
   5: Hands,
-  6: Save,
   8: Feet,
+  10: Button,
 };
 
 const staticItemClasses = {
+  6: Save,
   7: Spike,
   9: Platform,
+};
+
+const mapEventItemClasses = {
+  11: GameEvent,
 };
 
 let playerItem: GameItem = null;
@@ -110,4 +117,9 @@ function makeSprites(
   return sprites;
 }
 
-export { dynamicItemClasses, staticItemClasses, makeSprites };
+export {
+  dynamicItemClasses,
+  staticItemClasses,
+  mapEventItemClasses,
+  makeSprites,
+};

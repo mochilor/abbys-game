@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
@@ -13,7 +12,7 @@ export default class Door extends GameObject implements GameSprite {
 
   private coinCounter: number = 0;
 
-  private isOpen: boolean = false;
+  private isLocked: boolean = true;
 
   constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
     super(scene, x, y, 'blocksImage', uuid, properties);
@@ -25,8 +24,6 @@ export default class Door extends GameObject implements GameSprite {
     this.level = this.getProperty('level').value as number;
 
     this.setupLocks(scene);
-
-    EventDispatcher.getInstance().on('playerGotCoin', this.unlock, this);
   }
 
   private setupLocks(scene: Phaser.Scene): void {
@@ -39,9 +36,8 @@ export default class Door extends GameObject implements GameSprite {
     }
   }
 
-  // TODO: store in savegame current level for each door
-  private unlock(): void {
-    if (this.isOpen) {
+  public unlock(): void {
+    if (!this.isLocked) {
       return;
     }
 
@@ -51,12 +47,12 @@ export default class Door extends GameObject implements GameSprite {
 
     if (this.coinCounter >= this.level) {
       // cool animation here!
-      this.isOpen = true;
+      this.isLocked = false;
     }
   }
 
   public open(): void {
-    if (!this.isOpen) {
+    if (this.isLocked) {
       return;
     }
 

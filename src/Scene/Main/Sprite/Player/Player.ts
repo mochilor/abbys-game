@@ -6,6 +6,8 @@ import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
 import GameObject from '../GameObject';
+import Button from '../Dynamic/Button';
+import Platform from '../Static/Platform';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -17,6 +19,8 @@ export default class Player extends GameObject implements GameSprite {
   private hasFeet: boolean = false;
 
   private backpack: Backpack;
+
+  private jumpTimer: number = 0;
 
   constructor(
     scene: Phaser.Scene,
@@ -33,27 +37,33 @@ export default class Player extends GameObject implements GameSprite {
     this.setOrigin();
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
-    EventDispatcher.getInstance().on('playerGotFeet', this.playerGotFeet, this);
-
-    backpack.init();
+    this.body.setSize(13, 15);
+    this.body.setOffset(1, 1);
   }
 
   update() {
     const baseVelocityX: number = 100;
-    const baseVelocityY: number = 100;
+    const baseVelocityY: number = 50;
 
     const directions: PlayerDirections = this.controller.move();
 
     this.body.setVelocityX(baseVelocityX * directions.directionX);
 
-    if (directions.directionY && this.canJump()) {
-      this.body.setMaxVelocityY(100);
-      this.body.setVelocityY(baseVelocityY * directions.directionY);
+    if (directions.directionY) {
+      if (this.canJump()) {
+        this.jumpTimer = 1;
+        this.body.setVelocityY(baseVelocityY * directions.directionY);
+      } else if (this.jumpTimer > 0 && this.jumpTimer < 10) {
+        this.jumpTimer += 1;
+        this.body.setVelocityY((baseVelocityY + (this.jumpTimer * 10)) * directions.directionY);
+      }
+    } else {
+      this.jumpTimer = 0;
     }
   }
 
   private canJump(): boolean {
-    return this.hasFeet && this.body.blocked.down;
+    return this.hasFeet && this.body.blocked.down && this.jumpTimer === 0;
   }
 
   public positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
@@ -71,6 +81,12 @@ export default class Player extends GameObject implements GameSprite {
     door.open();
   }
 
+  public activateButton(player: Player, button: Button): void {
+    if (button.body.touching.up) {
+      this.backpack.addItem(button);
+    }
+  }
+
   public touchSpike(player: this, spike: Spike): void {
     if (
       (player.body.touching.down && spike.isFacingUp())
@@ -86,7 +102,17 @@ export default class Player extends GameObject implements GameSprite {
     EventDispatcher.getInstance().emit('playerHasDied');
   }
 
-  private playerGotFeet(): void {
+  public gotFeet(): void {
     this.hasFeet = true;
+  }
+
+  public initBackpack(): void {
+    this.backpack.init();
+  }
+
+  public touchPlatform(player: Player, platform: Platform): void {
+    if (platform.body.touching.up) {
+      player.body.setVelocityY(Math.abs(platform.getSpeed()));
+    }
   }
 }

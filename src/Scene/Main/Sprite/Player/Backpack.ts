@@ -2,9 +2,11 @@ import Coin from '../Dynamic/Coin';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import Scuba from '../Dynamic/Scuba';
 import Hands from '../Dynamic/Hands';
-import Save from '../Dynamic/Save';
+import Save from '../Static/Save';
 import Feet from '../Dynamic/Feet';
 import GameItem from '../../GameItem/GameItemInterface';
+import GameObject from '../GameObject';
+import Button from '../Dynamic/Button';
 
 function gotCoin(): void {
   EventDispatcher.getInstance().emit('playerGotCoin');
@@ -22,12 +24,17 @@ function gotFeet(): void {
   EventDispatcher.getInstance().emit('playerGotFeet');
 }
 
+function activateButton(eventName: string): void {
+  EventDispatcher.getInstance().emit(eventName);
+}
+
 export default class Backpack {
   private content = {
     coins: 0,
     scuba: 0,
     hands: 0,
     feet: 0,
+    gameEvents: [],
   };
 
   constructor(properties: GameItem['properties']) {
@@ -44,9 +51,8 @@ export default class Backpack {
     for (let n = 1; n <= this.content.coins; n += 1) {
       gotCoin();
     }
-
-    if (this.content.scuba) {
-      gotScuba();
+    if (this.content.gameEvents.length) {
+      gotFeet();
     }
 
     if (this.content.hands) {
@@ -56,6 +62,10 @@ export default class Backpack {
     if (this.content.feet) {
       gotFeet();
     }
+
+    this.content.gameEvents.forEach((eventName: string) => {
+      activateButton(eventName);
+    });
   }
 
   public getContentForSaving(): GameItem['properties'] {
@@ -71,7 +81,7 @@ export default class Backpack {
     return content;
   }
 
-  public addItem(item: Phaser.GameObjects.Sprite) {
+  public addItem(item: GameObject) {
     let destroy = true;
     if (item instanceof Coin) {
       this.content.coins += 1;
@@ -96,6 +106,11 @@ export default class Backpack {
     if (item instanceof Save) {
       EventDispatcher.getInstance().emit('gameSaved', item, this);
       destroy = false;
+    }
+
+    if (item instanceof Button) {
+      this.content.gameEvents.push(item.getEventName());
+      activateButton(item.getEventName());
     }
 
     if (destroy) {
