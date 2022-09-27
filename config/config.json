@@ -1,4 +1,12 @@
 {
   "gameWidth": 256,
-  "gameHeight": 256
+  "gameHeight": 256,
+  "style": [
+    {
+      "bg": "#000000"
+    },
+    {
+      "bg": "#16383c"
+    }
+  ]
 }

@@ -2,12 +2,14 @@ import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
 import configuration from '../config/config.json';
 
+const style = configuration.style[1];
+
 const config = {
   type: Phaser.AUTO,
   width: configuration.gameWidth,
   height: configuration.gameHeight,
   transparent: false,
-  backgroundColor: '#000000',
+  backgroundColor: style.bg,
   render: {
     pixelArt: true,
   },
@@ -29,3 +31,5 @@ const config = {
 
 // eslint-disable-next-line no-new
 new Phaser.Game(config);
+
+(document.querySelector('body') as HTMLBodyElement).setAttribute('style', `background-color: ${style.bg};`);
