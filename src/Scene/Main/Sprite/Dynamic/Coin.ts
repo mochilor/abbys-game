@@ -5,8 +5,8 @@ import GameSprite from '../GameSpriteInterface';
 export default class Coin extends GameObject implements GameSprite {
   public static key = 'Coin';
 
-  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string) {
-    super(scene, x, y, 'objects', uuid);
+  constructor(scene: Phaser.Scene, x: number, y: number, roomName: string, uuid: string) {
+    super(scene, x, y, 'objects', roomName, uuid);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

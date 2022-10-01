@@ -1,51 +1,52 @@
 import Phaser from 'phaser';
-import config from '../../../../config/config.json';
 import EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
 
 export default class MapManager {
-  private map: Phaser.Tilemaps.Tilemap;
+  private roomX: number;
 
-  private tilesetImage: Phaser.Tilemaps.Tileset;
+  private roomY: number;
 
-  private scene: Phaser.Scene;
-
-  constructor(scene: Phaser.Scene, player: Player, tilemap: string, tilesetImage: string) {
-    this.scene = scene;
-    this.map = scene.add.tilemap(tilemap);
-    this.tilesetImage = this.map.addTilesetImage(tilemap, tilesetImage);
-    const layer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer('main', this.tilesetImage, 0, 0);
-    this.map.setCollisionBetween(1, 16);
-    this.scene.physics.add.collider(player, layer);
+  constructor(
+    scene: Phaser.Scene,
+    player: Player,
+    map: Phaser.Tilemaps.Tilemap,
+    roomX: number,
+    roomY: number,
+    tilesetImage: string,
+  ) {
+    this.roomX = roomX;
+    this.roomY = roomY;
+    const tileset = map.addTilesetImage('tileset', tilesetImage);
+    const layer: Phaser.Tilemaps.TilemapLayer = map.createLayer('main', tileset, 0, 0);
+    map.setCollisionBetween(1, 16);
+    scene.physics.add.collider(player, layer);
   }
 
   public updateCurrentRoom(player: Player): void {
-    if (this.playerIsOutOfRoom(player)) {
-      this.setupCameras(player);
-      EventDispatcher.getInstance().emit('newRoomReached');
+    if (player.isLeavingRoom()) {
+      const newRoomData = this.getNewRoomData(player);
+      EventDispatcher.getInstance().emit('newRoomReached', newRoomData, { x: this.roomX, y: this.roomY }, player);
+      this.roomX = newRoomData.x;
+      this.roomY = newRoomData.y;
     }
   }
 
-  private playerIsOutOfRoom(player: Player): boolean {
-    const positionInRoom = player.positionInRoom(
-      this.scene.cameras.main.scrollX,
-      this.scene.cameras.main.scrollY,
-    );
+  private getNewRoomData(player: Player): { x: number, y: number } {
+    const data = { x: this.roomX, y: this.roomY };
 
-    return positionInRoom.y <= 0
-      || positionInRoom.x <= 0
-      || positionInRoom.y >= config.gameHeight
-      || positionInRoom.x >= config.gameWidth;
-  }
+    if (player.isLeavingRoomLeft()) {
+      data.x -= 1;
+    } else if (player.isLeavingRoomRight()) {
+      data.x += 1;
+    }
 
-  private setupCameras(player: Player): void {
-    const roomSizeX = config.gameWidth;
-    const roomSizeY = config.gameHeight;
-    const roomX = Math.floor(player.x / roomSizeX);
-    const roomY = Math.floor(player.y / roomSizeY);
-    const cameraX = (roomX * roomSizeX);
-    const cameraY = (roomY * roomSizeY);
+    if (player.isLeavingRoomTop()) {
+      data.y -= 1;
+    } else if (player.isLeavingRoomBottom()) {
+      data.y += 1;
+    }
 
-    this.scene.cameras.main.setScroll(cameraX, cameraY);
+    return data;
   }
 }

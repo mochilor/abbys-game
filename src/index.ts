@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
 import configuration from '../config/config.json';
 
-const style = configuration.style[1];
+const style = configuration.style[0];
 
 const config = {
   type: Phaser.AUTO,

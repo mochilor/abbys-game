@@ -8,6 +8,7 @@ import Spike from '../Static/Spike';
 import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 import Platform from '../Static/Platform';
+import config from '../../../../../config/config.json';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -66,13 +67,6 @@ export default class Player extends GameObject implements GameSprite {
     return this.hasFeet && this.body.blocked.down && this.jumpTimer === 0;
   }
 
-  public positionInRoom(roomX: number, roomY: number): { x: number, y: number } {
-    return {
-      x: this.x - roomX,
-      y: this.y - roomY,
-    };
-  }
-
   public collectItem(player: this, item: Phaser.GameObjects.Sprite) {
     this.backpack.addItem(item);
   }
@@ -114,5 +108,50 @@ export default class Player extends GameObject implements GameSprite {
     if (platform.body.touching.up) {
       player.body.setVelocityY(Math.abs(platform.getSpeed()));
     }
+  }
+
+  public getBackpack(): Backpack {
+    return this.backpack;
+  }
+
+  public isLeavingRoom(): boolean {
+    return this.isLeavingRoomLeft()
+      || this.isLeavingRoomTop()
+      || this.isLeavingRoomRight()
+      || this.isLeavingRoomBottom();
+  }
+
+  public isLeavingRoomLeft(): boolean {
+    return this.x < 0;
+  }
+
+  public isLeavingRoomTop(): boolean {
+    return this.y < 0;
+  }
+
+  public isLeavingRoomRight(): boolean {
+    return this.x > config.gameWidth;
+  }
+
+  public isLeavingRoomBottom(): boolean {
+    return this.y > config.gameHeight;
+  }
+
+  public getPositionInNewRoom(): { x: number, y: number } {
+    let { x } = this;
+    if (this.isLeavingRoomLeft()) {
+      x = config.gameWidth;
+    } else if (this.isLeavingRoomRight()) {
+      x = 0;
+    }
+
+    let { y } = this;
+    if (this.isLeavingRoomTop()) {
+      y = config.gameHeight;
+    } else if (this.isLeavingRoomBottom()) {
+      y = 0;
+    }
+
+    return { x, y };
   }
 }

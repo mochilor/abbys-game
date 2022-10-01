@@ -20,7 +20,7 @@ export default class Platform extends GameObject implements GameSprite {
   private speed: number = 50;
 
   constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
-    super(scene, x, y, 'platformImage', uuid, properties);
+    super(scene, x, y, 'platformImage', '', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

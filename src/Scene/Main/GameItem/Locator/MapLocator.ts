@@ -1,40 +1,22 @@
 import GameItemLocator from '../GameItemLocatorInterface';
-import { dynamicItemClasses, staticItemClasses, mapEventItemClasses } from '../../Sprite/factory';
 import GameItemCollection from '../GameItemCollection';
-import GameItem from '../GameItemInterface';
+import { GameItem, PlayerItem } from '../GameItemInterface';
 import StaticGameItemCollection from '../StaticGameItemCollection';
 import MapEventsGameItemCollection from '../MapEventsGameItemCollection';
-
-interface MapItem {
-  gid: number,
-  x: number,
-  y: number,
-  rotation: number,
-  properties?: {
-    name: string,
-    value: number | string,
-  }[],
-}
-
-interface Map {
-  tileheight: number,
-  tilewidth: number,
-  width: number,
-  layers: {
-    name: string,
-    objects?: MapItem[],
-  }[],
-  tilesets: {
-    firstgid: number,
-    name: string,
-  }[],
-}
+import {
+  playerItemClass,
+  dynamicItemClasses,
+  staticItemClasses,
+  mapEventItemClasses,
+} from '../../Sprite/factory';
 
 /**
  * Loads game items from map (new game)
  */
 export default class MapLocator implements GameItemLocator {
-  private map: Map;
+  private map: Phaser.Tilemaps.Tilemap;
+
+  private playerItemClass = playerItemClass;
 
   private dynamicItemClasses = dynamicItemClasses;
 
@@ -42,8 +24,11 @@ export default class MapLocator implements GameItemLocator {
 
   private mapEventItemClasses = mapEventItemClasses;
 
-  constructor(map: Map) {
+  private roomName: string;
+
+  constructor(map: Phaser.Tilemaps.Tilemap, roomName: string) {
     this.map = map;
+    this.roomName = roomName;
   }
 
   public getGameItemCollection(): GameItemCollection {
@@ -74,12 +59,12 @@ export default class MapLocator implements GameItemLocator {
 
   private makeGameItems(className: string, itemClasses: object): GameItem[] {
     const itemId = this.getItemId(className, itemClasses);
-    const data = this.getLayerData('objects');
+    const data = this.map.getObjectLayer('objects').objects;
     const result = [];
-    const firstGid = this.getFirstgid('objects');
+    const { firstgid } = this.map.getTileset('objects');
 
-    data.forEach((mapItem: MapItem) => {
-      if (itemId === mapItem.gid - firstGid + 1) {
+    data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
+      if (itemId === mapItem.gid - firstgid + 1) {
         const item = {
           uuid: Phaser.Utils.String.UUID(),
           id: itemId,
@@ -87,6 +72,7 @@ export default class MapLocator implements GameItemLocator {
           y: mapItem.y,
           key: className,
           rotation: mapItem.rotation,
+          roomName: this.roomName,
           properties: mapItem.properties ?? [],
         };
 
@@ -109,23 +95,13 @@ export default class MapLocator implements GameItemLocator {
     return 0;
   }
 
-  private getLayerData(layerName: string): MapItem[] {
-    for (let n = 0; n < this.map.layers.length; n += 1) {
-      if (this.map.layers[n].name === layerName) {
-        return this.map.layers[n].objects;
-      }
+  public getPlayerGameItem(): GameItem {
+    const playerItemArray = this.makeGameItems('Player', this.playerItemClass);
+
+    if (playerItemArray.length === 0) {
+      throw new Error('No player in this map');
     }
 
-    return [];
-  }
-
-  private getFirstgid(tilesetName: string): number {
-    for (let n = 0; n < this.map.tilesets.length; n += 1) {
-      if (this.map.tilesets[n].name === tilesetName) {
-        return this.map.tilesets[n].firstgid;
-      }
-    }
-
-    return 1;
+    return playerItemArray[0];
   }
 }

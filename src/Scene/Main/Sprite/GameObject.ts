@@ -5,6 +5,8 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
 
   private uuid: string;
 
+  private roomName: string;
+
   protected properties: GameItem['properties'] = [];
 
   constructor(
@@ -12,10 +14,12 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     x: number,
     y: number,
     texture: string,
+    roomName: string = '',
     uuid: string = '',
     properties: GameItem['properties'] = [],
   ) {
     super(scene, x, y, texture);
+    this.roomName = roomName;
     this.uuid = uuid;
     this.properties = properties;
   }
@@ -32,5 +36,9 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
 
   public getUuid(): string {
     return this.uuid;
+  }
+
+  public getRoomName(): string {
+    return this.roomName;
   }
 }

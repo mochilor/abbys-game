@@ -8,7 +8,7 @@ import { Controller } from './Player/Controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
-import GameItem from '../GameItem/GameItemInterface';
+import { GameItem } from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import GameSprite from './GameSpriteInterface';
@@ -17,9 +17,12 @@ import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
 
+const playerItemClass = {
+  2: Player,
+};
+
 const dynamicItemClasses = {
   1: Coin,
-  2: Player,
   3: Door,
   4: Scuba,
   5: Hands,
@@ -36,8 +39,6 @@ const staticItemClasses = {
 const mapEventItemClasses = {
   11: GameEvent,
 };
-
-let playerItem: GameItem = null;
 
 function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
   const controller = new Controller(
@@ -84,6 +85,7 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
     scene,
     gameItem.x + offset,
     gameItem.y - offset,
+    gameItem.roomName,
     gameItem.uuid,
     gameItem.properties,
   );
@@ -93,6 +95,7 @@ function makeSprites(
   scene: Phaser.Scene,
   dynamicGameItems: GameItemCollection,
   staticGameItems: StaticGameItemCollection,
+  playerGameItem: GameItem,
 ): GameObject[] {
   const dynamicItems = dynamicGameItems.getItems();
   const staticItems = staticGameItems.getItems();
@@ -102,22 +105,19 @@ function makeSprites(
   const sprites = [];
 
   items.forEach((item: GameItem) => {
-    // make sure player is created in the last place:
-    if (item.key === 'Player') {
-      playerItem = item;
-      return;
-    }
     sprites.push(makeSingleSprite(scene, item));
   });
 
-  if (playerItem) {
-    sprites.push(makePlayer(scene, playerItem));
-  }
+  // Player no tiene que tener gameItem y se tiene que crear en cada room
+  // Al persistirn em meoria o fichero, hay que guaradart los items
+  // y el player (en dos entradas separadas)
+  sprites.push(makePlayer(scene, playerGameItem));
 
   return sprites;
 }
 
 export {
+  playerItemClass,
   dynamicItemClasses,
   staticItemClasses,
   mapEventItemClasses,

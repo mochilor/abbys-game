@@ -14,8 +14,8 @@ export default class Door extends GameObject implements GameSprite {
 
   private isLocked: boolean = true;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
-    super(scene, x, y, 'blocksImage', uuid, properties);
+  constructor(scene: Phaser.Scene, x: number, y: number, roomName: string, uuid: string, properties: GameItem['properties']) {
+    super(scene, x, y, 'blocksImage', roomName, uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

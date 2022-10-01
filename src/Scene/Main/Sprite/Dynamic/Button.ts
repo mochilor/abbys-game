@@ -6,8 +6,15 @@ import GameSprite from '../GameSpriteInterface';
 export default class Button extends GameObject implements GameSprite {
   public static key = 'Button';
 
-  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
-    super(scene, x, y, 'objects', uuid, properties);
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    roomName: string,
+    uuid: string,
+    properties: GameItem['properties'],
+  ) {
+    super(scene, x, y, 'objects', roomName, uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

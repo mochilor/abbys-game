@@ -8,6 +8,7 @@ export default interface GameItem {
   y: number,
   key: string,
   rotation: number,
+  roomName: string,
   properties: {
     name: string,
     value: number | string,

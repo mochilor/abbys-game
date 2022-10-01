@@ -48,14 +48,6 @@ function button1Activated(): void {
   });
 }
 
-function resetSaves(): void {
-  objectsGroup.children.iterate((gameObject: GameObject) => {
-    if (gameObject instanceof Save) {
-      gameObject.resetBody();
-    }
-  });
-}
-
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
@@ -67,7 +59,6 @@ function listenButtonEvents(
 
 function listenSaveEvents(objects: Phaser.GameObjects.Group): void {
   objectsGroup = objects;
-  EventDispatcher.getInstance().on('newRoomReached', resetSaves);
 }
 
 export { listenButtonEvents, listenSaveEvents };

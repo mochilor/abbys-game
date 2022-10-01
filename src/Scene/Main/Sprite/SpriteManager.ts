@@ -14,6 +14,8 @@ import { listenButtonEvents, listenSaveEvents } from './Static/eventListeners';
 import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
 import listenDoorEvents from './Dynamic/eventListeners';
 import listenPlayerEvents from './Player/eventListeners';
+import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
+import GameItem from '../GameItem/GameItemInterface';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -30,26 +32,31 @@ export default class SpriteManager {
 
   private buttonsGroup: Phaser.GameObjects.Group;
 
+  private inMemoryLocator: InMemoryGameLocator;
+
   private saveGameLocator: SaveGameLocator;
 
   private mapLocator: MapLocator;
 
   constructor(
     scene: Phaser.Scene,
+    inMemoryLocator: InMemoryGameLocator,
     saveGameLocator: SaveGameLocator,
     mapLocator: MapLocator,
   ) {
     this.scene = scene;
+    this.inMemoryLocator = inMemoryLocator;
     this.saveGameLocator = saveGameLocator;
     this.mapLocator = mapLocator;
   }
 
-  public prepareObjects(): void {
-    const dynamicGameItems = this.getGameItems();
+  public prepareObjects(roomName: string): void {
+    const dynamicGameItems = this.getGameItems(roomName);
     const staticGameItems = this.getStaticGameItems();
     const mapEventGameItems = this.getMapEventGameItems();
+    const playerGameItem = this.getPlayerGameItem(roomName);
 
-    const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems);
+    const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
 
     this.spikesGroup = this.scene.add.group();
     this.doorsGroup = this.scene.add.group();
@@ -126,16 +133,20 @@ export default class SpriteManager {
       this.player,
     );
 
-    listenGameItemEvents(dynamicGameItems);
+    listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems);
     listenDoorEvents(this.doorsGroup);
     listenPlayerEvents(this.player);
     listenSaveEvents(this.objectsGroup);
   }
 
-  private getGameItems(): GameItemCollection {
+  private getGameItems(roomName: string): GameItemCollection {
     try {
-      return this.saveGameLocator.getGameItemCollection();
+      try {
+        return this.inMemoryLocator.getGameItemCollection(roomName);
+      } catch (error) {
+        return this.saveGameLocator.getGameItemCollection(roomName);
+      }
     } catch (error) {
       return this.mapLocator.getGameItemCollection();
     }
@@ -147,6 +158,18 @@ export default class SpriteManager {
 
   private getMapEventGameItems(): MapEventsGameItemCollection {
     return this.mapLocator.getMapEventsGameItemCollection();
+  }
+
+  private getPlayerGameItem(roomName: string): GameItem {
+    try {
+      try {
+        return this.inMemoryLocator.getPlayerGameItem(roomName);
+      } catch (error) {
+        return this.saveGameLocator.getPlayerGameItem(roomName);
+      }
+    } catch (error) {
+      return this.mapLocator.getPlayerGameItem();
+    }
   }
 
   public getPlayer(): Player {
