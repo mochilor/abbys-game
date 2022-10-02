@@ -1,5 +1,6 @@
 import EventDispatcher from '../../../Service/EventDispatcher';
 import { saveGame } from '../../../Service/gameStore';
+import RoomName from '../Map/RoomName';
 import GameObject from '../Sprite/GameObject';
 import Backpack from '../Sprite/Player/Backpack';
 import Player from '../Sprite/Player/Player';
@@ -33,8 +34,8 @@ function gameSaved(item: Save, backpack: Backpack) {
 }
 
 function newRoomReached(
-  newRoomData: { x: number, y: number },
-  oldRoomData: { x: number, y: number },
+  newRoomData: RoomName,
+  oldRoomData: RoomName,
   player: Player,
 ): void {
   const backpack = player.getBackpack();
@@ -42,8 +43,12 @@ function newRoomReached(
   playerItem.properties = backpackContent;
   playerItem.x = player.getPositionInNewRoom().x;
   playerItem.y = player.getPositionInNewRoom().y;
+  playerItem.properties.push({
+    name: 'velocityY',
+    value: player.body.velocity.y,
+  });
 
-  registry.set(`${oldRoomData.x}_${oldRoomData.y}`, gameItems.getItems());
+  registry.set(oldRoomData.getName(), gameItems.getItems());
   registry.set('player', playerItem);
 }
 

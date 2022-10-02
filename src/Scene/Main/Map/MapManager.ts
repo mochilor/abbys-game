@@ -1,22 +1,19 @@
 import Phaser from 'phaser';
 import EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
+import RoomName from './RoomName';
 
 export default class MapManager {
-  private roomX: number;
-
-  private roomY: number;
+  private roomName: RoomName;
 
   constructor(
     scene: Phaser.Scene,
     player: Player,
     map: Phaser.Tilemaps.Tilemap,
-    roomX: number,
-    roomY: number,
+    roomName: RoomName,
     tilesetImage: string,
   ) {
-    this.roomX = roomX;
-    this.roomY = roomY;
+    this.roomName = roomName;
     const tileset = map.addTilesetImage('tileset', tilesetImage);
     const layer: Phaser.Tilemaps.TilemapLayer = map.createLayer('main', tileset, 0, 0);
     map.setCollisionBetween(1, 16);
@@ -25,15 +22,18 @@ export default class MapManager {
 
   public updateCurrentRoom(player: Player): void {
     if (player.isLeavingRoom()) {
-      const newRoomData = this.getNewRoomData(player);
-      EventDispatcher.getInstance().emit('newRoomReached', newRoomData, { x: this.roomX, y: this.roomY }, player);
-      this.roomX = newRoomData.x;
-      this.roomY = newRoomData.y;
+      const newRoomName = this.getNewRoomName(player);
+      EventDispatcher.getInstance().emit(
+        'newRoomReached',
+        newRoomName,
+        this.roomName,
+        player,
+      );
     }
   }
 
-  private getNewRoomData(player: Player): { x: number, y: number } {
-    const data = { x: this.roomX, y: this.roomY };
+  private getNewRoomName(player: Player): RoomName {
+    const data = { x: this.roomName.getX(), y: this.roomName.getY() };
 
     if (player.isLeavingRoomLeft()) {
       data.x -= 1;
@@ -47,6 +47,6 @@ export default class MapManager {
       data.y += 1;
     }
 
-    return data;
+    return new RoomName(data.x, data.y);
   }
 }

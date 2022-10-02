@@ -1,3 +1,5 @@
+import RoomName from '../Map/RoomName';
+
 /**
  * Interface with minimal information needed to instantiate real game objects
  */
@@ -8,7 +10,7 @@ export default interface GameItem {
   y: number,
   key: string,
   rotation: number,
-  roomName: string,
+  roomName: RoomName,
   properties: {
     name: string,
     value: number | string,

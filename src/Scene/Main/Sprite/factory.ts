@@ -8,7 +8,7 @@ import { Controller } from './Player/Controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
-import { GameItem } from '../GameItem/GameItemInterface';
+import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import GameSprite from './GameSpriteInterface';
@@ -47,7 +47,21 @@ function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
     scene.input.keyboard.addKey('UP'),
   );
 
-  return new Player(scene, gameItem.x, gameItem.y, controller, new Backpack(gameItem.properties));
+  const player = new Player(
+    scene,
+    gameItem.x,
+    gameItem.y,
+    controller,
+    new Backpack(gameItem.properties),
+  );
+
+  gameItem.properties.forEach((property) => {
+    if (property.name === 'velocityY') {
+      player.setVelocityY(property.value as number);
+    }
+  });
+
+  return player;
 }
 
 function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {

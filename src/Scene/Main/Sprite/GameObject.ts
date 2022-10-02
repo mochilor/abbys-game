@@ -1,11 +1,12 @@
 import GameItem from '../GameItem/GameItemInterface';
+import RoomName from '../Map/RoomName';
 
 export default abstract class GameObject extends Phaser.GameObjects.Sprite {
   public static key: string;
 
   private uuid: string;
 
-  private roomName: string;
+  private roomName: RoomName;
 
   protected properties: GameItem['properties'] = [];
 
@@ -14,7 +15,7 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     x: number,
     y: number,
     texture: string,
-    roomName: string = '',
+    roomName: RoomName = null,
     uuid: string = '',
     properties: GameItem['properties'] = [],
   ) {
@@ -38,7 +39,7 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     return this.uuid;
   }
 
-  public getRoomName(): string {
+  public getRoomName(): RoomName {
     return this.roomName;
   }
 }

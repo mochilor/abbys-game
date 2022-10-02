@@ -4,8 +4,8 @@ import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
 
 export default class SaveGameLocator implements GameItemLocator {
-  public getGameItemCollection(room: string): GameItemCollection {
-    const saveData = loadGame(room);
+  public getGameItemCollection(): GameItemCollection {
+    const saveData = loadGame();
 
     if (saveData === null) {
       throw new Error('No save file!');
@@ -14,8 +14,8 @@ export default class SaveGameLocator implements GameItemLocator {
     return new GameItemCollection(saveData.gameItems);
   }
 
-  public getPlayerGameItem(room: string): GameItem {
-    const saveData = loadGame(room);
+  public getPlayerGameItem(): GameItem {
+    const saveData = loadGame();
 
     if (saveData === null) {
       throw new Error('No save file!');

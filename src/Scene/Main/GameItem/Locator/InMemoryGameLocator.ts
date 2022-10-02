@@ -1,3 +1,4 @@
+import RoomName from '../../Map/RoomName';
 import GameItemCollection from '../GameItemCollection';
 import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
@@ -9,8 +10,8 @@ export default class InMemoryGameLocator implements GameItemLocator {
     this.scene = scene;
   }
 
-  public getGameItemCollection(room: string): GameItemCollection {
-    const storedData: any = this.scene.registry.get(room);
+  public getGameItemCollection(room: RoomName): GameItemCollection {
+    const storedData: any = this.scene.registry.get(room.getName());
 
     if (storedData == null) {
       throw new Error('No data in memory');

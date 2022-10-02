@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -10,7 +11,7 @@ export default class Button extends GameObject implements GameSprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: string,
+    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
   ) {

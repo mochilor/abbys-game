@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -14,7 +15,14 @@ export default class Door extends GameObject implements GameSprite {
 
   private isLocked: boolean = true;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, roomName: string, uuid: string, properties: GameItem['properties']) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    roomName: RoomName,
+    uuid: string,
+    properties: GameItem['properties'],
+  ) {
     super(scene, x, y, 'blocksImage', roomName, uuid, properties);
 
     scene.physics.world.enable(this);

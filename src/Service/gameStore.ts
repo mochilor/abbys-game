@@ -1,26 +1,29 @@
 import GameItemCollection from '../Scene/Main/GameItem/GameItemCollection';
 import GameItem from '../Scene/Main/GameItem/GameItemInterface';
+import RoomName from '../Scene/Main/Map/RoomName';
 import SavedGame from './SavedGame';
 
-function getFileName(roomNumber: string): string {
-  return `cavegame.saveFile.${roomNumber}`;
-}
+const fileName = 'cavegame.savefile';
 
 function saveGame(
   gameItemCollection: GameItemCollection,
   playerItem: GameItem,
-  roomNumber: string,
+  roomName: RoomName,
 ) {
   const savedGame: SavedGame = {
     gameItems: gameItemCollection.getItems(),
     playerItem,
+    room: {
+      x: roomName.getX(),
+      y: roomName.getY(),
+    },
   };
 
-  localStorage.setItem(getFileName(roomNumber), JSON.stringify(savedGame));
+  localStorage.setItem(fileName, JSON.stringify(savedGame));
 }
 
-function loadGame(roomNumber: string): SavedGame | null {
-  const saveFile = localStorage.getItem(getFileName(roomNumber));
+function loadGame(): SavedGame | null {
+  const saveFile = localStorage.getItem(fileName);
 
   if (saveFile === null) {
     return null;
@@ -30,14 +33,6 @@ function loadGame(roomNumber: string): SavedGame | null {
 
   return parsedSaveFile;
 }
-
-// function savedGameExists(): boolean {
-//   return localStorage.getItem(fileName) !== null;
-// }
-
-// function removeGame(): void {
-//   localStorage.removeItem(fileName);
-// }
 
 export {
   saveGame,

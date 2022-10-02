@@ -10,12 +10,13 @@ import Spike from './Static/Spike';
 import GameItemCollection from '../GameItem/GameItemCollection';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
-import { listenButtonEvents, listenSaveEvents } from './Static/eventListeners';
+import listenButtonEvents from './Static/eventListeners';
 import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
 import listenDoorEvents from './Dynamic/eventListeners';
 import listenPlayerEvents from './Player/eventListeners';
 import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
+import RoomName from '../Map/RoomName';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -50,11 +51,11 @@ export default class SpriteManager {
     this.mapLocator = mapLocator;
   }
 
-  public prepareObjects(roomName: string): void {
+  public prepareObjects(roomName: RoomName): void {
     const dynamicGameItems = this.getGameItems(roomName);
-    const staticGameItems = this.getStaticGameItems();
-    const mapEventGameItems = this.getMapEventGameItems();
-    const playerGameItem = this.getPlayerGameItem(roomName);
+    const staticGameItems = this.getStaticGameItems(roomName);
+    const mapEventGameItems = this.getMapEventGameItems(roomName);
+    const playerGameItem = this.getPlayerGameItem();
 
     const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
 
@@ -137,35 +138,34 @@ export default class SpriteManager {
     listenButtonEvents(this.scene, mapEventGameItems);
     listenDoorEvents(this.doorsGroup);
     listenPlayerEvents(this.player);
-    listenSaveEvents(this.objectsGroup);
   }
 
-  private getGameItems(roomName: string): GameItemCollection {
+  private getGameItems(roomName: RoomName): GameItemCollection {
     try {
       try {
         return this.inMemoryLocator.getGameItemCollection(roomName);
       } catch (error) {
-        return this.saveGameLocator.getGameItemCollection(roomName);
+        return this.saveGameLocator.getGameItemCollection();
       }
     } catch (error) {
-      return this.mapLocator.getGameItemCollection();
+      return this.mapLocator.getGameItemCollection(roomName);
     }
   }
 
-  private getStaticGameItems(): StaticGameItemCollection {
-    return this.mapLocator.getStaticGameItemCollection();
+  private getStaticGameItems(roomName: RoomName): StaticGameItemCollection {
+    return this.mapLocator.getStaticGameItemCollection(roomName);
   }
 
-  private getMapEventGameItems(): MapEventsGameItemCollection {
-    return this.mapLocator.getMapEventsGameItemCollection();
+  private getMapEventGameItems(roomName: RoomName): MapEventsGameItemCollection {
+    return this.mapLocator.getMapEventsGameItemCollection(roomName);
   }
 
-  private getPlayerGameItem(roomName: string): GameItem {
+  private getPlayerGameItem(): GameItem {
     try {
       try {
-        return this.inMemoryLocator.getPlayerGameItem(roomName);
+        return this.inMemoryLocator.getPlayerGameItem();
       } catch (error) {
-        return this.saveGameLocator.getPlayerGameItem(roomName);
+        return this.saveGameLocator.getPlayerGameItem();
       }
     } catch (error) {
       return this.mapLocator.getPlayerGameItem();

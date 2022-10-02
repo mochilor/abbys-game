@@ -1,14 +1,10 @@
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameItem from '../../GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../GameItem/MapEventsGameItemCollection';
-import GameObject from '../GameObject';
-import Save from './Save';
 
 let gameScene: Phaser.Scene;
 
 let eventGameItemCollection: MapEventsGameItemCollection;
-
-let objectsGroup: Phaser.GameObjects.Group;
 
 function button1Activated(): void {
   const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
@@ -57,8 +53,4 @@ function listenButtonEvents(
   EventDispatcher.getInstance().on('button1Activated', button1Activated);
 }
 
-function listenSaveEvents(objects: Phaser.GameObjects.Group): void {
-  objectsGroup = objects;
-}
-
-export { listenButtonEvents, listenSaveEvents };
+export default listenButtonEvents;
