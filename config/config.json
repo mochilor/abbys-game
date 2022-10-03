@@ -1,6 +1,8 @@
 {
   "gameWidth": 256,
   "gameHeight": 256,
+  "roomWidth": 512,
+  "roomHeight": 512,
   "style": [
     {
       "bg": "#000000"

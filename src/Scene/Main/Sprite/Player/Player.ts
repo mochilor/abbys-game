@@ -17,7 +17,7 @@ export default class Player extends GameObject implements GameSprite {
 
   private controller: Controller;
 
-  private hasFeet: boolean = false;
+  private hasFeet: boolean = true;
 
   private backpack: Backpack;
 
@@ -67,7 +67,7 @@ export default class Player extends GameObject implements GameSprite {
     return this.hasFeet && this.body.blocked.down && this.jumpTimer === 0;
   }
 
-  public collectItem(player: this, item: Phaser.GameObjects.Sprite) {
+  public collectItem(player: this, item: GameObject) {
     this.backpack.addItem(item);
   }
 
@@ -130,24 +130,24 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   public isLeavingRoomRight(): boolean {
-    return this.x > config.gameWidth;
+    return this.x > config.roomWidth;
   }
 
   public isLeavingRoomBottom(): boolean {
-    return this.y > config.gameHeight;
+    return this.y > config.roomHeight;
   }
 
   public getPositionInNewRoom(): { x: number, y: number } {
     let { x } = this;
     if (this.isLeavingRoomLeft()) {
-      x = config.gameWidth;
+      x = config.roomWidth;
     } else if (this.isLeavingRoomRight()) {
       x = 0;
     }
 
     let { y } = this;
     if (this.isLeavingRoomTop()) {
-      y = config.gameHeight;
+      y = config.roomHeight;
     } else if (this.isLeavingRoomBottom()) {
       y = 0;
     }

@@ -22,7 +22,8 @@ function button1Activated(): void {
   });
 
   if (tileStart === null || tileEnd === null) {
-    throw new Error('Wrong map data');
+    // We are not in the right room
+    return;
   }
 
   const tileMap: Phaser.Tilemaps.Tilemap = gameScene.children.getFirst('type', 'TilemapLayer');

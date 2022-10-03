@@ -1,4 +1,5 @@
 import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -19,8 +20,15 @@ export default class Platform extends GameObject implements GameSprite {
 
   private speed: number = 50;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, uuid: string, properties: GameItem['properties']) {
-    super(scene, x, y, 'platformImage', null, uuid, properties);
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    roomName: RoomName,
+    uuid: string,
+    properties: GameItem['properties'],
+  ) {
+    super(scene, x, y, 'platformImage', roomName, uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

@@ -2,8 +2,11 @@ import Phaser from 'phaser';
 import EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
 import RoomName from './RoomName';
+import config from '../../../../config/config.json';
 
 export default class MapManager {
+  private scene: Phaser.Scene;
+
   private roomName: RoomName;
 
   constructor(
@@ -13,11 +16,12 @@ export default class MapManager {
     roomName: RoomName,
     tilesetImage: string,
   ) {
+    this.scene = scene;
     this.roomName = roomName;
     const tileset = map.addTilesetImage('tileset', tilesetImage);
     const layer: Phaser.Tilemaps.TilemapLayer = map.createLayer('main', tileset, 0, 0);
     map.setCollisionBetween(1, 16);
-    scene.physics.add.collider(player, layer);
+    this.scene.physics.add.collider(player, layer);
   }
 
   public updateCurrentRoom(player: Player): void {
@@ -29,6 +33,8 @@ export default class MapManager {
         this.roomName,
         player,
       );
+    } else {
+      this.setupCameras(player);
     }
   }
 
@@ -48,5 +54,17 @@ export default class MapManager {
     }
 
     return new RoomName(data.x, data.y);
+  }
+
+  private setupCameras(player: Player): void {
+    // Add 1 to screen sizes to prevent reloacting cameras when player is exactly at the border:
+    const screenSizeX = config.gameWidth + 1;
+    const screenSizeY = config.gameHeight + 1;
+    const roomX = Math.floor(player.x / screenSizeX);
+    const roomY = Math.floor(player.y / screenSizeY);
+    const cameraX = roomX * screenSizeX;
+    const cameraY = roomY * screenSizeY;
+
+    this.scene.cameras.main.setScroll(cameraX, cameraY);
   }
 }
