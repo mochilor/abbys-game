@@ -20,8 +20,10 @@ export default class MapManager {
     this.roomName = roomName;
     const tileset = map.addTilesetImage('tileset', tilesetImage);
     const layer: Phaser.Tilemaps.TilemapLayer = map.createLayer('main', tileset, 0, 0);
-    map.setCollisionBetween(1, 16);
+    layer.depth = -100;
+    map.setCollisionBetween(1, 32);
     this.scene.physics.add.collider(player, layer);
+    this.scene.cameras.getCamera('background').ignore(layer);
   }
 
   public updateCurrentRoom(player: Player): void {

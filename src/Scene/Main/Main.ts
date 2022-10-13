@@ -4,6 +4,8 @@ import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
 import blocksImagePath from '../../../assets/img/blocks.png';
 import platformImagePath from '../../../assets/img/platform.png';
+import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
+import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
 import map10_10 from '../../../maps/10-10.json';
 import map10_11 from '../../../maps/10-11.json';
 import map9_11 from '../../../maps/9-11.json';
@@ -17,6 +19,7 @@ import MapLocator from './GameItem/Locator/MapLocator';
 import InMemoryGameLocator from './GameItem/Locator/InMemoryGameLocator';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
+import BackgroundManager from './Background/BackgroundManager';
 
 interface Data {
   x: number,
@@ -55,7 +58,9 @@ export default class Main extends Phaser.Scene {
     this.load.image('tilesetImage', tilesetPath);
     this.load.image('blocksImage', blocksImagePath);
     this.load.image('platformImage', platformImagePath);
+    this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
+    this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.tilemapTiledJSON('10_10', map10_10);
     this.load.tilemapTiledJSON('10_11', map10_11);
     this.load.tilemapTiledJSON('9_11', map9_11);
@@ -70,6 +75,9 @@ export default class Main extends Phaser.Scene {
     const roomName = getRoomName(data);
     const map = this.add.tilemap(roomName.getName());
 
+    const backgroundManager = new BackgroundManager(this);
+    backgroundManager.setup();
+
     this.spriteManager = new SpriteManager(
       this,
       new InMemoryGameLocator(this),
@@ -77,6 +85,7 @@ export default class Main extends Phaser.Scene {
       new MapLocator(map),
     );
     this.spriteManager.prepareObjects(roomName);
+
     this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, this.player, map, roomName, 'tilesetImage');
     this.player.initBackpack();

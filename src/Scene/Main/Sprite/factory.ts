@@ -16,6 +16,7 @@ import Feet from './Dynamic/Feet';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
+import SeaWeed from './Static/Decoration/SeaWeed';
 
 const playerItemClass = {
   2: Player,
@@ -34,6 +35,7 @@ const staticItemClasses = {
   6: Save,
   7: Spike,
   9: Platform,
+  12: SeaWeed,
 };
 
 const mapEventItemClasses = {
@@ -126,6 +128,8 @@ function makeSprites(
   // Al persistirn em meoria o fichero, hay que guaradart los items
   // y el player (en dos entradas separadas)
   sprites.push(makePlayer(scene, playerGameItem));
+
+  scene.cameras.getCamera('background').ignore(sprites);
 
   return sprites;
 }

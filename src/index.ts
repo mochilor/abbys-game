@@ -1,18 +1,17 @@
 import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
 import configuration from '../config/config.json';
+import BendWaves from './Scene/Main/Background/shader';
 
 const style = configuration.style[0];
 
 const config = {
-  type: Phaser.AUTO,
+  type: Phaser.WEBGL,
   width: configuration.gameWidth,
   height: configuration.gameHeight,
   transparent: false,
   backgroundColor: style.bg,
-  render: {
-    pixelArt: true,
-  },
+  pixelArt: true,
   physics: {
     default: 'arcade',
     arcade: {
@@ -27,6 +26,7 @@ const config = {
   scene: [
     new Main(),
   ],
+  pipeline: { BendWaves },
 };
 
 // eslint-disable-next-line no-new
