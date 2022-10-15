@@ -2,6 +2,8 @@ import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
 export default class Spike extends GameObject implements GameSprite {
+  public static key = 'Spike';
+
   constructor(scene: Phaser.Scene, x: number, y: number, rotation: number) {
     super(scene, x, y, 'objects');
 

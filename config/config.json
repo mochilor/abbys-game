@@ -3,6 +3,7 @@
   "gameHeight": 256,
   "roomWidth": 512,
   "roomHeight": 512,
+  "bg": false,
   "style": [
     {
       "bg": "#666666"

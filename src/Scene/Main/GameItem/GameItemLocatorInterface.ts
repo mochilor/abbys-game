@@ -3,6 +3,6 @@ import GameItemCollection from './GameItemCollection';
 import GameItem from './GameItemInterface';
 
 export default interface GameItemLocator {
-  getGameItemCollection: (room?: RoomName) => GameItemCollection;
+  getGameItemCollection: (room: RoomName) => GameItemCollection;
   getPlayerGameItem: (room?: string) => GameItem;
 }

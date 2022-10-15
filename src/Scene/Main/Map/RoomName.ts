@@ -19,4 +19,8 @@ export default class RoomName {
   public getName(): string {
     return `${this.x}_${this.y}`;
   }
+
+  public equals(roomName: this) {
+    return this.x === roomName.getX() && this.y === roomName.getY();
+  }
 }

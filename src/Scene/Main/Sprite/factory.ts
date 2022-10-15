@@ -129,8 +129,6 @@ function makeSprites(
   // y el player (en dos entradas separadas)
   sprites.push(makePlayer(scene, playerGameItem));
 
-  scene.cameras.getCamera('background').ignore(sprites);
-
   return sprites;
 }
 

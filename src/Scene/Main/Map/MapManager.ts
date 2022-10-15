@@ -9,21 +9,19 @@ export default class MapManager {
 
   private roomName: RoomName;
 
-  constructor(
-    scene: Phaser.Scene,
-    player: Player,
-    map: Phaser.Tilemaps.Tilemap,
-    roomName: RoomName,
-    tilesetImage: string,
-  ) {
+  private layer: Phaser.Tilemaps.TilemapLayer;
+
+  constructor(scene: Phaser.Scene, roomName: RoomName) {
     this.scene = scene;
     this.roomName = roomName;
+  }
+
+  public setup(player: Player, map: Phaser.Tilemaps.Tilemap, tilesetImage: string): void {
     const tileset = map.addTilesetImage('tileset', tilesetImage);
-    const layer: Phaser.Tilemaps.TilemapLayer = map.createLayer('main', tileset, 0, 0);
-    layer.depth = -100;
+    this.layer = map.createLayer('main', tileset, 0, 0);
+    this.layer.depth = -100;
     map.setCollisionBetween(1, 32);
-    this.scene.physics.add.collider(player, layer);
-    this.scene.cameras.getCamera('background').ignore(layer);
+    this.scene.physics.add.collider(player, this.layer);
   }
 
   public updateCurrentRoom(player: Player): void {
@@ -68,5 +66,9 @@ export default class MapManager {
     const cameraY = roomY * screenSizeY;
 
     this.scene.cameras.main.setScroll(cameraX, cameraY);
+  }
+
+  public getLayer(): Phaser.Tilemaps.TilemapLayer {
+    return this.layer;
   }
 }

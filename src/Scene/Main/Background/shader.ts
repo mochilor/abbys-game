@@ -11,8 +11,8 @@ void main( void )
 {
     vec2 uv = outTexCoord;
     //uv.y *= -1.0;
-    uv.y += (sin((uv.x + (uTime * 0.5)) * 10.0) * 0.001) + (sin((uv.x + (uTime * 0.1)) * 32.0) * 0.001);
-    uv.x -= (sin((uv.x + (uTime * 0.5)) * 10.0) * 0.003) + (sin((uv.x + (uTime * 0.1)) * 50.0) * 0.009);
+    uv.y += (sin((uv.x + (uTime * 0.5)) * 10.0) * 0.005) + (sin((uv.x + (uTime * 0.1)) * 32.0) * 0.005);
+    uv.x -= (sin((uv.x + (uTime * 0.5)) * 10.0) * 0.003) + (sin((uv.x + (uTime * 0.1)) * 50.0) * 0.09);
     vec4 texColor = texture2D(uMainSampler, uv);
     gl_FragColor = texColor;
 }

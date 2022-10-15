@@ -39,6 +39,8 @@ export default class SpriteManager {
 
   private mapLocator: MapLocator;
 
+  private objects: GameObject[];
+
   constructor(
     scene: Phaser.Scene,
     inMemoryLocator: InMemoryGameLocator,
@@ -57,7 +59,9 @@ export default class SpriteManager {
     const mapEventGameItems = this.getMapEventGameItems(roomName);
     const playerGameItem = this.getPlayerGameItem();
 
-    const objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
+    console.log(dynamicGameItems);
+
+    this.objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
 
     this.spikesGroup = this.scene.add.group();
     this.doorsGroup = this.scene.add.group();
@@ -65,7 +69,7 @@ export default class SpriteManager {
     this.platformsGroup = this.scene.add.group();
     this.buttonsGroup = this.scene.add.group();
 
-    objects.forEach((sprite: GameObject) => {
+    this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
         this.spikesGroup.add(sprite);
         return;
@@ -145,7 +149,7 @@ export default class SpriteManager {
       try {
         return this.inMemoryLocator.getGameItemCollection(roomName);
       } catch (error) {
-        return this.saveGameLocator.getGameItemCollection();
+        return this.saveGameLocator.getGameItemCollection(roomName);
       }
     } catch (error) {
       return this.mapLocator.getGameItemCollection(roomName);
@@ -180,5 +184,9 @@ export default class SpriteManager {
     this.platformsGroup.children.iterate((child: Platform) => {
       child.update();
     });
+  }
+
+  public getObjects(): GameObject[] {
+    return this.objects;
   }
 }

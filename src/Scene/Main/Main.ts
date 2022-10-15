@@ -10,6 +10,8 @@ import map10_10 from '../../../maps/10-10.json';
 import map10_11 from '../../../maps/10-11.json';
 import map9_11 from '../../../maps/9-11.json';
 import map11_10 from '../../../maps/11-10.json';
+import map9_12 from '../../../maps/9-12.json';
+import map10_12 from '../../../maps/10-12.json';
 import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
@@ -65,6 +67,8 @@ export default class Main extends Phaser.Scene {
     this.load.tilemapTiledJSON('10_11', map10_11);
     this.load.tilemapTiledJSON('9_11', map9_11);
     this.load.tilemapTiledJSON('11_10', map11_10);
+    this.load.tilemapTiledJSON('9_12', map9_12);
+    this.load.tilemapTiledJSON('10_12', map10_12);
 
     // this.load.pack();
   }
@@ -75,9 +79,6 @@ export default class Main extends Phaser.Scene {
     const roomName = getRoomName(data);
     const map = this.add.tilemap(roomName.getName());
 
-    const backgroundManager = new BackgroundManager(this);
-    backgroundManager.setup();
-
     this.spriteManager = new SpriteManager(
       this,
       new InMemoryGameLocator(this),
@@ -87,7 +88,14 @@ export default class Main extends Phaser.Scene {
     this.spriteManager.prepareObjects(roomName);
 
     this.player = this.spriteManager.getPlayer();
-    this.mapManager = new MapManager(this, this.player, map, roomName, 'tilesetImage');
+    this.mapManager = new MapManager(this, roomName);
+    this.mapManager.setup(this.player, map, 'tilesetImage');
+
+    (new BackgroundManager(this)).setup(
+      this.spriteManager.getObjects(),
+      this.mapManager.getLayer(),
+    );
+
     this.player.initBackpack();
 
     EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
