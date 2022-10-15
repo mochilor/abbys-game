@@ -13,6 +13,6 @@ export default interface GameItem {
   roomName: RoomName,
   properties: {
     name: string,
-    value: number | string,
+    value: number | string | object,
   }[],
 }

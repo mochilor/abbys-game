@@ -22,7 +22,7 @@ export class Controller {
     this.upKey = upKey;
   }
 
-  move(): PlayerDirections {
+  public move(): PlayerDirections {
     let directionX: number = 0;
     let directionY: number = 0;
 
@@ -39,5 +39,13 @@ export class Controller {
     }
 
     return { directionX, directionY };
+  }
+
+  public leftKeyIsDown(): boolean {
+    return this.leftKey.isDown;
+  }
+
+  public rightKeyIsDown(): boolean {
+    return this.rightKey.isDown;
   }
 }

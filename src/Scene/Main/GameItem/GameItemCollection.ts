@@ -11,16 +11,6 @@ export default class GameItemCollection {
     return this.items;
   }
 
-  public getPlayerItem(): GameItem | null {
-    for (let n = 0; n < this.items.length; n += 1) {
-      if (this.items[n].key === 'Player') {
-        return this.items[n];
-      }
-    }
-
-    return null; // Should never happen
-  }
-
   public deleteItem(uuid: string): void {
     for (let n = 0; n < this.items.length; n += 1) {
       if (this.items[n].uuid === uuid) {

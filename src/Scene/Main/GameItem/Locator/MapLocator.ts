@@ -55,7 +55,7 @@ export default class MapLocator implements GameItemLocator {
     return items;
   }
 
-  private makeGameItems(className: string, itemClasses: object, roomName: RoomName): GameItem[] {
+  private makeGameItems(className: string, itemClasses: object, roomName?: RoomName): GameItem[] {
     const itemId = this.getItemId(className, itemClasses);
     const data = this.map.getObjectLayer('objects').objects;
     const result = [];
@@ -94,7 +94,7 @@ export default class MapLocator implements GameItemLocator {
   }
 
   public getPlayerGameItem(): GameItem {
-    const playerItemArray = this.makeGameItems('Player', this.playerItemClass);
+    const playerItemArray = this.makeGameItems('Player', this.playerItemClass, null);
 
     if (playerItemArray.length === 0) {
       throw new Error('No player in this map');

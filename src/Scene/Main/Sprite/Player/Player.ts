@@ -158,4 +158,8 @@ export default class Player extends GameObject implements GameSprite {
   public setVelocityY(velocityY: number): void {
     this.body.velocity.y = velocityY;
   }
+
+  public getController(): Controller {
+    return this.controller;
+  }
 }

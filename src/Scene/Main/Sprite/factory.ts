@@ -42,26 +42,36 @@ const mapEventItemClasses = {
   11: GameEvent,
 };
 
-function makePlayer(scene: Phaser.Scene, gameItem: GameItem): Player {
+function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
+  let otherProperties = {};
+
+  playerItem.properties.forEach((property) => {
+    if (property.name === 'otherProperties') {
+      otherProperties = property.value;
+    }
+  });
+
+  const leftKey = scene.input.keyboard.addKey('LEFT');
+  leftKey.isDown = otherProperties.leftKeyIsDown ?? false;
+
+  const rightKey = scene.input.keyboard.addKey('RIGHT');
+  rightKey.isDown = otherProperties.rightKeyIsDown ?? false;
+
   const controller = new Controller(
-    scene.input.keyboard.addKey('LEFT'),
-    scene.input.keyboard.addKey('RIGHT'),
+    leftKey,
+    rightKey,
     scene.input.keyboard.addKey('UP'),
   );
 
   const player = new Player(
     scene,
-    gameItem.x,
-    gameItem.y,
+    playerItem.x,
+    playerItem.y,
     controller,
-    new Backpack(gameItem.properties),
+    new Backpack(playerItem.properties),
   );
 
-  gameItem.properties.forEach((property) => {
-    if (property.name === 'velocityY') {
-      player.setVelocityY(property.value as number);
-    }
-  });
+  player.setVelocityY(otherProperties.velocityY ?? 0);
 
   return player;
 }

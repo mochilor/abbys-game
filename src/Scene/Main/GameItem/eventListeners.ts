@@ -43,10 +43,17 @@ function newRoomReached(
   playerItem.properties = backpackContent;
   playerItem.x = player.getPositionInNewRoom().x;
   playerItem.y = player.getPositionInNewRoom().y;
-  playerItem.properties.push({
-    name: 'velocityY',
-    value: player.body.velocity.y,
-  });
+
+  playerItem.properties.push(
+    {
+      name: 'otherProperties',
+      value: {
+        velocityY: player.body.velocity.y,
+        leftKeyIsDown: player.getController().leftKeyIsDown() ? 1 : 0,
+        rightKeyIsDown: player.getController().rightKeyIsDown() ? 1 : 0,
+      },
+    },
+  );
 
   registry.set(oldRoomData.getName(), gameItems.getItems());
   registry.set('player', playerItem);
