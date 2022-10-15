@@ -26,8 +26,6 @@ import BackgroundManager from './Background/BackgroundManager';
 interface Data {
   x: number,
   y: number,
-  playerX: number,
-  playerY: number,
 }
 
 function getRoomName(data?: Data): RoomName {
@@ -103,7 +101,8 @@ export default class Main extends Phaser.Scene {
   }
 
   private playerHasDied(): void {
-    this.scene.restart();
+    this.registry.reset();
+    this.scene.restart({});
   }
 
   update(): void {

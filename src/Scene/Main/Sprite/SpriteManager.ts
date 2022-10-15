@@ -59,8 +59,6 @@ export default class SpriteManager {
     const mapEventGameItems = this.getMapEventGameItems(roomName);
     const playerGameItem = this.getPlayerGameItem();
 
-    console.log(dynamicGameItems);
-
     this.objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
 
     this.spikesGroup = this.scene.add.group();
