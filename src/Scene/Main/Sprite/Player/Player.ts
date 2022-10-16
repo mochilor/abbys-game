@@ -9,6 +9,7 @@ import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
+import EnemyGameObject from '../Static/Enemy/EnemyGameObject';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -92,7 +93,7 @@ export default class Player extends GameObject implements GameSprite {
     }
   }
 
-  public die(): void {
+  private die(): void {
     EventDispatcher.getInstance().emit('playerHasDied');
   }
 
@@ -161,5 +162,9 @@ export default class Player extends GameObject implements GameSprite {
 
   public getController(): Controller {
     return this.controller;
+  }
+
+  public touchEnemy(): void {
+    this.die();
   }
 }

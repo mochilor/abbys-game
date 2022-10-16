@@ -17,6 +17,7 @@ import listenPlayerEvents from './Player/eventListeners';
 import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
+import EnemyGameObject from './Static/Enemy/EnemyGameObject';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -32,6 +33,8 @@ export default class SpriteManager {
   private platformsGroup: Phaser.GameObjects.Group;
 
   private buttonsGroup: Phaser.GameObjects.Group;
+
+  private enemiesGroup: Phaser.GameObjects.Group;
 
   private inMemoryLocator: InMemoryGameLocator;
 
@@ -66,6 +69,7 @@ export default class SpriteManager {
     this.objectsGroup = this.scene.add.group();
     this.platformsGroup = this.scene.add.group();
     this.buttonsGroup = this.scene.add.group();
+    this.enemiesGroup = this.scene.add.group();
 
     this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -85,6 +89,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Button) {
         this.buttonsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof EnemyGameObject) {
+        this.enemiesGroup.add(sprite);
         return;
       }
 
@@ -136,6 +145,14 @@ export default class SpriteManager {
       this.player,
     );
 
+    this.scene.physics.add.collider(
+      this.player,
+      this.enemiesGroup,
+      this.player.touchEnemy,
+      null,
+      this.player,
+    );
+
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems);
     listenDoorEvents(this.doorsGroup);
@@ -180,6 +197,9 @@ export default class SpriteManager {
 
   public update(): void {
     this.platformsGroup.children.iterate((child: Platform) => {
+      child.update();
+    });
+    this.enemiesGroup.children.iterate((child: Platform) => {
       child.update();
     });
   }

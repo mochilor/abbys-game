@@ -17,6 +17,7 @@ import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
 import SeaWeed from './Static/Decoration/SeaWeed';
+import Spear from './Static/Enemy/Spear';
 
 const playerItemClass = {
   2: Player,
@@ -36,6 +37,7 @@ const staticItemClasses = {
   7: Spike,
   9: Platform,
   12: SeaWeed,
+  13: Spear,
 };
 
 const mapEventItemClasses = {
@@ -103,6 +105,15 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
       scene,
       gameItem.x + spikeOffsetX,
       gameItem.y - spikeOffsetY,
+      gameItem.rotation,
+    );
+  }
+
+  if (ItemClass === Spear) {
+    return new Spear(
+      scene,
+      gameItem.x,
+      gameItem.y,
       gameItem.rotation,
     );
   }
