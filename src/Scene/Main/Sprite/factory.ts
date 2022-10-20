@@ -1,10 +1,8 @@
 import Door from './Dynamic/Door';
 import Coin from './Dynamic/Coin';
-import Scuba from './Dynamic/Scuba';
-import Hands from './Dynamic/Hands';
 import Save from './Static/Save';
 import Player from './Player/Player';
-import { Controller } from './Player/Controller';
+import Controller from './Player/Controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
@@ -12,7 +10,6 @@ import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import GameSprite from './GameSpriteInterface';
-import Feet from './Dynamic/Feet';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
@@ -26,9 +23,6 @@ const playerItemClass = {
 const dynamicItemClasses = {
   1: Coin,
   3: Door,
-  4: Scuba,
-  5: Hands,
-  8: Feet,
   10: Button,
 };
 
@@ -62,7 +56,6 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
   const controller = new Controller(
     leftKey,
     rightKey,
-    scene.input.keyboard.addKey('UP'),
   );
 
   const player = new Player(
@@ -73,7 +66,7 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
     new Backpack(playerItem.properties),
   );
 
-  player.setVelocityY(otherProperties.velocityY ?? 0);
+  player.setVelocityY(otherProperties.velocityY ?? 0); // still needed?
 
   return player;
 }

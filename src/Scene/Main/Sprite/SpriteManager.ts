@@ -13,7 +13,6 @@ import Button from './Dynamic/Button';
 import listenButtonEvents from './Static/eventListeners';
 import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
 import listenDoorEvents from './Dynamic/eventListeners';
-import listenPlayerEvents from './Player/eventListeners';
 import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
@@ -156,7 +155,6 @@ export default class SpriteManager {
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems);
     listenDoorEvents(this.doorsGroup);
-    listenPlayerEvents(this.player);
   }
 
   private getGameItems(roomName: RoomName): GameItemCollection {

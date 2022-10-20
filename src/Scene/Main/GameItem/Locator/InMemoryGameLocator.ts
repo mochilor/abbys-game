@@ -11,7 +11,7 @@ export default class InMemoryGameLocator implements GameItemLocator {
   }
 
   public getGameItemCollection(room: RoomName): GameItemCollection {
-    const storedData: any = this.scene.registry.get(room.getName());
+    const storedData: GameItem[] = this.scene.registry.get(room.getName());
 
     if (storedData == null) {
       throw new Error('No data in memory');

@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Door from '../Dynamic/Door';
 import Backpack from './Backpack';
-import { Controller, PlayerDirections } from './Controller';
+import Controller from './Controller';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
@@ -9,7 +9,6 @@ import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
-import EnemyGameObject from '../Static/Enemy/EnemyGameObject';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -17,8 +16,6 @@ export default class Player extends GameObject implements GameSprite {
   public static texture: string = 'player';
 
   private controller: Controller;
-
-  private hasFeet: boolean = true;
 
   private backpack: Backpack;
 
@@ -45,27 +42,10 @@ export default class Player extends GameObject implements GameSprite {
 
   update() {
     const baseVelocityX: number = 100;
-    const baseVelocityY: number = 50;
 
-    const directions: PlayerDirections = this.controller.move();
+    const direction = this.controller.move();
 
-    this.body.setVelocityX(baseVelocityX * directions.directionX);
-
-    if (directions.directionY) {
-      if (this.canJump()) {
-        this.jumpTimer = 1;
-        this.body.setVelocityY(baseVelocityY * directions.directionY);
-      } else if (this.jumpTimer > 0 && this.jumpTimer < 10) {
-        this.jumpTimer += 1;
-        this.body.setVelocityY((baseVelocityY + (this.jumpTimer * 10)) * directions.directionY);
-      }
-    } else {
-      this.jumpTimer = 0;
-    }
-  }
-
-  private canJump(): boolean {
-    return this.hasFeet && this.body.blocked.down && this.jumpTimer === 0;
+    this.body.setVelocityX(baseVelocityX * direction);
   }
 
   public collectItem(player: this, item: GameObject) {
@@ -95,10 +75,6 @@ export default class Player extends GameObject implements GameSprite {
 
   private die(): void {
     EventDispatcher.getInstance().emit('playerHasDied');
-  }
-
-  public gotFeet(): void {
-    this.hasFeet = true;
   }
 
   public initBackpack(): void {

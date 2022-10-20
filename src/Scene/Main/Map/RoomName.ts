@@ -20,7 +20,7 @@ export default class RoomName {
     return `${this.x}_${this.y}`;
   }
 
-  public equals(roomName: this) {
-    return this.x === roomName.getX() && this.y === roomName.getY();
+  public isSame(roomData: { x: number, y: number }): boolean {
+    return this.x === roomData.x && this.y === roomData.y;
   }
 }

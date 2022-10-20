@@ -30,7 +30,7 @@ function gameSaved(item: Save, backpack: Backpack) {
   const backpackContent = backpack.getContentForSaving();
   playerItem.properties = backpackContent;
 
-  saveGame(gameItems, playerItem, item.getRoomName());
+  saveGame(gameItems, playerItem, item.getRoomName(), registry);
 }
 
 function newRoomReached(

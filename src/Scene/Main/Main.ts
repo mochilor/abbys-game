@@ -7,12 +7,9 @@ import spearImagePath from '../../../assets/img/spear.png';
 import platformImagePath from '../../../assets/img/platform.png';
 import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
-import map10_10 from '../../../maps/10-10.json';
-import map10_11 from '../../../maps/10-11.json';
-import map9_11 from '../../../maps/9-11.json';
-import map11_10 from '../../../maps/11-10.json';
-import map9_12 from '../../../maps/9-12.json';
-import map10_12 from '../../../maps/10-12.json';
+import map5_1 from '../../../maps/5-1.json';
+import map5_2 from '../../../maps/5-2.json';
+import map4_2 from '../../../maps/4-2.json';
 import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
@@ -40,7 +37,7 @@ function getRoomName(data?: Data): RoomName {
     return new RoomName(savedGame.room.x, savedGame.room.y);
   }
 
-  return new RoomName(10, 10);
+  return new RoomName(5, 1);
 }
 
 export default class Main extends Phaser.Scene {
@@ -63,12 +60,9 @@ export default class Main extends Phaser.Scene {
     this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
     this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
-    this.load.tilemapTiledJSON('10_10', map10_10);
-    this.load.tilemapTiledJSON('10_11', map10_11);
-    this.load.tilemapTiledJSON('9_11', map9_11);
-    this.load.tilemapTiledJSON('11_10', map11_10);
-    this.load.tilemapTiledJSON('9_12', map9_12);
-    this.load.tilemapTiledJSON('10_12', map10_12);
+    this.load.tilemapTiledJSON('5_1', map5_1);
+    this.load.tilemapTiledJSON('5_2', map5_2);
+    this.load.tilemapTiledJSON('4_2', map4_2);
 
     // this.load.pack();
   }
@@ -82,7 +76,7 @@ export default class Main extends Phaser.Scene {
     this.spriteManager = new SpriteManager(
       this,
       new InMemoryGameLocator(this),
-      new SaveGameLocator(),
+      new SaveGameLocator(this.registry),
       new MapLocator(map),
     );
     this.spriteManager.prepareObjects(roomName);
