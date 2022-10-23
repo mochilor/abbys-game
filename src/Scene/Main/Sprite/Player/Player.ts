@@ -13,8 +13,6 @@ import config from '../../../../../config/config.json';
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
 
-  public static texture: string = 'player';
-
   private controller: Controller;
 
   private backpack: Backpack;

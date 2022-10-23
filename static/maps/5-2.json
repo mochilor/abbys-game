@@ -210,7 +210,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/assets\/img\/tileset.png",
+         "image":"..\/..\/assets\/img\/tileset.png",
          "imageheight":96,
          "imagewidth":64,
          "margin":0,
@@ -223,7 +223,7 @@
         {
          "columns":3,
          "firstgid":97,
-         "image":"..\/assets\/img\/objects.png",
+         "image":"..\/..\/assets\/img\/objects.png",
          "imageheight":48,
          "imagewidth":24,
          "margin":0,

@@ -1,15 +1,4 @@
 import Phaser from 'phaser';
-import playerSpritePath from '../../../assets/img/player.png';
-import tilesetPath from '../../../assets/img/tileset.png';
-import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
-import blocksImagePath from '../../../assets/img/blocks.png';
-import spearImagePath from '../../../assets/img/spear.png';
-import platformImagePath from '../../../assets/img/platform.png';
-import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
-import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
-import map5_1 from '../../../maps/5-1.json';
-import map5_2 from '../../../maps/5-2.json';
-import map4_2 from '../../../maps/4-2.json';
 import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
@@ -49,22 +38,6 @@ export default class Main extends Phaser.Scene {
 
   constructor() {
     super({ key: 'Main' });
-  }
-
-  public preload(): void {
-    this.load.image(Player.texture, playerSpritePath);
-    this.load.image('tilesetImage', tilesetPath);
-    this.load.image('blocksImage', blocksImagePath);
-    this.load.image('spearImage', spearImagePath);
-    this.load.image('platformImage', platformImagePath);
-    this.load.image('bgUnderwater', bgUnderwaterPath);
-    this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
-    this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
-    this.load.tilemapTiledJSON('5_1', map5_1);
-    this.load.tilemapTiledJSON('5_2', map5_2);
-    this.load.tilemapTiledJSON('4_2', map4_2);
-
-    // this.load.pack();
   }
 
   public create(data?: Data): void {
