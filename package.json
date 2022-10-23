@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "maps": "node scripts/maps.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -20,9 +19,14 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@mapeditor/tiled-api": "^1.9.2",
     "assets": "^3.0.1",
     "eslint-import-resolver-typescript": "^3.2.6",
     "phaser": "^3.55.2",
     "src": "^1.1.2"
+  },
+  "staticFiles": {
+    "staticPath": "tiled/maps",
+    "staticOutPath": "maps"
   }
 }

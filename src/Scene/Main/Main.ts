@@ -26,7 +26,7 @@ function getRoomName(data?: Data): RoomName {
     return new RoomName(savedGame.room.x, savedGame.room.y);
   }
 
-  return new RoomName(5, 1);
+  return new RoomName(5, 0);
 }
 
 export default class Main extends Phaser.Scene {

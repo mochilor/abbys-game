@@ -6,7 +6,7 @@ import spearImagePath from '../../../assets/img/spear.png';
 import platformImagePath from '../../../assets/img/platform.png';
 import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
-import maplist from '../../../static/maps/maplist.json';
+import maplist from '../../../assets/maplist.json';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
