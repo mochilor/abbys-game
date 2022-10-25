@@ -17,6 +17,10 @@ export default class Spear extends EnemyGameObject implements GameSprite {
   constructor(scene: Phaser.Scene, x: number, y: number, angle: number) {
     super(scene, x, y, 'spearImage');
 
+    scene.physics.world.enable(this);
+    scene.add.existing(this);
+    this.body.setImmovable();
+
     this.type = angle === 0 || angle === 180 ? 'y' : 'x';
     this.setAngle(angle);
 
@@ -29,22 +33,23 @@ export default class Spear extends EnemyGameObject implements GameSprite {
     } else if (angle === -90 || angle === 270) { // <
       this.x -= offsetX;
       this.y -= offsetY;
+      this.setHorizontalBody();
     } else if (angle === 0) { // ^
       this.x += offsetX;
       this.y -= offsetY;
     } else if (angle === 90) { // >
       this.x += offsetX;
       this.y += offsetY;
+      this.setHorizontalBody();
     }
 
     this.initialPosition = this.getAxisPosition();
 
-    scene.physics.world.enable(this);
-    scene.add.existing(this);
-    this.body.setImmovable();
-    // this.rotation = 10;
-
     this.setDepth(-100);
+  }
+
+  private setHorizontalBody(): void {
+    this.body.setSize(this.body.height, this.body.width);
   }
 
   private getAxisPosition(): number {
