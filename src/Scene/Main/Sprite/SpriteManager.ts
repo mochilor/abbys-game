@@ -193,12 +193,12 @@ export default class SpriteManager {
     return this.player;
   }
 
-  public update(): void {
+  public update(time: number): void {
     this.platformsGroup.children.iterate((child: Platform) => {
       child.update();
     });
     this.enemiesGroup.children.iterate((child: Platform) => {
-      child.update();
+      child.update(time);
     });
   }
 

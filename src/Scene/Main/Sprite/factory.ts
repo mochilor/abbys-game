@@ -15,6 +15,7 @@ import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
 import SeaWeed from './Static/Decoration/SeaWeed';
 import Spear from './Static/Enemy/Spear';
+import Ball from './Static/Enemy/Ball';
 
 const playerItemClass = {
   2: Player,
@@ -32,6 +33,7 @@ const staticItemClasses = {
   9: Platform,
   12: SeaWeed,
   13: Spear,
+  14: Ball,
 };
 
 const mapEventItemClasses = {
@@ -108,6 +110,23 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
       gameItem.x,
       gameItem.y,
       gameItem.rotation,
+    );
+  }
+
+  if (ItemClass === Ball) {
+    let radius = 0;
+
+    gameItem.properties.forEach((property) => {
+      if (property.name === 'radius') {
+        radius = parseInt(property.value, 10);
+      }
+    });
+
+    return new Ball(
+      scene,
+      gameItem.x + 4,
+      gameItem.y - 4,
+      radius,
     );
   }
 
