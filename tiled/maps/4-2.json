@@ -351,6 +351,34 @@
                  "width":8,
                  "x":124,
                  "y":156
+                }, 
+                {
+                 "class":"",
+                 "gid":111,
+                 "height":8,
+                 "id":138,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"destinationRoom",
+                         "type":"string",
+                         "value":"3_1"
+                        }, 
+                        {
+                         "name":"destinationX",
+                         "type":"string",
+                         "value":"32"
+                        }, 
+                        {
+                         "name":"destinationY",
+                         "type":"string",
+                         "value":"32"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":124,
+                 "y":216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -359,7 +387,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":138,
+ "nextobjectid":139,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

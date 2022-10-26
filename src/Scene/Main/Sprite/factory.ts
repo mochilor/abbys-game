@@ -16,6 +16,8 @@ import GameEvent from './GameEvent/GameEvent';
 import SeaWeed from './Static/Decoration/SeaWeed';
 import Spear from './Static/Enemy/Spear';
 import Ball from './Static/Enemy/Ball';
+import Portal from './Static/Portal';
+import RoomName from '../Map/RoomName';
 
 const playerItemClass = {
   2: Player,
@@ -34,6 +36,7 @@ const staticItemClasses = {
   12: SeaWeed,
   13: Spear,
   14: Ball,
+  15: Portal,
 };
 
 const mapEventItemClasses = {
@@ -118,7 +121,7 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
 
     gameItem.properties.forEach((property) => {
       if (property.name === 'radius') {
-        radius = parseInt(property.value, 10);
+        radius = parseInt(property.value as string, 10);
       }
     });
 
@@ -127,6 +130,38 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
       gameItem.x + 4,
       gameItem.y - 4,
       radius,
+    );
+  }
+
+  if (ItemClass === Portal) {
+    let x: number;
+    let y: number;
+    let room: RoomName;
+
+    gameItem.properties.forEach((property) => {
+      if (property.name === 'destinationRoom') {
+        room = RoomName.fromName(property.value as string);
+      }
+
+      if (property.name === 'destinationX') {
+        x = parseInt(property.value as string, 10);
+      }
+
+      if (property.name === 'destinationY') {
+        y = parseInt(property.value as string, 10);
+      }
+    });
+
+    if (!room || !x || !y) {
+      throw new Error('Invalid portal destination');
+    }
+
+    return new Portal(
+      scene,
+      gameItem.x + 4,
+      gameItem.y - 4,
+      { room, x, y },
+      gameItem.roomName,
     );
   }
 

@@ -8,6 +8,19 @@ export default class RoomName {
     this.y = y;
   }
 
+  public static fromName(name: string): RoomName {
+    const parsedName = name.split('_');
+
+    const x = parsedName[0] ?? null;
+    const y = parsedName[1] ?? null;
+
+    if (!x || !y) {
+      throw new Error('Invalid room name provided');
+    }
+
+    return new RoomName(parseInt(x, 10), parseInt(y, 10));
+  }
+
   public getX(): number {
     return this.x;
   }

@@ -9,6 +9,7 @@ import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
+import Portal from '../Static/Portal';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -17,7 +18,7 @@ export default class Player extends GameObject implements GameSprite {
 
   private backpack: Backpack;
 
-  private jumpTimer: number = 0;
+  private portalDestination: { x: number, y: number };
 
   constructor(
     scene: Phaser.Scene,
@@ -47,6 +48,17 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   public collectItem(player: this, item: GameObject) {
+    if (item instanceof Portal) {
+      this.setPortalDestination(item.getDestination().x, item.getDestination().y);
+      EventDispatcher.getInstance().emit(
+        'newRoomReached',
+        item.getDestination().room,
+        item.getRoomName(),
+        this,
+      );
+      return;
+    }
+
     this.backpack.addItem(item);
   }
 
@@ -118,6 +130,8 @@ export default class Player extends GameObject implements GameSprite {
       x = config.roomWidth;
     } else if (this.isLeavingRoomRight()) {
       x = 0;
+    } else if (this.isTeleporting()) {
+      x = this.portalDestination.x;
     }
 
     let { y } = this;
@@ -125,6 +139,8 @@ export default class Player extends GameObject implements GameSprite {
       y = config.roomHeight;
     } else if (this.isLeavingRoomBottom()) {
       y = 0;
+    } else if (this.isTeleporting()) {
+      y = this.portalDestination.y;
     }
 
     return { x, y };
@@ -140,5 +156,13 @@ export default class Player extends GameObject implements GameSprite {
 
   public touchEnemy(): void {
     this.die();
+  }
+
+  public setPortalDestination(x: number, y: number): void {
+    this.portalDestination = { x, y };
+  }
+
+  private isTeleporting(): boolean {
+    return this.portalDestination != null;
   }
 }
