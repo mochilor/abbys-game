@@ -27,16 +27,23 @@ export default class Player extends GameObject implements GameSprite {
     controller: Controller,
     backpack: Backpack,
   ) {
-    super(scene, x, y, 'player');
+    super(scene, x, y, 'playerSpritesheet');
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.controller = controller;
     this.backpack = backpack;
-    this.setOrigin();
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
-    this.body.setSize(13, 15);
-    this.body.setOffset(1, 1);
+    this.body.setSize(12, 21);
+
+    this.setFrame(0);
+
+    scene.anims.create({
+      key: 'playerWalk',
+      frameRate: 12,
+      frames: this.anims.generateFrameNumbers('playerSpritesheet', { start: 1, end: 6 }),
+      repeat: -1,
+    });
   }
 
   update() {
@@ -45,6 +52,13 @@ export default class Player extends GameObject implements GameSprite {
     const direction = this.controller.move();
 
     this.body.setVelocityX(baseVelocityX * direction);
+
+    if (direction !== 0) {
+      this.play('playerWalk', true);
+      this.flipX = direction < 0;
+    } else {
+      this.setFrame(0);
+    }
   }
 
   public collectItem(player: this, item: GameObject) {

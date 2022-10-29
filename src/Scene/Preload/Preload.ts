@@ -1,4 +1,5 @@
 import playerSpritePath from '../../../assets/img/player.png';
+import playerSpriteSheetPath from '../../../assets/img/player-spritesheet.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
 import blocksImagePath from '../../../assets/img/blocks.png';
@@ -16,7 +17,6 @@ export default class Preload extends Phaser.Scene {
   }
 
   public preload(): void {
-    this.load.image('player', playerSpritePath);
     this.load.image('tilesetImage', tilesetPath);
     this.load.image('blocksImage', blocksImagePath);
     this.load.image('spearImage', spearImagePath);
@@ -26,6 +26,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
     this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('playerSpritesheet', playerSpriteSheetPath, { frameWidth: 14, frameHeight: 21 });
 
     Object.entries(maplist).forEach((element: string[]) => {
       // dist folder local path:
