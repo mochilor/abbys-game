@@ -1,9 +1,9 @@
 {
     "activeFile": "maps/3-1.json",
     "expandedProjectPaths": [
-        "maps",
         "extensions",
-        "."
+        ".",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -14,11 +14,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 256,
-                "y": 256.33333333333326
+                "x": 789,
+                "y": 93
             }
         },
         "maps/3-1.json#objects": {
@@ -32,17 +32,17 @@
                 2
             ],
             "scale": 0.5,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 256,
-                "y": 257
+                "x": 163,
+                "y": 91
             }
         },
         "maps/3-2.json#objects": {
             "scaleInDock": 5.5
         },
         "maps/3-2.json#tileset": {
-            "scaleInDock": 4
+            "scaleInDock": 5.5
         },
         "maps/3-3.json": {
             "scale": 0.33,
@@ -62,11 +62,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 256,
-                "y": 257
+                "y": 256.6666666666667
             }
         },
         "maps/4-1.json#objects": {
@@ -79,11 +79,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 256.6666666666667
+                "x": 29.66666666666663,
+                "y": -583.6666666666666
             }
         },
         "maps/4-2.json#objects": {

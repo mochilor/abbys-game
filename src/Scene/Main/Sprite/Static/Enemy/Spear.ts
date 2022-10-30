@@ -14,6 +14,8 @@ export default class Spear extends EnemyGameObject implements GameSprite {
 
   private maxDistance: number = 8;
 
+  private reverseCrop: boolean = false;
+
   constructor(scene: Phaser.Scene, x: number, y: number, angle: number) {
     super(scene, x, y, 'spearImage');
 
@@ -34,9 +36,11 @@ export default class Spear extends EnemyGameObject implements GameSprite {
       this.x -= offsetX;
       this.y -= offsetY;
       this.setHorizontalBody();
+      this.reverseCrop = true;
     } else if (angle === 0) { // ^
       this.x += offsetX;
       this.y -= offsetY;
+      this.reverseCrop = true;
     } else if (angle === 90) { // >
       this.x += offsetX;
       this.y += offsetY;
@@ -72,16 +76,25 @@ export default class Spear extends EnemyGameObject implements GameSprite {
     if (this.isFarEnough()) {
       this.isStop = true;
       this.fixOffeset();
-      this.setCrop(0, 0, 5, this[this.type] - this.initialPosition + 20);
+      this.crop();
       return;
     }
 
     this[this.type] += this.speed;
-    this.setCrop(0, 0, 5, this[this.type] - this.initialPosition + 20);
+    this.crop();
   }
 
   private isFarEnough(): boolean {
     return Math.abs(this[this.type] - this.initialPosition) > this.maxDistance;
+  }
+
+  private crop(): void {
+    let cropHeight = this[this.type] - this.initialPosition;
+    if (this.reverseCrop) {
+      cropHeight = this.initialPosition - this[this.type];
+    }
+
+    this.setCrop(0, 0, 5, cropHeight + 20);
   }
 
   private fixOffeset(): void {

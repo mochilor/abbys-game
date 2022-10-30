@@ -161,7 +161,7 @@ export default class SpriteManager {
       this.player,
     );
 
-    this.scene.physics.add.collider(
+    this.scene.physics.add.overlap(
       this.player,
       this.enemiesGroup,
       this.player.touchEnemy,
