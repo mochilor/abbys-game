@@ -45,7 +45,8 @@ export default class Spear extends EnemyGameObject implements GameSprite {
 
     this.initialPosition = this.getAxisPosition();
 
-    this.setDepth(-100);
+    // 5 32
+    this.setCrop(0, 0, 5, 12);
   }
 
   private setHorizontalBody(): void {
@@ -71,10 +72,12 @@ export default class Spear extends EnemyGameObject implements GameSprite {
     if (this.isFarEnough()) {
       this.isStop = true;
       this.fixOffeset();
+      this.setCrop(0, 0, 5, this[this.type] - this.initialPosition + 20);
       return;
     }
 
     this[this.type] += this.speed;
+    this.setCrop(0, 0, 5, this[this.type] - this.initialPosition + 20);
   }
 
   private isFarEnough(): boolean {

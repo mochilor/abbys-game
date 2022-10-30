@@ -59,6 +59,8 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   update() {
+    this.idleCounter += 1;
+
     const baseVelocityX: number = 100;
 
     const direction = this.controller.move();
