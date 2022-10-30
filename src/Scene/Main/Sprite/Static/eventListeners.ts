@@ -32,15 +32,15 @@ function button1Activated(): void {
   const areaWidthX = tileEnd.x - tileStart.x + tileSet.tileWidth;
   const areaWidthY = tileEnd.y - tileStart.y + tileSet.tileHeight;
 
-  const tilesToRemove = tileMap.getTilesWithinWorldXY(
+  const tilesToReplace = tileMap.getTilesWithinWorldXY(
     tileStart.x,
     tileStart.y - tileSet.tileHeight,
     areaWidthX,
     areaWidthY,
   );
 
-  tilesToRemove.forEach((tile: Phaser.Tilemaps.Tile) => {
-    tile.setVisible(false);
+  tilesToReplace.forEach((tile: Phaser.Tilemaps.Tile) => {
+    tile.index = 33; // Replace with default wall
     tile.setCollision(false);
   });
 }

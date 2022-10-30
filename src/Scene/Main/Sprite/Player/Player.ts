@@ -156,12 +156,6 @@ export default class Player extends GameObject implements GameSprite {
     this.backpack.init();
   }
 
-  public touchPlatform(player: Player, platform: Platform): void {
-    if (platform.body.touching.up) {
-      player.body.setVelocityY(Math.abs(platform.getSpeed()));
-    }
-  }
-
   public getBackpack(): Backpack {
     return this.backpack;
   }

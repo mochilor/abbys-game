@@ -148,9 +148,6 @@ export default class SpriteManager {
     this.scene.physics.add.collider(
       this.player,
       this.platformsGroup,
-      this.player.touchPlatform,
-      null,
-      this.player,
     );
 
     this.scene.physics.add.overlap(
