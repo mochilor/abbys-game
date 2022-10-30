@@ -22,7 +22,7 @@ export default class Player extends GameObject implements GameSprite {
 
   private portalDestination: { x: number, y: number };
 
-  private bubble: Bubble;
+  private bubbles: Bubble[];
 
   private jumpTimer: number = 0;
 
@@ -55,12 +55,13 @@ export default class Player extends GameObject implements GameSprite {
       repeat: -1,
     });
 
-    this.bubble = new Bubble(scene, x, y);
+    this.bubbles = [
+      new Bubble(scene, x, y),
+      new Bubble(scene, x, y),
+    ];
   }
 
   update() {
-    this.idleCounter += 1;
-
     const baseVelocityX: number = 100;
 
     const direction = this.controller.move();
@@ -78,7 +79,7 @@ export default class Player extends GameObject implements GameSprite {
       this.setFrame(7);
     }
 
-    this.bubble.update(this.x, this.y);
+    this.bubbles.forEach((bubble) => bubble.update(this.x, this.y));
 
     if (this.isJumping) {
       this.jump();

@@ -63,10 +63,10 @@
                 2
             ],
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 256.6666666666667
+                "x": 331.33333333333326,
+                "y": 398
             }
         },
         "maps/4-1.json#objects": {
@@ -107,15 +107,15 @@
             "scaleInDock": 1
         },
         "maps/5-0.json": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": -353,
-                "y": 769
+                "x": -60.75,
+                "y": 691.75
             }
         },
         "maps/5-0.json#objects": {
-            "scaleInDock": 1
+            "scaleInDock": 8
         },
         "maps/5-0.json#tileset": {
             "scaleInDock": 1

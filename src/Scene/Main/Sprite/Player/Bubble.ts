@@ -10,6 +10,8 @@ export default class Bubble {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     this.bubble = scene.add.rectangle(x, y, 1, 1, 0xeeeeee, 0.5);
     this.bubble.setVisible(false);
+    this.setLife();
+    this.setResetTime();
   }
 
   private setLife(): void {
