@@ -34,4 +34,4 @@ const config = {
 // eslint-disable-next-line no-new
 new Phaser.Game(config);
 
-(document.querySelector('body') as HTMLBodyElement).setAttribute('style', `background-color: ${style.bg};`);
+document.body.setAttribute('style', `background-color: ${style.bg};`);

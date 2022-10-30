@@ -10,6 +10,7 @@ import Button from '../Dynamic/Button';
 import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
+import Bubble from './Bubble';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -19,6 +20,8 @@ export default class Player extends GameObject implements GameSprite {
   private backpack: Backpack;
 
   private portalDestination: { x: number, y: number };
+
+  private bubble: Bubble;
 
   constructor(
     scene: Phaser.Scene,
@@ -34,7 +37,7 @@ export default class Player extends GameObject implements GameSprite {
     this.backpack = backpack;
     this.body.setMaxVelocityY(80);
     this.body.setGravityY(100);
-    this.body.setSize(12, 21);
+    this.body.setSize(10, 21);
 
     this.setFrame(0);
 
@@ -44,6 +47,8 @@ export default class Player extends GameObject implements GameSprite {
       frames: this.anims.generateFrameNumbers('playerSpritesheet', { start: 1, end: 6 }),
       repeat: -1,
     });
+
+    this.bubble = new Bubble(scene, x, y);
   }
 
   update() {
@@ -59,6 +64,12 @@ export default class Player extends GameObject implements GameSprite {
     } else {
       this.setFrame(0);
     }
+
+    if (!this.body.blocked.down) {
+      this.setFrame(7);
+    }
+
+    this.bubble.update(this.x, this.y);
   }
 
   public collectItem(player: this, item: GameObject) {
