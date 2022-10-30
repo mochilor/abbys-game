@@ -17,6 +17,7 @@ import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
 import EnemyGameObject from './Static/Enemy/EnemyGameObject';
+import Spring from './Static/Spring';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -34,6 +35,8 @@ export default class SpriteManager {
   private buttonsGroup: Phaser.GameObjects.Group;
 
   private enemiesGroup: Phaser.GameObjects.Group;
+
+  private springsGroup: Phaser.GameObjects.Group;
 
   private inMemoryLocator: InMemoryGameLocator;
 
@@ -69,6 +72,7 @@ export default class SpriteManager {
     this.platformsGroup = this.scene.add.group();
     this.buttonsGroup = this.scene.add.group();
     this.enemiesGroup = this.scene.add.group();
+    this.springsGroup = this.scene.add.group();
 
     this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -88,6 +92,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Button) {
         this.buttonsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof Spring) {
+        this.springsGroup.add(sprite);
         return;
       }
 
@@ -124,6 +133,14 @@ export default class SpriteManager {
       this.player,
       this.buttonsGroup,
       this.player.activateButton,
+      null,
+      this.player,
+    );
+
+    this.scene.physics.add.collider(
+      this.player,
+      this.springsGroup,
+      this.player.touchSpring,
       null,
       this.player,
     );
@@ -193,12 +210,15 @@ export default class SpriteManager {
     return this.player;
   }
 
-  public update(time: number): void {
+  public update(): void {
     this.platformsGroup.children.iterate((child: Platform) => {
       child.update();
     });
-    this.enemiesGroup.children.iterate((child: Platform) => {
-      child.update(time);
+    this.enemiesGroup.children.iterate((child: EnemyGameObject) => {
+      child.update();
+    });
+    this.springsGroup.children.iterate((child: Spring) => {
+      child.update();
     });
   }
 

@@ -74,9 +74,9 @@ export default class Main extends Phaser.Scene {
     this.scene.restart({});
   }
 
-  update(time: number): void {
+  update(): void {
     this.player.update();
     this.mapManager.updateCurrentRoom(this.player);
-    this.spriteManager.update(time);
+    this.spriteManager.update();
   }
 }

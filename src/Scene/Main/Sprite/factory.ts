@@ -18,6 +18,7 @@ import Spear from './Static/Enemy/Spear';
 import Ball from './Static/Enemy/Ball';
 import Portal from './Static/Portal';
 import RoomName from '../Map/RoomName';
+import Spring from './Static/Spring';
 
 const playerItemClass = {
   2: Player,
@@ -30,6 +31,7 @@ const dynamicItemClasses = {
 };
 
 const staticItemClasses = {
+  4: Spring,
   6: Save,
   7: Spike,
   9: Platform,
@@ -127,8 +129,8 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
 
     return new Ball(
       scene,
-      gameItem.x + 4,
-      gameItem.y - 4,
+      gameItem.x + offset,
+      gameItem.y - offset,
       radius,
     );
   }

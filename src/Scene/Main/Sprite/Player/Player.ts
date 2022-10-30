@@ -11,6 +11,7 @@ import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
 import Bubble from './Bubble';
+import Spring from '../Static/Spring';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -22,6 +23,12 @@ export default class Player extends GameObject implements GameSprite {
   private portalDestination: { x: number, y: number };
 
   private bubble: Bubble;
+
+  private jumpTimer: number = 0;
+
+  private isJumping: boolean = false;
+
+  private jumpSpeed: number = 80;
 
   constructor(
     scene: Phaser.Scene,
@@ -70,6 +77,10 @@ export default class Player extends GameObject implements GameSprite {
     }
 
     this.bubble.update(this.x, this.y);
+
+    if (this.isJumping) {
+      this.jump();
+    }
   }
 
   public collectItem(player: this, item: GameObject) {
@@ -85,6 +96,32 @@ export default class Player extends GameObject implements GameSprite {
     }
 
     this.backpack.addItem(item);
+  }
+
+  public touchSpring(player: this, item: Spring): void {
+    if (!item.body.touching.up) {
+      return;
+    }
+
+    if (!item.isActive()) {
+      item.activate();
+      this.isJumping = true;
+      this.jumpTimer = 0;
+    }
+  }
+
+  private jump(): void {
+    this.jumpTimer += 1;
+    this.setFrame(8);
+
+    if (this.jumpTimer < 15) {
+      this.body.velocity.y = -this.jumpSpeed;
+    }
+
+    if (this.jumpTimer > 40) {
+      this.jumpTimer = 0;
+      this.isJumping = false;
+    }
   }
 
   public openDoor(player: Player, door: Door): void {
