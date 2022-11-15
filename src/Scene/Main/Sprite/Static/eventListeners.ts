@@ -1,7 +1,6 @@
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameItem from '../../GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../GameItem/MapEventsGameItemCollection';
-import RoomName from '../../Map/RoomName';
 import Player from '../Player/Player';
 import Platform from './Platform';
 
@@ -11,11 +10,10 @@ let eventGameItemCollection: MapEventsGameItemCollection;
 
 let playerSprite: Player;
 
-function button1Activated(): void {
-  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
-
+function removeWalls(eventGameItems: GameItem[]): void {
   let tileStart: GameItem = null;
   let tileEnd: GameItem = null;
+
   eventGameItems.forEach((item: GameItem) => {
     if (item.properties[0].value === 'tileStart') {
       tileStart = item;
@@ -50,6 +48,12 @@ function button1Activated(): void {
   });
 }
 
+function button1Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
+
+  removeWalls(eventGameItems);
+}
+
 function button2Activated(): void {
   const eventGameItemArray = eventGameItemCollection.getItemByEventName('mapEvent2');
 
@@ -68,6 +72,12 @@ function button2Activated(): void {
   );
 }
 
+function button5Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent5');
+
+  removeWalls(eventGameItems);
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
@@ -78,6 +88,7 @@ function listenButtonEvents(
   playerSprite = player;
   EventDispatcher.getInstance().on('button1Activated', button1Activated);
   EventDispatcher.getInstance().on('button2Activated', button2Activated);
+  EventDispatcher.getInstance().on('button5Activated', button5Activated);
 }
 
 export default listenButtonEvents;
