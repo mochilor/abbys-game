@@ -1,10 +1,15 @@
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameItem from '../../GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../GameItem/MapEventsGameItemCollection';
+import RoomName from '../../Map/RoomName';
+import Player from '../Player/Player';
+import Platform from './Platform';
 
 let gameScene: Phaser.Scene;
 
 let eventGameItemCollection: MapEventsGameItemCollection;
+
+let playerSprite: Player;
 
 function button1Activated(): void {
   const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
@@ -45,13 +50,34 @@ function button1Activated(): void {
   });
 }
 
+function button2Activated(): void {
+  const eventGameItemArray = eventGameItemCollection.getItemByEventName('mapEvent2');
+
+  if (eventGameItemArray.length === 0) {
+    // wrong room!
+    return;
+  }
+
+  const eventGameItem = eventGameItemArray[0];
+
+  const newPlatform = Platform.makeAdditional(gameScene, eventGameItem.x, eventGameItem.y);
+
+  gameScene.physics.add.collider(
+    playerSprite,
+    newPlatform,
+  );
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
+  player: Player,
 ): void {
   gameScene = scene;
   eventGameItemCollection = eventGameItems;
+  playerSprite = player;
   EventDispatcher.getInstance().on('button1Activated', button1Activated);
+  EventDispatcher.getInstance().on('button2Activated', button2Activated);
 }
 
 export default listenButtonEvents;

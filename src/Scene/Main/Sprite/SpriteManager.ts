@@ -167,7 +167,7 @@ export default class SpriteManager {
     );
 
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
-    listenButtonEvents(this.scene, mapEventGameItems);
+    listenButtonEvents(this.scene, mapEventGameItems, this.player);
     listenDoorEvents(this.doorsGroup);
   }
 

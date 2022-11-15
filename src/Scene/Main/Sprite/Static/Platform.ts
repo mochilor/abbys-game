@@ -33,6 +33,9 @@ export default class Platform extends GameObject implements GameSprite {
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.body.setImmovable();
+    this.body.checkCollision.down = false;
+    this.body.checkCollision.left = false;
+    this.body.checkCollision.right = false;
 
     const fromXProperty = this.getProperty('fromX');
     if (fromXProperty !== null) {
@@ -82,5 +85,17 @@ export default class Platform extends GameObject implements GameSprite {
 
   public getSpeed(): number {
     return this.speed;
+  }
+
+  /**
+   * Factory function intended to add new object after main instantiation in SpriteManager.
+   */
+  public static makeAdditional(scene: Phaser.Scene, x: number, y: number): Platform {
+    // Offeset should be centralized somehow:
+    const offset = 4;
+    const platform = new Platform(scene, x + offset, y - offset, new RoomName(0, 0), '', []);
+    platform.setDepth(-1);
+
+    return platform;
   }
 }

@@ -1,4 +1,3 @@
-import playerSpritePath from '../../../assets/img/player.png';
 import playerSpriteSheetPath from '../../../assets/img/player-spritesheet.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';

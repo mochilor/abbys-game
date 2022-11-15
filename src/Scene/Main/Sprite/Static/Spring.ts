@@ -18,6 +18,8 @@ export default class Spring extends GameObject implements GameSprite {
     this.body.setOffset(0, 6);
 
     this.deactivate();
+
+    this.body.checkCollision.down = false;
   }
 
   private deactivate(): void {

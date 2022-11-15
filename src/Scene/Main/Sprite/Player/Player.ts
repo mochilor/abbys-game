@@ -139,10 +139,10 @@ export default class Player extends GameObject implements GameSprite {
 
   public touchSpike(player: this, spike: Spike): void {
     if (
-      (player.body.touching.down && spike.isFacingUp())
-      || (player.body.touching.right && spike.isFacingLeft())
-      || (player.body.touching.up && spike.isFacingDown())
-      || (player.body.touching.left && spike.isFacingRight())
+      (player.body.touching.down && spike.isFacingUp() && spike.body.touching.up)
+      || (player.body.touching.right && spike.isFacingLeft() && spike.body.touching.left)
+      || (player.body.touching.up && spike.isFacingDown() && spike.body.touching.down)
+      || (player.body.touching.left && spike.isFacingRight() && spike.body.touching.right)
     ) {
       player.die();
     }
