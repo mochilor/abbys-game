@@ -35,12 +35,20 @@ export default class Door extends GameObject implements GameSprite {
   }
 
   private setupLocks(scene: Phaser.Scene): void {
+    const lockDistance = 4;
     const topLeft = this.getTopLeft();
-    let x = topLeft.x + 4;
-    const y = topLeft.y + 4;
+    const initialX = topLeft.x + lockDistance;
+    let x = initialX;
+    let y = topLeft.y + lockDistance;
+    const locksPerRow = 5;
+
     for (let n = 0; n < this.level; n += 1) {
-      this.locks.push(scene.add.rectangle(x, y, 2, 2, 0x222222));
-      x += 4;
+      this.locks.push(scene.add.rectangle(x, y, 2, 2, 0x003c6a));
+      x += lockDistance;
+      if (this.locks.length % locksPerRow === 0) {
+        x = initialX;
+        y += lockDistance;
+      }
     }
   }
 
