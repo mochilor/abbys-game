@@ -12,7 +12,7 @@ import {
 import RoomName from '../../Map/RoomName';
 
 /**
- * Loads game items from map (new game)
+ * Loads game items from map
  */
 export default class MapLocator implements GameItemLocator {
   private map: Phaser.Tilemaps.Tilemap;

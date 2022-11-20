@@ -8,7 +8,7 @@ import portalImagePath from '../../../assets/img/portal.png';
 import platformImagePath from '../../../assets/img/platform.png';
 import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
-import maplist from '../../../assets/maplist.json';
+import { mapFiles } from '../../Service/mapStore';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -27,7 +27,7 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('playerSpritesheet', playerSpriteSheetPath, { frameWidth: 14, frameHeight: 21 });
 
-    Object.entries(maplist).forEach((element: string[]) => {
+    mapFiles().forEach((element: string[]) => {
       // dist folder local path:
       const file = `./maps/${element[1]}`;
       this.load.tilemapTiledJSON(element[0], file);

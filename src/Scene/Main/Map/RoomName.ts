@@ -36,4 +36,8 @@ export default class RoomName {
   public isSame(roomData: { x: number, y: number }): boolean {
     return this.x === roomData.x && this.y === roomData.y;
   }
+
+  public isSameRoom(roomName: RoomName): boolean {
+    return this.isSame({ x: roomName.x, y: roomName.y });
+  }
 }

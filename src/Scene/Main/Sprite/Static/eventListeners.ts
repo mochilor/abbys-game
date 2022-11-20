@@ -72,6 +72,19 @@ function button2Activated(): void {
   );
 }
 
+function button3Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent3');
+
+  removeWalls(eventGameItems);
+}
+
+
+function button4Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent4');
+
+  removeWalls(eventGameItems);
+}
+
 function button5Activated(): void {
   const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent5');
 
@@ -88,6 +101,8 @@ function listenButtonEvents(
   playerSprite = player;
   EventDispatcher.getInstance().on('button1Activated', button1Activated);
   EventDispatcher.getInstance().on('button2Activated', button2Activated);
+  EventDispatcher.getInstance().on('button3Activated', button3Activated);
+  EventDispatcher.getInstance().on('button4Activated', button4Activated);
   EventDispatcher.getInstance().on('button5Activated', button5Activated);
 }
 

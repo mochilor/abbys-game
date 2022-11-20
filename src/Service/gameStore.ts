@@ -2,6 +2,7 @@ import GameItemCollection from '../Scene/Main/GameItem/GameItemCollection';
 import GameItem from '../Scene/Main/GameItem/GameItemInterface';
 import RoomName from '../Scene/Main/Map/RoomName';
 import SavedGame from './SavedGame';
+import { roomNames } from './mapStore';
 
 const fileName = 'cavegame.savefile';
 
@@ -38,26 +39,22 @@ function saveGame(
     },
   };
 
-  const savedGame: SavedGame = loadGame();
-
-  if (savedGame) {
-    for (let n = 0; n < savedGame.gameItems.length; n += 1) {
-      if (!roomName.isSame(savedGame.gameItems[n].room)) {
-        dataToSave.gameItems.push(savedGame.gameItems[n]);
+  // Update each other room with the last data in memory before saving:
+  roomNames().forEach((name: string) => {
+    const inMemoryGameItems: GameItem[] = sceneRegistry.get(name);
+    if (inMemoryGameItems != null) {
+      const inMemoryRoom = RoomName.fromName(name);
+      if (!roomName.isSameRoom(inMemoryRoom)) {
+        dataToSave.gameItems.push({
+          room: {
+            x: inMemoryRoom.getX(),
+            y: inMemoryRoom.getY(),
+          },
+          items: inMemoryGameItems,
+        });
       }
     }
-  }
-
-  // Update each room with the last data in memory before saving:
-  for (let n = 0; n < dataToSave.gameItems.length; n += 1) {
-    if (!roomName.isSame(dataToSave.gameItems[n].room)) {
-      const room = new RoomName(dataToSave.gameItems[n].room.x, dataToSave.gameItems[n].room.y);
-      const inMemoryGameItems: GameItem[] = sceneRegistry.get(room.getName());
-      if (inMemoryGameItems != null) {
-        dataToSave.gameItems[n].items = inMemoryGameItems;
-      }
-    }
-  }
+  });
 
   localStorage.setItem(fileName, JSON.stringify(dataToSave));
 }

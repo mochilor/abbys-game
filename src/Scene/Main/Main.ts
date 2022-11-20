@@ -46,6 +46,10 @@ export default class Main extends Phaser.Scene {
     const roomName = getRoomName(data);
     const map = this.add.tilemap(roomName.getName());
 
+    if (!map.getObjectLayer('objects')) {
+      alert('Oops, estás fuera!');
+    }
+
     this.spriteManager = new SpriteManager(
       this,
       new InMemoryGameLocator(this),
