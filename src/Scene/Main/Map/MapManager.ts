@@ -61,11 +61,12 @@ export default class MapManager {
   }
 
   private setupCameras(player: Player): void {
+    const screenSizeX = config.gameWidth;
+    const screenSizeY = config.gameHeight;
+
     // Add 1 to screen sizes to prevent reloacting cameras when player is exactly at the border:
-    const screenSizeX = config.gameWidth + 1;
-    const screenSizeY = config.gameHeight + 1;
-    const roomX = Math.floor(player.x / screenSizeX);
-    const roomY = Math.floor(player.y / screenSizeY);
+    const roomX = Math.floor(player.x / (screenSizeX + 1));
+    const roomY = Math.floor(player.y / (screenSizeY + 1));
     const cameraX = roomX * screenSizeX;
     const cameraY = roomY * screenSizeY;
 
