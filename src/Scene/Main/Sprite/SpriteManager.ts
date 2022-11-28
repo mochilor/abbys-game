@@ -217,6 +217,9 @@ export default class SpriteManager {
     this.springsGroup.children.iterate((child: Spring) => {
       child.update();
     });
+    this.objectsGroup.children.iterate((child: GameObject) => {
+      child.update();
+    });
   }
 
   public getObjects(): GameObject[] {

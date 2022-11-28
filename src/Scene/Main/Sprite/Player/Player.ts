@@ -7,7 +7,6 @@ import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
 import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
-import Platform from '../Static/Platform';
 import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
 import Bubble from './Bubble';

@@ -43,7 +43,7 @@ export default class Door extends GameObject implements GameSprite {
     const locksPerRow = 5;
 
     for (let n = 0; n < this.level; n += 1) {
-      this.locks.push(scene.add.rectangle(x, y, 2, 2, 0x003c6a));
+      this.locks.push(scene.add.rectangle(x, y, 2, 2, 0x274149));
       x += lockDistance;
       if (this.locks.length % locksPerRow === 0) {
         x = initialX;

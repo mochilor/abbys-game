@@ -19,6 +19,8 @@ import Ball from './Static/Enemy/Ball';
 import Portal from './Static/Portal';
 import RoomName from '../Map/RoomName';
 import Spring from './Static/Spring';
+import SmallFish from './Static/Decoration/SmallFish';
+import BigFish from './Static/Decoration/BigFish';
 
 const playerItemClass = {
   2: Player,
@@ -39,6 +41,8 @@ const staticItemClasses = {
   13: Spear,
   14: Ball,
   15: Portal,
+  16: SmallFish,
+  17: BigFish,
 };
 
 const mapEventItemClasses = {

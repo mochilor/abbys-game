@@ -105,6 +105,82 @@
                  "width":8,
                  "x":192,
                  "y":408
+                }, 
+                {
+                 "class":"",
+                 "gid":112,
+                 "height":8,
+                 "id":56,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":216,
+                 "y":400
+                }, 
+                {
+                 "class":"",
+                 "gid":112,
+                 "height":8,
+                 "id":57,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"-1"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":"0.1"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":50,
+                 "y":458.545454545455
+                }, 
+                {
+                 "class":"",
+                 "gid":112,
+                 "height":8,
+                 "id":58,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"-1"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":"0.1"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":58.9090909090909,
+                 "y":466.363636363636
+                }, 
+                {
+                 "class":"",
+                 "gid":113,
+                 "height":8,
+                 "id":59,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"distance",
+                         "type":"string",
+                         "value":"-180"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":234.25,
+                 "y":294.25
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -113,7 +189,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":56,
+ "nextobjectid":60,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
