@@ -56,7 +56,7 @@ export default class BackgroundManager {
       }
     });
 
-    document.body.setAttribute('style', `background-color: ${currentBgColor};`);
+    document.body.setAttribute('style', `background-color: #${currentBgColor};`);
     this.scene.cameras.main.setBackgroundColor(currentBgColor);
   }
 }

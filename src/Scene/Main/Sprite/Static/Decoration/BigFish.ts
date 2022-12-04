@@ -1,7 +1,7 @@
 import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
 import Fish from './Fish';
-import config from '../../../../../../config/config.json';
+import { tintShallow } from './tint';
 
 export default class BigFish extends Fish {
   public static key = 'BigFish';
@@ -36,10 +36,7 @@ export default class BigFish extends Fish {
       this.toX = x + distance;
     }
 
-    if (roomName.isPyramid()) {
-      const fillColor = config.levelColors[5]['layer-2'];
-      this.setTintFill(`0x${fillColor}`);
-    }
+    tintShallow(this, roomName);
   }
 
   public update(): void {

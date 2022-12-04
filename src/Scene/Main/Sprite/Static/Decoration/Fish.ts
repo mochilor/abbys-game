@@ -2,7 +2,6 @@ import GameObject from '../../GameObject';
 import GameSprite from '../../GameSpriteInterface';
 import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
-import config from '../../../../../../config/config.json';
 
 export default abstract class Fish extends GameObject implements GameSprite {
   protected orientation: number;
@@ -38,11 +37,6 @@ export default abstract class Fish extends GameObject implements GameSprite {
     });
 
     this.play(key);
-
-    if (roomName.isPyramid()) {
-      const fillColor = config.levelColors[5]['layer-1'];
-      this.setTintFill(`0x${fillColor}`);
-    }
   }
 
   public abstract update(): void;
