@@ -21,8 +21,8 @@ export default class MapManager {
     this.layer = map.createLayer('main', tileset, 0, 0);
     this.layer.depth = -100;
     map.setCollisionBetween(1, 32);
+    map.setCollisionBetween(65, 80);
     this.scene.physics.add.collider(player, this.layer);
-    const tile = this.layer.getTileAt(0, 1);
   }
 
   public updateCurrentRoom(player: Player): void {

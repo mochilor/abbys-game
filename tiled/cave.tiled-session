@@ -1,9 +1,9 @@
 {
-    "activeFile": "maps/5-0.json",
+    "activeFile": "maps/3-5.json",
     "expandedProjectPaths": [
-        "maps",
+        ".",
         "extensions",
-        "."
+        "maps"
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -17,8 +17,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 278.6666666666667,
-                "y": 570
+                "x": 256,
+                "y": 255.33333333333337
             }
         },
         "maps/3-1.json#objects": {
@@ -31,11 +31,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 2,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 634,
-                "y": 92.75
+                "x": 257.57575757575756,
+                "y": 256.06060606060623
             }
         },
         "maps/3-2.json#objects": {
@@ -65,11 +65,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 256.6666666666667
+                "x": 255.99999999999997,
+                "y": 255.83333333333331
             }
         },
         "maps/3-4.json#objects": {
@@ -78,6 +78,23 @@
         "maps/3-4.json#tileset": {
             "scaleInDock": 4
         },
+        "maps/3-5.json": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1019.75,
+                "y": -1852.75
+            }
+        },
+        "maps/3-5.json#objects": {
+            "scaleInDock": 8
+        },
+        "maps/3-5.json#tileset": {
+            "scaleInDock": 5.5
+        },
         "maps/4-1.json": {
             "expandedObjectLayers": [
                 2
@@ -85,8 +102,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 40,
-                "y": 395.33333333333337
+                "x": 256,
+                "y": 256.6666666666667
             }
         },
         "maps/4-1.json#objects": {
@@ -102,8 +119,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 703.0303030303032,
-                "y": 322.72727272727263
+                "x": 257.57575757575756,
+                "y": 256.06060606060623
             }
         },
         "maps/4-2.json#objects": {
@@ -150,28 +167,28 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 4,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -203,
-                "y": 694.875
+                "x": -611.75,
+                "y": 2819.25
             }
         },
         "maps/5-0.json#objects": {
             "scaleInDock": 8
         },
         "maps/5-0.json#tileset": {
-            "scaleInDock": 5.5
+            "scaleInDock": 4
         },
         "maps/5-1.json": {
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 3,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 255.99999999999997,
-                "y": 255.83333333333331
+                "x": -4.25,
+                "y": -2.75
             }
         },
         "maps/5-1.json#objects": {
@@ -239,7 +256,8 @@
         "maps/5-1.json",
         "maps/4-1.json",
         "maps/3-3.json",
-        "maps/3-2.json"
+        "maps/3-2.json",
+        "maps/3-5.json"
     ],
     "project": "cave.tiled-project",
     "recentFiles": [
@@ -248,13 +266,13 @@
         "maps/4-2.json",
         "maps/4-3.json",
         "maps/4-4.json",
-        "maps/3-2.json",
-        "maps/3-3.json",
-        "maps/4-1.json",
-        "maps/5-1.json",
         "maps/5-0.json",
-        "maps/5-2.json",
-        "maps/map.json"
+        "maps/5-1.json",
+        "maps/4-1.json",
+        "maps/3-3.json",
+        "maps/3-2.json",
+        "maps/3-5.json",
+        "maps/5-2.json"
     ],
     "tileset.embedInMap": false,
     "tileset.margin": 0,

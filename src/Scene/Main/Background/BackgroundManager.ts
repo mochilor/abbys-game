@@ -1,4 +1,5 @@
 import config from '../../../../config/config.json';
+import RoomName from '../Map/RoomName';
 import GameObject from '../Sprite/GameObject';
 import BendWaves from './shader';
 
@@ -9,7 +10,13 @@ export default class BackgroundManager {
     this.scene = scene;
   }
 
-  public setup(sprites: GameObject[], layer: Phaser.Tilemaps.TilemapLayer): void {
+  public setup(
+    roomName: RoomName,
+    sprites: GameObject[],
+    layer: Phaser.Tilemaps.TilemapLayer,
+  ): void {
+    this.setBackgroundColor(roomName);
+
     if (!config.bg) {
       return;
     }
@@ -36,5 +43,20 @@ export default class BackgroundManager {
 
     frontCamera.ignore(bg);
     // frontCamera.setScroll(this.scene.cameras.main.scrollX, this.scene.cameras.main.scrollY);
+  }
+
+  private setBackgroundColor(roomName: RoomName): void {
+    const bgColors = config.levelColors;
+
+    let currentBgColor = bgColors[0].bg;
+
+    Object.keys(bgColors).forEach((key: string) => {
+      if (roomName.getY() >= parseInt(key, 10)) {
+        currentBgColor = bgColors[key].bg;
+      }
+    });
+
+    document.body.setAttribute('style', `background-color: ${currentBgColor};`);
+    this.scene.cameras.main.setBackgroundColor(currentBgColor);
   }
 }

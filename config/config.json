@@ -4,12 +4,15 @@
   "roomWidth": 512,
   "roomHeight": 512,
   "bg": false,
-  "style": [
-    {
-      "bg": "#b5b99a"
+  "levelColors": {
+    "0": {
+      "bg": "b5b99a"
     },
-    {
-      "bg": "#16383c"
+    "5": {
+      "bg": "f1c3b3",
+      "layer-1": "c48d80",
+      "layer-2": "678390",
+      "layer-3": "536e7b"
     }
-  ]
+  }
 }
