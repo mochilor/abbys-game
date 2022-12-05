@@ -11,6 +11,7 @@ import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
 import Bubble from './Bubble';
 import Spring from '../Static/Spring';
+import SpikePlatform from '../Static/SpikePlatform';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -137,12 +138,23 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   public touchSpike(player: this, spike: Spike): void {
+    if (player.body.embedded) {
+      // This happens when the player moves touches a spike while over a moving platform
+      player.die();
+    }
+
     if (
       (player.body.touching.down && spike.isFacingUp() && spike.body.touching.up)
       || (player.body.touching.right && spike.isFacingLeft() && spike.body.touching.left)
       || (player.body.touching.up && spike.isFacingDown() && spike.body.touching.down)
       || (player.body.touching.left && spike.isFacingRight() && spike.body.touching.right)
     ) {
+      player.die();
+    }
+  }
+
+  public touchSpikePlatform(player: this, spikePlatform: SpikePlatform): void {
+    if (player.body.touching.up && spikePlatform.body.touching.down) {
       player.die();
     }
   }

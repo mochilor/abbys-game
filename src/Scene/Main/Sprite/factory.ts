@@ -21,6 +21,7 @@ import RoomName from '../Map/RoomName';
 import Spring from './Static/Spring';
 import SmallFish from './Static/Decoration/SmallFish';
 import BigFish from './Static/Decoration/BigFish';
+import SpikePlatform from './Static/SpikePlatform';
 
 const playerItemClass = {
   2: Player,
@@ -43,6 +44,7 @@ const staticItemClasses = {
   15: Portal,
   16: SmallFish,
   17: BigFish,
+  18: SpikePlatform,
 };
 
 const mapEventItemClasses = {

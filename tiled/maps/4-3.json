@@ -84,7 +84,7 @@
          "objects":[
                 {
                  "class":"",
-                 "gid":100,
+                 "gid":132,
                  "height":8,
                  "id":361,
                  "name":"",
@@ -96,7 +96,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":103,
+                 "gid":135,
                  "height":8,
                  "id":362,
                  "name":"",
@@ -108,7 +108,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":100,
+                 "gid":132,
                  "height":8,
                  "id":363,
                  "name":"",
@@ -120,7 +120,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":103,
+                 "gid":135,
                  "height":8,
                  "id":364,
                  "name":"",
@@ -132,7 +132,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":100,
+                 "gid":132,
                  "height":8,
                  "id":365,
                  "name":"",
@@ -144,7 +144,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":97,
+                 "gid":129,
                  "height":8,
                  "id":366,
                  "name":"",
@@ -156,7 +156,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":109,
+                 "gid":141,
                  "height":8,
                  "id":368,
                  "name":"",
@@ -168,7 +168,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":109,
+                 "gid":141,
                  "height":8,
                  "id":369,
                  "name":"",
@@ -180,7 +180,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":108,
+                 "gid":140,
                  "height":8,
                  "id":378,
                  "name":"",
@@ -192,7 +192,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":108,
+                 "gid":140,
                  "height":8,
                  "id":379,
                  "name":"",
@@ -204,7 +204,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":108,
+                 "gid":140,
                  "height":8,
                  "id":380,
                  "name":"",
@@ -212,11 +212,11 @@
                  "visible":true,
                  "width":8,
                  "x":160,
-                 "y":376
+                 "y":384
                 }, 
                 {
                  "class":"",
-                 "gid":111,
+                 "gid":143,
                  "height":8,
                  "id":382,
                  "name":"",
@@ -244,7 +244,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":97,
+                 "gid":129,
                  "height":8,
                  "id":383,
                  "name":"",
@@ -256,7 +256,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":97,
+                 "gid":129,
                  "height":8,
                  "id":384,
                  "name":"",
@@ -268,7 +268,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":106,
+                 "gid":138,
                  "height":8,
                  "id":385,
                  "name":"",
@@ -286,7 +286,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":107,
+                 "gid":139,
                  "height":8,
                  "id":386,
                  "name":"",
@@ -304,7 +304,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":110,
+                 "gid":142,
                  "height":8,
                  "id":387,
                  "name":"",
@@ -322,7 +322,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":110,
+                 "gid":142,
                  "height":8,
                  "id":388,
                  "name":"",
@@ -355,18 +355,18 @@
          "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/img\/tileset.png",
-         "imageheight":96,
+         "imageheight":128,
          "imagewidth":64,
          "margin":0,
          "name":"tileset",
          "spacing":0,
-         "tilecount":96,
+         "tilecount":128,
          "tileheight":8,
          "tilewidth":8
         }, 
         {
          "columns":3,
-         "firstgid":97,
+         "firstgid":129,
          "image":"..\/..\/assets\/img\/objects.png",
          "imageheight":48,
          "imagewidth":24,

@@ -18,6 +18,7 @@ import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
 import EnemyGameObject from './Static/Enemy/EnemyGameObject';
 import Spring from './Static/Spring';
+import SpikePlatform from './Static/SpikePlatform';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -31,6 +32,8 @@ export default class SpriteManager {
   private objectsGroup: Phaser.GameObjects.Group;
 
   private platformsGroup: Phaser.GameObjects.Group;
+
+  private spikePlatformsGroup: Phaser.GameObjects.Group;
 
   private buttonsGroup: Phaser.GameObjects.Group;
 
@@ -70,6 +73,7 @@ export default class SpriteManager {
     this.doorsGroup = this.scene.add.group();
     this.objectsGroup = this.scene.add.group();
     this.platformsGroup = this.scene.add.group();
+    this.spikePlatformsGroup = this.scene.add.group();
     this.buttonsGroup = this.scene.add.group();
     this.enemiesGroup = this.scene.add.group();
     this.springsGroup = this.scene.add.group();
@@ -87,6 +91,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Platform) {
         this.platformsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof SpikePlatform) {
+        this.spikePlatformsGroup.add(sprite);
         return;
       }
 
@@ -150,6 +159,12 @@ export default class SpriteManager {
       this.platformsGroup,
     );
 
+    this.scene.physics.add.collider(
+      this.player,
+      this.spikePlatformsGroup,
+      this.player.touchSpikePlatform,
+    );
+
     this.scene.physics.add.overlap(
       this.player,
       this.objectsGroup,
@@ -207,9 +222,16 @@ export default class SpriteManager {
     return this.player;
   }
 
-  public update(): void {
+  public getSpikePlatforms(): Phaser.GameObjects.Group {
+    return this.spikePlatformsGroup;
+  }
+
+  public update(time: number): void {
     this.platformsGroup.children.iterate((child: Platform) => {
       child.update();
+    });
+    this.spikePlatformsGroup.children.iterate((child: SpikePlatform) => {
+      child.update(time);
     });
     this.enemiesGroup.children.iterate((child: EnemyGameObject) => {
       child.update();

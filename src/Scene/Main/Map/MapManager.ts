@@ -16,13 +16,19 @@ export default class MapManager {
     this.roomName = roomName;
   }
 
-  public setup(player: Player, map: Phaser.Tilemaps.Tilemap, tilesetImage: string): void {
+  public setup(
+    player: Player,
+    spikePlatformsGroup: Phaser.GameObjects.Group,
+    map: Phaser.Tilemaps.Tilemap,
+    tilesetImage: string,
+  ): void {
     const tileset = map.addTilesetImage('tileset', tilesetImage);
     this.layer = map.createLayer('main', tileset, 0, 0);
     this.layer.depth = -100;
     map.setCollisionBetween(1, 32);
     map.setCollisionBetween(65, 80);
     this.scene.physics.add.collider(player, this.layer);
+    this.scene.physics.add.collider(spikePlatformsGroup, this.layer);
   }
 
   public updateCurrentRoom(player: Player): void {

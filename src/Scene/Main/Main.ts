@@ -60,7 +60,7 @@ export default class Main extends Phaser.Scene {
 
     this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, roomName);
-    this.mapManager.setup(this.player, map, 'tilesetImage');
+    this.mapManager.setup(this.player, this.spriteManager.getSpikePlatforms(), map, 'tilesetImage');
 
     (new BackgroundManager(this)).setup(
       roomName,
@@ -79,9 +79,9 @@ export default class Main extends Phaser.Scene {
     this.scene.restart({});
   }
 
-  update(): void {
+  update(time: number): void {
     this.player.update();
     this.mapManager.updateCurrentRoom(this.player);
-    this.spriteManager.update();
+    this.spriteManager.update(time);
   }
 }
