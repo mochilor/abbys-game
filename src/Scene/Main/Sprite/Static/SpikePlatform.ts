@@ -6,9 +6,7 @@ import GameSprite from '../GameSpriteInterface';
 export default class SpikePlatform extends GameObject implements GameSprite {
   public static key = 'SpikePlatform';
 
-  private speed: number = 0.5;
-
-  private maxHeight: number;
+  private speed: number = 25;
 
   private stopLength: number;
 
@@ -40,12 +38,12 @@ export default class SpikePlatform extends GameObject implements GameSprite {
     this.body.setOffset(0, 4);
 
     this.maxHeight = y - 64;
-    this.stopLength = 1800;
     this.isFalling = false;
     this.restartTime = 3500;
     this.body.setGravityY(0);
 
     this.delay = this.getProperty('delay') ? this.getProperty('delay').value as number : 0;
+    this.stopLength = this.getProperty('stopLength')?.value as number ?? 0;
   }
 
   public update(time: number): void {
@@ -57,8 +55,8 @@ export default class SpikePlatform extends GameObject implements GameSprite {
       return;
     }
 
-    if (this.y > this.maxHeight && !this.isFalling) {
-      this.y -= this.speed;
+    if (!this.body.blocked.up && !this.isFalling) {
+      this.body.setVelocityY(-this.speed);
       return;
     }
 

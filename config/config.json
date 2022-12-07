@@ -14,5 +14,9 @@
       "layer-2": "678390",
       "layer-3": "536e7b"
     }
+  },
+  "debug": {
+    "level": "3_5 ",
+    "boundingBoxes": false
   }
 }

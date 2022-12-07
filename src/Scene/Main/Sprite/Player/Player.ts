@@ -138,11 +138,6 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   public touchSpike(player: this, spike: Spike): void {
-    if (player.body.embedded) {
-      // This happens when the player moves touches a spike while over a moving platform
-      player.die();
-    }
-
     if (
       (player.body.touching.down && spike.isFacingUp() && spike.body.touching.up)
       || (player.body.touching.right && spike.isFacingLeft() && spike.body.touching.left)

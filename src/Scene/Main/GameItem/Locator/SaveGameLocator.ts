@@ -3,6 +3,7 @@ import RoomName from '../../Map/RoomName';
 import GameItemCollection from '../GameItemCollection';
 import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
+import config from '../../../../../config/config.json';
 
 export default class SaveGameLocator implements GameItemLocator {
   private sceneRegistry: Phaser.Data.DataManager;
@@ -37,6 +38,10 @@ export default class SaveGameLocator implements GameItemLocator {
   }
 
   public getPlayerGameItem(): GameItem {
+    if (config.debug.level) {
+      throw new Error('Force debug player position!');
+    }
+
     const saveData = loadGame();
 
     if (saveData === null) {

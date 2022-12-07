@@ -15,9 +15,15 @@ export default class Spike extends GameObject implements GameSprite {
 
     this.setFrame(8);
 
+    if (this.isFacingUp()) {
+      this.body.checkCollision.down = false;
+    }
+
     if (this.isFacingDown()) {
       this.body.checkCollision.up = false;
     }
+
+    this.body.setSize(6, 6);
   }
 
   public isFacingUp(): boolean {

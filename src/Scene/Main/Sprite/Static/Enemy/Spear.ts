@@ -29,22 +29,38 @@ export default class Spear extends EnemyGameObject implements GameSprite {
     const offsetY = 4;
     const offsetX = 4;
 
+    this.body.setSize(3, 22);
+
+    /**
+     * Image size: 32 x 5
+     * Bounding box size: 22 x 3
+     * Offset (vertical spear):
+     * - top: 1
+     * - right: 1
+     * - left: 1
+     * - bottom: 8
+     */
+
     if (Math.abs(angle) === 180) { // V
       this.x -= offsetX;
       this.y += offsetY;
+      this.body.setOffset(1, 8);
     } else if (angle === -90 || angle === 270) { // <
       this.x -= offsetX;
       this.y -= offsetY;
       this.setHorizontalBody();
       this.reverseCrop = true;
+      this.body.setOffset(-11, 14);
     } else if (angle === 0) { // ^
       this.x += offsetX;
       this.y -= offsetY;
       this.reverseCrop = true;
+      this.body.setOffset(1, 1);
     } else if (angle === 90) { // >
       this.x += offsetX;
       this.y += offsetY;
       this.setHorizontalBody();
+      this.body.setOffset(-5, 14);
     }
 
     this.initialPosition = this.getAxisPosition();

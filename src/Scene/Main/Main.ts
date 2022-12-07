@@ -9,6 +9,7 @@ import InMemoryGameLocator from './GameItem/Locator/InMemoryGameLocator';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
 import BackgroundManager from './Background/BackgroundManager';
+import config from '../../../config/config.json';
 
 interface Data {
   x: number,
@@ -18,6 +19,12 @@ interface Data {
 function getRoomName(data?: Data): RoomName {
   if (data && Object.keys(data).length > 0) {
     return new RoomName(data.x, data.y);
+  }
+
+  const roomName: string | null = config.debug.level;
+
+  if (roomName) {
+    return RoomName.fromName(roomName);
   }
 
   const savedGame = loadGame();
