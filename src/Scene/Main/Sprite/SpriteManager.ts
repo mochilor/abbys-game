@@ -1,4 +1,3 @@
-import listenGameItemEvents from '../GameItem/eventListeners';
 import MapLocator from '../GameItem/Locator/MapLocator';
 import SaveGameLocator from '../GameItem/Locator/SaveGameLocator';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
@@ -10,15 +9,16 @@ import Spike from './Static/Spike';
 import GameItemCollection from '../GameItem/GameItemCollection';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
-import listenButtonEvents from './Static/eventListeners';
 import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
-import listenDoorEvents from './Dynamic/eventListeners';
 import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
 import EnemyGameObject from './Static/Enemy/EnemyGameObject';
 import Spring from './Static/Spring';
 import SpikePlatform from './Static/SpikePlatform';
+import listenButtonEvents from '../../../Service/EventListener/buttonEventListeners';
+import listenDoorEvents from '../../../Service/EventListener/doorEventListeners';
+import listenGameItemEvents from '../../../Service/EventListener/gameItemEventListeners';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;

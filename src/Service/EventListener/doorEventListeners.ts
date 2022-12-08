@@ -1,5 +1,5 @@
-import EventDispatcher from '../../../../Service/EventDispatcher';
-import Door from './Door';
+import Door from '../../Scene/Main/Sprite/Dynamic/Door';
+import EventDispatcher from '../EventDispatcher';
 
 let doorsGroup: Phaser.GameObjects.Group;
 

@@ -1,12 +1,12 @@
-import EventDispatcher from '../../../Service/EventDispatcher';
-import { saveGame } from '../../../Service/gameStore';
-import RoomName from '../Map/RoomName';
-import GameObject from '../Sprite/GameObject';
-import Backpack from '../Sprite/Player/Backpack';
-import Player from '../Sprite/Player/Player';
-import Save from '../Sprite/Static/Save';
-import GameItemCollection from './GameItemCollection';
-import GameItem from './GameItemInterface';
+import EventDispatcher from '../EventDispatcher';
+import { saveGame } from '../gameStore';
+import RoomName from '../../Scene/Main/Map/RoomName';
+import GameObject from '../../Scene/Main/Sprite/GameObject';
+import Backpack from '../../Scene/Main/Sprite/Player/Backpack';
+import Player from '../../Scene/Main/Sprite/Player/Player';
+import Save from '../../Scene/Main/Sprite/Static/Save';
+import GameItemCollection from '../../Scene/Main/GameItem/GameItemCollection';
+import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
 
 let gameItems: GameItemCollection;
 

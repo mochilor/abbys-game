@@ -27,6 +27,7 @@ export default class Button extends GameObject implements GameSprite {
   }
 
   public getEventName(): string {
+    console.log(this);
     return `button${this.getProperty('event').value}Activated`;
   }
 }

@@ -1,8 +1,8 @@
-import EventDispatcher from '../../../../Service/EventDispatcher';
-import GameItem from '../../GameItem/GameItemInterface';
-import MapEventsGameItemCollection from '../../GameItem/MapEventsGameItemCollection';
-import Player from '../Player/Player';
-import Platform from './Platform';
+import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
+import MapEventsGameItemCollection from '../../Scene/Main/GameItem/MapEventsGameItemCollection';
+import Player from '../../Scene/Main/Sprite/Player/Player';
+import Platform from '../../Scene/Main/Sprite/Static/Platform';
+import EventDispatcher from '../EventDispatcher';
 
 let gameScene: Phaser.Scene;
 
@@ -10,7 +10,11 @@ let eventGameItemCollection: MapEventsGameItemCollection;
 
 let playerSprite: Player;
 
-function removeWalls(eventGameItems: GameItem[]): void {
+const defaultCaveWall = 33;
+
+const defaultPyramidWall = 89;
+
+function removeWalls(eventGameItems: GameItem[], newTileIndex: integer = defaultCaveWall): void {
   let tileStart: GameItem = null;
   let tileEnd: GameItem = null;
 
@@ -43,7 +47,7 @@ function removeWalls(eventGameItems: GameItem[]): void {
   );
 
   tilesToReplace.forEach((tile: Phaser.Tilemaps.Tile) => {
-    tile.index = 33; // Replace with default wall
+    tile.index = newTileIndex; // Replace with default wall
     tile.setCollision(false);
   });
 }
@@ -78,7 +82,6 @@ function button3Activated(): void {
   removeWalls(eventGameItems);
 }
 
-
 function button4Activated(): void {
   const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent4');
 
@@ -89,6 +92,12 @@ function button5Activated(): void {
   const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent5');
 
   removeWalls(eventGameItems);
+}
+
+function button6Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent6');
+
+  removeWalls(eventGameItems, defaultPyramidWall);
 }
 
 function listenButtonEvents(
@@ -104,6 +113,7 @@ function listenButtonEvents(
   EventDispatcher.getInstance().on('button3Activated', button3Activated);
   EventDispatcher.getInstance().on('button4Activated', button4Activated);
   EventDispatcher.getInstance().on('button5Activated', button5Activated);
+  EventDispatcher.getInstance().on('button6Activated', button6Activated);
 }
 
 export default listenButtonEvents;

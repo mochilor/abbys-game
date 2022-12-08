@@ -14,11 +14,14 @@ export default class SeaWeed extends GameObject implements GameSprite {
     scene.anims.create({
       key: 'seaweed',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('waterDetails'),
+      frames: this.anims.generateFrameNumbers('waterDetails', {}),
       repeat: -1,
     });
 
-    this.play('seaweed');
+    this.play({
+      key: 'seaweed',
+      startFrame: Math.floor(Math.random() * 8),
+    });
 
     tintShallow(this, roomName);
   }
