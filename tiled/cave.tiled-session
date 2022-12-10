@@ -1,9 +1,9 @@
 {
-    "activeFile": "maps/4-5.json",
+    "activeFile": "maps/3-6.json",
     "expandedProjectPaths": [
+        ".",
         "maps",
-        "extensions",
-        "."
+        "extensions"
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -14,11 +14,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.25,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 632,
-                "y": -502
+                "x": 856,
+                "y": 366.5
             }
         },
         "maps/2-5.json#objects": {
@@ -85,8 +85,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 120,
-                "y": 10
+                "x": 256,
+                "y": 258
             }
         },
         "maps/3-4.json#objects": {
@@ -99,11 +99,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -224.24242424242425,
-                "y": 453.0303030303031
+                "x": 416,
+                "y": 864.5
             }
         },
         "maps/3-5.json#objects": {
@@ -117,10 +117,10 @@
                 2
             ],
             "scale": 0.25,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 728,
-                "y": -78
+                "x": 724,
+                "y": -1174
             }
         },
         "maps/3-6.json#objects": {
@@ -170,8 +170,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -134.66666666666669,
-                "y": 1669
+                "x": 256,
+                "y": 256.33333333333326
             }
         },
         "maps/4-3.json#objects": {
@@ -201,11 +201,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -134.66666666666669,
-                "y": 645
+                "x": -99,
+                "y": 629.5
             }
         },
         "maps/4-5.json#objects": {
@@ -326,7 +326,7 @@
         "maps/3-3.json",
         "maps/3-2.json",
         "maps/3-5.json",
-        "maps/2-5.json"
+        "maps/4-5.json"
     ],
     "tileset.embedInMap": false,
     "tileset.margin": 0,

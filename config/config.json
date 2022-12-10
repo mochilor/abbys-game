@@ -16,7 +16,7 @@
     }
   },
   "debug": {
-    "level": "",
+    "level": "3_6",
     "boundingBoxes": false
   }
 }
