@@ -46,6 +46,12 @@ export default class MapManager {
   }
 
   private getNewRoomName(player: Player): RoomName {
+    const specialRoomName = this.getNewRoomNameSpecialCase(player);
+
+    if (specialRoomName) {
+      return specialRoomName;
+    }
+
     const data = { x: this.roomName.getX(), y: this.roomName.getY() };
 
     if (player.isLeavingRoomLeft()) {
@@ -78,5 +84,48 @@ export default class MapManager {
     const cameraY = roomY * screenSizeY;
 
     this.scene.cameras.main.setScroll(cameraX, cameraY);
+  }
+
+  private getNewRoomNameSpecialCase(player: Player): RoomName | null {
+    const specialRooms = {
+      '2_1': {
+        left: '4_5',
+      },
+      '3_6': {
+        bottom: '5_0',
+      },
+      '4_5': {
+        right: '2_1',
+      },
+      '5_0': {
+        top: '3_6',
+      },
+    };
+
+    const specialRoom = specialRooms[this.roomName.getName()];
+
+    if (!specialRoom) {
+      return null;
+    }
+
+    let name = null;
+    if (player.isLeavingRoomLeft() && specialRoom.left) {
+      name = specialRoom.left;
+    }
+    if (player.isLeavingRoomRight() && specialRoom.right) {
+      name = specialRoom.right;
+    }
+    if (player.isLeavingRoomTop() && specialRoom.top) {
+      name = specialRoom.top;
+    }
+    if (player.isLeavingRoomBottom() && specialRoom.bottom) {
+      name = specialRoom.bottom;
+    }
+
+    if (name) {
+      return RoomName.fromName(name);
+    }
+
+    return null;
   }
 }
