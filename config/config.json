@@ -13,10 +13,13 @@
       "layer-1": "c48d80",
       "layer-2": "678390",
       "layer-3": "536e7b"
+    },
+    "7": {
+      "bg": "574834"
     }
   },
   "debug": {
-    "level": "",
+    "level": "4_6",
     "boundingBoxes": false
   }
 }
