@@ -12,6 +12,7 @@ import Portal from '../Static/Portal';
 import Bubble from './Bubble';
 import Spring from '../Static/Spring';
 import SpikePlatform from '../Static/SpikePlatform';
+import Conveyor from '../Static/Conveyor';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';
@@ -29,6 +30,8 @@ export default class Player extends GameObject implements GameSprite {
   private isJumping: boolean = false;
 
   private jumpSpeed: number = 80;
+
+  private conveyor: Conveyor = null;
 
   constructor(
     scene: Phaser.Scene,
@@ -66,7 +69,13 @@ export default class Player extends GameObject implements GameSprite {
 
     const direction = this.controller.move();
 
-    this.body.setVelocityX(baseVelocityX * direction);
+    let velocityX = baseVelocityX * direction;
+
+    if (this.conveyor) {
+      velocityX += this.conveyor.speed();
+    }
+
+    this.body.setVelocityX(velocityX);
 
     if (direction !== 0) {
       this.play('playerWalk', true);
@@ -84,6 +93,8 @@ export default class Player extends GameObject implements GameSprite {
     if (this.isJumping) {
       this.jump();
     }
+
+    this.conveyor = null;
   }
 
   public collectItem(player: this, item: GameObject) {
@@ -151,6 +162,12 @@ export default class Player extends GameObject implements GameSprite {
   public touchSpikePlatform(player: this, spikePlatform: SpikePlatform): void {
     if (player.body.touching.up && spikePlatform.body.touching.down) {
       player.die();
+    }
+  }
+
+  public touchConveyor(player: this, conveyor: Conveyor): void {
+    if (player.body.touching.down && conveyor.body.touching.up) {
+      player.conveyor = conveyor;
     }
   }
 

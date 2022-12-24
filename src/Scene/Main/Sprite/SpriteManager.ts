@@ -19,6 +19,7 @@ import SpikePlatform from './Static/SpikePlatform';
 import listenButtonEvents from '../../../Service/EventListener/buttonEventListeners';
 import listenDoorEvents from '../../../Service/EventListener/doorEventListeners';
 import listenGameItemEvents from '../../../Service/EventListener/gameItemEventListeners';
+import Conveyor from './Static/Conveyor';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -40,6 +41,8 @@ export default class SpriteManager {
   private enemiesGroup: Phaser.GameObjects.Group;
 
   private springsGroup: Phaser.GameObjects.Group;
+
+  private conveyorsGroup: Phaser.GameObjects.Group;
 
   private inMemoryLocator: InMemoryGameLocator;
 
@@ -77,6 +80,7 @@ export default class SpriteManager {
     this.buttonsGroup = this.scene.add.group();
     this.enemiesGroup = this.scene.add.group();
     this.springsGroup = this.scene.add.group();
+    this.conveyorsGroup = this.scene.add.group();
 
     this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -116,6 +120,11 @@ export default class SpriteManager {
 
       if (sprite instanceof Player) {
         this.player = sprite;
+        return;
+      }
+
+      if (sprite instanceof Conveyor) {
+        this.conveyorsGroup.add(sprite);
         return;
       }
 
@@ -165,6 +174,12 @@ export default class SpriteManager {
       this.player.touchSpikePlatform,
     );
 
+    this.scene.physics.add.collider(
+      this.player,
+      this.conveyorsGroup,
+      this.player.touchConveyor,
+    );
+
     this.scene.physics.add.overlap(
       this.player,
       this.objectsGroup,
@@ -184,6 +199,30 @@ export default class SpriteManager {
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems, this.player);
     listenDoorEvents(this.doorsGroup);
+
+    const conveyors = this.conveyorsGroup.getChildren() as Conveyor[];
+
+    conveyors.sort((a: Conveyor, b: Conveyor) => {
+      if (a.x > b.x) {
+        return 1;
+      }
+
+      return -1;
+    });
+
+    conveyors.sort((a: Conveyor, b: Conveyor) => {
+      if (a.y < b.y) {
+        return -1;
+      }
+
+      return 1;
+    });
+
+    for (let n = 0; n < conveyors.length; n += 1) {
+      const previous = conveyors[n - 1] ?? null;
+      const next = conveyors[n + 1] ?? null;
+      conveyors[n].setup(previous, next);
+    }
   }
 
   private getGameItems(roomName: RoomName): GameItemCollection {

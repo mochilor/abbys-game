@@ -22,6 +22,7 @@ import Spring from './Static/Spring';
 import SmallFish from './Static/Decoration/SmallFish';
 import BigFish from './Static/Decoration/BigFish';
 import SpikePlatform from './Static/SpikePlatform';
+import Conveyor from './Static/Conveyor';
 
 const playerItemClass = {
   2: Player,
@@ -45,6 +46,7 @@ const staticItemClasses = {
   16: SmallFish,
   17: BigFish,
   18: SpikePlatform,
+  19: Conveyor,
 };
 
 const mapEventItemClasses = {

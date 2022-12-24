@@ -7,6 +7,7 @@ import ballImagePath from '../../../assets/img/ball.png';
 import portalImagePath from '../../../assets/img/portal.png';
 import platformImagePath from '../../../assets/img/platform.png';
 import spikePlatformImagePath from '../../../assets/img/spike-platform.png';
+import conveyorSpriteSheetPath from '../../../assets/img/conveyor.png';
 import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import smallFishSpritesheet from '../../../assets/img/background/fish.png';
 import bigFishSpriteSheetPath from '../../../assets/img/background/fish-2.png';
@@ -32,6 +33,7 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
     this.load.spritesheet('waterDetails', waterDetailsSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('playerSpritesheet', playerSpriteSheetPath, { frameWidth: 14, frameHeight: 21 });
+    this.load.spritesheet('conveyorSpriteSheet', conveyorSpriteSheetPath, { frameWidth: 8, frameHeight: 8 });
 
     mapFiles().forEach((element: string[]) => {
       // dist folder local path:
