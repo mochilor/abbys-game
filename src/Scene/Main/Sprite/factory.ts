@@ -23,6 +23,7 @@ import SmallFish from './Static/Decoration/SmallFish';
 import BigFish from './Static/Decoration/BigFish';
 import SpikePlatform from './Static/SpikePlatform';
 import Conveyor from './Static/Conveyor';
+import Cannon from './Static/Enemy/Cannon';
 
 const playerItemClass = {
   2: Player,
@@ -47,6 +48,7 @@ const staticItemClasses = {
   17: BigFish,
   18: SpikePlatform,
   19: Conveyor,
+  20: Cannon,
 };
 
 const mapEventItemClasses = {
@@ -91,28 +93,28 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
 
   const offset = 4;
 
-  if (ItemClass === Spike) {
-    let spikeOffsetY: number;
-    let spikeOffsetX: number;
+  if (ItemClass === Spike || ItemClass === Cannon) {
+    let offsetY: number;
+    let offsetX: number;
 
     if (Math.abs(gameItem.rotation) === 180) { // V
-      spikeOffsetX = -offset;
-      spikeOffsetY = -offset;
-    } else if (gameItem.rotation === -90) { // <
-      spikeOffsetX = -offset;
-      spikeOffsetY = offset;
+      offsetX = -offset;
+      offsetY = -offset;
+    } else if (gameItem.rotation === -90 || gameItem.rotation === 270) { // <
+      offsetX = -offset;
+      offsetY = offset;
     } else if (gameItem.rotation === 0) { // ^
-      spikeOffsetX = offset;
-      spikeOffsetY = offset;
+      offsetX = offset;
+      offsetY = offset;
     } else if (gameItem.rotation === 90) { // >
-      spikeOffsetY = -offset;
-      spikeOffsetX = offset;
+      offsetY = -offset;
+      offsetX = offset;
     }
 
-    return new Spike(
+    return new ItemClass(
       scene,
-      gameItem.x + spikeOffsetX,
-      gameItem.y - spikeOffsetY,
+      gameItem.x + offsetX,
+      gameItem.y - offsetY,
       gameItem.rotation,
     );
   }

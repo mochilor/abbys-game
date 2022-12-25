@@ -67,7 +67,13 @@ export default class Main extends Phaser.Scene {
 
     this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, roomName);
-    this.mapManager.setup(this.player, this.spriteManager.getSpikePlatforms(), map, 'tilesetImage');
+    this.mapManager.setup(
+      this.player,
+      this.spriteManager.getSpikePlatforms(),
+      this.spriteManager.getCannonBallsGroup(),
+      map,
+      'tilesetImage',
+    );
 
     (new BackgroundManager(this)).setup(
       roomName,

@@ -20,6 +20,7 @@ import listenButtonEvents from '../../../Service/EventListener/buttonEventListen
 import listenDoorEvents from '../../../Service/EventListener/doorEventListeners';
 import listenGameItemEvents from '../../../Service/EventListener/gameItemEventListeners';
 import Conveyor from './Static/Conveyor';
+import Cannon from './Static/Enemy/Cannon';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -35,6 +36,8 @@ export default class SpriteManager {
   private platformsGroup: Phaser.GameObjects.Group;
 
   private spikePlatformsGroup: Phaser.GameObjects.Group;
+
+  private cannonBallsGroup: Phaser.GameObjects.Group;
 
   private buttonsGroup: Phaser.GameObjects.Group;
 
@@ -81,6 +84,7 @@ export default class SpriteManager {
     this.enemiesGroup = this.scene.add.group();
     this.springsGroup = this.scene.add.group();
     this.conveyorsGroup = this.scene.add.group();
+    this.cannonBallsGroup = this.scene.add.group();
 
     this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
@@ -110,6 +114,12 @@ export default class SpriteManager {
 
       if (sprite instanceof Spring) {
         this.springsGroup.add(sprite);
+        return;
+      }
+
+      if (sprite instanceof Cannon) {
+        sprite.setup();
+        this.cannonBallsGroup.add(sprite.getCannonBall());
         return;
       }
 
@@ -196,33 +206,19 @@ export default class SpriteManager {
       this.player,
     );
 
+    this.scene.physics.add.overlap(
+      this.player,
+      this.cannonBallsGroup,
+      this.player.touchEnemy,
+      null,
+      this.player,
+    );
+
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems, this.player);
     listenDoorEvents(this.doorsGroup);
 
-    const conveyors = this.conveyorsGroup.getChildren() as Conveyor[];
-
-    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
-      if (a.x > b.x) {
-        return -1;
-      }
-
-      return 1;
-    });
-
-    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
-      if (a.y >= b.y) {
-        return 1;
-      }
-
-      return -1;
-    });
-
-    for (let n = 0; n < conveyors.length; n += 1) {
-      const previous = conveyors[n - 1] ?? null;
-      const next = conveyors[n + 1] ?? null;
-      conveyors[n].setup(previous, next);
-    }
+    this.setupConveyors();
   }
 
   private getGameItems(roomName: RoomName): GameItemCollection {
@@ -257,12 +253,42 @@ export default class SpriteManager {
     }
   }
 
+  private setupConveyors(): void {
+    const conveyors = this.conveyorsGroup.getChildren() as Conveyor[];
+
+    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
+      if (a.x > b.x) {
+        return -1;
+      }
+
+      return 1;
+    });
+
+    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
+      if (a.y >= b.y) {
+        return 1;
+      }
+
+      return -1;
+    });
+
+    for (let n = 0; n < conveyors.length; n += 1) {
+      const previous = conveyors[n - 1] ?? null;
+      const next = conveyors[n + 1] ?? null;
+      conveyors[n].setup(previous, next);
+    }
+  }
+
   public getPlayer(): Player {
     return this.player;
   }
 
   public getSpikePlatforms(): Phaser.GameObjects.Group {
     return this.spikePlatformsGroup;
+  }
+
+  public getCannonBallsGroup(): Phaser.GameObjects.Group {
+    return this.cannonBallsGroup;
   }
 
   public update(time: number): void {
@@ -274,6 +300,9 @@ export default class SpriteManager {
     });
     this.enemiesGroup.children.iterate((child: EnemyGameObject) => {
       child.update();
+    });
+    this.cannonBallsGroup.children.iterate((child: EnemyGameObject) => {
+      child.update(time);
     });
     this.springsGroup.children.iterate((child: Spring) => {
       child.update();

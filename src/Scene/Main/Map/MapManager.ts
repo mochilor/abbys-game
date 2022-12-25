@@ -19,6 +19,7 @@ export default class MapManager {
   public setup(
     player: Player,
     spikePlatformsGroup: Phaser.GameObjects.Group,
+    cannonBallsGroup: Phaser.GameObjects.Group,
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {
@@ -30,6 +31,7 @@ export default class MapManager {
     map.setCollisionBetween(137, 152);
     this.scene.physics.add.collider(player, this.layer);
     this.scene.physics.add.collider(spikePlatformsGroup, this.layer);
+    this.scene.physics.add.collider(cannonBallsGroup, this.layer);
   }
 
   public updateCurrentRoom(player: Player): void {

@@ -12,7 +12,7 @@ export default class Save extends GameObject implements GameSprite {
     scene.physics.world.enable(this);
     scene.add.existing(this);
 
-    this.setFrame(7);
+    this.setFrame(5);
   }
 
   public resetBody() {

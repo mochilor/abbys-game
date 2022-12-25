@@ -13,7 +13,7 @@ export default class Spike extends GameObject implements GameSprite {
 
     this.setAngle(rotation);
 
-    this.setFrame(8);
+    this.setFrame(6);
 
     if (this.isFacingUp()) {
       this.body.checkCollision.down = false;

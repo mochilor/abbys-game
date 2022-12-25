@@ -23,7 +23,7 @@ export default class Button extends GameObject implements GameSprite {
     this.body.setSize(8, 2);
     this.body.setOffset(0, 6);
 
-    this.setFrame(10);
+    this.setFrame(7);
   }
 
   public getEventName(): string {
