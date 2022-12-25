@@ -50,6 +50,7 @@ export default class Conveyor extends GameObject implements GameSprite {
 
   public setup(previousConveyor: Conveyor | null, nextConveyor: Conveyor | null): void {
     let animationKey = 'conveyor-center';
+
     if (
       !previousConveyor
       || previousConveyor.x < this.x - this.width
@@ -57,9 +58,7 @@ export default class Conveyor extends GameObject implements GameSprite {
       || (this.direction !== previousConveyor.direction)
     ) {
       animationKey = 'conveyor-wheel-left';
-    }
-
-    if (
+    } else if (
       !nextConveyor
       || nextConveyor.x > this.x + this.width
       || nextConveyor.y !== this.y

@@ -202,20 +202,20 @@ export default class SpriteManager {
 
     const conveyors = this.conveyorsGroup.getChildren() as Conveyor[];
 
-    conveyors.sort((a: Conveyor, b: Conveyor) => {
+    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
       if (a.x > b.x) {
-        return 1;
-      }
-
-      return -1;
-    });
-
-    conveyors.sort((a: Conveyor, b: Conveyor) => {
-      if (a.y < b.y) {
         return -1;
       }
 
       return 1;
+    });
+
+    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
+      if (a.y >= b.y) {
+        return 1;
+      }
+
+      return -1;
     });
 
     for (let n = 0; n < conveyors.length; n += 1) {
