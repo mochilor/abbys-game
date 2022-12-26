@@ -22,6 +22,10 @@ export default class Conveyor extends GameObject implements GameSprite {
     scene.add.existing(this);
     this.body.setImmovable();
 
+    this.body.checkCollision.down = false;
+    this.body.checkCollision.left = false;
+    this.body.checkCollision.right = false;
+
     this.direction = this.getProperty('reverse')?.value ? -1 : 1;
 
     const frameRate = 36;

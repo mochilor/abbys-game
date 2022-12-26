@@ -31,7 +31,7 @@ export default abstract class Fish extends GameObject implements GameSprite {
 
     scene.anims.create({
       key,
-      frameRate: this.speed * 40,
+      frameRate: this.speed * 60,
       frames: texture,
       repeat: -1,
     });

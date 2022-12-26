@@ -103,6 +103,12 @@ export default class MapManager {
       '5_0': {
         top: '3_6',
       },
+      '5_8': {
+        bottom: '4_7',
+      },
+      '4_8': {
+        bottom: '4_7',
+      },
     };
 
     const specialRoom = specialRooms[this.roomName.getName()];

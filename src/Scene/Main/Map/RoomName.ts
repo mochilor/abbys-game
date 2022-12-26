@@ -40,8 +40,4 @@ export default class RoomName {
   public isSameRoom(roomName: RoomName): boolean {
     return this.isSame({ x: roomName.x, y: roomName.y });
   }
-
-  public isPyramid(): boolean {
-    return this.y >= 5;
-  }
 }

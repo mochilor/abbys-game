@@ -3,8 +3,17 @@ import config from '../../../../../../config/config.json';
 import GameObject from '../../GameObject';
 
 function tint(sprite: GameObject, roomName: RoomName, layer: string): void {
-  if (roomName.isPyramid()) {
-    const fillColor = config.levelColors[5][`layer-${layer}`];
+  let levelColor = null;
+  if (roomName.getY() >= 5) {
+    levelColor = 5;
+  }
+
+  if (roomName.getY() >= 7) {
+    levelColor = 7;
+  }
+
+  if (levelColor) {
+    const fillColor = config.levelColors[levelColor][`layer-${layer}`];
     sprite.setTintFill(`0x${fillColor}`);
   }
 }
