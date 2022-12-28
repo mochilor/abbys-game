@@ -93,6 +93,7 @@ export default class MapManager {
     const specialRooms = {
       '2_1': {
         left: '4_5',
+        bottom: '4_7',
       },
       '3_6': {
         bottom: '5_0',
@@ -100,14 +101,19 @@ export default class MapManager {
       '4_5': {
         right: '2_1',
       },
+      '4_8': {
+        bottom: '4_7',
+      },
       '5_0': {
         top: '3_6',
       },
       '5_8': {
         bottom: '4_7',
+        left: '6_7',
       },
-      '4_8': {
-        bottom: '4_7',
+      '6_7': {
+        right: '5_8',
+        bottom: '2_1',
       },
     };
 
