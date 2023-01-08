@@ -1,17 +1,26 @@
+import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
 export default class Spike extends GameObject implements GameSprite {
   public static key = 'Spike';
 
-  constructor(scene: Phaser.Scene, x: number, y: number, rotation: number) {
-    super(scene, x, y, 'objects');
+  private deactivable: boolean = false;
+
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    angle: number,
+    properties: GameItem['properties'],
+  ) {
+    super(scene, x, y, 'objects', '', properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
     this.body.setImmovable();
 
-    this.setAngle(rotation);
+    this.setAngle(angle);
 
     this.setFrame(6);
 
@@ -24,6 +33,10 @@ export default class Spike extends GameObject implements GameSprite {
     }
 
     this.body.setSize(6, 6);
+
+    if (this.getProperty('deactivable')) {
+      this.deactivable = this.getProperty('deactivable').value === '1';
+    }
   }
 
   public isFacingUp(): boolean {
@@ -40,5 +53,12 @@ export default class Spike extends GameObject implements GameSprite {
 
   public isFacingLeft(): boolean {
     return this.angle === -90;
+  }
+
+  public deactivate(): void {
+    if (this.deactivable) {
+      this.body.enable = false;
+      this.visible = false;
+    }
   }
 }

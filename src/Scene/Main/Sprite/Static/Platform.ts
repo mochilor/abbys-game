@@ -1,5 +1,4 @@
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -24,11 +23,10 @@ export default class Platform extends GameObject implements GameSprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
   ) {
-    super(scene, x, y, 'platformImage', roomName, uuid, properties);
+    super(scene, x, y, 'platformImage', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
@@ -93,7 +91,7 @@ export default class Platform extends GameObject implements GameSprite {
   public static makeAdditional(scene: Phaser.Scene, x: number, y: number): Platform {
     // Offeset should be centralized somehow:
     const offset = 4;
-    const platform = new Platform(scene, x + offset, y - offset, new RoomName(0, 0), '', []);
+    const platform = new Platform(scene, x + offset, y - offset, '', []);
     platform.setDepth(-1);
 
     return platform;

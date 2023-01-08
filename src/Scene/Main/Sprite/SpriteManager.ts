@@ -215,7 +215,14 @@ export default class SpriteManager {
     );
 
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
-    listenButtonEvents(this.scene, mapEventGameItems, this.player);
+    listenButtonEvents(
+      this.scene,
+      mapEventGameItems,
+      this.player,
+      this.objectsGroup,
+      this.cannonBallsGroup,
+      this.spikesGroup
+    );
     listenDoorEvents(this.doorsGroup);
 
     this.setupConveyors();

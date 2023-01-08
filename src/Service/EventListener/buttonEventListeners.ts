@@ -1,7 +1,10 @@
 import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../Scene/Main/GameItem/MapEventsGameItemCollection';
+import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Player from '../../Scene/Main/Sprite/Player/Player';
+import CannonBall from '../../Scene/Main/Sprite/Static/Enemy/CannonBall';
 import Platform from '../../Scene/Main/Sprite/Static/Platform';
+import Spike from '../../Scene/Main/Sprite/Static/Spike';
 import EventDispatcher from '../EventDispatcher';
 
 let gameScene: Phaser.Scene;
@@ -10,9 +13,17 @@ let eventGameItemCollection: MapEventsGameItemCollection;
 
 let playerSprite: Player;
 
+let gameObjects: Phaser.GameObjects.Group;
+
+let cannonBalls: Phaser.GameObjects.Group;
+
+let spikes: Phaser.GameObjects.Group;
+
 const defaultCaveWall = 33;
 
 const defaultPyramidWall = 89;
+
+const defaultBaseWall = 161;
 
 function removeWalls(eventGameItems: GameItem[], newTileIndex: integer = defaultCaveWall): void {
   let tileStart: GameItem = null;
@@ -100,20 +111,68 @@ function button6Activated(): void {
   removeWalls(eventGameItems, defaultPyramidWall);
 }
 
+function button7Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent7');
+
+  removeWalls(eventGameItems, defaultBaseWall);
+}
+
+function button8Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent8');
+
+  removeWalls(eventGameItems, -1);
+}
+
+function button9Activated(): void {
+  // This event activates a coin that is hidden. It should be the only hidden coin:
+  gameObjects.children.iterate((child: GameObject) => {
+    if (child.body) {
+      child.body.setEnable(true);
+    }
+    child.setVisible(true);
+  });
+}
+
+function button10Activated(): void {
+  // This event deactivates a couple of cannons
+  cannonBalls.children.iterate((child: CannonBall) => {
+    child.deactivate();
+  });
+}
+
+function button11Activated(): void {
+  // This event deactivates a couple of spikes
+  spikes.children.iterate((child: Spike) => {
+    child.deactivate();
+  });
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
   player: Player,
+  gameObjectsGroup: Phaser.GameObjects.Group,
+  cannonBallsGroup: Phaser.GameObjects.Group,
+  spikesGroup: Phaser.GameObjects.Group,
 ): void {
   gameScene = scene;
   eventGameItemCollection = eventGameItems;
   playerSprite = player;
+  gameObjects = gameObjectsGroup;
+  cannonBalls = cannonBallsGroup;
+  spikes = spikesGroup;
+
   EventDispatcher.getInstance().on('button1Activated', button1Activated);
   EventDispatcher.getInstance().on('button2Activated', button2Activated);
   EventDispatcher.getInstance().on('button3Activated', button3Activated);
   EventDispatcher.getInstance().on('button4Activated', button4Activated);
   EventDispatcher.getInstance().on('button5Activated', button5Activated);
   EventDispatcher.getInstance().on('button6Activated', button6Activated);
+  EventDispatcher.getInstance().on('button7Activated', button7Activated);
+  EventDispatcher.getInstance().on('button8Activated', button8Activated);
+  EventDispatcher.getInstance().on('button9Activated', button9Activated);
+  EventDispatcher.getInstance().on('button10Activated', button10Activated);
+  EventDispatcher.getInstance().on('button11Activated', button11Activated);
 }
 
 export default listenButtonEvents;

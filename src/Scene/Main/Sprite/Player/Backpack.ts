@@ -39,10 +39,6 @@ export default class Backpack {
         activateButton(eventName);
       });
     }
-
-    this.content.gameEvents.forEach((eventName: string) => {
-      activateButton(eventName);
-    });
   }
 
   public getContentForSaving(): GameItem['properties'] {
@@ -76,8 +72,9 @@ export default class Backpack {
     }
 
     if (item instanceof Button) {
-      this.content.gameEvents.push(item.getEventName());
-      activateButton(item.getEventName());
+      const eventName = item.getEventName();
+      this.content.gameEvents.push(eventName);
+      activateButton(eventName);
     }
 
     if (destroy) {

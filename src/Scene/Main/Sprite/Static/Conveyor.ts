@@ -1,5 +1,4 @@
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -12,11 +11,10 @@ export default class Conveyor extends GameObject implements GameSprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
   ) {
-    super(scene, x, y, 'conveyorSpriteSheet', roomName, uuid, properties);
+    super(scene, x, y, 'conveyorSpriteSheet', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);

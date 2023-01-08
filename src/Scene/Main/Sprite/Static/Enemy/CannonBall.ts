@@ -14,7 +14,9 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
 
   private lastDeathTime: integer = null;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, angle: integer) {
+  private deactivable: boolean;
+
+  constructor(scene: Phaser.Scene, x: number, y: number, angle: integer, deactivable: boolean) {
     super(scene, x, y, 'objects');
 
     this.startingX = x;
@@ -46,6 +48,8 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
     } else {
       throw new Error(`Invalid cannonball angle (${angle})`);
     }
+
+    this.deactivable = deactivable;
 
     this.fire();
 
@@ -89,5 +93,12 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
     this.body.enable = false;
     this.body.setVelocityX(0);
     this.body.setVelocityY(0);
+  }
+
+  public deactivate(): void {
+    if (this.deactivable) {
+      this.body.enable = false;
+      this.visible = false;
+    }
   }
 }

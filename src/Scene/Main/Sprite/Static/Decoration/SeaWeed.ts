@@ -1,3 +1,4 @@
+import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
 import GameSprite from '../../GameSpriteInterface';
@@ -6,9 +7,16 @@ import { tintShallow } from './tint';
 export default class SeaWeed extends GameObject implements GameSprite {
   public static key = 'SeaWeed';
 
-  constructor(scene: Phaser.Scene, x: number, y: number, roomName: RoomName) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    uuid: string,
+    properties: GameItem['properties'],
+    roomName: RoomName,
+  ) {
     // x and y offset!
-    super(scene, x + 4, y - 4, 'waterDetails');
+    super(scene, x + 4, y - 4, 'waterDetails', uuid, properties);
     scene.add.existing(this);
 
     scene.anims.create({

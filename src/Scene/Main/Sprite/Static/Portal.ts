@@ -12,6 +12,8 @@ interface Destination {
 export default class Portal extends GameObject implements GameSprite {
   public static key = 'Portal';
 
+  private roomName: RoomName;
+
   private destination: Destination;
 
   constructor(
@@ -21,15 +23,21 @@ export default class Portal extends GameObject implements GameSprite {
     destination: Destination,
     roomName: RoomName,
   ) {
-    super(scene, x, y, 'portalImage', roomName);
+    super(scene, x, y, 'portalImage');
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
+
+    this.roomName = roomName;
 
     this.destination = destination;
   }
 
   public getDestination(): Destination {
     return this.destination;
+  }
+
+  public getRoomName(): RoomName {
+    return this.roomName;
   }
 }

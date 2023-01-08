@@ -14,9 +14,9 @@ export default class BigFish extends Fish {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
+    roomName: RoomName,
   ) {
     super(scene, x, y, roomName, uuid, properties, 'bigFishSpritesheet', -1);
 

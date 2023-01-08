@@ -116,6 +116,7 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
       gameItem.x + offsetX,
       gameItem.y - offsetY,
       gameItem.rotation,
+      gameItem.properties,
     );
   }
 
@@ -181,9 +182,9 @@ function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
     scene,
     gameItem.x + offset,
     gameItem.y - offset,
-    gameItem.roomName,
     gameItem.uuid,
     gameItem.properties,
+    gameItem.roomName,
   );
 }
 

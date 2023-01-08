@@ -1,13 +1,19 @@
 import Phaser from 'phaser';
-import RoomName from '../../Map/RoomName';
+import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
 export default class Coin extends GameObject implements GameSprite {
   public static key = 'Coin';
 
-  constructor(scene: Phaser.Scene, x: number, y: number, roomName: RoomName, uuid: string) {
-    super(scene, x, y, 'objects', roomName, uuid);
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    uuid: string,
+    properties: GameItem['properties'],
+  ) {
+    super(scene, x, y, 'objects', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
@@ -20,5 +26,12 @@ export default class Coin extends GameObject implements GameSprite {
     });
 
     this.play('coin');
+
+    const enabled = parseInt(this.getProperty('enabled')?.value as string ?? '1', 10);
+
+    if (!enabled) {
+      this.body.enable = false;
+      this.visible = false;
+    }
   }
 }

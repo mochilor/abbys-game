@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
@@ -11,11 +10,10 @@ export default class Button extends GameObject implements GameSprite {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
   ) {
-    super(scene, x, y, 'objects', roomName, uuid, properties);
+    super(scene, x, y, 'objects', uuid, properties);
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
@@ -27,7 +25,6 @@ export default class Button extends GameObject implements GameSprite {
   }
 
   public getEventName(): string {
-    console.log(this);
     return `button${this.getProperty('event').value}Activated`;
   }
 }

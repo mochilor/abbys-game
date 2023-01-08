@@ -84,7 +84,7 @@
          "objects":[
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":114,
                  "name":"",
@@ -96,7 +96,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":115,
                  "name":"",
@@ -108,7 +108,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":116,
                  "name":"",
@@ -120,7 +120,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":117,
                  "name":"",
@@ -132,7 +132,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":149,
+                 "gid":197,
                  "height":8,
                  "id":118,
                  "name":"",
@@ -144,7 +144,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":142,
+                 "gid":190,
                  "height":8,
                  "id":123,
                  "name":"",
@@ -156,7 +156,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":149,
+                 "gid":197,
                  "height":8,
                  "id":124,
                  "name":"",
@@ -168,7 +168,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":149,
+                 "gid":197,
                  "height":8,
                  "id":125,
                  "name":"",
@@ -180,7 +180,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":131,
                  "name":"",
@@ -192,7 +192,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":132,
                  "name":"",
@@ -204,7 +204,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":133,
                  "name":"",
@@ -216,7 +216,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":140,
                  "name":"",
@@ -228,7 +228,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":141,
                  "name":"",
@@ -240,7 +240,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":143,
+                 "gid":191,
                  "height":8,
                  "id":144,
                  "name":"",
@@ -252,7 +252,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":142,
+                 "gid":190,
                  "height":8,
                  "id":151,
                  "name":"",
@@ -264,7 +264,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":137,
+                 "gid":185,
                  "height":8,
                  "id":154,
                  "name":"",
@@ -276,7 +276,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":140,
+                 "gid":188,
                  "height":8,
                  "id":155,
                  "name":"",
@@ -288,7 +288,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":150,
+                 "gid":198,
                  "height":8,
                  "id":156,
                  "name":"",
@@ -306,7 +306,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":142,
+                 "gid":190,
                  "height":8,
                  "id":157,
                  "name":"",
@@ -318,7 +318,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":137,
+                 "gid":185,
                  "height":8,
                  "id":160,
                  "name":"",
@@ -330,7 +330,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":140,
+                 "gid":188,
                  "height":8,
                  "id":172,
                  "name":"",
@@ -342,7 +342,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":140,
+                 "gid":188,
                  "height":8,
                  "id":173,
                  "name":"",
@@ -354,7 +354,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":140,
+                 "gid":188,
                  "height":8,
                  "id":177,
                  "name":"",
@@ -366,7 +366,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":148,
+                 "gid":196,
                  "height":8,
                  "id":186,
                  "name":"",
@@ -378,7 +378,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":148,
+                 "gid":196,
                  "height":8,
                  "id":187,
                  "name":"",
@@ -390,7 +390,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":190,
                  "name":"",
@@ -408,7 +408,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":191,
                  "name":"",
@@ -426,7 +426,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":192,
                  "name":"",
@@ -438,7 +438,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":193,
                  "name":"",
@@ -450,7 +450,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":194,
                  "name":"",
@@ -462,7 +462,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":152,
+                 "gid":200,
                  "height":8,
                  "id":195,
                  "name":"",
@@ -485,7 +485,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":153,
+                 "gid":201,
                  "height":8,
                  "id":198,
                  "name":"",
@@ -508,7 +508,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":140,
+                 "gid":188,
                  "height":8,
                  "id":199,
                  "name":"",
@@ -525,7 +525,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":200,
+ "nextobjectid":202,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -535,25 +535,25 @@
          "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/img\/tileset.png",
-         "imageheight":136,
+         "imageheight":184,
          "imagewidth":64,
          "margin":0,
          "name":"tileset",
          "spacing":0,
-         "tilecount":136,
+         "tilecount":184,
          "tileheight":8,
          "tilewidth":8
         }, 
         {
          "columns":3,
-         "firstgid":137,
+         "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":48,
+         "imageheight":56,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":18,
+         "tilecount":21,
          "tileheight":8,
          "tilewidth":8
         }],

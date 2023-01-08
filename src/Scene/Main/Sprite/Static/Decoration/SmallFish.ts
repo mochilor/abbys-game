@@ -13,9 +13,9 @@ export default class SmallFish extends Fish {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    roomName: RoomName,
     uuid: string,
     properties: GameItem['properties'],
+    roomName: RoomName,
   ) {
     super(scene, x, y, roomName, uuid, properties, 'smallFishSpritesheet', -100);
 
