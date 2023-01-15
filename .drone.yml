@@ -9,13 +9,13 @@ steps:
   commands:
     - npm install
     - npx parcel build index.html
-# - name: docker_build
-#   image: plugins/docker
-#   settings:
-#     repo:  registry.digitalocean.com/mochilo-container-registry/cavegame
-#     username:
-#       from_secret: docker_username
-#     password:
-#       from_secret: docker_password
-#     registry:  registry.digitalocean.com
-#     tags: latest
+- name: docker_build
+  image: plugins/docker
+  settings:
+    repo:  registry.digitalocean.com/mochilo-container-registry/cavegame
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry:  registry.digitalocean.com
+    tags: latest
