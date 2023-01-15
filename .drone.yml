@@ -18,4 +18,4 @@ steps:
     password:
       from_secret: docker_password
     registry:  registry.digitalocean.com
-    tags: ["${DRONE_BUILD_STARTED}", "latest"]
+    tags: latest
