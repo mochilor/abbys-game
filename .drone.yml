@@ -18,4 +18,4 @@ steps:
     password:
       from_secret: docker_password
     registry:  registry.digitalocean.com
-    tags: ["${DRONE_COMMIT_SHA:0:7}", "latest"]
+    tags: latest
