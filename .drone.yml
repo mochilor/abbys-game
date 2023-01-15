@@ -8,7 +8,7 @@ steps:
   image: node
   commands:
     - npm install
-    - npx --max-old-space-size=768 parcel build index.html --log-level verbose
+    - node --max-old-space-size=768 ./node_modules/.bin/parcel build index.html
 - name: docker_build
   image: plugins/docker
   settings:
