@@ -4,15 +4,18 @@ type: docker
 name: default
 
 steps:
-- name: build
-  image: alpine
-  environment:
-    USERNAME:
-      from_secret: docker_username
-    PASSWORD:
-      from_secret: docker_password
+- name: parcel_build
+  image: node
   commands:
-    - echo "You can call the secrets like this examples below."
-    - echo $USERNAME
-    - echo $PASSWORD
-    - echo "In both cases, and for security reasons, you will see asteriks '*******' instead the value under the echo command."
+    - npm install
+    - npx parcel build index.html
+# - name: docker_build
+#   image: plugins/docker
+#   settings:
+#     repo:  registry.digitalocean.com/mochilo-container-registry/cavegame
+#     username:
+#       from_secret: docker_username
+#     password:
+#       from_secret: docker_password
+#     registry:  registry.digitalocean.com
+#     tags: latest
