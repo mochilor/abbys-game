@@ -8,7 +8,7 @@ steps:
   image: node
   commands:
     - npm install
-    - npx parcel build index.html
+    - npx parcel build index.html --log-level verbose
 - name: docker_build
   image: plugins/docker
   settings:
