@@ -4,11 +4,11 @@ type: docker
 name: default
 
 steps:
-- name: parcel_build
-  image: node
-  commands:
-    - node --max_old_space_size=768 $(which npm) install
-    - node --max-old-space-size=512 ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html
+# - name: parcel_build
+#   image: node
+#   commands:
+#     - node --max_old_space_size=768 $(which npm) install
+#     - node --max-old-space-size=512 ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html
 - name: docker_build
   image: plugins/docker
   settings:
@@ -18,4 +18,4 @@ steps:
     password:
       from_secret: docker_password
     registry:  registry.digitalocean.com
-    tags: latest
+    tags: ["${DRONE_COMMIT_SHA:0:7}", "latest"]
