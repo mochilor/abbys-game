@@ -8,9 +8,9 @@ steps:
   image: alpine
   environment:
     USERNAME:
-        from_secret: docker_username
-      PASSWORD:
-        from_secret: docker_password
+      from_secret: docker_username
+    PASSWORD:
+      from_secret: docker_password
   commands:
     - echo "You can call the secrets like this examples below."
     - echo $USERNAME
