@@ -22,8 +22,8 @@ steps:
 - name: remove_old_images
   image: alpine/doctl:latest
   environment:
-      DO_TOKEN:
-        from_secret: do_token
+    DO_TOKEN:
+      from_secret: do_token
   commands:
     - apk add jq
     - doctl auth init --access-token $DO_TOKEN
