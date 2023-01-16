@@ -19,3 +19,7 @@ steps:
       from_secret: docker_password
     registry:  registry.digitalocean.com
     tags: latest
+- name: remove_old_images
+  image: alpine/doctl
+  commands:
+    - apk add jq
