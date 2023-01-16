@@ -25,6 +25,7 @@ steps:
     DIGITALOCEAN_ACCESS_TOKEN:
       from_secret: do_token
   commands:
-    - apk add jq
-    - DIGEST=$(doctl registry repo list-tags cavegame -o json | jq '.[] | select(.tag =="latest") | .manifest_digest' -r | tr '\n' ' ')
-    - doctl registry repo list-manifests cavegame -o json | jq '.[] | select(.digest !="$(echo $DIGEST)") | .digest' -r | tr '\n' ' '
+    - registry repo list-tags cavegame
+    # - apk add jq
+    # - DIGEST=$(doctl registry repo list-tags cavegame -o json | jq '.[] | select(.tag =="latest") | .manifest_digest' -r | tr '\n' ' ')
+    # - doctl registry repo list-manifests cavegame -o json | jq '.[] | select(.digest !="$(echo $DIGEST)") | .digest' -r | tr '\n' ' '
