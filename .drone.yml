@@ -23,5 +23,4 @@ steps:
   image: alpine/doctl
   commands:
     - apk add jq
-    - DIGEST=$(doctl registry repo list-tags cavegame -o json | jq ".[] | select(.tag ==\"latest\") | .manifest_digest" -r | tr '\n' ' ')
-    - echo $DIGEST
+    - doctl registry repo list-tags cavegame -o json | jq ".[] | select(.tag ==\"latest\") | .manifest_digest" -r | tr '\n' ' '
