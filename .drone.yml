@@ -27,4 +27,5 @@ steps:
   commands:
     - apk add jq
     - doctl auth init --access-token $DO_TOKEN
-    - doctl registry repo list-tags cavegame -o json | jq ".[] | select(.tag ==\"latest\") | .manifest_digest" -r | tr '\n' ' '
+    - DIGEST=$(doctl registry repo list-tags cavegame -o json | jq '.[] | select(.tag =="latest") | .manifest_digest' -r | tr '\n' ' ')
+    - doctl registry repo list-manifests cavegame -o json | jq '.[] | select(.digest !="$(echo $DIGEST)") | .digest' -r | tr '\n' ' '
