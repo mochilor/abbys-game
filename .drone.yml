@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: default
+name: build_prod_image
 
 steps:
 - name: parcel_build
@@ -30,3 +30,9 @@ steps:
     - DIGEST=$(/app/doctl registry repo list-tags cavegame -o json | jq '.[] | select(.tag =="latest") | .manifest_digest' -r | tr '\n' ' ')
     - OLD_DIGESTS=$(/app/doctl registry repo list-manifests cavegame -o json | jq ".[] | select(.digest !=\"$(echo -n $DIGEST)\") | .digest" -r | tr '\n' ' ')
     - /app/doctl registry repo delete-manifest cavegame $(echo $OLD_DIGESTS) --force
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
