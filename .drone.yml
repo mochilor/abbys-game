@@ -1,0 +1,38 @@
+---
+kind: pipeline
+type: docker
+name: build_prod_image
+
+steps:
+- name: parcel_build
+  image: node
+  commands:
+    - node --max_old_space_size=768 $(which npm) install
+    - node --max-old-space-size=512 ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html
+- name: docker_build
+  image: plugins/docker
+  settings:
+    repo:  registry.digitalocean.com/mochilo-container-registry/cavegame
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry:  registry.digitalocean.com
+    tags: ["${DRONE_BUILD_FINISHED}", latest]
+- name: remove_old_images
+  image: digitalocean/doctl:latest
+  environment:
+    DIGITALOCEAN_ACCESS_TOKEN:
+      from_secret: do_token
+  commands:
+    - apk add jq
+    - /app/doctl auth init
+    - DIGEST=$(/app/doctl registry repo list-tags cavegame -o json | jq '.[] | select(.tag =="latest") | .manifest_digest' -r | tr '\n' ' ')
+    - OLD_DIGESTS=$(/app/doctl registry repo list-manifests cavegame -o json | jq ".[] | select(.digest !=\"$(echo -n $DIGEST)\") | .digest" -r | tr '\n' ' ')
+    - /app/doctl registry repo delete-manifest cavegame $(echo $OLD_DIGESTS) --force
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
