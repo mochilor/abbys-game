@@ -221,7 +221,7 @@ export default class SpriteManager {
       this.player,
       this.objectsGroup,
       this.cannonBallsGroup,
-      this.spikesGroup
+      this.spikesGroup,
     );
     listenDoorEvents(this.doorsGroup);
 

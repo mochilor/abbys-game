@@ -9,7 +9,9 @@ import InMemoryGameLocator from './GameItem/Locator/InMemoryGameLocator';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
 import BackgroundManager from './Background/BackgroundManager';
-import config from '../../../config/config.json';
+import { getDebugRoomName, addDebugContainer } from './Debug/debug';
+import CoinCounter from './GameItem/CoinCounter/CoinCounter';
+import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
 
 interface Data {
   x: number,
@@ -21,7 +23,7 @@ function getRoomName(data?: Data): RoomName {
     return new RoomName(data.x, data.y);
   }
 
-  const roomName: string | null = config.debug.level;
+  const roomName = getDebugRoomName();
 
   if (roomName) {
     return RoomName.fromName(roomName);
@@ -50,8 +52,20 @@ export default class Main extends Phaser.Scene {
   public create(data?: Data): void {
     EventDispatcher.getInstance().removeAllListeners();
 
+    const coinsTotal = this.registry.get('coinsTotal');
+    if (coinsTotal) {
+      CoinCounter.init(coinsTotal);
+    }
+    CoinCounter.reset();
+
+    addDebugContainer();
+    listenDebugEvents();
+
     const roomName = getRoomName(data);
     const map = this.add.tilemap(roomName.getName());
+    if (map.layers.length === 0) {
+      throw new Error(`Non existing room: ${roomName.getName()}`);
+    }
 
     if (!map.getObjectLayer('objects')) {
       // alert('Oops, estás fuera!');

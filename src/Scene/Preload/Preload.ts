@@ -12,7 +12,7 @@ import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import smallFishSpritesheet from '../../../assets/img/background/fish.png';
 import bigFishSpriteSheetPath from '../../../assets/img/background/fish-2.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
-import { mapFiles } from '../../Service/mapStore';
+import { mapFiles, roomNames } from '../../Service/mapStore';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -45,6 +45,26 @@ export default class Preload extends Phaser.Scene {
   }
 
   public create(): void {
+    const coinsTotal = [];
+
+    roomNames().forEach((element: string) => {
+      const currentTotal = {
+        room: element,
+        coins: 0,
+      };
+      const map = this.add.tilemap(element);
+      const { firstgid } = map.getTileset('objects');
+      const data = map.getObjectLayer('objects').objects;
+      data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
+        if (mapItem.gid === firstgid) {
+          currentTotal.coins += 1;
+        }
+      });
+      coinsTotal.push(currentTotal);
+    });
+
+    this.registry.set('coinsTotal', coinsTotal);
+
     this.scene.start('Main');
   }
 }

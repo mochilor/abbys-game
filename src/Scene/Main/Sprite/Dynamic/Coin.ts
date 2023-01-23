@@ -1,10 +1,13 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import GameSprite from '../GameSpriteInterface';
 
 export default class Coin extends GameObject implements GameSprite {
   public static key = 'Coin';
+
+  private roomName: RoomName;
 
   constructor(
     scene: Phaser.Scene,
@@ -12,8 +15,11 @@ export default class Coin extends GameObject implements GameSprite {
     y: number,
     uuid: string,
     properties: GameItem['properties'],
+    roomName: RoomName,
   ) {
     super(scene, x, y, 'objects', uuid, properties);
+
+    this.roomName = roomName;
 
     scene.physics.world.enable(this);
     scene.add.existing(this);
@@ -33,5 +39,9 @@ export default class Coin extends GameObject implements GameSprite {
       this.body.enable = false;
       this.visible = false;
     }
+  }
+
+  public getRoomName(): string {
+    return this.roomName.getName();
   }
 }

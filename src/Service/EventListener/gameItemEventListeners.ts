@@ -7,6 +7,7 @@ import Player from '../../Scene/Main/Sprite/Player/Player';
 import Save from '../../Scene/Main/Sprite/Static/Save';
 import GameItemCollection from '../../Scene/Main/GameItem/GameItemCollection';
 import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
+import CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 
 let gameItems: GameItemCollection;
 
@@ -59,6 +60,11 @@ function newRoomReached(
   registry.set('player', playerItem);
 }
 
+function playerGotCoin(room: string): void {
+  const roomName = RoomName.fromName(room);
+  CoinCounter.getInstance().add(roomName);
+}
+
 export default function listenGameItemEvents(
   gameItemCollection: GameItemCollection,
   player: GameItem,
@@ -71,4 +77,5 @@ export default function listenGameItemEvents(
   EventDispatcher.getInstance().on('itemDestroyed', itemDestroyed);
   EventDispatcher.getInstance().on('gameSaved', gameSaved);
   EventDispatcher.getInstance().on('newRoomReached', newRoomReached);
+  EventDispatcher.getInstance().on('playerGotCoin', playerGotCoin);
 }

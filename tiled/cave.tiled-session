@@ -1,24 +1,35 @@
 {
-    "activeFile": "maps/3-1.json",
+    "activeFile": "/home/diego/www/alvaro-game/maps/map1.js",
     "expandedProjectPaths": [
+        ".",
         "extensions",
-        "maps",
-        "."
+        "maps"
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
         "": {
             "scaleInDock": 4
         },
+        "/home/diego/www/alvaro-game/maps/map1.js": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 4507,
+                "y": 1299
+            }
+        },
+        "/home/diego/www/alvaro-game/maps/map1.js#tileset": {
+            "scaleInDock": 3
+        },
         "maps/2-1.json": {
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1278.787878787879,
-                "y": 3289.393939393939
+                "x": 256,
+                "y": 257
             }
         },
         "maps/2-1.json#objects": {
@@ -34,8 +45,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 504,
-                "y": 465.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/2-5.json#objects": {
@@ -48,11 +59,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 35.333333333333314,
-                "y": 211
+                "x": 754.5,
+                "y": 326.5
             }
         },
         "maps/3-1.json#objects": {
@@ -66,11 +77,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 257
+                "x": 754.5,
+                "y": 78.5
             }
         },
         "maps/3-2.json#objects": {
@@ -83,11 +94,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.25,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 328,
-                "y": 218
+                "x": 781,
+                "y": -347
             }
         },
         "maps/3-3.json#objects": {
@@ -103,8 +114,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 328,
-                "y": -294
+                "x": 256,
+                "y": 258
             }
         },
         "maps/3-4.json#objects": {
@@ -137,8 +148,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1651,
-                "y": 815.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/3-6.json#objects": {
@@ -151,11 +162,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 256.6666666666667
+                "x": 242.5,
+                "y": 326.5
             }
         },
         "maps/4-1.json#objects": {
@@ -168,11 +179,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 257
+                "x": 194.5,
+                "y": 223.5
             }
         },
         "maps/4-2.json#objects": {
@@ -188,8 +199,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1246.6666666666665,
-                "y": 2455.6666666666665
+                "x": 256,
+                "y": 256.33333333333326
             }
         },
         "maps/4-3.json#objects": {
@@ -205,8 +216,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -184,
-                "y": -294
+                "x": 256,
+                "y": 258
             }
         },
         "maps/4-4.json#objects": {
@@ -219,11 +230,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 256,
-                "y": 256.5
+                "y": 257
             }
         },
         "maps/4-5.json#objects": {
@@ -239,8 +250,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 37,
-                "y": 321.25
+                "x": 256,
+                "y": 255.75
             }
         },
         "maps/4-6.json#objects": {
@@ -256,8 +267,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 260.6060606060605,
-                "y": 622.7272727272726
+                "x": 257.57575757575756,
+                "y": 256.06060606060623
             }
         },
         "maps/4-7.json#objects": {
@@ -273,8 +284,8 @@
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 536,
-                "y": -474
+                "x": 256,
+                "y": 258
             }
         },
         "maps/4-8.json#objects": {
@@ -287,11 +298,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 527,
-                "y": 4204.5
+                "x": 256,
+                "y": 257
             }
         },
         "maps/5-0.json#objects": {
@@ -304,11 +315,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 257.57575757575756,
-                "y": 256.06060606060623
+                "x": 256,
+                "y": 257
             }
         },
         "maps/5-1.json#objects": {
@@ -341,8 +352,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 187,
-                "y": 360.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/5-7.json#objects": {
@@ -358,8 +369,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -251.51515151515173,
-                "y": -289.39393939393926
+                "x": 257.57575757575756,
+                "y": 256.06060606060623
             }
         },
         "maps/5-8.json#objects": {
@@ -375,8 +386,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 390,
-                "y": 357
+                "x": -825,
+                "y": -2651
             }
         },
         "maps/6-7.json#objects": {
@@ -438,22 +449,23 @@
         "maps/5-7.json",
         "maps/4-8.json",
         "maps/5-8.json",
-        "maps/6-7.json"
+        "maps/6-7.json",
+        "/home/diego/www/alvaro-game/maps/map1.js"
     ],
     "project": "cave.tiled-project",
     "recentFiles": [
-        "maps/6-7.json",
-        "maps/5-8.json",
-        "maps/4-8.json",
-        "maps/5-7.json",
-        "maps/4-7.json",
-        "maps/2-1.json",
-        "maps/4-6.json",
-        "maps/2-5.json",
-        "maps/3-6.json",
-        "maps/4-5.json",
-        "maps/3-5.json",
-        "maps/3-2.json"
+        "/home/diego/www/alvaro-game/maps/map1.js",
+        "maps/3-1.json",
+        "maps/3-4.json",
+        "maps/4-2.json",
+        "maps/4-3.json",
+        "maps/4-4.json",
+        "maps/5-0.json",
+        "maps/5-1.json",
+        "maps/4-1.json",
+        "maps/3-3.json",
+        "maps/3-2.json",
+        "maps/3-5.json"
     ],
     "tileset.embedInMap": false,
     "tileset.margin": 0,

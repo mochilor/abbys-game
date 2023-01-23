@@ -40,4 +40,16 @@ export default class RoomName {
   public isSameRoom(roomName: RoomName): boolean {
     return this.isSame({ x: roomName.x, y: roomName.y });
   }
+
+  public zone(): string {
+    if (this.y < 5) {
+      return 'cave';
+    }
+
+    if (this.y < 7) {
+      return 'pyramid';
+    }
+
+    return 'base';
+  }
 }

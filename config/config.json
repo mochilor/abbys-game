@@ -21,6 +21,7 @@
     }
   },
   "debug": {
+    "enable": true,
     "level": "",
     "boundingBoxes": false
   }

@@ -17,6 +17,11 @@ export default class InMemoryGameLocator implements GameItemLocator {
       throw new Error('No data in memory');
     }
 
+    for (let n = 0; n < storedData.length; n += 1) {
+      // set a real RoomName, not an object that fulfills RoomName class attributes (to improve)
+      storedData[n].roomName = room;
+    }
+
     return new GameItemCollection(storedData);
   }
 

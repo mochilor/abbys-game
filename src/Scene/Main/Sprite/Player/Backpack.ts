@@ -5,8 +5,8 @@ import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 
-function gotCoin(): void {
-  EventDispatcher.getInstance().emit('playerGotCoin');
+function gotCoin(roomName: string): void {
+  EventDispatcher.getInstance().emit('playerGotCoin', roomName);
 }
 
 function activateButton(eventName: string): void {
@@ -15,7 +15,7 @@ function activateButton(eventName: string): void {
 
 export default class Backpack {
   private content = {
-    coins: 0,
+    coins: [],
     gameEvents: [],
   };
 
@@ -30,8 +30,8 @@ export default class Backpack {
   }
 
   public init(): void {
-    for (let n = 1; n <= this.content.coins; n += 1) {
-      gotCoin();
+    for (let n = 0; n < this.content.coins.length; n += 1) {
+      gotCoin(this.content.coins[n]);
     }
 
     if (this.content.gameEvents.length) {
@@ -62,8 +62,9 @@ export default class Backpack {
   public addItem(item: GameObject) {
     let destroy = true;
     if (item instanceof Coin) {
-      this.content.coins += 1;
-      gotCoin();
+      const roomName = item.getRoomName();
+      this.content.coins.push(roomName);
+      gotCoin(roomName);
     }
 
     if (item instanceof Save) {
