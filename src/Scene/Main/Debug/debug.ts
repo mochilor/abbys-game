@@ -4,14 +4,14 @@ import CoinZonesInterface from '../GameItem/CoinCounter/CoinZonesCoinZonesInterf
 
 let debugContainer = null;
 
-let counters = {
+const counters = {
   cave: null,
   pyramid: null,
   base: null,
 };
 
 function debugIsEnabled(): boolean {
-  return config.debug.enable;
+  return config.debug.enable && process.env.NODE_ENV === 'development';
 }
 
 function getDebugRoomName(): string | null {
