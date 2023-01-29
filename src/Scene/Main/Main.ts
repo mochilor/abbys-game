@@ -49,7 +49,7 @@ export default class Main extends Phaser.Scene {
     super({ key: 'Main' });
   }
 
-  public create(data?: Data): void {
+  public create(data?: Data): void {  
     EventDispatcher.getInstance().removeAllListeners();
 
     const coinsTotal = this.registry.get('coinsTotal');

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  base: &base
+    image: node:alpine
+    volumes:
+    - .:/usr/app
+    working_dir: /usr/app
+    command: npm i
+    command: npx parcel index.html
+    ports:
+    - 1234:1234
