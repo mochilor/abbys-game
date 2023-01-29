@@ -95,9 +95,6 @@ export default class MapManager {
         left: '4_5',
         bottom: '4_7',
       },
-      '3_6': {
-        bottom: '5_0',
-      },
       '4_5': {
         right: '2_1',
       },

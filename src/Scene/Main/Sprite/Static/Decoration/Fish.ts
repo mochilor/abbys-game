@@ -18,7 +18,7 @@ export default abstract class Fish extends GameObject implements GameSprite {
     texture: string,
     depth: integer,
   ) {
-    super(scene, x + 4, y - 4, texture, roomName, uuid, properties);
+    super(scene, x + 4, y - 4, texture, uuid, properties);
     scene.add.existing(this);
 
     this.orientation = this.getProperty('orientation')?.value as number ?? 1;

@@ -147,6 +147,13 @@ function button11Activated(): void {
   });
 }
 
+function button12Activated(): void {
+  // This event deactivates a couple of spikes
+  spikes.children.iterate((child: Spike) => {
+    child.deactivate();
+  });
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
@@ -173,6 +180,7 @@ function listenButtonEvents(
   EventDispatcher.getInstance().on('button9Activated', button9Activated);
   EventDispatcher.getInstance().on('button10Activated', button10Activated);
   EventDispatcher.getInstance().on('button11Activated', button11Activated);
+  EventDispatcher.getInstance().on('button12Activated', button12Activated);
 }
 
 export default listenButtonEvents;
