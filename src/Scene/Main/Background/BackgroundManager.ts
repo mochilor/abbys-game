@@ -48,13 +48,7 @@ export default class BackgroundManager {
   private setBackgroundColor(roomName: RoomName): void {
     const bgColors = config.levelColors;
 
-    let currentBgColor = bgColors[0].bg;
-
-    Object.keys(bgColors).forEach((key: string) => {
-      if (roomName.getY() >= parseInt(key, 10)) {
-        currentBgColor = bgColors[key].bg;
-      }
-    });
+    const currentBgColor = bgColors[roomName.zone()].bg;
 
     document.body.setAttribute('style', `background-color: #${currentBgColor};`);
     this.scene.cameras.main.setBackgroundColor(currentBgColor);

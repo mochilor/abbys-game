@@ -3,4 +3,3 @@ run:
 stop:
 	docker-compose down
 	@echo "Bye!"
-

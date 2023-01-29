@@ -7,6 +7,8 @@ export default class Spike extends GameObject implements GameSprite {
 
   private deactivable: boolean = false;
 
+  private activable: boolean = false;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -37,6 +39,12 @@ export default class Spike extends GameObject implements GameSprite {
     if (this.getProperty('deactivable')) {
       this.deactivable = this.getProperty('deactivable').value === '1';
     }
+
+    if (this.getProperty('activable')) {
+      this.body.enable = false;
+      this.visible = false;
+      this.activable = this.getProperty('activable').value === '1';
+    }
   }
 
   public isFacingUp(): boolean {
@@ -59,6 +67,13 @@ export default class Spike extends GameObject implements GameSprite {
     if (this.deactivable) {
       this.body.enable = false;
       this.visible = false;
+    }
+  }
+
+  public activate(): void {
+    if (this.activable) {
+      this.body.enable = true;
+      this.visible = true;
     }
   }
 }

@@ -5,16 +5,16 @@
   "roomHeight": 512,
   "bg": false,
   "levelColors": {
-    "0": {
+    "cave": {
       "bg": "b5b99a"
     },
-    "5": {
+    "pyramid": {
       "bg": "f1c3b3",
       "layer-1": "c48d80",
       "layer-2": "678390",
       "layer-3": "536e7b"
     },
-    "7": {
+    "base": {
       "bg": "574834",
       "layer-1": "3a2519",
       "layer-2": "1a1112"
@@ -22,7 +22,7 @@
   },
   "debug": {
     "enable": true,
-    "level": "5_8",
+    "level": "4_7",
     "boundingBoxes": false
   }
 }

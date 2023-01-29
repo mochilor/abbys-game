@@ -154,6 +154,18 @@ function button12Activated(): void {
   });
 }
 
+function button13Activated(): void {
+  const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent13');
+
+  removeWalls(eventGameItems, -1);
+
+  // This event also activates and deactivates a couple of spikes
+  spikes.children.iterate((child: Spike) => {
+    child.deactivate();
+    child.activate();
+  });
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
@@ -181,6 +193,7 @@ function listenButtonEvents(
   EventDispatcher.getInstance().on('button10Activated', button10Activated);
   EventDispatcher.getInstance().on('button11Activated', button11Activated);
   EventDispatcher.getInstance().on('button12Activated', button12Activated);
+  EventDispatcher.getInstance().on('button13Activated', button13Activated);
 }
 
 export default listenButtonEvents;
