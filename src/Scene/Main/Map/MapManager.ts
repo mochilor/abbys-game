@@ -72,10 +72,6 @@ export default class MapManager {
     return new RoomName(data.x, data.y);
   }
 
-  public getLayer(): Phaser.Tilemaps.TilemapLayer {
-    return this.layer;
-  }
-
   private setupCameras(player: Player): void {
     const screenSizeX = config.gameWidth;
     const screenSizeY = config.gameHeight;

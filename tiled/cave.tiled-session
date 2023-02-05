@@ -1,9 +1,9 @@
 {
-    "activeFile": "/home/diego/www/alvaro-game/maps/map1.js",
+    "activeFile": "maps/5-0.json",
     "expandedProjectPaths": [
-        ".",
         "extensions",
-        "maps"
+        "maps",
+        "."
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -14,7 +14,7 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4507,
+                "x": 4506,
                 "y": 1299
             }
         },
@@ -59,11 +59,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1,
+            "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 754.5,
-                "y": 326.5
+                "x": 941,
+                "y": 206.375
             }
         },
         "maps/3-1.json#objects": {
@@ -80,8 +80,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 754.5,
-                "y": 78.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/3-2.json#objects": {
@@ -97,8 +97,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 781,
-                "y": -347
+                "x": 256,
+                "y": 257
             }
         },
         "maps/3-3.json#objects": {
@@ -165,8 +165,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 242.5,
-                "y": 326.5
+                "x": 823,
+                "y": -415.5
             }
         },
         "maps/4-1.json#objects": {
@@ -182,8 +182,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 194.5,
-                "y": 223.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/4-2.json#objects": {
@@ -298,11 +298,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 257
+                "x": -31,
+                "y": 551.5
             }
         },
         "maps/5-0.json#objects": {
@@ -315,11 +315,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 256,
-                "y": 257
+                "x": -31,
+                "y": -752.5
             }
         },
         "maps/5-1.json#objects": {
@@ -383,11 +383,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.5,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -825,
-                "y": -2651
+                "x": 256,
+                "y": 256.33333333333326
             }
         },
         "maps/6-7.json#objects": {
@@ -449,23 +449,22 @@
         "maps/5-7.json",
         "maps/4-8.json",
         "maps/5-8.json",
-        "maps/6-7.json",
-        "/home/diego/www/alvaro-game/maps/map1.js"
+        "maps/6-7.json"
     ],
     "project": "cave.tiled-project",
     "recentFiles": [
-        "/home/diego/www/alvaro-game/maps/map1.js",
         "maps/3-1.json",
         "maps/3-4.json",
         "maps/4-2.json",
         "maps/4-3.json",
         "maps/4-4.json",
-        "maps/5-0.json",
-        "maps/5-1.json",
-        "maps/4-1.json",
-        "maps/3-3.json",
-        "maps/3-2.json",
-        "maps/3-5.json"
+        "maps/6-7.json",
+        "maps/5-8.json",
+        "maps/4-8.json",
+        "maps/5-7.json",
+        "maps/4-7.json",
+        "maps/2-1.json",
+        "maps/4-6.json"
     ],
     "tileset.embedInMap": false,
     "tileset.margin": 0,

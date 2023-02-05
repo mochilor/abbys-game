@@ -33,6 +33,8 @@ export default class Player extends GameObject implements GameSprite {
 
   private conveyor: Conveyor = null;
 
+  private frozen: boolean = true;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -65,6 +67,10 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   update() {
+    if (this.frozen) {
+      return;
+    }
+
     const baseVelocityX: number = 100;
 
     const direction = this.controller.move();
@@ -246,5 +252,9 @@ export default class Player extends GameObject implements GameSprite {
 
   private isTeleporting(): boolean {
     return this.portalDestination != null;
+  }
+
+  public unfreeze(): void {
+    this.frozen = false;
   }
 }

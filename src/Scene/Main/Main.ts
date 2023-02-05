@@ -12,10 +12,17 @@ import BackgroundManager from './Background/BackgroundManager';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
 import CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
+import createTitle from './Title/Title';
+import listenTitleEvents from '../../Service/EventListener/titleEventListeners';
 
 interface Data {
   x: number,
   y: number,
+}
+
+interface Title {
+  update: () => void,
+  quit: () => void,
 }
 
 function getRoomName(data?: Data): RoomName {
@@ -45,6 +52,8 @@ export default class Main extends Phaser.Scene {
 
   private mapManager: MapManager;
 
+  private title: Title = null;
+
   constructor() {
     super({ key: 'Main' });
   }
@@ -55,8 +64,18 @@ export default class Main extends Phaser.Scene {
     const coinsTotal = this.registry.get('coinsTotal');
     if (coinsTotal) {
       CoinCounter.init(coinsTotal);
+      this.registry.remove('coinsTotal');
     }
     CoinCounter.reset();
+
+    let startGame = false;
+
+    if (this.registry.get('start')) {
+      this.title = createTitle(this.cameras.main, this);
+      this.registry.remove('start');
+      listenTitleEvents(this.title);
+      startGame = true;
+    }
 
     addDebugContainer();
     listenDebugEvents();
@@ -89,16 +108,17 @@ export default class Main extends Phaser.Scene {
       'tilesetImage',
     );
 
-    (new BackgroundManager(this)).setup(
-      roomName,
-      this.spriteManager.getObjects(),
-      this.mapManager.getLayer(),
-    );
+    (new BackgroundManager(this)).setup(roomName);
 
     this.player.initBackpack();
 
+    EventDispatcher.getInstance().on('playerUnfrozen', this.player.unfreeze, this.player);
     EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
     EventDispatcher.getInstance().on('newRoomReached', this.scene.restart, this.scene);
+
+    if (!startGame) {
+      EventDispatcher.getInstance().emit('playerUnfrozen');
+    }
   }
 
   private playerHasDied(): void {
@@ -110,5 +130,8 @@ export default class Main extends Phaser.Scene {
     this.player.update();
     this.mapManager.updateCurrentRoom(this.player);
     this.spriteManager.update(time);
+    if (this.title) {
+      this.title.update();
+    }
   }
 }

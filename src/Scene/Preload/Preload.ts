@@ -64,6 +64,7 @@ export default class Preload extends Phaser.Scene {
     });
 
     this.registry.set('coinsTotal', coinsTotal);
+    this.registry.set('start', true);
 
     this.scene.start('Main');
   }
