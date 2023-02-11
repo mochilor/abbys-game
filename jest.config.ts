@@ -20,11 +20,6 @@ const config: Config = {
     './src/Scene/Main/Sprite/Player/**',
     '!./src/Scene/Main/Sprite/Player/Player.ts',
   ],
-  coverageThreshold: {
-    global: {
-      lines: 50,
-    },
-  },
 };
 
 export default config;

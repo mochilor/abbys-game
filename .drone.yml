@@ -1,3 +1,14 @@
+kind: pipeline
+type: docker
+name: tests
+
+steps:
+- name: run_tests
+  image: node
+  commands:
+    - node --max_old_space_size=768 $(which npm) install
+    - node --max_old_space_size=768 $(which npm) test
+
 ---
 kind: pipeline
 type: docker
@@ -36,3 +47,6 @@ trigger:
   - master
   event:
   - push
+
+depends_on:
+- tests
