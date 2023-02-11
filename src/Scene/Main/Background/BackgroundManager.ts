@@ -1,7 +1,6 @@
 import config from '../../../../config/config.json';
 import RoomName from '../Map/RoomName';
 import GameObject from '../Sprite/GameObject';
-import BendWaves from './shader';
 
 export default class BackgroundManager {
   private scene: Phaser.Scene;
@@ -28,7 +27,7 @@ export default class BackgroundManager {
 
     this.scene.cameras.main
       .setName('background')
-      .setPostPipeline(BendWaves)
+      // .setPostPipeline(BendWaves)
       .ignore(sprites)
       .ignore(layer);
 

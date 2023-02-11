@@ -1,15 +1,14 @@
-import Phaser from 'phaser';
+type Key = {
+  isDown: boolean,
+};
 
-interface Controller {
+type Controller = {
   move(): integer,
   leftKeyIsDown(): boolean,
   rightKeyIsDown(): boolean,
-}
+};
 
-function createController(
-  leftKey: Phaser.Input.Keyboard.Key,
-  rightKey: Phaser.Input.Keyboard.Key,
-): Controller {
+function createController(leftKey: Key, rightKey: Key): Controller {
   function move(): integer {
     let direction: number = 0;
 
