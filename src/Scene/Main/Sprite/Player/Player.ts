@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import Door from '../Dynamic/Door';
 import Backpack from './Backpack';
-import Controller from './Controller';
 import EventDispatcher from '../../../../Service/EventDispatcher';
 import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
@@ -13,6 +12,7 @@ import Bubble from './Bubble';
 import Spring from '../Static/Spring';
 import SpikePlatform from '../Static/SpikePlatform';
 import Conveyor from '../Static/Conveyor';
+import { Controller } from './controller';
 
 export default class Player extends GameObject implements GameSprite {
   public static key = 'Player';

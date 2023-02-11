@@ -2,4 +2,5 @@
 .vscode
 node_modules
 dist
-./tiled/cave.tiled-session
+tiled/cave.tiled-session
+coverage

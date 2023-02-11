@@ -2,7 +2,7 @@ import Door from './Dynamic/Door';
 import Coin from './Dynamic/Coin';
 import Save from './Static/Save';
 import Player from './Player/Player';
-import Controller from './Player/Controller';
+import { createController } from './Player/controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
@@ -70,10 +70,7 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
   const rightKey = scene.input.keyboard.addKey('RIGHT');
   rightKey.isDown = otherProperties.rightKeyIsDown ?? false;
 
-  const controller = new Controller(
-    leftKey,
-    rightKey,
-  );
+  const controller = createController(leftKey, rightKey);
 
   const player = new Player(
     scene,
