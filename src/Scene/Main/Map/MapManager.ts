@@ -3,6 +3,8 @@ import EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
 import RoomName from './RoomName';
 import config from '../../../../config/config.json';
+import SpikePlatform from '../Sprite/Static/SpikePlatform';
+import CannonBall from '../Sprite/Static/Enemy/CannonBall';
 
 export default class MapManager {
   private scene: Phaser.Scene;
@@ -18,8 +20,8 @@ export default class MapManager {
 
   public setup(
     player: Player,
-    spikePlatformsGroup: Phaser.GameObjects.Group,
-    cannonBallsGroup: Phaser.GameObjects.Group,
+    spikePlatformsGroup: SpikePlatform[],
+    cannonBallsGroup: CannonBall[],
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {

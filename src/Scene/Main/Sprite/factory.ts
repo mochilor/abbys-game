@@ -9,7 +9,6 @@ import GameItemCollection from '../GameItem/GameItemCollection';
 import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
-import GameSprite from './GameSpriteInterface';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import GameEvent from './GameEvent/GameEvent';
@@ -56,19 +55,11 @@ const mapEventItemClasses = {
 };
 
 function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
-  let otherProperties = {};
-
-  playerItem.properties.forEach((property) => {
-    if (property.name === 'otherProperties') {
-      otherProperties = property.value;
-    }
-  });
-
   const leftKey = scene.input.keyboard.addKey('LEFT');
-  leftKey.isDown = otherProperties.leftKeyIsDown ?? false;
+  leftKey.isDown = playerItem.otherProperties?.leftKeyIsDown ?? false;
 
   const rightKey = scene.input.keyboard.addKey('RIGHT');
-  rightKey.isDown = otherProperties.rightKeyIsDown ?? false;
+  rightKey.isDown = playerItem.otherProperties?.rightKeyIsDown ?? false;
 
   const controller = createController(leftKey, rightKey);
 
@@ -80,12 +71,12 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
     new Backpack(playerItem.properties),
   );
 
-  player.setVelocityY(otherProperties.velocityY ?? 0); // still needed?
+  player.setVelocityY(playerItem.otherProperties?.velocityY ?? 0); // still needed?
 
   return player;
 }
 
-function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
+function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
   const offset = 4;

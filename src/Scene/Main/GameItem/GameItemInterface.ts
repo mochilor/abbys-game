@@ -15,4 +15,9 @@ export default interface GameItem {
     name: string,
     value: number | string | object | []
   }[],
+  otherProperties?: {
+    velocityY: number,
+    leftKeyIsDown: boolean,
+    rightKeyIsDown: boolean,
+  }
 }

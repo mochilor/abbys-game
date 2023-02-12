@@ -14,7 +14,7 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 4507,
+                "x": 4506,
                 "y": 1299
             }
         },
@@ -62,8 +62,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 754.5,
-                "y": 326.5
+                "x": 256,
+                "y": 255.5
             }
         },
         "maps/3-1.json#objects": {
@@ -80,8 +80,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 754.5,
-                "y": 78.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/3-2.json#objects": {
@@ -97,8 +97,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 781,
-                "y": -347
+                "x": 256,
+                "y": 257
             }
         },
         "maps/3-3.json#objects": {
@@ -165,8 +165,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 242.5,
-                "y": 326.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/4-1.json#objects": {
@@ -182,8 +182,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 194.5,
-                "y": 223.5
+                "x": 256,
+                "y": 256.5
             }
         },
         "maps/4-2.json#objects": {
@@ -366,11 +366,11 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.33,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 257.57575757575756,
-                "y": 256.06060606060623
+                "x": -191.5,
+                "y": 310.75
             }
         },
         "maps/5-8.json#objects": {
@@ -386,8 +386,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -825,
-                "y": -2651
+                "x": -824,
+                "y": 781
             }
         },
         "maps/6-7.json#objects": {

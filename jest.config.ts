@@ -12,13 +12,8 @@ const config: Config = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
-    // Aparently, files that use some Phaser components like 'Sprite' make coverage to fail
     './src/**',
-    '!./src/index.ts',
-    '!./src/Service/EventListener/{buttonEventListeners,gameItemEventListeners}.ts',
-    '!./src/Scene/Main/Sprite/**',
-    './src/Scene/Main/Sprite/Player/**',
-    '!./src/Scene/Main/Sprite/Player/Player.ts',
+    '!./src/Service/EventListener/buttonEventListeners.ts', // This file makes coverage to crash
   ],
 };
 

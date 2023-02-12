@@ -2,9 +2,8 @@ import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
 import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Save extends GameObject implements GameSprite {
+export default class Save extends GameObject {
   public static key = 'Save';
 
   private roomName: RoomName;
@@ -20,7 +19,6 @@ export default class Save extends GameObject implements GameSprite {
     super(scene, x, y, 'objects', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
 
     this.setFrame(5);
 
@@ -29,7 +27,7 @@ export default class Save extends GameObject implements GameSprite {
 
   public resetBody() {
     this.body.enable = true;
-    this.visible = true;
+    this.setVisible(true);
   }
 
   public getRoomName(): RoomName {

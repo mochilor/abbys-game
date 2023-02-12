@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import Door from '../Dynamic/Door';
 import Backpack from './Backpack';
 import EventDispatcher from '../../../../Service/EventDispatcher';
-import GameSprite from '../GameSpriteInterface';
 import Spike from '../Static/Spike';
 import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
@@ -10,11 +9,11 @@ import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
 import Bubble from './Bubble';
 import Spring from '../Static/Spring';
+import { Controller } from './controller';
 import SpikePlatform from '../Static/SpikePlatform';
 import Conveyor from '../Static/Conveyor';
-import { Controller } from './controller';
 
-export default class Player extends GameObject implements GameSprite {
+export default class Player extends GameObject {
   public static key = 'Player';
 
   private controller: Controller;
@@ -42,7 +41,6 @@ export default class Player extends GameObject implements GameSprite {
   ) {
     super(scene, x, y, 'playerSpritesheet');
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.controller = controller;
     this.backpack = backpack;
     this.body.setMaxVelocityY(80);
@@ -79,7 +77,7 @@ export default class Player extends GameObject implements GameSprite {
 
     if (direction !== 0) {
       this.play('playerWalk', true);
-      this.flipX = direction < 0;
+      this.setFlipX(direction < 0);
     } else {
       this.setFrame(0);
     }
@@ -112,13 +110,13 @@ export default class Player extends GameObject implements GameSprite {
     this.backpack.addItem(item);
   }
 
-  public touchSpring(player: this, item: Spring): void {
-    if (!item.body.touching.up) {
+  public touchSpring(player: this, spring: Spring): void {
+    if (!spring.body.touching.up) {
       return;
     }
 
-    if (!item.isActive()) {
-      item.activate();
+    if (!spring.isActive()) {
+      spring.activate();
       this.isJumping = true;
       this.jumpTimer = 0;
     }
@@ -129,7 +127,7 @@ export default class Player extends GameObject implements GameSprite {
     this.setFrame(8);
 
     if (this.jumpTimer < 15) {
-      this.body.velocity.y = -this.jumpSpeed;
+      this.body.setVelocityY(-this.jumpSpeed);
     }
 
     if (this.jumpTimer > 40) {
@@ -149,11 +147,14 @@ export default class Player extends GameObject implements GameSprite {
   }
 
   public touchSpike(player: this, spike: Spike): void {
+    const playerTouching = this.body.touching;
+    const spikeTouching = spike.body.touching;
+
     if (
-      (player.body.touching.down && spike.isFacingUp() && spike.body.touching.up)
-      || (player.body.touching.right && spike.isFacingLeft() && spike.body.touching.left)
-      || (player.body.touching.up && spike.isFacingDown() && spike.body.touching.down)
-      || (player.body.touching.left && spike.isFacingRight() && spike.body.touching.right)
+      (playerTouching.down && spike.isFacingUp() && spikeTouching.up)
+      || (playerTouching.right && spike.isFacingLeft() && spikeTouching.left)
+      || (playerTouching.up && spike.isFacingDown() && spikeTouching.down)
+      || (playerTouching.left && spike.isFacingRight() && spikeTouching.right)
     ) {
       player.die();
     }
@@ -161,7 +162,7 @@ export default class Player extends GameObject implements GameSprite {
 
   public touchSpikePlatform(player: this, spikePlatform: SpikePlatform): void {
     if (player.body.touching.up && spikePlatform.body.touching.down) {
-      player.die();
+      this.die();
     }
   }
 

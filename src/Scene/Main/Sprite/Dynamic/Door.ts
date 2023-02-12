@@ -1,9 +1,8 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Door extends GameObject implements GameSprite {
+export default class Door extends GameObject {
   public static key = 'Door';
 
   private level: number;
@@ -24,7 +23,6 @@ export default class Door extends GameObject implements GameSprite {
     super(scene, x, y, 'blocksImage', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
 
     this.level = this.getProperty('level').value as number;

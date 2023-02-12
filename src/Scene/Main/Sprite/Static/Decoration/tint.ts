@@ -5,7 +5,8 @@ import GameObject from '../../GameObject';
 function tint(sprite: GameObject, roomName: RoomName, layer: string): void {
   const fillColor = config.levelColors[roomName.zone()][`layer-${layer}`] ?? null;
   if (fillColor) {
-    sprite.setTintFill(`0x${fillColor}`);
+    const fill = `0x${fillColor}`;
+    sprite.setTintFill(parseInt(fill, 16));
   }
 }
 

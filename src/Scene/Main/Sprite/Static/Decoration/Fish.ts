@@ -1,9 +1,8 @@
 import GameObject from '../../GameObject';
-import GameSprite from '../../GameSpriteInterface';
 import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
 
-export default abstract class Fish extends GameObject implements GameSprite {
+export default abstract class Fish extends GameObject {
   protected orientation: number;
 
   protected speed: number;
@@ -19,7 +18,6 @@ export default abstract class Fish extends GameObject implements GameSprite {
     depth: integer,
   ) {
     super(scene, x + 4, y - 4, texture, uuid, properties);
-    scene.add.existing(this);
 
     this.orientation = this.getProperty('orientation')?.value as number ?? 1;
 

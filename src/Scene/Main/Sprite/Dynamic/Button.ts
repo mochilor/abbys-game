@@ -1,9 +1,8 @@
 import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Button extends GameObject implements GameSprite {
+export default class Button extends GameObject {
   public static key = 'Button';
 
   constructor(
@@ -16,7 +15,6 @@ export default class Button extends GameObject implements GameSprite {
     super(scene, x, y, 'objects', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
     this.body.setSize(8, 2);
     this.body.setOffset(0, 6);

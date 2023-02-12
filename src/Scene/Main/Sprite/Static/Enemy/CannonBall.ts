@@ -1,7 +1,6 @@
-import GameSprite from '../../GameSpriteInterface';
 import EnemyGameObject from './EnemyGameObject';
 
-export default class CannonBall extends EnemyGameObject implements GameSprite {
+export default class CannonBall extends EnemyGameObject {
   public static key = 'CannonBall';
 
   private startingX: integer;
@@ -23,7 +22,6 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
     this.startingY = y;
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
     this.body.setSize(6, 6);
 
@@ -78,7 +76,7 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
   private fire(): void {
     this.setActive(true);
     this.setVisible(true);
-    this.body.enable = true;
+    this.body.setEnable(true);
     const speed = 100;
 
     this.body.setVelocityX(speed * this.xSpeedMultiplier);
@@ -90,15 +88,15 @@ export default class CannonBall extends EnemyGameObject implements GameSprite {
     this.body.reset(this.startingX, this.startingY);
     this.setActive(false);
     this.setVisible(false);
-    this.body.enable = false;
+    this.body.setEnable(false);
     this.body.setVelocityX(0);
     this.body.setVelocityY(0);
   }
 
   public deactivate(): void {
     if (this.deactivable) {
-      this.body.enable = false;
-      this.visible = false;
+      this.body.setEnable(false);
+      this.setVisible(false);
     }
   }
 }

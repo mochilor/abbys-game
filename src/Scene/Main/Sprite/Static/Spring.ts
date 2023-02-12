@@ -1,7 +1,6 @@
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Spring extends GameObject implements GameSprite {
+export default class Spring extends GameObject {
   public static key = 'Spring';
 
   private timer: number = 0;
@@ -12,7 +11,6 @@ export default class Spring extends GameObject implements GameSprite {
     super(scene, x, y, 'objects');
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
     this.body.setSize(8, 2);
     this.body.setOffset(0, 6);

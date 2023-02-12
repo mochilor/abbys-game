@@ -1,8 +1,7 @@
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Spike extends GameObject implements GameSprite {
+export default class Spike extends GameObject {
   public static key = 'Spike';
 
   private deactivable: boolean = false;
@@ -19,7 +18,6 @@ export default class Spike extends GameObject implements GameSprite {
     super(scene, x, y, 'objects', '', properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
 
     this.setAngle(angle);
@@ -42,7 +40,7 @@ export default class Spike extends GameObject implements GameSprite {
 
     if (this.getProperty('activable')) {
       this.body.enable = false;
-      this.visible = false;
+      this.setVisible(false);
       this.activable = this.getProperty('activable').value === '1';
     }
   }
@@ -66,14 +64,14 @@ export default class Spike extends GameObject implements GameSprite {
   public deactivate(): void {
     if (this.deactivable) {
       this.body.enable = false;
-      this.visible = false;
+      this.setVisible(false);
     }
   }
 
   public activate(): void {
     if (this.activable) {
       this.body.enable = true;
-      this.visible = true;
+      this.setVisible(true);
     }
   }
 }

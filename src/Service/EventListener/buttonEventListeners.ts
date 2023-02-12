@@ -13,11 +13,11 @@ let eventGameItemCollection: MapEventsGameItemCollection;
 
 let playerSprite: Player;
 
-let gameObjects: Phaser.GameObjects.Group;
+let gameObjects: GameObject[];
 
-let cannonBalls: Phaser.GameObjects.Group;
+let cannonBalls: CannonBall[];
 
-let spikes: Phaser.GameObjects.Group;
+let spikes: Spike[];
 
 const defaultCaveWall = 33;
 
@@ -125,7 +125,7 @@ function button8Activated(): void {
 
 function button9Activated(): void {
   // This event activates a coin that is hidden. It should be the only hidden coin:
-  gameObjects.children.iterate((child: GameObject) => {
+  gameObjects.forEach((child: GameObject) => {
     if (child.body) {
       child.body.setEnable(true);
     }
@@ -135,21 +135,21 @@ function button9Activated(): void {
 
 function button10Activated(): void {
   // This event deactivates a couple of cannons
-  cannonBalls.children.iterate((child: CannonBall) => {
+  cannonBalls.forEach((child: CannonBall) => {
     child.deactivate();
   });
 }
 
 function button11Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
 
 function button12Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
@@ -160,7 +160,7 @@ function button13Activated(): void {
   removeWalls(eventGameItems, -1);
 
   // This event also activates and deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
     child.activate();
   });
@@ -170,9 +170,9 @@ function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
   player: Player,
-  gameObjectsGroup: Phaser.GameObjects.Group,
-  cannonBallsGroup: Phaser.GameObjects.Group,
-  spikesGroup: Phaser.GameObjects.Group,
+  gameObjectsGroup: GameObject[],
+  cannonBallsGroup: CannonBall[],
+  spikesGroup: Spike[],
 ): void {
   gameScene = scene;
   eventGameItemCollection = eventGameItems;

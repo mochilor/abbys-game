@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
 interface Destination {
   room: RoomName,
@@ -9,7 +8,7 @@ interface Destination {
   y: number,
 }
 
-export default class Portal extends GameObject implements GameSprite {
+export default class Portal extends GameObject {
   public static key = 'Portal';
 
   private roomName: RoomName;
@@ -26,7 +25,6 @@ export default class Portal extends GameObject implements GameSprite {
     super(scene, x, y, 'portalImage');
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
 
     this.roomName = roomName;
 

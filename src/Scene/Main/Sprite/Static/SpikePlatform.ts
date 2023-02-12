@@ -1,9 +1,8 @@
 import GameItem from '../../GameItem/GameItemInterface';
 import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class SpikePlatform extends GameObject implements GameSprite {
+export default class SpikePlatform extends GameObject {
   public static key = 'SpikePlatform';
 
   private speed: number = 25;
@@ -28,16 +27,14 @@ export default class SpikePlatform extends GameObject implements GameSprite {
     uuid: string,
     properties: GameItem['properties'],
   ) {
-    super(scene, x, y + 2, 'spikePlatformImage', roomName, uuid, properties);
+    super(scene, x, y + 2, 'spikePlatformImage', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
 
     this.body.setSize(32, 16);
     this.body.setOffset(0, 4);
 
-    this.maxHeight = y - 64;
     this.isFalling = false;
     this.restartTime = 3500;
     this.body.setGravityY(0);

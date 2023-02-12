@@ -1,9 +1,8 @@
 import GameItem from '../../../GameItem/GameItemInterface';
 import GameObject from '../../GameObject';
-import GameSprite from '../../GameSpriteInterface';
 import CannonBall from './CannonBall';
 
-export default class Cannon extends GameObject implements GameSprite {
+export default class Cannon extends GameObject {
   public static key = 'Cannon';
 
   private cannonBall: CannonBall;
@@ -16,8 +15,6 @@ export default class Cannon extends GameObject implements GameSprite {
     properties: GameItem['properties'],
   ) {
     super(scene, x, y, 'objects', '', properties);
-
-    scene.add.existing(this);
     this.setAngle(angle);
     this.setFrame(8);
   }

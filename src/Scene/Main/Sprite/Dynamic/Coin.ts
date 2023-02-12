@@ -2,9 +2,8 @@ import Phaser from 'phaser';
 import GameItem from '../../GameItem/GameItemInterface';
 import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Coin extends GameObject implements GameSprite {
+export default class Coin extends GameObject {
   public static key = 'Coin';
 
   private roomName: RoomName;
@@ -22,7 +21,6 @@ export default class Coin extends GameObject implements GameSprite {
     this.roomName = roomName;
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
 
     scene.anims.create({
       key: 'coin',
@@ -36,8 +34,8 @@ export default class Coin extends GameObject implements GameSprite {
     const enabled = parseInt(this.getProperty('enabled')?.value as string ?? '1', 10);
 
     if (!enabled) {
-      this.body.enable = false;
-      this.visible = false;
+      this.body.setEnable(false);
+      this.setVisible(false);
     }
   }
 

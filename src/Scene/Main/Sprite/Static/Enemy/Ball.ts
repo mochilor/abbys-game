@@ -1,7 +1,6 @@
-import GameSprite from '../../GameSpriteInterface';
 import EnemyGameObject from './EnemyGameObject';
 
-export default class Ball extends EnemyGameObject implements GameSprite {
+export default class Ball extends EnemyGameObject {
   private radius: number;
 
   private ballAngle: number;
@@ -20,7 +19,6 @@ export default class Ball extends EnemyGameObject implements GameSprite {
     this.radius = radius;
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
     this.ballAngle = Math.PI * 0.8;
     this.startingX = x;

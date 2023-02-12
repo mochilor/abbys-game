@@ -1,7 +1,6 @@
-import GameSprite from '../../GameSpriteInterface';
 import EnemyGameObject from './EnemyGameObject';
 
-export default class Spear extends EnemyGameObject implements GameSprite {
+export default class Spear extends EnemyGameObject {
   public static key = 'Spear';
 
   private initialPosition: number;
@@ -20,7 +19,6 @@ export default class Spear extends EnemyGameObject implements GameSprite {
     super(scene, x, y, 'spearImage');
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
 
     this.type = angle === 0 || angle === 180 ? 'y' : 'x';

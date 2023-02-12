@@ -21,31 +21,32 @@ import listenDoorEvents from '../../../Service/EventListener/doorEventListeners'
 import listenGameItemEvents from '../../../Service/EventListener/gameItemEventListeners';
 import Conveyor from './Static/Conveyor';
 import Cannon from './Static/Enemy/Cannon';
+import CannonBall from './Static/Enemy/CannonBall';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
 
   private player: Player;
 
-  private spikesGroup: Phaser.GameObjects.Group;
+  private spikesGroup: Spike[] = [];
 
-  private doorsGroup: Phaser.GameObjects.Group;
+  private doorsGroup: Door[] = [];
 
-  private objectsGroup: Phaser.GameObjects.Group;
+  private objectsGroup: GameObject[] = [];
 
-  private platformsGroup: Phaser.GameObjects.Group;
+  private platformsGroup: Platform[] = [];
 
-  private spikePlatformsGroup: Phaser.GameObjects.Group;
+  private spikePlatformsGroup: SpikePlatform[] = [];
 
-  private cannonBallsGroup: Phaser.GameObjects.Group;
+  private cannonBallsGroup: CannonBall[] = [];
 
-  private buttonsGroup: Phaser.GameObjects.Group;
+  private buttonsGroup: Button[] = [];
 
-  private enemiesGroup: Phaser.GameObjects.Group;
+  private enemiesGroup: EnemyGameObject[] = [];
 
-  private springsGroup: Phaser.GameObjects.Group;
+  private springsGroup: Spring[] = [];
 
-  private conveyorsGroup: Phaser.GameObjects.Group;
+  private conveyorsGroup: Conveyor[] = [];
 
   private inMemoryLocator: InMemoryGameLocator;
 
@@ -75,56 +76,45 @@ export default class SpriteManager {
 
     this.objects = makeSprites(this.scene, dynamicGameItems, staticGameItems, playerGameItem);
 
-    this.spikesGroup = this.scene.add.group();
-    this.doorsGroup = this.scene.add.group();
-    this.objectsGroup = this.scene.add.group();
-    this.platformsGroup = this.scene.add.group();
-    this.spikePlatformsGroup = this.scene.add.group();
-    this.buttonsGroup = this.scene.add.group();
-    this.enemiesGroup = this.scene.add.group();
-    this.springsGroup = this.scene.add.group();
-    this.conveyorsGroup = this.scene.add.group();
-    this.cannonBallsGroup = this.scene.add.group();
-
     this.objects.forEach((sprite: GameObject) => {
       if (sprite instanceof Spike) {
-        this.spikesGroup.add(sprite);
+        this.spikesGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof Door) {
-        this.doorsGroup.add(sprite);
+        this.doorsGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof Platform) {
-        this.platformsGroup.add(sprite);
+        this.platformsGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof SpikePlatform) {
-        this.spikePlatformsGroup.add(sprite);
+        this.spikePlatformsGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof Button) {
-        this.buttonsGroup.add(sprite);
+        this.buttonsGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof Spring) {
-        this.springsGroup.add(sprite);
+        this.springsGroup.push(sprite);
         return;
       }
 
       if (sprite instanceof Cannon) {
         sprite.setup();
-        this.cannonBallsGroup.add(sprite.getCannonBall());
+        this.cannonBallsGroup.push(sprite.getCannonBall());
         return;
       }
 
       if (sprite instanceof EnemyGameObject) {
-        this.enemiesGroup.add(sprite);
+        this.enemiesGroup.push(sprite);
         return;
       }
 
@@ -134,11 +124,11 @@ export default class SpriteManager {
       }
 
       if (sprite instanceof Conveyor) {
-        this.conveyorsGroup.add(sprite);
+        this.conveyorsGroup.push(sprite);
         return;
       }
 
-      this.objectsGroup.add(sprite);
+      this.objectsGroup.push(sprite);
     });
 
     this.scene.physics.add.collider(
@@ -261,9 +251,9 @@ export default class SpriteManager {
   }
 
   private setupConveyors(): void {
-    const conveyors = this.conveyorsGroup.getChildren() as Conveyor[];
+    const conveyors = this.conveyorsGroup;
 
-    Phaser.Utils.Array.StableSort(conveyors, (a: Conveyor, b: Conveyor) => {
+    Phaser.Utils.Array.StableSort(this.conveyorsGroup, (a: Conveyor, b: Conveyor) => {
       if (a.x > b.x) {
         return -1;
       }
@@ -290,31 +280,31 @@ export default class SpriteManager {
     return this.player;
   }
 
-  public getSpikePlatforms(): Phaser.GameObjects.Group {
+  public getSpikePlatforms() {
     return this.spikePlatformsGroup;
   }
 
-  public getCannonBallsGroup(): Phaser.GameObjects.Group {
+  public getCannonBallsGroup() {
     return this.cannonBallsGroup;
   }
 
   public update(time: number): void {
-    this.platformsGroup.children.iterate((child: Platform) => {
+    this.platformsGroup.forEach((child: Platform) => {
       child.update();
     });
-    this.spikePlatformsGroup.children.iterate((child: SpikePlatform) => {
+    this.spikePlatformsGroup.forEach((child: SpikePlatform) => {
       child.update(time);
     });
-    this.enemiesGroup.children.iterate((child: EnemyGameObject) => {
+    this.enemiesGroup.forEach((child: EnemyGameObject) => {
       child.update();
     });
-    this.cannonBallsGroup.children.iterate((child: EnemyGameObject) => {
+    this.cannonBallsGroup.forEach((child: CannonBall) => {
       child.update(time);
     });
-    this.springsGroup.children.iterate((child: Spring) => {
+    this.springsGroup.forEach((child: Spring) => {
       child.update();
     });
-    this.objectsGroup.children.iterate((child: GameObject) => {
+    this.objectsGroup.forEach((child: GameObject) => {
       child.update();
     });
   }

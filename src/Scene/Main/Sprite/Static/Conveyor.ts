@@ -1,8 +1,7 @@
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Conveyor extends GameObject implements GameSprite {
+export default class Conveyor extends GameObject {
   public static key = 'Conveyor';
 
   private direction: integer;
@@ -17,7 +16,6 @@ export default class Conveyor extends GameObject implements GameSprite {
     super(scene, x, y, 'conveyorSpriteSheet', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
 
     this.body.checkCollision.down = false;

@@ -45,16 +45,11 @@ function newRoomReached(
   playerItem.x = player.getPositionInNewRoom().x;
   playerItem.y = player.getPositionInNewRoom().y;
 
-  playerItem.properties.push(
-    {
-      name: 'otherProperties',
-      value: {
-        velocityY: player.body.velocity.y,
-        leftKeyIsDown: player.getController().leftKeyIsDown() ? 1 : 0,
-        rightKeyIsDown: player.getController().rightKeyIsDown() ? 1 : 0,
-      },
-    },
-  );
+  playerItem.otherProperties = {
+    velocityY: player.body.velocity.y,
+    leftKeyIsDown: player.getController().leftKeyIsDown(),
+    rightKeyIsDown: player.getController().rightKeyIsDown(),
+  };
 
   registry.set(oldRoomData.getName(), gameItems.getItems());
   registry.set('player', playerItem);

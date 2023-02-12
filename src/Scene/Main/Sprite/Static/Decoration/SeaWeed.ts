@@ -1,10 +1,9 @@
 import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
-import GameSprite from '../../GameSpriteInterface';
 import { tintShallow } from './tint';
 
-export default class SeaWeed extends GameObject implements GameSprite {
+export default class SeaWeed extends GameObject {
   public static key = 'SeaWeed';
 
   constructor(
@@ -17,7 +16,6 @@ export default class SeaWeed extends GameObject implements GameSprite {
   ) {
     // x and y offset!
     super(scene, x + 4, y - 4, 'waterDetails', uuid, properties);
-    scene.add.existing(this);
 
     scene.anims.create({
       key: 'seaweed',

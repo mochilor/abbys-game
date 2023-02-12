@@ -1,8 +1,7 @@
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import GameSprite from '../GameSpriteInterface';
 
-export default class Platform extends GameObject implements GameSprite {
+export default class Platform extends GameObject {
   public static key = 'Platform';
 
   private fromX: number = null;
@@ -29,7 +28,6 @@ export default class Platform extends GameObject implements GameSprite {
     super(scene, x, y, 'platformImage', uuid, properties);
 
     scene.physics.world.enable(this);
-    scene.add.existing(this);
     this.body.setImmovable();
     this.body.checkCollision.down = false;
     this.body.checkCollision.left = false;
