@@ -3,15 +3,13 @@ import GameItemCollection from '../GameItemCollection';
 import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
 
-export default class InMemoryGameLocator implements GameItemLocator {
-  private scene: Phaser.Scene;
+type DataManager = {
+  get(name: string): any,
+};
 
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-  }
-
-  public getGameItemCollection(room: RoomName): GameItemCollection {
-    const storedData: GameItem[] = this.scene.registry.get(room.getName());
+export default function make(registry: DataManager): GameItemLocator {
+  function getGameItemCollection(room: RoomName): GameItemCollection {
+    const storedData: GameItem[] = registry.get(room.getName());
 
     if (storedData == null) {
       throw new Error('No data in memory');
@@ -25,8 +23,8 @@ export default class InMemoryGameLocator implements GameItemLocator {
     return new GameItemCollection(storedData);
   }
 
-  public getPlayerGameItem(): GameItem {
-    const storedData: any = this.scene.registry.get('player');
+  function getPlayerGameItem(): GameItem {
+    const storedData: any = registry.get('player');
 
     if (storedData == null) {
       throw new Error('No data in memory');
@@ -36,4 +34,6 @@ export default class InMemoryGameLocator implements GameItemLocator {
 
     return playerItem;
   }
+
+  return { getGameItemCollection, getPlayerGameItem };
 }

@@ -3,15 +3,13 @@ import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
 import EventDispatcher from '../../Service/EventDispatcher';
-import SaveGameLocator from './GameItem/Locator/SaveGameLocator';
-import MapLocator from './GameItem/Locator/MapLocator';
-import InMemoryGameLocator from './GameItem/Locator/InMemoryGameLocator';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
 import BackgroundManager from './Background/BackgroundManager';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
 import CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
+import * as locatorFactory from './GameItem/Locator/Factory';
 
 interface Data {
   x: number,
@@ -73,9 +71,9 @@ export default class Main extends Phaser.Scene {
 
     this.spriteManager = new SpriteManager(
       this,
-      new InMemoryGameLocator(this),
-      new SaveGameLocator(this.registry),
-      new MapLocator(map),
+      locatorFactory.makeInMemoryGameLocator(this.registry),
+      locatorFactory.makeSaveGameLocator(this.registry),
+      locatorFactory.makeMapLocator(map),
     );
     this.spriteManager.prepareObjects(roomName);
 

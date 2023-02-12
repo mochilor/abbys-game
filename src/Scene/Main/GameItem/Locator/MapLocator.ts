@@ -10,56 +10,26 @@ import {
   mapEventItemClasses,
 } from '../../Sprite/factory';
 import RoomName from '../../Map/RoomName';
+import MapGameItemLocator from '../MapGameItemLocatorInterface';
 
-/**
- * Loads game items from map
- */
-export default class MapLocator implements GameItemLocator {
-  private map: Phaser.Tilemaps.Tilemap;
-
-  private playerItemClass = playerItemClass;
-
-  private dynamicItemClasses = dynamicItemClasses;
-
-  private staticItemClasses = staticItemClasses;
-
-  private mapEventItemClasses = mapEventItemClasses;
-
-  constructor(map: Phaser.Tilemaps.Tilemap) {
-    this.map = map;
-  }
-
-  public getGameItemCollection(room: RoomName): GameItemCollection {
-    const items = this.getGameItems(this.dynamicItemClasses, room);
-    return new GameItemCollection(items);
-  }
-
-  public getStaticGameItemCollection(room: RoomName): StaticGameItemCollection {
-    const items = this.getGameItems(this.staticItemClasses, room);
-    return new StaticGameItemCollection(items);
-  }
-
-  public getMapEventsGameItemCollection(room: RoomName): MapEventsGameItemCollection {
-    const items = this.getGameItems(this.mapEventItemClasses, room);
-    return new MapEventsGameItemCollection(items);
-  }
-
-  private getGameItems(itemClasses: object, roomName: RoomName): GameItem[] {
-    let items = [];
+export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & MapGameItemLocator {
+  function getItemId(className: string, itemClasses: object): integer {
     const keys = Object.keys(itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
       const itemClass = itemClasses[keys[n]];
-      items = items.concat(this.makeGameItems(itemClass.key, itemClasses, roomName));
+      if (itemClass.key === className) {
+        return parseInt(keys[n], 10);
+      }
     }
 
-    return items;
+    return 0;
   }
 
-  private makeGameItems(className: string, itemClasses: object, roomName?: RoomName): GameItem[] {
-    const itemId = this.getItemId(className, itemClasses);
-    const data = this.map.getObjectLayer('objects').objects;
+  function makeGameItems(className: string, itemClasses: object, roomName?: RoomName): GameItem[] {
+    const itemId = getItemId(className, itemClasses);
+    const data = map.getObjectLayer('objects').objects;
     const result = [];
-    const { firstgid } = this.map.getTileset('objects');
+    const { firstgid } = map.getTileset('objects');
 
     data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
       if (itemId === mapItem.gid - firstgid + 1) {
@@ -81,20 +51,34 @@ export default class MapLocator implements GameItemLocator {
     return result;
   }
 
-  private getItemId(className: string, itemClasses: object): number {
+  function getGameItems(itemClasses: object, roomName: RoomName): GameItem[] {
+    let items = [];
     const keys = Object.keys(itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
       const itemClass = itemClasses[keys[n]];
-      if (itemClass.key === className) {
-        return parseInt(keys[n], 10);
-      }
+      items = items.concat(makeGameItems(itemClass.key, itemClasses, roomName));
     }
 
-    return 0;
+    return items;
   }
 
-  public getPlayerGameItem(): GameItem {
-    const playerItemArray = this.makeGameItems('Player', this.playerItemClass, null);
+  function getGameItemCollection(room: RoomName): GameItemCollection {
+    const items = getGameItems(dynamicItemClasses, room);
+    return new GameItemCollection(items);
+  }
+
+  function getStaticGameItemCollection(room: RoomName): StaticGameItemCollection {
+    const items = getGameItems(staticItemClasses, room);
+    return new StaticGameItemCollection(items);
+  }
+
+  function getMapEventsGameItemCollection(room: RoomName): MapEventsGameItemCollection {
+    const items = getGameItems(mapEventItemClasses, room);
+    return new MapEventsGameItemCollection(items);
+  }
+
+  function getPlayerGameItem(): GameItem {
+    const playerItemArray = makeGameItems('Player', playerItemClass, null);
 
     if (playerItemArray.length === 0) {
       throw new Error('No player in this map');
@@ -102,4 +86,11 @@ export default class MapLocator implements GameItemLocator {
 
     return playerItemArray[0];
   }
+
+  return {
+    getGameItemCollection,
+    getStaticGameItemCollection,
+    getMapEventsGameItemCollection,
+    getPlayerGameItem,
+  };
 }

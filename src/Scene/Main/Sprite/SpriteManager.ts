@@ -1,5 +1,3 @@
-import MapLocator from '../GameItem/Locator/MapLocator';
-import SaveGameLocator from '../GameItem/Locator/SaveGameLocator';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import { makeSprites } from './factory';
 import GameObject from './GameObject';
@@ -10,7 +8,6 @@ import GameItemCollection from '../GameItem/GameItemCollection';
 import Platform from './Static/Platform';
 import Button from './Dynamic/Button';
 import MapEventsGameItemCollection from '../GameItem/MapEventsGameItemCollection';
-import InMemoryGameLocator from '../GameItem/Locator/InMemoryGameLocator';
 import GameItem from '../GameItem/GameItemInterface';
 import RoomName from '../Map/RoomName';
 import EnemyGameObject from './Static/Enemy/EnemyGameObject';
@@ -22,6 +19,8 @@ import listenGameItemEvents from '../../../Service/EventListener/gameItemEventLi
 import Conveyor from './Static/Conveyor';
 import Cannon from './Static/Enemy/Cannon';
 import CannonBall from './Static/Enemy/CannonBall';
+import GameItemLocator from '../GameItem/GameItemLocatorInterface';
+import MapGameItemLocator from '../GameItem/MapGameItemLocatorInterface';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -48,19 +47,19 @@ export default class SpriteManager {
 
   private conveyorsGroup: Conveyor[] = [];
 
-  private inMemoryLocator: InMemoryGameLocator;
+  private inMemoryLocator: GameItemLocator;
 
-  private saveGameLocator: SaveGameLocator;
+  private saveGameLocator: GameItemLocator;
 
-  private mapLocator: MapLocator;
+  private mapLocator: GameItemLocator & MapGameItemLocator;
 
   private objects: GameObject[];
 
   constructor(
     scene: Phaser.Scene,
-    inMemoryLocator: InMemoryGameLocator,
-    saveGameLocator: SaveGameLocator,
-    mapLocator: MapLocator,
+    inMemoryLocator: GameItemLocator,
+    saveGameLocator: GameItemLocator,
+    mapLocator: GameItemLocator & MapGameItemLocator,
   ) {
     this.scene = scene;
     this.inMemoryLocator = inMemoryLocator;
