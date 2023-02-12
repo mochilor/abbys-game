@@ -7,7 +7,7 @@ import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
 import config from '../../../../../config/config.json';
 import Portal from '../Static/Portal';
-import Bubble from './Bubble';
+import { Bubble, createBubble } from './Bubble';
 import Spring from '../Static/Spring';
 import { Controller } from './controller';
 import SpikePlatform from '../Static/SpikePlatform';
@@ -57,8 +57,8 @@ export default class Player extends GameObject {
     });
 
     this.bubbles = [
-      new Bubble(scene, x, y),
-      new Bubble(scene, x, y),
+      createBubble(scene, x, y),
+      createBubble(scene, x, y),
     ];
   }
 

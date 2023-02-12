@@ -1,48 +1,50 @@
-export default class Bubble {
-  private bubble: Phaser.GameObjects.Rectangle;
+type Bubble = {
+  update(playerX: number, playerY: number): void;
+};
 
-  private timer: number = 0;
+function createBubble(scene: Phaser.Scene, x: number, y: number): Bubble {
+  let life: integer = 0;
+  let resetAt: integer = 100;
+  let timer: integer = 0;
+  const bubble = scene.add.rectangle(x, y, 1, 1, 0xeeeeee, 0.5);
+  bubble.setVisible(false);
 
-  private resetAt: number = 100;
-
-  private life: number = 100;
-
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.bubble = scene.add.rectangle(x, y, 1, 1, 0xeeeeee, 0.5);
-    this.bubble.setVisible(false);
-    this.setLife();
-    this.setResetTime();
+  function setLife(): void {
+    life = 100 + Math.round(150 * Math.random());
   }
 
-  private setLife(): void {
-    this.life = 100 + Math.round(150 * Math.random());
+  function setResetTime(): void {
+    resetAt = life + Math.round(200 * Math.random());
   }
 
-  private setResetTime(): void {
-    this.resetAt = this.life + Math.round(200 * Math.random());
+  setLife();
+  setResetTime();
+
+  function respawn(playerX: number, playerY: number): void {
+    timer = 0;
+    bubble.setVisible(true);
+    bubble.setX(playerX);
+    bubble.setY(playerY - 12);
+    setLife();
+    setResetTime();
   }
 
-  public update(playerX: number, playerY: number) {
-    this.bubble.setY(this.bubble.y - 0.2);
-    this.bubble.setX(this.bubble.x + (Math.sin(this.timer / 6) / 4));
+  function update(playerX: number, playerY: number) {
+    bubble.setY(bubble.y - 0.2);
+    bubble.setX(bubble.x + (Math.sin(timer / 6) / 4));
 
-    this.timer += 1;
+    timer += 1;
 
-    if (this.timer >= this.life) {
-      this.bubble.setVisible(false);
+    if (timer >= life) {
+      bubble.setVisible(false);
     }
 
-    if (this.timer >= this.resetAt) {
-      this.respawn(playerX, playerY);
+    if (timer >= resetAt) {
+      respawn(playerX, playerY);
     }
   }
 
-  private respawn(playerX: number, playerY: number): void {
-    this.timer = 0;
-    this.bubble.setVisible(true);
-    this.bubble.setX(playerX);
-    this.bubble.setY(playerY - 12);
-    this.setLife();
-    this.setResetTime();
-  }
+  return { update };
 }
+
+export { Bubble, createBubble };
