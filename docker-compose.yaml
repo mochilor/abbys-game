@@ -2,6 +2,7 @@ version: '3'
 services:
   base:
     image: node:alpine
+    container_name: cave_game
     volumes:
       - .:/usr/app
     working_dir: /usr/app

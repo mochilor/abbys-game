@@ -5,7 +5,11 @@ import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
 import { getDebugRoomName } from '../../Debug/debug';
 
-export default function make(sceneRegistry: Phaser.Data.DataManager): GameItemLocator {
+type DataManager = {
+  set(name: string, data: any): void,
+};
+
+export default function make(registry: DataManager): GameItemLocator {
   function getGameItemCollection(roomName: RoomName): GameItemCollection {
     const savedGame = loadGame();
 
@@ -19,7 +23,7 @@ export default function make(sceneRegistry: Phaser.Data.DataManager): GameItemLo
 
     savedGame.gameItems.forEach((gameItemData) => {
       const savedRoom = new RoomName(gameItemData.room.x, gameItemData.room.y);
-      sceneRegistry.set(savedRoom.getName(), gameItemData.items);
+      registry.set(savedRoom.getName(), gameItemData.items);
     });
 
     for (let n = 0; n < savedGame.gameItems.length; n += 1) {

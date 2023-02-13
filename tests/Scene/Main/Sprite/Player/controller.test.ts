@@ -1,4 +1,4 @@
-import { createController } from '../../../../src/Scene/Main/Sprite/Player/controller';
+import { createController } from '../../../../../src/Scene/Main/Sprite/Player/controller';
 
 const leftKey = { isDown: false };
 const rightKey = { isDown: false };
