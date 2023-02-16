@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Door from '../Dynamic/Door';
 import Backpack from './Backpack';
-import EventDispatcher from '../../../../Service/EventDispatcher';
+import * as EventDispatcher from '../../../../Service/EventDispatcher';
 import Spike from '../Static/Spike';
 import GameObject from '../GameObject';
 import Button from '../Dynamic/Button';
@@ -98,7 +98,7 @@ export default class Player extends GameObject {
   public collectItem(player: this, item: GameObject) {
     if (item instanceof Portal) {
       this.setPortalDestination(item.getDestination().x, item.getDestination().y);
-      EventDispatcher.getInstance().emit(
+      EventDispatcher.emit(
         'newRoomReached',
         item.getDestination().room,
         item.getRoomName(),
@@ -173,7 +173,7 @@ export default class Player extends GameObject {
   }
 
   private die(): void {
-    EventDispatcher.getInstance().emit('playerHasDied');
+    EventDispatcher.emit('playerHasDied');
   }
 
   public initBackpack(): void {

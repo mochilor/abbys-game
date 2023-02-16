@@ -1,82 +1,100 @@
-import EventDispatcher from '../../../../Service/EventDispatcher';
+import * as EventDispatcher from '../../../../Service/EventDispatcher';
 import RoomName from '../../Map/RoomName';
 import CoinsTotal from './CoinsTotal';
-import CoinZonesInterface from './CoinZonesCoinZonesInterface';
+import CoinZonesInterface from './CoinZonesInterface';
+
+type CoinCounter = {
+  caveTotalCoins(): integer,
+  pyramidTotalCoins(): integer,
+  baseTotalCoins(): integer,
+  caveCurrentCoins(): integer,
+  pyramidCurrentCoins(): integer,
+  baseCurrentCoins(): integer,
+  add(roomName: RoomName): void,
+};
 
 let instance: CoinCounter = null;
 
-export default class CoinCounter {
-  private totals: CoinZonesInterface = {
+const totals: CoinZonesInterface = {
+  cave: 0,
+  pyramid: 0,
+  base: 0,
+};
+
+let current: CoinZonesInterface = {
+  cave: 0,
+  pyramid: 0,
+  base: 0,
+};
+
+export function getInstance(): CoinCounter {
+  if (!instance) {
+    throw new Error('CoinCounter has not been initialized!');
+  }
+
+  return instance;
+}
+
+export function reset(): void {
+  if (!instance) {
+    throw new Error('CoinCounter has not been initialized!');
+  }
+
+  current = {
     cave: 0,
     pyramid: 0,
     base: 0,
   };
+}
 
-  private current: CoinZonesInterface = {
-    cave: 0,
-    pyramid: 0,
-    base: 0,
-  };
+export function init(coinsTotalCollection: CoinsTotal[]) {
+  if (instance) {
+    return;
+  }
 
-  private constructor(coinsTotalCollection: CoinsTotal[]) {
+  instance = (() => {
     coinsTotalCollection.forEach((element: CoinsTotal) => {
       const roomName = RoomName.fromName(element.room);
-      this.totals[roomName.zone()] += element.coins;
+      totals[roomName.zone()] += element.coins;
     });
-  }
 
-  public static init(coinsTotalCollection: CoinsTotal[]): void {
-    if (!instance) {
-      instance = new CoinCounter(coinsTotalCollection);
-    }
-  }
-
-  public static reset(): void {
-    if (!instance) {
-      throw new Error('CoinCounter has not been initialized!');
+    function caveTotalCoins(): integer {
+      return totals.cave;
     }
 
-    instance.current = {
-      cave: 0,
-      pyramid: 0,
-      base: 0,
+    function pyramidTotalCoins(): integer {
+      return totals.pyramid;
+    }
+
+    function baseTotalCoins(): integer {
+      return totals.base;
+    }
+
+    function caveCurrentCoins(): integer {
+      return current.cave;
+    }
+
+    function pyramidCurrentCoins(): integer {
+      return current.pyramid;
+    }
+
+    function baseCurrentCoins(): integer {
+      return current.base;
+    }
+
+    function add(roomName: RoomName): void {
+      current[roomName.zone()] += 1;
+      EventDispatcher.emit('coinCounterUpdated', current);
+    }
+
+    return {
+      caveTotalCoins,
+      pyramidTotalCoins,
+      baseTotalCoins,
+      caveCurrentCoins,
+      pyramidCurrentCoins,
+      baseCurrentCoins,
+      add,
     };
-  }
-
-  public static getInstance(): CoinCounter {
-    if (!instance) {
-      throw new Error('CoinCounter has not been initialized!');
-    }
-
-    return instance;
-  }
-
-  public caveTotalCoins(): integer {
-    return this.totals.cave;
-  }
-
-  public pyramidTotalCoins(): integer {
-    return this.totals.pyramid;
-  }
-
-  public baseTotalCoins(): integer {
-    return this.totals.base;
-  }
-
-  public caveCurrentCoins(): integer {
-    return this.current.cave;
-  }
-
-  public pyramidCurrentCoins(): integer {
-    return this.current.pyramid;
-  }
-
-  public baseCurrentCoins(): integer {
-    return this.current.base;
-  }
-
-  public add(roomName: RoomName): void {
-    this.current[roomName.zone()] += 1;
-    EventDispatcher.getInstance().emit('coinCounterUpdated', this.current);
-  }
+  })();
 }

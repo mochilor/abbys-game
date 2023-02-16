@@ -2,12 +2,12 @@ import Phaser from 'phaser';
 import MapManager from './Map/MapManager';
 import Player from './Sprite/Player/Player';
 import SpriteManager from './Sprite/SpriteManager';
-import EventDispatcher from '../../Service/EventDispatcher';
+import * as EventDispatcher from '../../Service/EventDispatcher';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
 import BackgroundManager from './Background/BackgroundManager';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
-import CoinCounter from './GameItem/CoinCounter/CoinCounter';
+import * as CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
 import * as locatorFactory from './GameItem/Locator/Factory';
 
@@ -48,7 +48,7 @@ export default class Main extends Phaser.Scene {
   }
 
   public create(data?: Data): void {
-    EventDispatcher.getInstance().removeAllListeners();
+    EventDispatcher.removeAllListeners();
 
     const coinsTotal = this.registry.get('coinsTotal');
     if (coinsTotal) {
@@ -95,8 +95,8 @@ export default class Main extends Phaser.Scene {
 
     this.player.initBackpack();
 
-    EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
-    EventDispatcher.getInstance().on('newRoomReached', this.scene.restart, this.scene);
+    EventDispatcher.on('playerHasDied', this.playerHasDied, this);
+    EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
   }
 
   private playerHasDied(): void {

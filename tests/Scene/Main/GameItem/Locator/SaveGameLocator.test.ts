@@ -2,8 +2,10 @@ import GameItemCollection from '../../../../../src/Scene/Main/GameItem/GameItemC
 import makeSaveGameLocator from '../../../../../src/Scene/Main/GameItem/Locator/SaveGameLocator';
 import RoomName from '../../../../../src/Scene/Main/Map/RoomName';
 import * as gameStore from '../../../../../src/Service/gameStore';
+import * as debug from '../../../../../src/Scene/Main/Debug/debug';
 
 jest.mock('../../../../../src/Service/gameStore');
+jest.mock('../../../../../src/Scene/Main/Debug/debug');
 
 const registry = {
   items: {},
@@ -114,4 +116,87 @@ describe('SaveGameLocator', () => {
       '3_4': [gameItemA, gameItemB],
     });
   });
+});
+
+test('will throw an exception when there is no save point for this room', () => {
+  const gameItemA = {
+    uuid: 'aaa-uuid',
+    id: 16,
+    x: 99,
+    y: 88,
+    key: 'foo',
+    rotation: 90,
+    roomName: RoomName.fromName('5_5'),
+    properties: [],
+  };
+
+  const savedGame = {
+    gameItems: [
+      {
+        room: {
+          x: 5,
+          y: 5,
+        },
+        items: [gameItemA],
+      },
+    ],
+    playerItem,
+    room: {
+      x: 3,
+      y: 4,
+    },
+  };
+
+  jest.spyOn(gameStore, 'loadGame').mockReturnValue(savedGame);
+
+  expect(() => {
+    locator.getGameItemCollection(roomName);
+  }).toThrowError('Wrong save file!');
+});
+
+test('will throw an exception when player is requested and debug room is enabled', () => {
+  jest.spyOn(debug, 'getDebugRoomName').mockReturnValue('1_1');
+
+  expect(() => {
+    locator.getPlayerGameItem();
+  }).toThrowError('Force debug player position!');
+});
+
+test('will throw an exception when player is requested and no save file is found', () => {
+  jest.spyOn(debug, 'getDebugRoomName').mockReturnValue(null);
+
+  jest.spyOn(gameStore, 'loadGame').mockReturnValue(null);
+
+  expect(() => {
+    locator.getPlayerGameItem();
+  }).toThrowError('No save file!');
+});
+
+test('will return player when requested', () => {
+  const savedGame = {
+    gameItems: [
+      {
+        room: {
+          x: 5,
+          y: 5,
+        },
+        items: [],
+      },
+    ],
+    playerItem,
+    room: {
+      x: 3,
+      y: 4,
+    },
+  };
+
+  jest.spyOn(gameStore, 'loadGame').mockReturnValue(savedGame);
+
+  jest.spyOn(debug, 'getDebugRoomName').mockReturnValue(null);
+
+  jest.spyOn(gameStore, 'loadGame').mockReturnValue(savedGame);
+
+  const result = locator.getPlayerGameItem();
+
+  expect(result).toStrictEqual(playerItem);
 });

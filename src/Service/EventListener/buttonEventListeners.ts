@@ -5,7 +5,7 @@ import Player from '../../Scene/Main/Sprite/Player/Player';
 import CannonBall from '../../Scene/Main/Sprite/Static/Enemy/CannonBall';
 import Platform from '../../Scene/Main/Sprite/Static/Platform';
 import Spike from '../../Scene/Main/Sprite/Static/Spike';
-import EventDispatcher from '../EventDispatcher';
+import * as EventDispatcher from '../EventDispatcher';
 
 let gameScene: Phaser.Scene;
 
@@ -181,19 +181,19 @@ function listenButtonEvents(
   cannonBalls = cannonBallsGroup;
   spikes = spikesGroup;
 
-  EventDispatcher.getInstance().on('button1Activated', button1Activated);
-  EventDispatcher.getInstance().on('button2Activated', button2Activated);
-  EventDispatcher.getInstance().on('button3Activated', button3Activated);
-  EventDispatcher.getInstance().on('button4Activated', button4Activated);
-  EventDispatcher.getInstance().on('button5Activated', button5Activated);
-  EventDispatcher.getInstance().on('button6Activated', button6Activated);
-  EventDispatcher.getInstance().on('button7Activated', button7Activated);
-  EventDispatcher.getInstance().on('button8Activated', button8Activated);
-  EventDispatcher.getInstance().on('button9Activated', button9Activated);
-  EventDispatcher.getInstance().on('button10Activated', button10Activated);
-  EventDispatcher.getInstance().on('button11Activated', button11Activated);
-  EventDispatcher.getInstance().on('button12Activated', button12Activated);
-  EventDispatcher.getInstance().on('button13Activated', button13Activated);
+  EventDispatcher.on('button1Activated', button1Activated);
+  EventDispatcher.on('button2Activated', button2Activated);
+  EventDispatcher.on('button3Activated', button3Activated);
+  EventDispatcher.on('button4Activated', button4Activated);
+  EventDispatcher.on('button5Activated', button5Activated);
+  EventDispatcher.on('button6Activated', button6Activated);
+  EventDispatcher.on('button7Activated', button7Activated);
+  EventDispatcher.on('button8Activated', button8Activated);
+  EventDispatcher.on('button9Activated', button9Activated);
+  EventDispatcher.on('button10Activated', button10Activated);
+  EventDispatcher.on('button11Activated', button11Activated);
+  EventDispatcher.on('button12Activated', button12Activated);
+  EventDispatcher.on('button13Activated', button13Activated);
 }
 
 export default listenButtonEvents;
