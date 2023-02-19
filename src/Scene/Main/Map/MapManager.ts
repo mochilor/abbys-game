@@ -3,8 +3,8 @@ import * as EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
 import RoomName from './RoomName';
 import config from '../../../../config/config.json';
-import SpikePlatform from '../Sprite/Static/SpikePlatform';
-import CannonBall from '../Sprite/Static/Enemy/CannonBall';
+import SpikePlatform from '../Sprite/Collidable/Static/SpikePlatform';
+import CannonBall from '../Sprite/Collidable/Static/Enemy/CannonBall';
 
 export default class MapManager {
   private scene: Phaser.Scene;

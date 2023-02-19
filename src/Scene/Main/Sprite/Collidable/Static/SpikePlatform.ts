@@ -1,6 +1,6 @@
-import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
-import GameObject from '../GameObject';
+import GameItem from '../../../GameItem/GameItemInterface';
+import RoomName from '../../../Map/RoomName';
+import GameObject from '../../GameObject';
 
 export default class SpikePlatform extends GameObject {
   public static key = 'SpikePlatform';

@@ -1,6 +1,6 @@
-import GameItem from '../../../GameItem/GameItemInterface';
-import RoomName from '../../../Map/RoomName';
-import GameObject from '../../GameObject';
+import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
+import GameObject from '../GameObject';
 import { tintShallow } from './tint';
 
 export default class SeaWeed extends GameObject {

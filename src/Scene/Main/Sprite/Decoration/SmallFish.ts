@@ -1,7 +1,7 @@
-import GameItem from '../../../GameItem/GameItemInterface';
-import RoomName from '../../../Map/RoomName';
+import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import Fish from './Fish';
-import config from '../../../../../../config/config.json';
+import config from '../../../../../config/config.json';
 import { tintDeep } from './tint';
 
 export default class SmallFish extends Fish {

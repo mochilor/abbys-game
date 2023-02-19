@@ -2,9 +2,9 @@ import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../Scene/Main/GameItem/MapEventsGameItemCollection';
 import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Player from '../../Scene/Main/Sprite/Player/Player';
-import CannonBall from '../../Scene/Main/Sprite/Static/Enemy/CannonBall';
-import Platform from '../../Scene/Main/Sprite/Static/Platform';
-import Spike from '../../Scene/Main/Sprite/Static/Spike';
+import CannonBall from '../../Scene/Main/Sprite/Collidable/Static/Enemy/CannonBall';
+import Platform from '../../Scene/Main/Sprite/Collidable/Static/Platform';
+import Spike from '../../Scene/Main/Sprite/Collidable/Static/Spike';
 import * as EventDispatcher from '../EventDispatcher';
 
 let gameScene: Phaser.Scene;

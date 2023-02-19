@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import GameItem from '../../GameItem/GameItemInterface';
-import GameObject from '../GameObject';
+import GameItem from '../../../GameItem/GameItemInterface';
+import GameObject from '../../GameObject';
 
 export default class Door extends GameObject {
   public static key = 'Door';

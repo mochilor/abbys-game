@@ -1,5 +1,5 @@
-import GameItem from '../../GameItem/GameItemInterface';
-import GameObject from '../GameObject';
+import GameItem from '../../../GameItem/GameItemInterface';
+import GameObject from '../../GameObject';
 
 export default class Spike extends GameObject {
   public static key = 'Spike';

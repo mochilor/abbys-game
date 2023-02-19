@@ -1,6 +1,6 @@
-import RoomName from '../../../Map/RoomName';
-import config from '../../../../../../config/config.json';
-import GameObject from '../../GameObject';
+import RoomName from '../../Map/RoomName';
+import config from '../../../../../config/config.json';
+import GameObject from '../GameObject';
 
 function tint(sprite: GameObject, roomName: RoomName, layer: string): void {
   const fillColor = config.levelColors[roomName.zone()][`layer-${layer}`] ?? null;

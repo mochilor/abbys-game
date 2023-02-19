@@ -1,15 +1,14 @@
 import Phaser from 'phaser';
 import MapManager from './Map/MapManager';
-import Player from './Sprite/Player/Player';
-import SpriteManager from './Sprite/SpriteManager';
+import SpriteManager from './Sprite/Manager/SpriteManager';
 import * as EventDispatcher from '../../Service/EventDispatcher';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
-import BackgroundManager from './Background/BackgroundManager';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
 import * as CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
 import * as locatorFactory from './GameItem/Locator/Factory';
+import setupBackground from './Background/BackgroundManager';
 
 interface Data {
   x: number,
@@ -37,8 +36,6 @@ function getRoomName(data?: Data): RoomName {
 }
 
 export default class Main extends Phaser.Scene {
-  private player: Player;
-
   private spriteManager: SpriteManager;
 
   private mapManager: MapManager;
@@ -69,31 +66,26 @@ export default class Main extends Phaser.Scene {
       // alert('Oops, estás fuera!');
     }
 
-    this.spriteManager = new SpriteManager(
-      this,
+    this.spriteManager = new SpriteManager(this);
+    this.spriteManager.prepareObjects(
+      roomName,
       locatorFactory.makeInMemoryGameLocator(this.registry),
       locatorFactory.makeSaveGameLocator(this.registry),
       locatorFactory.makeMapLocator(map),
     );
-    this.spriteManager.prepareObjects(roomName);
 
-    this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, roomName);
     this.mapManager.setup(
-      this.player,
+      this.spriteManager.getPlayer(),
       this.spriteManager.getSpikePlatforms(),
       this.spriteManager.getCannonBallsGroup(),
       map,
       'tilesetImage',
     );
 
-    (new BackgroundManager(this)).setup(
-      roomName,
-      this.spriteManager.getObjects(),
-      this.mapManager.getLayer(),
-    );
+    setupBackground(this, roomName);
 
-    this.player.initBackpack();
+    this.spriteManager.getPlayer().initBackpack();
 
     EventDispatcher.on('playerHasDied', this.playerHasDied, this);
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
@@ -105,8 +97,7 @@ export default class Main extends Phaser.Scene {
   }
 
   update(time: number): void {
-    this.player.update();
-    this.mapManager.updateCurrentRoom(this.player);
+    this.mapManager.updateCurrentRoom(this.spriteManager.getPlayer());
     this.spriteManager.update(time);
   }
 }

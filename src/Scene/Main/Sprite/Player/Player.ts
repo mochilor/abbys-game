@@ -1,17 +1,17 @@
 import Phaser from 'phaser';
-import Door from '../Dynamic/Door';
+import Door from '../Collidable/Dynamic/Door';
 import Backpack from './Backpack';
 import * as EventDispatcher from '../../../../Service/EventDispatcher';
-import Spike from '../Static/Spike';
+import Spike from '../Collidable/Static/Spike';
 import GameObject from '../GameObject';
-import Button from '../Dynamic/Button';
+import Button from '../Collidable/Dynamic/Button';
 import config from '../../../../../config/config.json';
-import Portal from '../Static/Portal';
+import Portal from '../Collidable/Static/Portal';
 import { Bubble, createBubble } from './Bubble';
-import Spring from '../Static/Spring';
+import Spring from '../Collidable/Static/Spring';
 import { Controller } from './controller';
-import SpikePlatform from '../Static/SpikePlatform';
-import Conveyor from '../Static/Conveyor';
+import SpikePlatform from '../Collidable/Static/SpikePlatform';
+import Conveyor from '../Collidable/Static/Conveyor';
 
 export default class Player extends GameObject {
   public static key = 'Player';

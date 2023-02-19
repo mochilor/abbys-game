@@ -1,9 +1,9 @@
-import Coin from '../Dynamic/Coin';
+import Coin from '../Collidable/Dynamic/Coin';
 import * as EventDispatcher from '../../../../Service/EventDispatcher';
-import Save from '../Static/Save';
+import Save from '../Collidable/Static/Save';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import Button from '../Dynamic/Button';
+import Button from '../Collidable/Dynamic/Button';
 
 function gotCoin(roomName: string): void {
   EventDispatcher.emit('playerGotCoin', roomName);

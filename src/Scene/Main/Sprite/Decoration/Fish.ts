@@ -1,6 +1,6 @@
-import GameObject from '../../GameObject';
-import GameItem from '../../../GameItem/GameItemInterface';
-import RoomName from '../../../Map/RoomName';
+import GameObject from '../GameObject';
+import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 
 export default abstract class Fish extends GameObject {
   protected orientation: number;

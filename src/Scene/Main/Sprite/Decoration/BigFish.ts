@@ -1,5 +1,5 @@
-import GameItem from '../../../GameItem/GameItemInterface';
-import RoomName from '../../../Map/RoomName';
+import GameItem from '../../GameItem/GameItemInterface';
+import RoomName from '../../Map/RoomName';
 import Fish from './Fish';
 import { tintShallow } from './tint';
 

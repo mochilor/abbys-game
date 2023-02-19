@@ -1,4 +1,4 @@
-import GameObject from '../GameObject';
+import GameObject from '../../GameObject';
 
 export default class Spring extends GameObject {
   public static key = 'Spring';

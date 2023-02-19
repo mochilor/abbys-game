@@ -1,5 +1,5 @@
-import GameItem from '../../../GameItem/GameItemInterface';
-import GameObject from '../../GameObject';
+import GameItem from '../../../../GameItem/GameItemInterface';
+import GameObject from '../../../GameObject';
 import CannonBall from './CannonBall';
 
 export default class Cannon extends GameObject {

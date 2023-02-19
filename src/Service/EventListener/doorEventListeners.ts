@@ -1,4 +1,4 @@
-import Door from '../../Scene/Main/Sprite/Dynamic/Door';
+import Door from '../../Scene/Main/Sprite/Collidable/Dynamic/Door';
 import * as EventDispatcher from '../EventDispatcher';
 
 let doorsGroup: Door[];

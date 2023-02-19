@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import RoomName from '../../Map/RoomName';
-import GameObject from '../GameObject';
+import RoomName from '../../../Map/RoomName';
+import GameObject from '../../GameObject';
 
 interface Destination {
   room: RoomName,
