@@ -7,6 +7,9 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
 
   protected properties: GameItem['properties'] = [];
 
+  // Don't add type here to prevent crash on code coverage
+  public body;
+
   constructor(
     scene: Phaser.Scene,
     x: number,
@@ -16,6 +19,7 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     properties: GameItem['properties'] = [],
   ) {
     super(scene, x, y, texture);
+    scene.add.existing(this);
     this.uuid = uuid;
     this.properties = properties;
   }

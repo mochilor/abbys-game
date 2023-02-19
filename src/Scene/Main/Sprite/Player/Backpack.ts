@@ -1,16 +1,16 @@
-import Coin from '../Dynamic/Coin';
-import EventDispatcher from '../../../../Service/EventDispatcher';
-import Save from '../Static/Save';
+import Coin from '../Collidable/Dynamic/Coin';
+import * as EventDispatcher from '../../../../Service/EventDispatcher';
+import Save from '../Collidable/Static/Save';
 import GameItem from '../../GameItem/GameItemInterface';
 import GameObject from '../GameObject';
-import Button from '../Dynamic/Button';
+import Button from '../Collidable/Dynamic/Button';
 
 function gotCoin(roomName: string): void {
-  EventDispatcher.getInstance().emit('playerGotCoin', roomName);
+  EventDispatcher.emit('playerGotCoin', roomName);
 }
 
 function activateButton(eventName: string): void {
-  EventDispatcher.getInstance().emit(eventName);
+  EventDispatcher.emit(eventName);
 }
 
 export default class Backpack {
@@ -45,11 +45,6 @@ export default class Backpack {
     const content = [];
 
     Object.entries(this.content).forEach(([key, value]) => {
-      // Exclude other properties intended for room change:
-      if (key === 'otherProperties') {
-        return;
-      }
-
       content.push({
         name: key,
         value,
@@ -68,7 +63,7 @@ export default class Backpack {
     }
 
     if (item instanceof Save) {
-      EventDispatcher.getInstance().emit('gameSaved', item, this);
+      EventDispatcher.emit('gameSaved', item, this);
       destroy = false;
     }
 
@@ -80,7 +75,7 @@ export default class Backpack {
 
     if (destroy) {
       item.destroy();
-      EventDispatcher.getInstance().emit('itemDestroyed', item);
+      EventDispatcher.emit('itemDestroyed', item);
     }
   }
 }

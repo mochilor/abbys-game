@@ -5,14 +5,12 @@ import GameItem from '../GameItemInterface';
 import GameItemLocator from '../GameItemLocatorInterface';
 import { getDebugRoomName } from '../../Debug/debug';
 
-export default class SaveGameLocator implements GameItemLocator {
-  private sceneRegistry: Phaser.Data.DataManager;
+type DataManager = {
+  set(name: string, data: any): void,
+};
 
-  constructor(sceneRegistry: Phaser.Data.DataManager) {
-    this.sceneRegistry = sceneRegistry;
-  }
-
-  public getGameItemCollection(roomName: RoomName): GameItemCollection {
+export default function make(registry: DataManager): GameItemLocator {
+  function getGameItemCollection(roomName: RoomName): GameItemCollection {
     const savedGame = loadGame();
 
     if (savedGame === null) {
@@ -25,7 +23,7 @@ export default class SaveGameLocator implements GameItemLocator {
 
     savedGame.gameItems.forEach((gameItemData) => {
       const savedRoom = new RoomName(gameItemData.room.x, gameItemData.room.y);
-      this.sceneRegistry.set(savedRoom.getName(), gameItemData.items);
+      registry.set(savedRoom.getName(), gameItemData.items);
     });
 
     for (let n = 0; n < savedGame.gameItems.length; n += 1) {
@@ -42,7 +40,7 @@ export default class SaveGameLocator implements GameItemLocator {
     throw new Error('Wrong save file!');
   }
 
-  public getPlayerGameItem(): GameItem {
+  function getPlayerGameItem(): GameItem {
     if (getDebugRoomName()) {
       throw new Error('Force debug player position!');
     }
@@ -55,4 +53,6 @@ export default class SaveGameLocator implements GameItemLocator {
 
     return saveData.playerItem;
   }
+
+  return { getGameItemCollection, getPlayerGameItem };
 }

@@ -1,13 +1,13 @@
-import EventDispatcher from '../EventDispatcher';
+import * as EventDispatcher from '../EventDispatcher';
 import { saveGame } from '../gameStore';
 import RoomName from '../../Scene/Main/Map/RoomName';
 import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Backpack from '../../Scene/Main/Sprite/Player/Backpack';
 import Player from '../../Scene/Main/Sprite/Player/Player';
-import Save from '../../Scene/Main/Sprite/Static/Save';
+import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
 import GameItemCollection from '../../Scene/Main/GameItem/GameItemCollection';
 import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
-import CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
+import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 
 let gameItems: GameItemCollection;
 
@@ -30,6 +30,7 @@ function gameSaved(item: Save, backpack: Backpack) {
 
   const backpackContent = backpack.getContentForSaving();
   playerItem.properties = backpackContent;
+  playerItem.otherProperties = null;
 
   saveGame(gameItems, playerItem, item.getRoomName(), registry);
 }
@@ -45,16 +46,11 @@ function newRoomReached(
   playerItem.x = player.getPositionInNewRoom().x;
   playerItem.y = player.getPositionInNewRoom().y;
 
-  playerItem.properties.push(
-    {
-      name: 'otherProperties',
-      value: {
-        velocityY: player.body.velocity.y,
-        leftKeyIsDown: player.getController().leftKeyIsDown() ? 1 : 0,
-        rightKeyIsDown: player.getController().rightKeyIsDown() ? 1 : 0,
-      },
-    },
-  );
+  playerItem.otherProperties = {
+    velocityY: player.body.velocity.y,
+    leftKeyIsDown: player.getController().leftKeyIsDown(),
+    rightKeyIsDown: player.getController().rightKeyIsDown(),
+  };
 
   registry.set(oldRoomData.getName(), gameItems.getItems());
   registry.set('player', playerItem);
@@ -74,8 +70,8 @@ export default function listenGameItemEvents(
   playerItem = player;
   registry = sceneRegistry;
 
-  EventDispatcher.getInstance().on('itemDestroyed', itemDestroyed);
-  EventDispatcher.getInstance().on('gameSaved', gameSaved);
-  EventDispatcher.getInstance().on('newRoomReached', newRoomReached);
-  EventDispatcher.getInstance().on('playerGotCoin', playerGotCoin);
+  EventDispatcher.on('itemDestroyed', itemDestroyed);
+  EventDispatcher.on('gameSaved', gameSaved);
+  EventDispatcher.on('newRoomReached', newRoomReached);
+  EventDispatcher.on('playerGotCoin', playerGotCoin);
 }

@@ -1,29 +1,28 @@
-import Door from './Dynamic/Door';
-import Coin from './Dynamic/Coin';
-import Save from './Static/Save';
+import Door from './Collidable/Dynamic/Door';
+import Coin from './Collidable/Dynamic/Coin';
+import Save from './Collidable/Static/Save';
 import Player from './Player/Player';
-import Controller from './Player/Controller';
+import { createController } from './Player/controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
 import GameItemCollection from '../GameItem/GameItemCollection';
 import GameItem from '../GameItem/GameItemInterface';
-import Spike from './Static/Spike';
+import Spike from './Collidable/Static/Spike';
 import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
-import GameSprite from './GameSpriteInterface';
-import Platform from './Static/Platform';
-import Button from './Dynamic/Button';
-import GameEvent from './GameEvent/GameEvent';
-import SeaWeed from './Static/Decoration/SeaWeed';
-import Spear from './Static/Enemy/Spear';
-import Ball from './Static/Enemy/Ball';
-import Portal from './Static/Portal';
+import Platform from './Collidable/Static/Platform';
+import Button from './Collidable/Dynamic/Button';
+import GameEvent from './GameEvent';
+import SeaWeed from './Decoration/SeaWeed';
+import Spear from './Collidable/Static/Enemy/Spear';
+import Ball from './Collidable/Static/Enemy/Ball';
+import Portal from './Collidable/Static/Portal';
 import RoomName from '../Map/RoomName';
-import Spring from './Static/Spring';
-import SmallFish from './Static/Decoration/SmallFish';
-import BigFish from './Static/Decoration/BigFish';
-import SpikePlatform from './Static/SpikePlatform';
-import Conveyor from './Static/Conveyor';
-import Cannon from './Static/Enemy/Cannon';
+import Spring from './Collidable/Static/Spring';
+import SmallFish from './Decoration/SmallFish';
+import BigFish from './Decoration/BigFish';
+import SpikePlatform from './Collidable/Static/SpikePlatform';
+import Conveyor from './Collidable/Static/Conveyor';
+import Cannon from './Collidable/Static/Enemy/Cannon';
 
 const playerItemClass = {
   2: Player,
@@ -56,24 +55,13 @@ const mapEventItemClasses = {
 };
 
 function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
-  let otherProperties = {};
-
-  playerItem.properties.forEach((property) => {
-    if (property.name === 'otherProperties') {
-      otherProperties = property.value;
-    }
-  });
-
   const leftKey = scene.input.keyboard.addKey('LEFT');
-  leftKey.isDown = otherProperties.leftKeyIsDown ?? false;
+  leftKey.isDown = playerItem.otherProperties?.leftKeyIsDown ?? false;
 
   const rightKey = scene.input.keyboard.addKey('RIGHT');
-  rightKey.isDown = otherProperties.rightKeyIsDown ?? false;
+  rightKey.isDown = playerItem.otherProperties?.rightKeyIsDown ?? false;
 
-  const controller = new Controller(
-    leftKey,
-    rightKey,
-  );
+  const controller = createController(leftKey, rightKey);
 
   const player = new Player(
     scene,
@@ -83,12 +71,12 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
     new Backpack(playerItem.properties),
   );
 
-  player.setVelocityY(otherProperties.velocityY ?? 0); // still needed?
+  player.setVelocityY(playerItem.otherProperties?.velocityY ?? 0); // still needed?
 
   return player;
 }
 
-function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameSprite {
+function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
   const offset = 4;

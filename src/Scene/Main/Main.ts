@@ -1,19 +1,16 @@
 import Phaser from 'phaser';
 import MapManager from './Map/MapManager';
-import Player from './Sprite/Player/Player';
-import SpriteManager from './Sprite/SpriteManager';
-import EventDispatcher from '../../Service/EventDispatcher';
-import SaveGameLocator from './GameItem/Locator/SaveGameLocator';
-import MapLocator from './GameItem/Locator/MapLocator';
-import InMemoryGameLocator from './GameItem/Locator/InMemoryGameLocator';
+import SpriteManager from './Sprite/Manager/SpriteManager';
+import * as EventDispatcher from '../../Service/EventDispatcher';
 import { loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
-import BackgroundManager from './Background/BackgroundManager';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
-import CoinCounter from './GameItem/CoinCounter/CoinCounter';
+import * as CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
 import createTitle from './Title/Title';
 import listenTitleEvents from '../../Service/EventListener/titleEventListeners';
+import * as locatorFactory from './GameItem/Locator/Factory';
+import setupBackground from './Background/BackgroundManager';
 
 interface Data {
   x: number,
@@ -46,8 +43,6 @@ function getRoomName(data?: Data): RoomName {
 }
 
 export default class Main extends Phaser.Scene {
-  private player: Player;
-
   private spriteManager: SpriteManager;
 
   private mapManager: MapManager;
@@ -59,7 +54,7 @@ export default class Main extends Phaser.Scene {
   }
 
   public create(data?: Data): void {
-    EventDispatcher.getInstance().removeAllListeners();
+    EventDispatcher.removeAllListeners();
 
     const coinsTotal = this.registry.get('coinsTotal');
     if (coinsTotal) {
@@ -90,35 +85,38 @@ export default class Main extends Phaser.Scene {
       // alert('Oops, estás fuera!');
     }
 
-    this.spriteManager = new SpriteManager(
-      this,
-      new InMemoryGameLocator(this),
-      new SaveGameLocator(this.registry),
-      new MapLocator(map),
+    this.spriteManager = new SpriteManager(this);
+    this.spriteManager.prepareObjects(
+      roomName,
+      locatorFactory.makeInMemoryGameLocator(this.registry),
+      locatorFactory.makeSaveGameLocator(this.registry),
+      locatorFactory.makeMapLocator(map),
     );
-    this.spriteManager.prepareObjects(roomName);
 
-    this.player = this.spriteManager.getPlayer();
     this.mapManager = new MapManager(this, roomName);
     this.mapManager.setup(
-      this.player,
+      this.spriteManager.getPlayer(),
       this.spriteManager.getSpikePlatforms(),
       this.spriteManager.getCannonBallsGroup(),
       map,
       'tilesetImage',
     );
 
-    (new BackgroundManager(this)).setup(roomName);
+    setupBackground(this, roomName);
 
-    this.player.initBackpack();
+    this.spriteManager.getPlayer().initBackpack();
 
-    EventDispatcher.getInstance().on('playerUnfrozen', this.player.unfreeze, this.player);
-    EventDispatcher.getInstance().on('playerHasDied', this.playerHasDied, this);
-    EventDispatcher.getInstance().on('newRoomReached', this.scene.restart, this.scene);
+    EventDispatcher.on(
+      'playerUnfrozen',
+      this.spriteManager.getPlayer().unfreeze,
+      this.spriteManager.getPlayer(),
+    );
 
     if (!startGame) {
-      EventDispatcher.getInstance().emit('playerUnfrozen');
+      EventDispatcher.emit('playerUnfrozen');
     }
+    EventDispatcher.on('playerHasDied', this.playerHasDied, this);
+    EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
   }
 
   private playerHasDied(): void {
@@ -127,8 +125,7 @@ export default class Main extends Phaser.Scene {
   }
 
   update(time: number): void {
-    this.player.update();
-    this.mapManager.updateCurrentRoom(this.player);
+    this.mapManager.updateCurrentRoom(this.spriteManager.getPlayer());
     this.spriteManager.update(time);
     if (this.title) {
       this.title.update();

@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
 import Preload from './Scene/Preload/Preload';
 import configuration from '../config/config.json';
-import BendWaves from './Scene/Main/Background/shader';
 
 const config = {
   type: Phaser.WEBGL,
@@ -25,7 +24,6 @@ const config = {
     Preload,
     Main,
   ],
-  pipeline: { BendWaves },
 };
 
 // eslint-disable-next-line no-new

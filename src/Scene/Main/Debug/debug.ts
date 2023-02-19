@@ -1,6 +1,6 @@
 import config from '../../../../config/config.json';
-import CoinCounter from '../GameItem/CoinCounter/CoinCounter';
-import CoinZonesInterface from '../GameItem/CoinCounter/CoinZonesCoinZonesInterface';
+import * as CoinCounter from '../GameItem/CoinCounter/CoinCounter';
+import CoinZonesInterface from '../GameItem/CoinCounter/CoinZonesInterface';
 
 let debugContainer = null;
 

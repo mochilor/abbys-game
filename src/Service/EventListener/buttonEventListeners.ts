@@ -2,10 +2,10 @@ import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
 import MapEventsGameItemCollection from '../../Scene/Main/GameItem/MapEventsGameItemCollection';
 import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Player from '../../Scene/Main/Sprite/Player/Player';
-import CannonBall from '../../Scene/Main/Sprite/Static/Enemy/CannonBall';
-import Platform from '../../Scene/Main/Sprite/Static/Platform';
-import Spike from '../../Scene/Main/Sprite/Static/Spike';
-import EventDispatcher from '../EventDispatcher';
+import CannonBall from '../../Scene/Main/Sprite/Collidable/Static/Enemy/CannonBall';
+import Platform from '../../Scene/Main/Sprite/Collidable/Static/Platform';
+import Spike from '../../Scene/Main/Sprite/Collidable/Static/Spike';
+import * as EventDispatcher from '../EventDispatcher';
 
 let gameScene: Phaser.Scene;
 
@@ -13,11 +13,11 @@ let eventGameItemCollection: MapEventsGameItemCollection;
 
 let playerSprite: Player;
 
-let gameObjects: Phaser.GameObjects.Group;
+let gameObjects: GameObject[];
 
-let cannonBalls: Phaser.GameObjects.Group;
+let cannonBalls: CannonBall[];
 
-let spikes: Phaser.GameObjects.Group;
+let spikes: Spike[];
 
 const defaultCaveWall = 33;
 
@@ -125,7 +125,7 @@ function button8Activated(): void {
 
 function button9Activated(): void {
   // This event activates a coin that is hidden. It should be the only hidden coin:
-  gameObjects.children.iterate((child: GameObject) => {
+  gameObjects.forEach((child: GameObject) => {
     if (child.body) {
       child.body.setEnable(true);
     }
@@ -135,21 +135,21 @@ function button9Activated(): void {
 
 function button10Activated(): void {
   // This event deactivates a couple of cannons
-  cannonBalls.children.iterate((child: CannonBall) => {
+  cannonBalls.forEach((child: CannonBall) => {
     child.deactivate();
   });
 }
 
 function button11Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
 
 function button12Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
@@ -160,7 +160,7 @@ function button13Activated(): void {
   removeWalls(eventGameItems, -1);
 
   // This event also activates and deactivates a couple of spikes
-  spikes.children.iterate((child: Spike) => {
+  spikes.forEach((child: Spike) => {
     child.deactivate();
     child.activate();
   });
@@ -170,9 +170,9 @@ function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
   player: Player,
-  gameObjectsGroup: Phaser.GameObjects.Group,
-  cannonBallsGroup: Phaser.GameObjects.Group,
-  spikesGroup: Phaser.GameObjects.Group,
+  gameObjectsGroup: GameObject[],
+  cannonBallsGroup: CannonBall[],
+  spikesGroup: Spike[],
 ): void {
   gameScene = scene;
   eventGameItemCollection = eventGameItems;
@@ -181,19 +181,19 @@ function listenButtonEvents(
   cannonBalls = cannonBallsGroup;
   spikes = spikesGroup;
 
-  EventDispatcher.getInstance().on('button1Activated', button1Activated);
-  EventDispatcher.getInstance().on('button2Activated', button2Activated);
-  EventDispatcher.getInstance().on('button3Activated', button3Activated);
-  EventDispatcher.getInstance().on('button4Activated', button4Activated);
-  EventDispatcher.getInstance().on('button5Activated', button5Activated);
-  EventDispatcher.getInstance().on('button6Activated', button6Activated);
-  EventDispatcher.getInstance().on('button7Activated', button7Activated);
-  EventDispatcher.getInstance().on('button8Activated', button8Activated);
-  EventDispatcher.getInstance().on('button9Activated', button9Activated);
-  EventDispatcher.getInstance().on('button10Activated', button10Activated);
-  EventDispatcher.getInstance().on('button11Activated', button11Activated);
-  EventDispatcher.getInstance().on('button12Activated', button12Activated);
-  EventDispatcher.getInstance().on('button13Activated', button13Activated);
+  EventDispatcher.on('button1Activated', button1Activated);
+  EventDispatcher.on('button2Activated', button2Activated);
+  EventDispatcher.on('button3Activated', button3Activated);
+  EventDispatcher.on('button4Activated', button4Activated);
+  EventDispatcher.on('button5Activated', button5Activated);
+  EventDispatcher.on('button6Activated', button6Activated);
+  EventDispatcher.on('button7Activated', button7Activated);
+  EventDispatcher.on('button8Activated', button8Activated);
+  EventDispatcher.on('button9Activated', button9Activated);
+  EventDispatcher.on('button10Activated', button10Activated);
+  EventDispatcher.on('button11Activated', button11Activated);
+  EventDispatcher.on('button12Activated', button12Activated);
+  EventDispatcher.on('button13Activated', button13Activated);
 }
 
 export default listenButtonEvents;

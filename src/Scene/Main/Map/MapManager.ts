@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
-import EventDispatcher from '../../../Service/EventDispatcher';
+import * as EventDispatcher from '../../../Service/EventDispatcher';
 import Player from '../Sprite/Player/Player';
 import RoomName from './RoomName';
 import config from '../../../../config/config.json';
+import SpikePlatform from '../Sprite/Collidable/Static/SpikePlatform';
+import CannonBall from '../Sprite/Collidable/Static/Enemy/CannonBall';
 
 export default class MapManager {
   private scene: Phaser.Scene;
@@ -18,8 +20,8 @@ export default class MapManager {
 
   public setup(
     player: Player,
-    spikePlatformsGroup: Phaser.GameObjects.Group,
-    cannonBallsGroup: Phaser.GameObjects.Group,
+    spikePlatformsGroup: SpikePlatform[],
+    cannonBallsGroup: CannonBall[],
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {
@@ -37,7 +39,7 @@ export default class MapManager {
   public updateCurrentRoom(player: Player): void {
     if (player.isLeavingRoom()) {
       const newRoomName = this.getNewRoomName(player);
-      EventDispatcher.getInstance().emit(
+      EventDispatcher.emit(
         'newRoomReached',
         newRoomName,
         this.roomName,
