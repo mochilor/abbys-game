@@ -147,7 +147,7 @@ export default class Player extends GameObject {
   }
 
   public touchSpike(player: this, spike: Spike): void {
-    const playerTouching = this.body.touching;
+    const playerTouching = player.body.touching;
     const spikeTouching = spike.body.touching;
 
     if (
@@ -162,7 +162,7 @@ export default class Player extends GameObject {
 
   public touchSpikePlatform(player: this, spikePlatform: SpikePlatform): void {
     if (player.body.touching.up && spikePlatform.body.touching.down) {
-      this.die();
+      player.die();
     }
   }
 

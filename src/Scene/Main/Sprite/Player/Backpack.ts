@@ -45,11 +45,6 @@ export default class Backpack {
     const content = [];
 
     Object.entries(this.content).forEach(([key, value]) => {
-      // Exclude other properties intended for room change:
-      if (key === 'otherProperties') {
-        return;
-      }
-
       content.push({
         name: key,
         value,
