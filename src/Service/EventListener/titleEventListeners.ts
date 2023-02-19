@@ -1,4 +1,4 @@
-import EventDispatcher from '../EventDispatcher';
+import * as EventDispatcher from '../EventDispatcher';
 
 interface Title {
   quit: () => void,
@@ -7,8 +7,8 @@ interface Title {
 export default function listenTitleEvents(title: Title): void {
   function startGame(): void {
     title.quit();
-    EventDispatcher.getInstance().emit('playerUnfrozen');
+    EventDispatcher.emit('playerUnfrozen');
   }
 
-  EventDispatcher.getInstance().on('gameStarted', startGame);
+  EventDispatcher.on('gameStarted', startGame);
 }

@@ -1,6 +1,6 @@
 import config from '../../../../config/config.json';
-import EventDispatcher from '../../../Service/EventDispatcher';
 import createButton from '../UI/Button';
+import * as EventDispatcher from '../../../Service/EventDispatcher';
 
 export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene: Phaser.Scene) {
   function getPositionFromCamera() {
@@ -26,7 +26,7 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
   })();
 
   function start(): void {
-    EventDispatcher.getInstance().emit('gameStarted');
+    EventDispatcher.emit('gameStarted');
   }
 
   const buttonOffset = 32;
