@@ -8,17 +8,10 @@ export default class Coin extends GameObject {
 
   private roomName: RoomName;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-    roomName: RoomName,
-  ) {
-    super(scene, x, y, 'objects', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
 
-    this.roomName = roomName;
+    this.roomName = gameItem.roomName;
 
     scene.physics.world.enable(this);
 

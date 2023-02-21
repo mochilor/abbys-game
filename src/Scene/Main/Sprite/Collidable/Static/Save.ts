@@ -6,23 +6,12 @@ import GameObject from '../../GameObject';
 export default class Save extends GameObject {
   public static key = 'Save';
 
-  private roomName: RoomName;
-
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-    roomName: RoomName,
-  ) {
-    super(scene, x, y, 'objects', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
 
     scene.physics.world.enable(this);
 
     this.setFrame(5);
-
-    this.roomName = roomName;
   }
 
   public resetBody() {
@@ -31,6 +20,6 @@ export default class Save extends GameObject {
   }
 
   public getRoomName(): RoomName {
-    return this.roomName;
+    return this.gameItem.roomName;
   }
 }

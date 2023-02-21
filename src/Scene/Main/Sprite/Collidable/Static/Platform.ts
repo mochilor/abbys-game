@@ -1,3 +1,4 @@
+import { off } from 'process';
 import GameItem from '../../../GameItem/GameItemInterface';
 import GameObject from '../../GameObject';
 
@@ -18,14 +19,8 @@ export default class Platform extends GameObject {
 
   private speed: number = 50;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'platformImage', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'platformImage');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
@@ -35,22 +30,22 @@ export default class Platform extends GameObject {
 
     const fromXProperty = this.getProperty('fromX');
     if (fromXProperty !== null) {
-      this.fromX = x + parseInt(fromXProperty.value as string, 10);
+      this.fromX = gameItem.x + parseInt(fromXProperty.value as string, 10);
     }
 
     const toXProperty = this.getProperty('toX');
     if (toXProperty !== null) {
-      this.toX = x + parseInt(toXProperty.value as string, 10);
+      this.toX = gameItem.x + parseInt(toXProperty.value as string, 10);
     }
 
     const fromYProperty = this.getProperty('fromY');
     if (fromYProperty !== null) {
-      this.fromY = y + parseInt(fromYProperty.value as string, 10);
+      this.fromY = gameItem.y + parseInt(fromYProperty.value as string, 10);
     }
 
     const toYProperty = this.getProperty('toY');
     if (toYProperty !== null) {
-      this.toY = y + parseInt(toYProperty.value as string, 10);
+      this.toY = gameItem.y + parseInt(toYProperty.value as string, 10);
     }
 
     const speedProperty = this.getProperty('speed');
@@ -86,10 +81,12 @@ export default class Platform extends GameObject {
   /**
    * Factory function intended to add new object after main instantiation in SpriteManager.
    */
-  public static makeAdditional(scene: Phaser.Scene, x: number, y: number): Platform {
+  public static makeAdditional(scene: Phaser.Scene, gameItem: GameItem): Platform {
+    const platform = new Platform(scene, gameItem);
     // Offeset should be centralized somehow:
     const offset = 4;
-    const platform = new Platform(scene, x + offset, y - offset, '', []);
+    platform.x += offset;
+    platform.y -= offset;
     platform.setDepth(-1);
 
     return platform;

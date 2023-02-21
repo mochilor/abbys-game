@@ -8,19 +8,13 @@ export default class Spike extends GameObject {
 
   private activable: boolean = false;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    angle: number,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'objects', '', properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
 
-    this.setAngle(angle);
+    this.setAngle(gameItem.rotation);
 
     this.setFrame(6);
 

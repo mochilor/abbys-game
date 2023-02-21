@@ -1,3 +1,4 @@
+import GameItem from '../../../../GameItem/GameItemInterface';
 import EnemyGameObject from './EnemyGameObject';
 
 export default class Spear extends EnemyGameObject {
@@ -15,11 +16,13 @@ export default class Spear extends EnemyGameObject {
 
   private reverseCrop: boolean = false;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, angle: number) {
-    super(scene, x, y, 'spearImage');
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'spearImage');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
+
+    const angle = gameItem.rotation;
 
     this.type = angle === 0 || angle === 180 ? 'y' : 'x';
     this.setAngle(angle);

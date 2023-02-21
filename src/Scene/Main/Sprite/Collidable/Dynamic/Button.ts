@@ -5,14 +5,8 @@ import GameObject from '../../GameObject';
 export default class Button extends GameObject {
   public static key = 'Button';
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'objects', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

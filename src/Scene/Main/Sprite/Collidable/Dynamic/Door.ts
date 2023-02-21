@@ -13,14 +13,8 @@ export default class Door extends GameObject {
 
   private isLocked: boolean = true;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'blocksImage', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'blocksImage');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

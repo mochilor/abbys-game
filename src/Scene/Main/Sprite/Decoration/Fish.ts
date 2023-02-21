@@ -1,23 +1,15 @@
 import GameObject from '../GameObject';
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 
 export default abstract class Fish extends GameObject {
   protected orientation: number;
 
   protected speed: number;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    roomName: RoomName,
-    uuid: string,
-    properties: GameItem['properties'],
-    texture: string,
-    depth: integer,
-  ) {
-    super(scene, x + 4, y - 4, texture, uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem, texture: string, depth: integer) {
+    super(scene, gameItem, texture);
+    this.x += 4;
+    this.y -= 4;
 
     this.orientation = this.getProperty('orientation')?.value as number ?? 1;
 

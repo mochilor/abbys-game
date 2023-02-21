@@ -1,5 +1,4 @@
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 import Fish from './Fish';
 import { tintShallow } from './tint';
 
@@ -10,15 +9,8 @@ export default class BigFish extends Fish {
 
   private toX: number;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-    roomName: RoomName,
-  ) {
-    super(scene, x, y, roomName, uuid, properties, 'bigFishSpritesheet', -1);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'bigFishSpritesheet', -1);
 
     this.speed = this.getProperty('speed')?.value as number ?? 0.3;
 
@@ -28,15 +20,15 @@ export default class BigFish extends Fish {
 
     if (distance <= 0) { // to the left
       this.orientation = -1;
-      this.fromX = x + distance;
-      this.toX = x + offset;
+      this.fromX = this.x + distance;
+      this.toX = this.x + offset;
     } else {
       this.orientation = 1;
-      this.fromX = x + offset;
-      this.toX = x + distance;
+      this.fromX = this.x + offset;
+      this.toX = this.x + distance;
     }
 
-    tintShallow(this, roomName);
+    tintShallow(this, gameItem.roomName);
   }
 
   public update(): void {

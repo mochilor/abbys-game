@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import GameItem from '../../../GameItem/GameItemInterface';
 import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
 
@@ -11,24 +12,36 @@ interface Destination {
 export default class Portal extends GameObject {
   public static key = 'Portal';
 
-  private roomName: RoomName;
-
   private destination: Destination;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    destination: Destination,
-    roomName: RoomName,
-  ) {
-    super(scene, x, y, 'portalImage');
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'portalImage');
 
     scene.physics.world.enable(this);
 
-    this.roomName = roomName;
+    let room: RoomName;
+    let x: integer;
+    let y: integer;
 
-    this.destination = destination;
+    gameItem.properties.forEach((property) => {
+      if (property.name === 'destinationRoom') {
+        room = RoomName.fromName(property.value as string);
+      }
+
+      if (property.name === 'destinationX') {
+        x = parseInt(property.value as string, 10);
+      }
+
+      if (property.name === 'destinationY') {
+        y = parseInt(property.value as string, 10);
+      }
+    });
+
+    if (!room || !x || !y) {
+      throw new Error('Invalid portal destination');
+    }
+
+    this.destination = { room, x, y };
   }
 
   public getDestination(): Destination {
@@ -36,6 +49,6 @@ export default class Portal extends GameObject {
   }
 
   public getRoomName(): RoomName {
-    return this.roomName;
+    return this.gameItem.roomName;
   }
 }

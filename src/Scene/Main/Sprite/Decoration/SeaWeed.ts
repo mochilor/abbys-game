@@ -1,21 +1,16 @@
 import GameItem from '../../GameItem/GameItemInterface';
-import RoomName from '../../Map/RoomName';
 import GameObject from '../GameObject';
 import { tintShallow } from './tint';
 
 export default class SeaWeed extends GameObject {
   public static key = 'SeaWeed';
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-    roomName: RoomName,
-  ) {
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'waterDetails');
+
     // x and y offset!
-    super(scene, x + 4, y - 4, 'waterDetails', uuid, properties);
+    this.x += 4;
+    this.y -= 4;
 
     scene.anims.create({
       key: 'seaweed',
@@ -29,6 +24,6 @@ export default class SeaWeed extends GameObject {
       startFrame: Math.floor(Math.random() * 8),
     });
 
-    tintShallow(this, roomName);
+    tintShallow(this, gameItem.roomName);
   }
 }

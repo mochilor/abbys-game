@@ -1,5 +1,4 @@
 import GameItem from '../../../GameItem/GameItemInterface';
-import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
 
 export default class SpikePlatform extends GameObject {
@@ -19,15 +18,9 @@ export default class SpikePlatform extends GameObject {
 
   private startAt: number = null;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    roomName: RoomName,
-    uuid: string,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y + 2, 'spikePlatformImage', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'spikePlatformImage');
+    this.y += 2;
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
