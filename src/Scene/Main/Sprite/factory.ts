@@ -77,25 +77,6 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
 function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
-  let offsetX = 4;
-  let offsetY = 4;
-
-  if (ItemClass === Spike || ItemClass === Cannon) {
-    if (Math.abs(gameItem.rotation) === 180) { // V
-      offsetX *= -1;
-      offsetY *= -1;
-    } else if (gameItem.rotation === -90 || gameItem.rotation === 270) { // <
-      offsetX *= -1;
-    } else if (gameItem.rotation === 0) { // ^
-      //
-    } else if (gameItem.rotation === 90) { // >
-      offsetY *= -1;
-    }
-  }
-
-  gameItem.x += offsetX;
-  gameItem.y -= offsetY;
-
   return new ItemClass(scene, gameItem);
 }
 

@@ -27,9 +27,6 @@ export default class Spear extends EnemyGameObject {
     this.type = angle === 0 || angle === 180 ? 'y' : 'x';
     this.setAngle(angle);
 
-    const offsetY = 4;
-    const offsetX = 4;
-
     this.body.setSize(3, 22);
 
     /**
@@ -42,24 +39,18 @@ export default class Spear extends EnemyGameObject {
      * - bottom: 8
      */
 
-    if (Math.abs(angle) === 180) { // V
-      this.x -= offsetX;
-      this.y += offsetY;
+    this.fixOffsetBasedOnRotation();
+
+    if (Math.abs(gameItem.rotation) === 180) { // V
       this.body.setOffset(1, 8);
-    } else if (angle === -90 || angle === 270) { // <
-      this.x -= offsetX;
-      this.y -= offsetY;
+    } else if (gameItem.rotation === -90 || gameItem.rotation === 270) { // <
       this.setHorizontalBody();
       this.reverseCrop = true;
       this.body.setOffset(-11, 14);
-    } else if (angle === 0) { // ^
-      this.x += offsetX;
-      this.y -= offsetY;
+    } else if (gameItem.rotation === 0) { // ^
       this.reverseCrop = true;
       this.body.setOffset(1, 1);
-    } else if (angle === 90) { // >
-      this.x += offsetX;
-      this.y += offsetY;
+    } else if (gameItem.rotation === 90) { // >
       this.setHorizontalBody();
       this.body.setOffset(-5, 14);
     }

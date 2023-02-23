@@ -19,14 +19,16 @@ export default class CannonBall extends EnemyGameObject {
   constructor(scene: Phaser.Scene, gameItem: GameItem, deactivable: boolean) {
     super(scene, gameItem, 'objects');
 
-    this.startingX = gameItem.x;
-    this.startingY = gameItem.y;
-
     scene.physics.world.enable(this);
     this.body.setImmovable();
     this.body.setSize(6, 6);
 
     this.setFrame(9);
+
+    this.fixOffsetBasedOnRotation();
+
+    this.startingX = this.x;
+    this.startingY = this.y;
 
     const angle = gameItem.rotation;
 

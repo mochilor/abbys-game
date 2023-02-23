@@ -24,6 +24,28 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
     this.gameItem = gameItem;
   }
 
+  protected fixOffsetBasedOnRotation(): void {
+    if (this.gameItem.rotation === 0) { // ^
+      return;
+    }
+
+    const offset = 8;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (Math.abs(this.gameItem.rotation) === 180) { // V
+      offsetX = -offset;
+      offsetY = offset;
+    } else if (this.gameItem.rotation === -90 || this.gameItem.rotation === 270) { // <
+      offsetX = -offset;
+    } else if (this.gameItem.rotation === 90) { // >
+      offsetY = offset;
+    }
+
+    this.x += offsetX;
+    this.y += offsetY;
+  }
+
   protected getProperty(name: string): GameItem['properties'][number] | null {
     for (let n = 0; n < this.properties.length; n += 1) {
       if (this.properties[n].name === name) {

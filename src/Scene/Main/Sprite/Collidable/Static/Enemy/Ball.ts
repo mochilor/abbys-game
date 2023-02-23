@@ -22,8 +22,8 @@ export default class Ball extends EnemyGameObject {
     scene.physics.world.enable(this);
     this.body.setImmovable();
     this.ballAngle = Math.PI * 0.8;
-    this.startingX = gameItem.x;
-    this.startingY = gameItem.y;
+    this.startingX = this.x;
+    this.startingY = this.y;
     // this.setOrigin();
   }
 

@@ -11,6 +11,8 @@ export default class Cannon extends GameObject {
     super(scene, gameItem, 'objects');
     this.setAngle(gameItem.rotation);
     this.setFrame(8);
+
+    this.fixOffsetBasedOnRotation();
   }
 
   public setup(): void {

@@ -37,6 +37,8 @@ export default class Spike extends GameObject {
       this.setVisible(false);
       this.activable = this.getProperty('activable').value === '1';
     }
+
+    this.fixOffsetBasedOnRotation();
   }
 
   public isFacingUp(): boolean {
