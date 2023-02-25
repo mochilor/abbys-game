@@ -16,7 +16,6 @@ import SeaWeed from './Decoration/SeaWeed';
 import Spear from './Collidable/Static/Enemy/Spear';
 import Ball from './Collidable/Static/Enemy/Ball';
 import Portal from './Collidable/Static/Portal';
-import RoomName from '../Map/RoomName';
 import Spring from './Collidable/Static/Spring';
 import SmallFish from './Decoration/SmallFish';
 import BigFish from './Decoration/BigFish';
@@ -65,8 +64,7 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
 
   const player = new Player(
     scene,
-    playerItem.x,
-    playerItem.y,
+    playerItem,
     controller,
     new Backpack(playerItem.properties),
   );
@@ -79,101 +77,7 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
 function makeSingleSprite(scene: Phaser.Scene, gameItem: GameItem): GameObject {
   const ItemClass = dynamicItemClasses[gameItem.id] ?? staticItemClasses[gameItem.id];
 
-  const offset = 4;
-
-  if (ItemClass === Spike || ItemClass === Cannon) {
-    let offsetY: number;
-    let offsetX: number;
-
-    if (Math.abs(gameItem.rotation) === 180) { // V
-      offsetX = -offset;
-      offsetY = -offset;
-    } else if (gameItem.rotation === -90 || gameItem.rotation === 270) { // <
-      offsetX = -offset;
-      offsetY = offset;
-    } else if (gameItem.rotation === 0) { // ^
-      offsetX = offset;
-      offsetY = offset;
-    } else if (gameItem.rotation === 90) { // >
-      offsetY = -offset;
-      offsetX = offset;
-    }
-
-    return new ItemClass(
-      scene,
-      gameItem.x + offsetX,
-      gameItem.y - offsetY,
-      gameItem.rotation,
-      gameItem.properties,
-    );
-  }
-
-  if (ItemClass === Spear) {
-    return new Spear(
-      scene,
-      gameItem.x,
-      gameItem.y,
-      gameItem.rotation,
-    );
-  }
-
-  if (ItemClass === Ball) {
-    let radius = 0;
-
-    gameItem.properties.forEach((property) => {
-      if (property.name === 'radius') {
-        radius = parseInt(property.value as string, 10);
-      }
-    });
-
-    return new Ball(
-      scene,
-      gameItem.x + offset,
-      gameItem.y - offset,
-      radius,
-    );
-  }
-
-  if (ItemClass === Portal) {
-    let x: number;
-    let y: number;
-    let room: RoomName;
-
-    gameItem.properties.forEach((property) => {
-      if (property.name === 'destinationRoom') {
-        room = RoomName.fromName(property.value as string);
-      }
-
-      if (property.name === 'destinationX') {
-        x = parseInt(property.value as string, 10);
-      }
-
-      if (property.name === 'destinationY') {
-        y = parseInt(property.value as string, 10);
-      }
-    });
-
-    if (!room || !x || !y) {
-      throw new Error('Invalid portal destination');
-    }
-
-    return new Portal(
-      scene,
-      gameItem.x + 4,
-      gameItem.y - 4,
-      { room, x, y },
-      gameItem.roomName,
-    );
-  }
-
-  return new ItemClass(
-    scene,
-    gameItem.x + offset,
-    gameItem.y - offset,
-    gameItem.uuid,
-    gameItem.properties,
-    gameItem.roomName,
-  );
+  return new ItemClass(scene, gameItem);
 }
 
 function makeSprites(

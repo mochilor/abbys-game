@@ -7,21 +7,43 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
 
   protected properties: GameItem['properties'] = [];
 
+  protected gameItem: GameItem;
+
   // Don't add type here to prevent crash on code coverage
   public body;
 
   constructor(
     scene: Phaser.Scene,
-    x: number,
-    y: number,
+    gameItem: GameItem,
     texture: string,
-    uuid: string = '',
-    properties: GameItem['properties'] = [],
   ) {
-    super(scene, x, y, texture);
+    super(scene, gameItem.x, gameItem.y, texture);
     scene.add.existing(this);
-    this.uuid = uuid;
-    this.properties = properties;
+    this.uuid = gameItem.uuid;
+    this.properties = gameItem.properties;
+    this.gameItem = gameItem;
+  }
+
+  protected fixOffsetBasedOnRotation(): void {
+    if (this.gameItem.rotation === 0) { // ^
+      return;
+    }
+
+    const offset = 8;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (Math.abs(this.gameItem.rotation) === 180) { // V
+      offsetX = -offset;
+      offsetY = offset;
+    } else if (this.gameItem.rotation === -90 || this.gameItem.rotation === 270) { // <
+      offsetX = -offset;
+    } else if (this.gameItem.rotation === 90) { // >
+      offsetY = offset;
+    }
+
+    this.x += offsetX;
+    this.y += offsetY;
   }
 
   protected getProperty(name: string): GameItem['properties'][number] | null {

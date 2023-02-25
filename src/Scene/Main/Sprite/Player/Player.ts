@@ -12,6 +12,7 @@ import Spring from '../Collidable/Static/Spring';
 import { Controller } from './controller';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import Conveyor from '../Collidable/Static/Conveyor';
+import GameItem from '../../GameItem/GameItemInterface';
 
 export default class Player extends GameObject {
   public static key = 'Player';
@@ -36,12 +37,11 @@ export default class Player extends GameObject {
 
   constructor(
     scene: Phaser.Scene,
-    x: number,
-    y: number,
+    gameItem: GameItem,
     controller: Controller,
     backpack: Backpack,
   ) {
-    super(scene, x, y, 'playerSpritesheet');
+    super(scene, gameItem, 'playerSpritesheet');
     scene.physics.world.enable(this);
     this.controller = controller;
     this.backpack = backpack;
@@ -59,8 +59,8 @@ export default class Player extends GameObject {
     });
 
     this.bubbles = [
-      createBubble(scene, x, y),
-      createBubble(scene, x, y),
+      createBubble(scene, this.x, this.y),
+      createBubble(scene, this.x, this.y),
     ];
   }
 

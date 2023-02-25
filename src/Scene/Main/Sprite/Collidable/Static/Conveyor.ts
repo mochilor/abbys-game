@@ -6,14 +6,8 @@ export default class Conveyor extends GameObject {
 
   private direction: integer;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    uuid: string,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'conveyorSpriteSheet', uuid, properties);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'conveyorSpriteSheet');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

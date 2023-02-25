@@ -30,14 +30,15 @@ export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & Ma
     const data = map.getObjectLayer('objects').objects;
     const result = [];
     const { firstgid } = map.getTileset('objects');
+    const offset = 4;
 
     data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
       if (itemId === mapItem.gid - firstgid + 1) {
         const item = {
           uuid: Phaser.Utils.String.UUID(),
           id: itemId,
-          x: mapItem.x,
-          y: mapItem.y,
+          x: mapItem.x + offset,
+          y: mapItem.y - offset,
           key: className,
           rotation: mapItem.rotation,
           roomName,

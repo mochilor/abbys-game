@@ -1,3 +1,4 @@
+import GameItem from '../../../../GameItem/GameItemInterface';
 import EnemyGameObject from './EnemyGameObject';
 
 export default class CannonBall extends EnemyGameObject {
@@ -15,17 +16,21 @@ export default class CannonBall extends EnemyGameObject {
 
   private deactivable: boolean;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, angle: integer, deactivable: boolean) {
-    super(scene, x, y, 'objects');
-
-    this.startingX = x;
-    this.startingY = y;
+  constructor(scene: Phaser.Scene, gameItem: GameItem, deactivable: boolean) {
+    super(scene, gameItem, 'objects');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
     this.body.setSize(6, 6);
 
     this.setFrame(9);
+
+    this.fixOffsetBasedOnRotation();
+
+    this.startingX = this.x;
+    this.startingY = this.y;
+
+    const angle = gameItem.rotation;
 
     // 1: ^
     // 2: >

@@ -7,16 +7,12 @@ export default class Cannon extends GameObject {
 
   private cannonBall: CannonBall;
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    angle: number,
-    properties: GameItem['properties'],
-  ) {
-    super(scene, x, y, 'objects', '', properties);
-    this.setAngle(angle);
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
+    this.setAngle(gameItem.rotation);
     this.setFrame(8);
+
+    this.fixOffsetBasedOnRotation();
   }
 
   public setup(): void {
@@ -25,7 +21,7 @@ export default class Cannon extends GameObject {
       deactivable = this.getProperty('deactivable').value === '1';
     }
 
-    this.cannonBall = new CannonBall(this.scene, this.x, this.y, this.angle, deactivable);
+    this.cannonBall = new CannonBall(this.scene, this.gameItem, deactivable);
   }
 
   public getCannonBall(): CannonBall {

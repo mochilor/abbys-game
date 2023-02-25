@@ -10,7 +10,7 @@ const config: Config = {
   transformIgnorePatterns: [
     'node_modules/(?!variables/.*)',
   ],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     './src/**',
     '!./src/Service/EventListener/buttonEventListeners.ts', // This file makes coverage to crash

@@ -1,3 +1,4 @@
+import GameItem from '../../../GameItem/GameItemInterface';
 import GameObject from '../../GameObject';
 
 export default class Spring extends GameObject {
@@ -7,8 +8,8 @@ export default class Spring extends GameObject {
 
   private isActivated: boolean = false;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, 'objects');
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'objects');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

@@ -1,7 +1,8 @@
+import GameItem from '../../../../GameItem/GameItemInterface';
 import EnemyGameObject from './EnemyGameObject';
 
 export default class Ball extends EnemyGameObject {
-  private radius: number;
+  private radius: integer;
 
   private ballAngle: number;
 
@@ -13,20 +14,24 @@ export default class Ball extends EnemyGameObject {
 
   private startingY: number;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, radius: number) {
-    super(scene, x, y, 'ballImage');
+  constructor(scene: Phaser.Scene, gameItem: GameItem) {
+    super(scene, gameItem, 'ballImage');
 
-    this.radius = radius;
+    this.radius = parseInt(this.getProperty('radius')?.value as string ?? '0', 10);
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
     this.ballAngle = Math.PI * 0.8;
-    this.startingX = x;
-    this.startingY = y;
+    this.startingX = this.x;
+    this.startingY = this.y;
     // this.setOrigin();
   }
 
   public update(): void {
+    if (this.radius === 0) {
+      return;
+    }
+
     // // https://editor.p5js.org/codingtrain/sketches/SN-39sHAC
 
     const force: number = -Math.sin(this.ballAngle) / 18;
