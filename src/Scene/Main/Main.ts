@@ -17,11 +17,6 @@ interface Data {
   y: number,
 }
 
-interface Title {
-  update: () => void,
-  quit: () => void,
-}
-
 function getRoomName(data?: Data): RoomName {
   if (data && Object.keys(data).length > 0) {
     return new RoomName(data.x, data.y);
@@ -47,8 +42,6 @@ export default class Main extends Phaser.Scene {
 
   private mapManager: MapManager;
 
-  private title: Title = null;
-
   constructor() {
     super({ key: 'Main' });
   }
@@ -56,22 +49,7 @@ export default class Main extends Phaser.Scene {
   public create(data?: Data): void {
     EventDispatcher.removeAllListeners();
 
-    const coinsTotal = this.registry.get('coinsTotal');
-    if (coinsTotal) {
-      CoinCounter.init(coinsTotal);
-      this.registry.remove('coinsTotal');
-    }
-    CoinCounter.reset();
-
-    let startGame = false;
-
-    if (this.registry.get('start')) {
-      this.title = createTitle(this.cameras.main, this);
-      this.registry.remove('start');
-      listenTitleEvents(this.title);
-      startGame = true;
-    }
-
+    this.initCoins();
     addDebugContainer();
     listenDebugEvents();
 
@@ -79,10 +57,6 @@ export default class Main extends Phaser.Scene {
     const map = this.add.tilemap(roomName.getName());
     if (map.layers.length === 0) {
       throw new Error(`Non existing room: ${roomName.getName()}`);
-    }
-
-    if (!map.getObjectLayer('objects')) {
-      // alert('Oops, estás fuera!');
     }
 
     this.spriteManager = new SpriteManager(this);
@@ -104,19 +78,34 @@ export default class Main extends Phaser.Scene {
 
     setupBackground(this, roomName);
 
-    this.spriteManager.getPlayer().initBackpack();
+    const player = this.spriteManager.getPlayer();
 
-    EventDispatcher.on(
-      'playerUnfrozen',
-      this.spriteManager.getPlayer().unfreeze,
-      this.spriteManager.getPlayer(),
-    );
-
-    if (!startGame) {
-      EventDispatcher.emit('playerUnfrozen');
-    }
+    player.initBackpack();
+    EventDispatcher.on('playerUnfrozen', player.unfreeze, player);
     EventDispatcher.on('playerHasDied', this.playerHasDied, this);
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
+
+    this.createTitle();
+  }
+
+  private initCoins(): void {
+    const coinsTotal = this.registry.get('coinsTotal');
+    if (coinsTotal) {
+      CoinCounter.init(coinsTotal);
+      this.registry.remove('coinsTotal');
+    }
+    CoinCounter.reset();
+  }
+
+  private createTitle(): void {
+    if (this.registry.get('start')) {
+      const title = createTitle(this.cameras.main, this);
+      this.registry.remove('start');
+      listenTitleEvents(title);
+      return;
+    }
+
+    EventDispatcher.emit('playerUnfrozen');
   }
 
   private playerHasDied(): void {
@@ -127,8 +116,5 @@ export default class Main extends Phaser.Scene {
   update(time: number): void {
     this.mapManager.updateCurrentRoom(this.spriteManager.getPlayer());
     this.spriteManager.update(time);
-    if (this.title) {
-      this.title.update();
-    }
   }
 }

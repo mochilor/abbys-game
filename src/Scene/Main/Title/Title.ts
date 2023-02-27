@@ -10,6 +10,21 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     };
   }
 
+  const background = (() => {
+    const rectangle = scene.add.rectangle(
+      camera.scrollX,
+      camera.scrollY,
+      config.gameWidth,
+      config.gameHeight + 10,
+      0x000000,
+      0.75,
+    );
+    rectangle.setOrigin(0, 0);
+    rectangle.setDepth(1);
+
+    return rectangle;
+  })();
+
   const body = (() => {
     const position = getPositionFromCamera();
 
@@ -29,19 +44,22 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     EventDispatcher.emit('gameStarted');
   }
 
-  const buttonOffset = 32;
+  const buttonOffsetX = 40;
+  const buttonOffsey = 24;
 
   const newGameButton = createButton(
-    body.x - buttonOffset,
-    body.getBottomCenter().y + buttonOffset,
+    body.x - buttonOffsetX,
+    body.getBottomCenter().y + buttonOffsey,
     scene,
+    'NEW GAME',
     start,
   );
 
   const continueButton = createButton(
-    body.x + buttonOffset,
-    body.getBottomCenter().y + buttonOffset,
+    body.x + buttonOffsetX,
+    body.getBottomCenter().y + buttonOffsey,
     scene,
+    'CONTINUE',
     start,
   );
 
@@ -56,15 +74,36 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
 
     body.setX(position.x);
     body.setY(position.y);
+    background.setX(camera.scrollX);
+    background.setY(camera.scrollY);
 
-    newGameButton.updatePosition(body.x - buttonOffset, body.getBottomCenter().y + buttonOffset);
-    continueButton.updatePosition(body.x + buttonOffset, body.getBottomCenter().y + buttonOffset);
+    newGameButton.updatePosition(body.x - buttonOffsetX, body.getBottomCenter().y + buttonOffsey);
+    continueButton.updatePosition(body.x + buttonOffsetX, body.getBottomCenter().y + buttonOffsey);
   }
 
   function quit(): void {
-    body.destroy();
-    newGameButton.destroy();
-    continueButton.destroy();
+    scene.tweens.add({
+      targets: [
+        body,
+        newGameButton.body,
+        newGameButton.text,
+        continueButton.body,
+        continueButton.text,
+        background,
+      ],
+      duration: 300,
+      ease: 'linear',
+      props: {
+        y: '-=10',
+        alpha: 0,
+      },
+      onComplete: () => {
+        body.destroy();
+        newGameButton.destroy();
+        continueButton.destroy();
+      },
+    });
+
     active = false;
   }
 

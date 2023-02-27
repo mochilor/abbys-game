@@ -33,8 +33,14 @@
     "src": "^1.1.2",
     "ts-node": "^10.9.1"
   },
-  "staticFiles": {
-    "staticPath": "tiled/maps",
-    "staticOutPath": "maps"
-  }
+  "staticFiles": [
+    {
+      "staticPath": "tiled/maps",
+      "staticOutPath": "maps"
+    },
+    {
+      "staticPath": "xml",
+      "staticOutPath": "xml"
+    }
+  ]
 }

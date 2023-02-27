@@ -13,6 +13,7 @@ import smallFishSpritesheet from '../../../assets/img/background/fish.png';
 import bigFishSpriteSheetPath from '../../../assets/img/background/fish-2.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
+import font from '../../../assets/font/font.png';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -35,8 +36,12 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('playerSpritesheet', playerSpriteSheetPath, { frameWidth: 14, frameHeight: 21 });
     this.load.spritesheet('conveyorSpriteSheet', conveyorSpriteSheetPath, { frameWidth: 8, frameHeight: 8 });
 
+    // dist folder local path (workaround to load xml file path correctly here)
+    // thanks to parcel-reporter-static-files-copy plugin
+    this.load.bitmapFont('font', font, './xml/font.xml');
+
     mapFiles().forEach((element: string[]) => {
-      // dist folder local path:
+      // dist folder local path
       const file = `./maps/${element[1]}`;
       this.load.tilemapTiledJSON(element[0], file);
     });
