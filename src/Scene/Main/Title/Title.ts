@@ -45,21 +45,21 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
   }
 
   const buttonOffsetX = 40;
-  const buttonOffsey = 24;
+  const buttonOffsety = 24;
 
   const newGameButton = createButton(
     body.x - buttonOffsetX,
-    body.getBottomCenter().y + buttonOffsey,
+    body.getBottomCenter().y + buttonOffsety,
     scene,
-    'NEW GAME',
+    'New game',
     start,
   );
 
   const continueButton = createButton(
     body.x + buttonOffsetX,
-    body.getBottomCenter().y + buttonOffsey,
+    body.getBottomCenter().y + buttonOffsety,
     scene,
-    'CONTINUE',
+    'Continue',
     start,
   );
 
@@ -77,8 +77,8 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     background.setX(camera.scrollX);
     background.setY(camera.scrollY);
 
-    newGameButton.updatePosition(body.x - buttonOffsetX, body.getBottomCenter().y + buttonOffsey);
-    continueButton.updatePosition(body.x + buttonOffsetX, body.getBottomCenter().y + buttonOffsey);
+    newGameButton.updatePosition(body.x - buttonOffsetX, body.getBottomCenter().y + buttonOffsety);
+    continueButton.updatePosition(body.x + buttonOffsetX, body.getBottomCenter().y + buttonOffsety);
   }
 
   function quit(): void {

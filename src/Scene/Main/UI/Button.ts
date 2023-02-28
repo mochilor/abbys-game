@@ -9,7 +9,7 @@ export default function createButton(
     x,
     y,
     64,
-    16,
+    17,
     0x991133,
   );
   body.setDepth(1);
