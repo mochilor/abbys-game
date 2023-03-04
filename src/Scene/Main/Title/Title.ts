@@ -25,19 +25,17 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     return rectangle;
   })();
 
-  const body = (() => {
+  const logo = (() => {
     const position = getPositionFromCamera();
 
-    const rectangle = scene.add.rectangle(
+    const image = scene.add.image(
       position.x,
       position.y,
-      config.gameWidth * 0.8,
-      config.gameHeight * 0.3,
-      0x991133,
+      'titleImage',
     );
-    rectangle.setDepth(1);
+    image.setDepth(1);
 
-    return rectangle;
+    return image;
   })();
 
   function start(): void {
@@ -48,16 +46,16 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
   const buttonOffsety = 24;
 
   const newGameButton = createButton(
-    body.x - buttonOffsetX,
-    body.getBottomCenter().y + buttonOffsety,
+    logo.x - buttonOffsetX,
+    logo.getBottomCenter().y + buttonOffsety,
     scene,
     'New game',
     start,
   );
 
   const continueButton = createButton(
-    body.x + buttonOffsetX,
-    body.getBottomCenter().y + buttonOffsety,
+    logo.x + buttonOffsetX,
+    logo.getBottomCenter().y + buttonOffsety,
     scene,
     'Continue',
     start,
@@ -72,19 +70,19 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
 
     const position = getPositionFromCamera();
 
-    body.setX(position.x);
-    body.setY(position.y);
+    logo.setX(position.x);
+    logo.setY(position.y);
     background.setX(camera.scrollX);
     background.setY(camera.scrollY);
 
-    newGameButton.updatePosition(body.x - buttonOffsetX, body.getBottomCenter().y + buttonOffsety);
-    continueButton.updatePosition(body.x + buttonOffsetX, body.getBottomCenter().y + buttonOffsety);
+    newGameButton.updatePosition(logo.x - buttonOffsetX, logo.getBottomCenter().y + buttonOffsety);
+    continueButton.updatePosition(logo.x + buttonOffsetX, logo.getBottomCenter().y + buttonOffsety);
   }
 
   function quit(): void {
     scene.tweens.add({
       targets: [
-        body,
+        logo,
         newGameButton.body,
         newGameButton.text,
         continueButton.body,
@@ -98,7 +96,7 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
         alpha: 0,
       },
       onComplete: () => {
-        body.destroy();
+        logo.destroy();
         newGameButton.destroy();
         continueButton.destroy();
       },

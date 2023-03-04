@@ -12,6 +12,7 @@ import bgUnderwaterPath from '../../../assets/img/background/bg-underwater.png';
 import smallFishSpritesheet from '../../../assets/img/background/fish.png';
 import bigFishSpriteSheetPath from '../../../assets/img/background/fish-2.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
+import title from '../../../assets/img/title/title.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
 
@@ -29,6 +30,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image('platformImage', platformImagePath);
     this.load.image('spikePlatformImage', spikePlatformImagePath);
     this.load.image('bgUnderwater', bgUnderwaterPath);
+    this.load.image('titleImage', title);
     this.load.spritesheet('smallFishSpritesheet', smallFishSpritesheet, { frameWidth: 8, frameHeight: 7 });
     this.load.spritesheet('bigFishSpritesheet', bigFishSpriteSheetPath, { frameWidth: 12, frameHeight: 10 });
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
