@@ -1,8 +1,14 @@
 import config from '../../../../config/config.json';
 import createButton from '../UI/Button';
 import * as EventDispatcher from '../../../Service/EventDispatcher';
+import closeUIElement from '../UI/ClosingAnimation';
+import createMenu from '../UI/Menu';
 
-export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene: Phaser.Scene) {
+export default function createTitle(
+  camera: Phaser.Cameras.Scene2D.Camera,
+  scene: Phaser.Scene,
+  hasSavedGame: boolean,
+) {
   function getPositionFromCamera() {
     return {
       x: camera.scrollX + config.gameWidth / 2,
@@ -38,27 +44,41 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     return image;
   })();
 
-  function start(): void {
-    EventDispatcher.emit('gameStarted');
+  function newGame(): void {
+    EventDispatcher.emit('newGameButtonPressed');
   }
 
-  const buttonOffsetX = 40;
-  const buttonOffsety = 24;
+  function confirm(): void {
+    EventDispatcher.emit('confirmButtonPressed');
+  }
+
+  function cancel(): void {
+    EventDispatcher.emit('cancelButtonPressed');
+  }
+
+  function continueGame(): void {
+    EventDispatcher.emit('continueButtonPressed');
+  }
+
+  const buttonOffsetX = 42;
+  const buttonOffsetY = 22;
 
   const newGameButton = createButton(
     logo.x - buttonOffsetX,
-    logo.getBottomCenter().y + buttonOffsety,
+    logo.getBottomCenter().y + buttonOffsetY,
     scene,
     'New game',
-    start,
+    true,
+    newGame,
   );
 
   const continueButton = createButton(
     logo.x + buttonOffsetX,
-    logo.getBottomCenter().y + buttonOffsety,
+    logo.getBottomCenter().y + buttonOffsetY,
     scene,
     'Continue',
-    start,
+    hasSavedGame,
+    continueGame,
   );
 
   let active = true;
@@ -75,35 +95,56 @@ export default function createTitle(camera: Phaser.Cameras.Scene2D.Camera, scene
     background.setX(camera.scrollX);
     background.setY(camera.scrollY);
 
-    newGameButton.updatePosition(logo.x - buttonOffsetX, logo.getBottomCenter().y + buttonOffsety);
-    continueButton.updatePosition(logo.x + buttonOffsetX, logo.getBottomCenter().y + buttonOffsety);
+    newGameButton.updatePosition(logo.x - buttonOffsetX, logo.getBottomCenter().y + buttonOffsetY);
+    continueButton.updatePosition(logo.x + buttonOffsetX, logo.getBottomCenter().y + buttonOffsetY);
   }
 
   function quit(): void {
-    scene.tweens.add({
-      targets: [
+    closeUIElement(
+      scene,
+      [
         logo,
-        newGameButton.body,
-        newGameButton.text,
-        continueButton.body,
-        continueButton.text,
+        ...newGameButton.contents(),
+        ...continueButton.contents(),
         background,
       ],
-      duration: 300,
-      ease: 'linear',
-      props: {
-        y: '-=10',
-        alpha: 0,
-      },
-      onComplete: () => {
-        logo.destroy();
-        newGameButton.destroy();
-        continueButton.destroy();
-      },
-    });
+    );
 
     active = false;
   }
 
-  return { update, quit };
+  function showAlertText(): void {
+    const menu = createMenu(
+      logo.getBottomCenter().x,
+      logo.getBottomCenter().y + (buttonOffsetY * 2.5),
+      scene,
+      'Are you sure? Your previous game will be lost',
+    );
+
+    newGameButton.disable();
+    continueButton.disable();
+
+    const confirmButton = createButton(
+      0,
+      0,
+      scene,
+      'Confirm',
+      true,
+      confirm,
+    );
+
+    const cancelButton = createButton(
+      0,
+      0,
+      scene,
+      'Cancel',
+      true,
+      cancel,
+    );
+
+    menu.addButton(...confirmButton.contents());
+    menu.addButton(...cancelButton.contents());
+  }
+
+  return { update, quit, showAlertText };
 }

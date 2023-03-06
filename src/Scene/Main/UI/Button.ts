@@ -3,6 +3,7 @@ export default function createButton(
   y: integer,
   scene: Phaser.Scene,
   textString: string,
+  enabled: boolean,
   callback: CallableFunction,
 ) {
   const body = scene.add.rectangle(
@@ -10,7 +11,6 @@ export default function createButton(
     y,
     64,
     17,
-    0x991133,
   );
   body.setDepth(1);
 
@@ -18,16 +18,25 @@ export default function createButton(
     .setOrigin(0.5, 0.4)
     .setDepth(2);
 
-  const active = true;
-
   body.setInteractive({ useHandCursor: true });
-  body.on('pointerdown', () => {
-    if (!active) {
-      return;
-    }
+  body.on('pointerdown', () => callback());
 
-    callback();
-  });
+  function enable(): void {
+    text.setAlpha(1);
+    body.setFillStyle(0x385762);
+  }
+
+  function disable(): void {
+    text.setAlpha(0.5);
+    body.setFillStyle(0x818181);
+    body.disableInteractive();
+  }
+
+  enable();
+
+  if (!enabled) {
+    disable();
+  }
 
   function updatePosition(newX: integer, newY: integer): void {
     body.setX(newX);
@@ -36,15 +45,14 @@ export default function createButton(
     text.setY(newY);
   }
 
-  function destroy(): void {
-    body.destroy();
-    text.destroy();
+  function contents(): [Phaser.GameObjects.Rectangle, Phaser.GameObjects.BitmapText] {
+    return [body, text];
   }
 
   return {
     updatePosition,
-    destroy,
-    body,
-    text,
+    enable,
+    disable,
+    contents,
   };
 }

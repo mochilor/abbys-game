@@ -1,20 +1,38 @@
 import * as EventDispatcher from '../EventDispatcher';
+import { hasSavedGame, resetGame } from '../gameStore';
 
 interface Title {
   quit: () => void,
   update: () => void,
+  showAlertText: () => void,
 }
 
 export default function listenTitleEvents(title: Title): void {
-  function startGame(): void {
+  function continueGame(): void {
     title.quit();
     EventDispatcher.emit('playerUnfrozen');
+  }
+
+  function newGame(): void {
+    if (!hasSavedGame()) {
+      continueGame();
+      return;
+    }
+
+    title.showAlertText();
+  }
+
+  function confirm(): void {
+    resetGame();
+    EventDispatcher.emit('gameReset');
   }
 
   function centerTitle(): void {
     title.update();
   }
 
-  EventDispatcher.on('gameStarted', startGame);
+  EventDispatcher.on('continueButtonPressed', continueGame);
+  EventDispatcher.on('newGameButtonPressed', newGame);
+  EventDispatcher.on('confirmButtonPressed', confirm);
   EventDispatcher.on('cameraUpdated', centerTitle);
 }

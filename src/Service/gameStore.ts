@@ -18,12 +18,16 @@ function loadGame(): SavedGame | null {
   return parsedSaveFile;
 }
 
+function hasSavedGame(): boolean {
+  return loadGame() !== null;
+}
+
 function saveGame(
   gameItemCollection: GameItemCollection,
   playerItem: GameItem,
   roomName: RoomName,
   sceneRegistry: Phaser.Data.DataManager,
-) {
+): void {
   const dataToSave = {
     gameItems: [{
       room: {
@@ -59,7 +63,13 @@ function saveGame(
   localStorage.setItem(fileName, JSON.stringify(dataToSave));
 }
 
+function resetGame(): void {
+  localStorage.clear();
+}
+
 export {
   saveGame,
+  hasSavedGame,
   loadGame,
+  resetGame,
 };

@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import MapManager from './Map/MapManager';
 import SpriteManager from './Sprite/Manager/SpriteManager';
 import * as EventDispatcher from '../../Service/EventDispatcher';
-import { loadGame } from '../../Service/gameStore';
+import { hasSavedGame, loadGame } from '../../Service/gameStore';
 import RoomName from './Map/RoomName';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
 import * as CoinCounter from './GameItem/CoinCounter/CoinCounter';
@@ -82,7 +82,8 @@ export default class Main extends Phaser.Scene {
 
     player.initBackpack();
     EventDispatcher.on('playerUnfrozen', player.unfreeze, player);
-    EventDispatcher.on('playerHasDied', this.playerHasDied, this);
+    EventDispatcher.on('playerHasDied', this.reset, this);
+    EventDispatcher.on('gameReset', this.reset, this);
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
 
     this.createTitle();
@@ -99,7 +100,7 @@ export default class Main extends Phaser.Scene {
 
   private createTitle(): void {
     if (this.registry.get('start')) {
-      const title = createTitle(this.cameras.main, this);
+      const title = createTitle(this.cameras.main, this, hasSavedGame());
       this.registry.remove('start');
       listenTitleEvents(title);
       return;
@@ -108,7 +109,7 @@ export default class Main extends Phaser.Scene {
     EventDispatcher.emit('playerUnfrozen');
   }
 
-  private playerHasDied(): void {
+  private reset(): void {
     this.registry.reset();
     this.scene.restart({});
   }
