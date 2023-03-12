@@ -1,4 +1,4 @@
-import GameItem from '../../../../GameItem/types';
+import { GameItem } from '../../../../GameItem/types';
 import EnemyGameObject from './EnemyGameObject';
 
 export default class Ball extends EnemyGameObject {

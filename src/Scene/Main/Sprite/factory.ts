@@ -20,6 +20,7 @@ import SpikePlatform from './Collidable/Static/SpikePlatform';
 import Conveyor from './Collidable/Static/Conveyor';
 import Cannon from './Collidable/Static/Enemy/Cannon';
 import { GameItem, GameItemCollection, StaticGameItemCollection } from '../GameItem/types';
+import Crab from './Collidable/Static/Enemy/Crab';
 
 const playerItemClass = {
   2: Player,
@@ -45,6 +46,7 @@ const staticItemClasses = {
   18: SpikePlatform,
   19: Conveyor,
   20: Cannon,
+  21: Crab,
 };
 
 const mapEventItemClasses = {

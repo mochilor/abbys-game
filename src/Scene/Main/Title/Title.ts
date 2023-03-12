@@ -10,13 +10,6 @@ export default function createTitle(
   scene: Phaser.Scene,
   hasSavedGame: boolean,
 ): Title {
-  function getPositionFromCamera() {
-    return {
-      x: camera.scrollX + config.gameWidth / 2,
-      y: camera.scrollY + config.gameHeight / 3,
-    };
-  }
-
   const background = (() => {
     const rectangle = scene.add.rectangle(
       camera.scrollX,
@@ -34,7 +27,10 @@ export default function createTitle(
   })();
 
   const logo = (() => {
-    const position = getPositionFromCamera();
+    const position = {
+      x: camera.scrollX + config.gameWidth / 2,
+      y: camera.scrollY + config.gameHeight / 3,
+    };
 
     const image = scene.add.image(
       position.x,

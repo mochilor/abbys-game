@@ -1,4 +1,4 @@
-import GameItem from '../../../../GameItem/types';
+import { GameItem } from '../../../../GameItem/types';
 import GameObject from '../../../GameObject';
 import CannonBall from './CannonBall';
 

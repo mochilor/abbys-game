@@ -13,6 +13,7 @@ import { makeSpriteStore, SpriteStore } from './SpriteStore';
 import setupColliders from './SpriteCollider';
 import { GameItemLocator, MapGameItemLocator } from '../../GameItem/types';
 import makeGameItemHandler from './GameItemHandler';
+import Crab from '../Collidable/Static/Enemy/Crab';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -72,6 +73,20 @@ export default class SpriteManager {
     return this.spritesStore.cannonBalls;
   }
 
+  public getCrabsGroup() {
+    const { enemies } = this.spritesStore;
+
+    const crabs = [];
+
+    enemies.forEach((enemy: EnemyGameObject) => {
+      if (enemy instanceof Crab) {
+        crabs.push(enemy);
+      }
+    });
+
+    return crabs;
+  }
+
   public update(time: number): void {
     this.spritesStore.platforms.forEach((child: Platform) => {
       child.update();
@@ -80,7 +95,7 @@ export default class SpriteManager {
       child.update(time);
     });
     this.spritesStore.enemies.forEach((child: EnemyGameObject) => {
-      child.update();
+      child.update(time);
     });
     this.spritesStore.cannonBalls.forEach((child: CannonBall) => {
       child.update(time);
