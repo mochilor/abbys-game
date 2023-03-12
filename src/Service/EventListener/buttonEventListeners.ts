@@ -78,7 +78,7 @@ function button2Activated(): void {
 
   const eventGameItem = eventGameItemArray[0];
 
-  const newPlatform = Platform.makeAdditional(gameScene, eventGameItem.x, eventGameItem.y);
+  const newPlatform = Platform.makeAdditional(gameScene, eventGameItem);
 
   gameScene.physics.add.collider(
     playerSprite,

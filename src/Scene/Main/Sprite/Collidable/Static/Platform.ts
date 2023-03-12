@@ -82,10 +82,6 @@ export default class Platform extends GameObject {
    */
   public static makeAdditional(scene: Phaser.Scene, gameItem: GameItem): Platform {
     const platform = new Platform(scene, gameItem);
-    // Offeset should be centralized somehow:
-    const offset = 4;
-    platform.x += offset;
-    platform.y -= offset;
     platform.setDepth(-1);
 
     return platform;
