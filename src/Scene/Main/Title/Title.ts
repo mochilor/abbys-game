@@ -3,12 +3,13 @@ import createButton from '../UI/Button';
 import * as EventDispatcher from '../../../Service/EventDispatcher';
 import closeUIElement from '../UI/ClosingAnimation';
 import createMenu from '../UI/Menu';
+import Title from './types';
 
 export default function createTitle(
   camera: Phaser.Cameras.Scene2D.Camera,
   scene: Phaser.Scene,
   hasSavedGame: boolean,
-) {
+): Title {
   function getPositionFromCamera() {
     return {
       x: camera.scrollX + config.gameWidth / 2,

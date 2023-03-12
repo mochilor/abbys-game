@@ -1,4 +1,4 @@
-import GameItem from '../Scene/Main/GameItem/GameItemInterface';
+import { GameItem } from '../Scene/Main/GameItem/types';
 
 export default interface SavedGame {
   gameItems: {

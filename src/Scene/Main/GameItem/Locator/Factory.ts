@@ -1,5 +1,4 @@
-import GameItemLocator from '../GameItemLocatorInterface';
-import MapGameItemLocator from '../MapGameItemLocatorInterface';
+import { GameItemLocator, MapGameItemLocator } from '../types';
 import makeInMemory from './InMemoryLocator';
 import makeMap from './MapLocator';
 import makeSaveGame from './SaveGameLocator';

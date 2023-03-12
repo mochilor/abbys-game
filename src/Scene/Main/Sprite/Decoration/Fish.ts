@@ -1,5 +1,5 @@
 import GameObject from '../GameObject';
-import GameItem from '../../GameItem/GameItemInterface';
+import { GameItem } from '../../GameItem/types';
 
 export default abstract class Fish extends GameObject {
   protected orientation: number;

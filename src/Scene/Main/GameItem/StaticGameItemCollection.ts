@@ -1,13 +1,9 @@
-import GameItem from './GameItemInterface';
+import { GameItem, StaticGameItemCollection } from './types';
 
-export default class StaticGameItemCollection {
-  private items: GameItem[];
-
-  constructor(items: GameItem[]) {
-    this.items = items;
-  }
-
-  public getItems(): GameItem[] {
-    return this.items;
-  }
+export default function make(items: GameItem[]): StaticGameItemCollection {
+  return {
+    getItems(): GameItem[] {
+      return items;
+    },
+  };
 }

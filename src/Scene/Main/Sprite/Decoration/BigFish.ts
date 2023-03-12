@@ -1,4 +1,4 @@
-import GameItem from '../../GameItem/GameItemInterface';
+import { GameItem } from '../../GameItem/types';
 import Fish from './Fish';
 import { tintShallow } from './tint';
 

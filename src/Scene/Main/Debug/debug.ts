@@ -1,6 +1,6 @@
 import config from '../../../../config/config.json';
 import * as CoinCounter from '../GameItem/CoinCounter/CoinCounter';
-import CoinZonesInterface from '../GameItem/CoinCounter/CoinZonesInterface';
+import { CoinZones } from '../GameItem/CoinCounter/types';
 
 let debugContainer = null;
 
@@ -95,7 +95,7 @@ function addDebugContainer(): void {
   debugContainer = document.body.appendChild(container);
 }
 
-function updateDebugContainer(coinZones: CoinZonesInterface): void {
+function updateDebugContainer(coinZones: CoinZones): void {
   const caveCounter = counters.cave as HTMLTableCellElement;
   caveCounter.innerHTML = coinZones.cave.toString();
 

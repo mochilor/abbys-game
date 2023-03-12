@@ -1,7 +1,7 @@
 import Coin from '../Collidable/Dynamic/Coin';
 import * as EventDispatcher from '../../../../Service/EventDispatcher';
 import Save from '../Collidable/Static/Save';
-import GameItem from '../../GameItem/GameItemInterface';
+import { GameItem } from '../../GameItem/types';
 import GameObject from '../GameObject';
 import Button from '../Collidable/Dynamic/Button';
 

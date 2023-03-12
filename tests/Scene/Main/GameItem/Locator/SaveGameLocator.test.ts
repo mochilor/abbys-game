@@ -1,4 +1,3 @@
-import GameItemCollection from '../../../../../src/Scene/Main/GameItem/GameItemCollection';
 import makeSaveGameLocator from '../../../../../src/Scene/Main/GameItem/Locator/SaveGameLocator';
 import RoomName from '../../../../../src/Scene/Main/Map/RoomName';
 import * as gameStore from '../../../../../src/Service/gameStore';
@@ -110,7 +109,7 @@ describe('SaveGameLocator', () => {
 
     const result = locator.getGameItemCollection(roomName);
 
-    expect(result).toBeInstanceOf(GameItemCollection);
+    expect(result.getItems()).toStrictEqual([gameItemA, gameItemB]);
 
     expect(registry.items).toStrictEqual({
       '3_4': [gameItemA, gameItemB],

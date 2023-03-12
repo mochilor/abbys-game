@@ -1,8 +1,7 @@
-import GameItemCollection from '../Scene/Main/GameItem/GameItemCollection';
-import GameItem from '../Scene/Main/GameItem/GameItemInterface';
 import RoomName from '../Scene/Main/Map/RoomName';
 import SavedGame from './SavedGame';
 import { roomNames } from './mapStore';
+import { GameItemCollection, GameItem } from '../Scene/Main/GameItem/types';
 
 const fileName = 'cavegame.savefile';
 

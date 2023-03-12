@@ -1,9 +1,11 @@
-import GameItemCollection from '../../GameItem/GameItemCollection';
-import GameItem from '../../GameItem/GameItemInterface';
-import GameItemLocator from '../../GameItem/GameItemLocatorInterface';
-import MapEventsGameItemCollection from '../../GameItem/MapEventsGameItemCollection';
-import MapGameItemLocator from '../../GameItem/MapGameItemLocatorInterface';
-import StaticGameItemCollection from '../../GameItem/StaticGameItemCollection';
+import {
+  GameItemLocator,
+  MapGameItemLocator,
+  GameItemCollection,
+  GameItem,
+  StaticGameItemCollection,
+  MapEventsGameItemCollection,
+} from '../../GameItem/types';
 import RoomName from '../../Map/RoomName';
 
 export default function make(

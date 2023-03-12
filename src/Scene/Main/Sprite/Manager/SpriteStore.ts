@@ -1,6 +1,4 @@
-import GameItemCollection from '../../GameItem/GameItemCollection';
-import GameItem from '../../GameItem/GameItemInterface';
-import StaticGameItemCollection from '../../GameItem/StaticGameItemCollection';
+import { GameItemCollection, StaticGameItemCollection, GameItem } from '../../GameItem/types';
 import Button from '../Collidable/Dynamic/Button';
 import Door from '../Collidable/Dynamic/Door';
 import Conveyor from '../Collidable/Static/Conveyor';

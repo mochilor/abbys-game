@@ -1,5 +1,4 @@
-import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
-import MapEventsGameItemCollection from '../../Scene/Main/GameItem/MapEventsGameItemCollection';
+import { GameItem, MapEventsGameItemCollection } from '../../Scene/Main/GameItem/types';
 import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Player from '../../Scene/Main/Sprite/Player/Player';
 import CannonBall from '../../Scene/Main/Sprite/Collidable/Static/Enemy/CannonBall';

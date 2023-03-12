@@ -1,11 +1,6 @@
+import Title from '../../Scene/Main/Title/types';
 import * as EventDispatcher from '../EventDispatcher';
 import { hasSavedGame, resetGame } from '../gameStore';
-
-interface Title {
-  quit: () => void,
-  update: () => void,
-  showAlertText: () => void,
-}
 
 export default function listenTitleEvents(title: Title): void {
   function continueGame(): void {

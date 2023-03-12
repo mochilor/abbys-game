@@ -1,27 +1,23 @@
-import GameItem from './GameItemInterface';
+import { GameItem, MapEventsGameItemCollection } from './types';
 
-export default class MapEventsGameItemCollection {
-  private items: GameItem[];
-
-  constructor(items: GameItem[]) {
-    this.items = items;
+export default function make(items: GameItem[]): MapEventsGameItemCollection {
+  function getItems(): GameItem[] {
+    return items;
   }
 
-  public getItems(): GameItem[] {
-    return this.items;
-  }
+  function getItemByEventName(eventName: string): GameItem[] {
+    const foundItems = [];
 
-  public getItemByEventName(eventName: string): GameItem[] {
-    const items = [];
-
-    this.items.forEach((item: GameItem) => {
+    items.forEach((item: GameItem) => {
       for (let n = 0; n < item.properties.length; n += 1) {
         if (item.properties[n].name === eventName) {
-          items.push(item);
+          foundItems.push(item);
         }
       }
     });
 
-    return items;
+    return foundItems;
   }
+
+  return { getItems, getItemByEventName };
 }

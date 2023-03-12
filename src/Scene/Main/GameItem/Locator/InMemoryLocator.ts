@@ -1,7 +1,6 @@
 import RoomName from '../../Map/RoomName';
-import GameItemCollection from '../GameItemCollection';
-import GameItem from '../GameItemInterface';
-import GameItemLocator from '../GameItemLocatorInterface';
+import makeGameItemCollection from '../GameItemCollection';
+import { GameItemLocator, GameItem, GameItemCollection } from '../types';
 
 type DataManager = {
   get(name: string): any,
@@ -20,7 +19,7 @@ export default function make(registry: DataManager): GameItemLocator {
       storedData[n].roomName = room;
     }
 
-    return new GameItemCollection(storedData);
+    return makeGameItemCollection(storedData);
   }
 
   function getPlayerGameItem(): GameItem {

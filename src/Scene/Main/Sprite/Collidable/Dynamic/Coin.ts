@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import GameItem from '../../../GameItem/GameItemInterface';
+import { GameItem } from '../../../GameItem/types';
 import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
 

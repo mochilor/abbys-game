@@ -1,27 +1,16 @@
 import * as EventDispatcher from '../../../../Service/EventDispatcher';
 import RoomName from '../../Map/RoomName';
-import CoinsTotal from './CoinsTotal';
-import CoinZonesInterface from './CoinZonesInterface';
-
-type CoinCounter = {
-  caveTotalCoins(): integer,
-  pyramidTotalCoins(): integer,
-  baseTotalCoins(): integer,
-  caveCurrentCoins(): integer,
-  pyramidCurrentCoins(): integer,
-  baseCurrentCoins(): integer,
-  add(roomName: RoomName): void,
-};
+import { CoinCounter, CoinZones, CoinsTotal } from './types';
 
 let instance: CoinCounter = null;
 
-const totals: CoinZonesInterface = {
+const totals: CoinZones = {
   cave: 0,
   pyramid: 0,
   base: 0,
 };
 
-let current: CoinZonesInterface = {
+let current: CoinZones = {
   cave: 0,
   pyramid: 0,
   base: 0,

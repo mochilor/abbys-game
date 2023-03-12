@@ -1,6 +1,5 @@
-import GameItemCollection from '../../../../../src/Scene/Main/GameItem/GameItemCollection';
-import GameItem from '../../../../../src/Scene/Main/GameItem/GameItemInterface';
 import makeInMemoryLocator from '../../../../../src/Scene/Main/GameItem/Locator/InMemoryLocator';
+import { GameItem } from '../../../../../src/Scene/Main/GameItem/types';
 import RoomName from '../../../../../src/Scene/Main/Map/RoomName';
 
 const registry = {
@@ -53,7 +52,7 @@ describe('InMemoryLocator', () => {
 
     const result = locator.getGameItemCollection(roomName);
 
-    expect(result).toBeInstanceOf(GameItemCollection);
+    expect(result.getItems()).toStrictEqual([gameItem]);
   });
 
   test('The returned GameItemCollection contains a RoomName instance', () => {

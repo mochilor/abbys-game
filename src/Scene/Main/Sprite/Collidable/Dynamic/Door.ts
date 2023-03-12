@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import GameItem from '../../../GameItem/GameItemInterface';
+import { GameItem } from '../../../GameItem/types';
 import GameObject from '../../GameObject';
 
 export default class Door extends GameObject {

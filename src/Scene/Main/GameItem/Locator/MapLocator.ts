@@ -1,8 +1,6 @@
-import GameItemLocator from '../GameItemLocatorInterface';
-import GameItemCollection from '../GameItemCollection';
-import GameItem from '../GameItemInterface';
-import StaticGameItemCollection from '../StaticGameItemCollection';
-import MapEventsGameItemCollection from '../MapEventsGameItemCollection';
+import makeGameItemCollection from '../GameItemCollection';
+import makeStaticGameItemCollection from '../StaticGameItemCollection';
+import makeMapEventsGameItemCollection from '../MapEventsGameItemCollection';
 import {
   playerItemClass,
   dynamicItemClasses,
@@ -10,7 +8,14 @@ import {
   mapEventItemClasses,
 } from '../../Sprite/factory';
 import RoomName from '../../Map/RoomName';
-import MapGameItemLocator from '../MapGameItemLocatorInterface';
+import {
+  GameItem,
+  GameItemCollection,
+  GameItemLocator,
+  MapEventsGameItemCollection,
+  MapGameItemLocator,
+  StaticGameItemCollection,
+} from '../types';
 
 export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & MapGameItemLocator {
   function getItemId(className: string, itemClasses: object): integer {
@@ -65,17 +70,17 @@ export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & Ma
 
   function getGameItemCollection(room: RoomName): GameItemCollection {
     const items = getGameItems(dynamicItemClasses, room);
-    return new GameItemCollection(items);
+    return makeGameItemCollection(items);
   }
 
   function getStaticGameItemCollection(room: RoomName): StaticGameItemCollection {
     const items = getGameItems(staticItemClasses, room);
-    return new StaticGameItemCollection(items);
+    return makeStaticGameItemCollection(items);
   }
 
   function getMapEventsGameItemCollection(room: RoomName): MapEventsGameItemCollection {
     const items = getGameItems(mapEventItemClasses, room);
-    return new MapEventsGameItemCollection(items);
+    return makeMapEventsGameItemCollection(items);
   }
 
   function getPlayerGameItem(): GameItem {

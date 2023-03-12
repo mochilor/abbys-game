@@ -1,9 +1,8 @@
 import { loadGame } from '../../../../Service/gameStore';
 import RoomName from '../../Map/RoomName';
-import GameItemCollection from '../GameItemCollection';
-import GameItem from '../GameItemInterface';
-import GameItemLocator from '../GameItemLocatorInterface';
+import makeGameItemCollection from '../GameItemCollection';
 import { getDebugRoomName } from '../../Debug/debug';
+import { GameItemLocator, GameItem, GameItemCollection } from '../types';
 
 type DataManager = {
   set(name: string, data: any): void,
@@ -33,7 +32,7 @@ export default function make(registry: DataManager): GameItemLocator {
           savedGame.gameItems[n].items[nn].roomName = roomName;
         }
 
-        return new GameItemCollection(savedGame.gameItems[n].items);
+        return makeGameItemCollection(savedGame.gameItems[n].items);
       }
     }
 

@@ -9,11 +9,10 @@ import listenButtonEvents from '../../../../Service/EventListener/buttonEventLis
 import listenDoorEvents from '../../../../Service/EventListener/doorEventListeners';
 import listenGameItemEvents from '../../../../Service/EventListener/gameItemEventListeners';
 import CannonBall from '../Collidable/Static/Enemy/CannonBall';
-import GameItemLocator from '../../GameItem/GameItemLocatorInterface';
-import MapGameItemLocator from '../../GameItem/MapGameItemLocatorInterface';
-import GameItemHandler from './GameItemHandler';
 import { makeSpriteStore, SpriteStore } from './SpriteStore';
 import setupColliders from './SpriteCollider';
+import { GameItemLocator, MapGameItemLocator } from '../../GameItem/types';
+import makeGameItemHandler from './GameItemHandler';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -30,7 +29,7 @@ export default class SpriteManager {
     saveGameLocator: GameItemLocator,
     mapLocator: GameItemLocator & MapGameItemLocator,
   ): void {
-    const gameItemHandler = GameItemHandler(
+    const gameItemHandler = makeGameItemHandler(
       inMemoryLocator,
       saveGameLocator,
       mapLocator,

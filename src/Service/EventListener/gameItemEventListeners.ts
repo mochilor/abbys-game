@@ -5,9 +5,8 @@ import GameObject from '../../Scene/Main/Sprite/GameObject';
 import Backpack from '../../Scene/Main/Sprite/Player/Backpack';
 import Player from '../../Scene/Main/Sprite/Player/Player';
 import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
-import GameItemCollection from '../../Scene/Main/GameItem/GameItemCollection';
-import GameItem from '../../Scene/Main/GameItem/GameItemInterface';
 import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
+import { GameItemCollection, GameItem } from '../../Scene/Main/GameItem/types';
 
 let gameItems: GameItemCollection;
 

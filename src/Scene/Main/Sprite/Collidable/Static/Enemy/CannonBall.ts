@@ -1,4 +1,4 @@
-import GameItem from '../../../../GameItem/GameItemInterface';
+import { GameItem } from '../../../../GameItem/types';
 import EnemyGameObject from './EnemyGameObject';
 
 export default class CannonBall extends EnemyGameObject {

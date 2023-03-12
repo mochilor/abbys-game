@@ -5,10 +5,7 @@ import Player from './Player/Player';
 import { createController } from './Player/controller';
 import Backpack from './Player/Backpack';
 import GameObject from './GameObject';
-import GameItemCollection from '../GameItem/GameItemCollection';
-import GameItem from '../GameItem/GameItemInterface';
 import Spike from './Collidable/Static/Spike';
-import StaticGameItemCollection from '../GameItem/StaticGameItemCollection';
 import Platform from './Collidable/Static/Platform';
 import Button from './Collidable/Dynamic/Button';
 import GameEvent from './GameEvent';
@@ -22,6 +19,7 @@ import BigFish from './Decoration/BigFish';
 import SpikePlatform from './Collidable/Static/SpikePlatform';
 import Conveyor from './Collidable/Static/Conveyor';
 import Cannon from './Collidable/Static/Enemy/Cannon';
+import { GameItem, GameItemCollection, StaticGameItemCollection } from '../GameItem/types';
 
 const playerItemClass = {
   2: Player,

@@ -1,4 +1,4 @@
-import GameItem from '../../../GameItem/GameItemInterface';
+import { GameItem } from '../../../GameItem/types';
 import GameObject from '../../GameObject';
 
 export default class Spike extends GameObject {

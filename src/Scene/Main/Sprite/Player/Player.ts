@@ -12,7 +12,7 @@ import Spring from '../Collidable/Static/Spring';
 import { Controller } from './controller';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import Conveyor from '../Collidable/Static/Conveyor';
-import GameItem from '../../GameItem/GameItemInterface';
+import { GameItem } from '../../GameItem/types';
 
 export default class Player extends GameObject {
   public static key = 'Player';

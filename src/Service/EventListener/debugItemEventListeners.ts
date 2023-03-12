@@ -1,8 +1,7 @@
 import { debugIsEnabled, updateDebugContainer } from '../../Scene/Main/Debug/debug';
-import CoinZonesInterface from '../../Scene/Main/GameItem/CoinCounter/CoinZonesInterface';
 import * as EventDispatcher from '../EventDispatcher';
 
-function coinCounterUpdated(currentCoins: CoinZonesInterface): void {
+function coinCounterUpdated(currentCoins: CoinZones): void {
   updateDebugContainer(currentCoins);
 }
 

@@ -1,4 +1,4 @@
-import GameItem from '../../../../src/Scene/Main/GameItem/GameItemInterface';
+import { GameItem } from '../../../../src/Scene/Main/GameItem/types';
 import makeInMemoryLocator from '../../../../src/Scene/Main/GameItem/Locator/InMemoryLocator';
 import RoomName from '../../../../src/Scene/Main/Map/RoomName';
 
