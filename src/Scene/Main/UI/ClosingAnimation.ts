@@ -1,6 +1,6 @@
 export default function closeUIElement(
   scene: Phaser.Scene,
-  members: Phaser.GameObjects.GameObject[]
+  members: Phaser.GameObjects.GameObject[],
 ): void {
   scene.tweens.add({
     targets: members,

@@ -28,6 +28,7 @@ export default function createTitle(
     );
     rectangle.setOrigin(0, 0);
     rectangle.setDepth(1);
+    rectangle.setScrollFactor(0);
 
     return rectangle;
   })();
@@ -41,6 +42,7 @@ export default function createTitle(
       'titleImage',
     );
     image.setDepth(1);
+    image.setScrollFactor(0);
 
     return image;
   })();
@@ -82,23 +84,33 @@ export default function createTitle(
     continueGame,
   );
 
-  let active = true;
+  const alertMenu = createMenu(
+    logo.getBottomCenter().x,
+    logo.getBottomCenter().y + buttonOffsetY,
+    scene,
+    'Are you sure?\nYour previous game will be lost!',
+  );
 
-  function update(): void {
-    if (!active) {
-      return;
-    }
+  const confirmButton = createButton(
+    0,
+    0,
+    scene,
+    'Confirm',
+    true,
+    confirm,
+  );
 
-    const position = getPositionFromCamera();
+  const cancelButton = createButton(
+    0,
+    0,
+    scene,
+    'Cancel',
+    true,
+    cancel,
+  );
 
-    logo.setX(position.x);
-    logo.setY(position.y);
-    background.setX(camera.scrollX);
-    background.setY(camera.scrollY);
-
-    newGameButton.updatePosition(logo.x - buttonOffsetX, logo.getBottomCenter().y + buttonOffsetY);
-    continueButton.updatePosition(logo.x + buttonOffsetX, logo.getBottomCenter().y + buttonOffsetY);
-  }
+  alertMenu.addButton(...confirmButton.contents());
+  alertMenu.addButton(...cancelButton.contents());
 
   function quit(): void {
     closeUIElement(
@@ -110,42 +122,23 @@ export default function createTitle(
         background,
       ],
     );
-
-    active = false;
   }
 
   function showAlertText(): void {
-    const menu = createMenu(
-      logo.getBottomCenter().x,
-      logo.getBottomCenter().y + (buttonOffsetY * 2.5),
-      scene,
-      'Are you sure? Your previous game will be lost',
-    );
-
-    newGameButton.disable();
-    continueButton.disable();
-
-    const confirmButton = createButton(
-      0,
-      0,
-      scene,
-      'Confirm',
-      true,
-      confirm,
-    );
-
-    const cancelButton = createButton(
-      0,
-      0,
-      scene,
-      'Cancel',
-      true,
-      cancel,
-    );
-
-    menu.addButton(...confirmButton.contents());
-    menu.addButton(...cancelButton.contents());
+    newGameButton.hide();
+    continueButton.hide();
+    alertMenu.show();
   }
 
-  return { update, quit, showAlertText };
+  function hideAlertText(): void {
+    newGameButton.show();
+    continueButton.show();
+    alertMenu.hide();
+  }
+
+  return {
+    quit,
+    showAlertText,
+    hideAlertText,
+  };
 }

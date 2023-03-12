@@ -22,12 +22,12 @@ export default function listenTitleEvents(title: Title): void {
     EventDispatcher.emit('gameReset');
   }
 
-  function centerTitle(): void {
-    title.update();
+  function cancel(): void {
+    title.hideAlertText();
   }
 
   EventDispatcher.on('continueButtonPressed', continueGame);
   EventDispatcher.on('newGameButtonPressed', newGame);
   EventDispatcher.on('confirmButtonPressed', confirm);
-  EventDispatcher.on('cameraUpdated', centerTitle);
+  EventDispatcher.on('cancelButtonPressed', cancel);
 }

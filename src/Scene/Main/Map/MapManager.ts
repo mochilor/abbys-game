@@ -49,7 +49,6 @@ export default class MapManager {
     }
 
     this.setupCameras(player);
-    EventDispatcher.emit('cameraUpdated');
   }
 
   private getNewRoomName(player: Player): RoomName {

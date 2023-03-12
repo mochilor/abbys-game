@@ -13,23 +13,42 @@ export default function createButton(
     17,
   );
   body.setDepth(1);
+  body.setScrollFactor(0);
+
+  const enabledColor = 0x385762;
+  const disabledColor = 0x818181;
 
   const text = scene.add.bitmapText(x, y, 'font', textString)
     .setOrigin(0.5, 0.4)
-    .setDepth(2);
+    .setDepth(2)
+    .setScrollFactor(0);
 
   body.setInteractive({ useHandCursor: true });
   body.on('pointerdown', () => callback());
 
   function enable(): void {
+    text.setVisible(true);
     text.setAlpha(1);
-    body.setFillStyle(0x385762);
+    body.setVisible(true);
+    body.setFillStyle(enabledColor);
   }
 
   function disable(): void {
     text.setAlpha(0.5);
-    body.setFillStyle(0x818181);
+    body.setFillStyle(disabledColor);
     body.disableInteractive();
+  }
+
+  function hide(): void {
+    body.disableInteractive();
+    text.setVisible(false);
+    body.setVisible(false);
+  }
+
+  function show(): void {
+    text.setVisible(true);
+    body.setInteractive();
+    body.setVisible(true);
   }
 
   enable();
@@ -38,21 +57,15 @@ export default function createButton(
     disable();
   }
 
-  function updatePosition(newX: integer, newY: integer): void {
-    body.setX(newX);
-    body.setY(newY);
-    text.setX(newX);
-    text.setY(newY);
-  }
-
   function contents(): [Phaser.GameObjects.Rectangle, Phaser.GameObjects.BitmapText] {
     return [body, text];
   }
 
   return {
-    updatePosition,
     enable,
     disable,
+    hide,
+    show,
     contents,
   };
 }
