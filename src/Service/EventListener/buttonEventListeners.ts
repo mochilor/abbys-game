@@ -46,12 +46,12 @@ function removeWalls(eventGameItems: GameItem[], newTileIndex: integer = default
   const tileMap: Phaser.Tilemaps.Tilemap = gameScene.children.getFirst('type', 'TilemapLayer');
   const tileSet = tileMap.tileset[0];
 
-  const areaWidthX = tileEnd.x - tileStart.x + tileSet.tileWidth;
-  const areaWidthY = tileEnd.y - tileStart.y + tileSet.tileHeight;
+  const areaWidthX = tileEnd.x - tileStart.x;
+  const areaWidthY = tileEnd.y - tileStart.y;
 
   const tilesToReplace = tileMap.getTilesWithinWorldXY(
     tileStart.x,
-    tileStart.y - tileSet.tileHeight,
+    tileStart.y,
     areaWidthX,
     areaWidthY,
   );
