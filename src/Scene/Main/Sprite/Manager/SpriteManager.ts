@@ -14,6 +14,7 @@ import setupColliders from './SpriteCollider';
 import { GameItemLocator, MapGameItemLocator } from '../../GameItem/types';
 import makeGameItemHandler from './GameItemHandler';
 import Crab from '../Collidable/Static/Enemy/Crab';
+import InvisibleWall from '../Collidable/Static/InvisibleWall';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -65,15 +66,15 @@ export default class SpriteManager {
     return this.spritesStore.player;
   }
 
-  public getSpikePlatforms() {
+  public getSpikePlatforms(): SpikePlatform[] {
     return this.spritesStore.spikePlatforms;
   }
 
-  public getCannonBallsGroup() {
+  public getCannonBallsGroup(): CannonBall[] {
     return this.spritesStore.cannonBalls;
   }
 
-  public getCrabsGroup() {
+  public getCrabsGroup(): Crab[] {
     const { enemies } = this.spritesStore;
 
     const crabs = [];
@@ -85,6 +86,10 @@ export default class SpriteManager {
     });
 
     return crabs;
+  }
+
+  public getInvisibleWallsGroup(): InvisibleWall[] {
+    return this.spritesStore.invisibleWalls;
   }
 
   public update(time: number): void {

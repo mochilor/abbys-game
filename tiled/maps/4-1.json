@@ -302,18 +302,6 @@
                  "class":"",
                  "gid":197,
                  "height":8,
-                 "id":162,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":368,
-                 "y":464
-                }, 
-                {
-                 "class":"",
-                 "gid":197,
-                 "height":8,
                  "id":163,
                  "name":"",
                  "rotation":0,
@@ -860,8 +848,7 @@
                  "width":8,
                  "x":108,
                  "y":208
-                },
-            
+                }, 
                 {
                  "class":"",
                  "gid":193,
@@ -873,7 +860,8 @@
                  "width":8,
                  "x":216,
                  "y":40
-                }, 
+                },
+            
                 {
                  "class":"",
                  "gid":200,
@@ -1041,6 +1029,30 @@
                  "width":8,
                  "x":480.666666666667,
                  "y":214
+                }, 
+                {
+                 "class":"",
+                 "gid":205,
+                 "height":8,
+                 "id":236,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":464
+                }, 
+                {
+                 "class":"",
+                 "gid":206,
+                 "height":8,
+                 "id":237,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":408,
+                 "y":464
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1049,7 +1061,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":236,
+ "nextobjectid":238,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -1072,12 +1084,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":56,
+         "imageheight":64,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":21,
+         "tilecount":24,
          "tileheight":8,
          "tilewidth":8
         }],

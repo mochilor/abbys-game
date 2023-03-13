@@ -73,6 +73,7 @@ export default class Main extends Phaser.Scene {
       this.spriteManager.getSpikePlatforms(),
       this.spriteManager.getCannonBallsGroup(),
       this.spriteManager.getCrabsGroup(),
+      this.spriteManager.getInvisibleWallsGroup(),
       map,
       'tilesetImage',
     );

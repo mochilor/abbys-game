@@ -5,6 +5,7 @@ import Conveyor from '../Collidable/Static/Conveyor';
 import Cannon from '../Collidable/Static/Enemy/Cannon';
 import CannonBall from '../Collidable/Static/Enemy/CannonBall';
 import EnemyGameObject from '../Collidable/Static/Enemy/EnemyGameObject';
+import InvisibleWall from '../Collidable/Static/InvisibleWall';
 import Platform from '../Collidable/Static/Platform';
 import Spike from '../Collidable/Static/Spike';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
@@ -24,6 +25,7 @@ export type SpriteStore = {
   enemies: EnemyGameObject[],
   conveyors: Conveyor[],
   objects: GameObject[],
+  invisibleWalls: InvisibleWall[],
   player: Player,
 };
 
@@ -44,6 +46,7 @@ export function makeSpriteStore(
     enemies: [],
     conveyors: [],
     objects: [],
+    invisibleWalls: [],
     player: null,
   };
 
@@ -93,6 +96,11 @@ export function makeSpriteStore(
 
     if (sprite instanceof Conveyor) {
       sprites.conveyors.push(sprite);
+      return;
+    }
+
+    if (sprite instanceof InvisibleWall) {
+      sprites.invisibleWalls.push(sprite);
       return;
     }
 

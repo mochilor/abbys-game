@@ -6,6 +6,7 @@ import config from '../../../../config/config.json';
 import SpikePlatform from '../Sprite/Collidable/Static/SpikePlatform';
 import CannonBall from '../Sprite/Collidable/Static/Enemy/CannonBall';
 import Crab from '../Sprite/Collidable/Static/Enemy/Crab';
+import InvisibleWall from '../Sprite/Collidable/Static/InvisibleWall';
 
 export default class MapManager {
   private scene: Phaser.Scene;
@@ -24,6 +25,7 @@ export default class MapManager {
     spikePlatformsGroup: SpikePlatform[],
     cannonBallsGroup: CannonBall[],
     crabsGroup: Crab[],
+    invisibleWallsGroup: InvisibleWall[],
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {
@@ -38,6 +40,7 @@ export default class MapManager {
     this.scene.physics.add.collider(cannonBallsGroup, this.layer);
     this.scene.physics.add.collider(crabsGroup, this.layer);
     this.scene.physics.add.collider(crabsGroup, crabsGroup);
+    this.scene.physics.add.collider(crabsGroup, invisibleWallsGroup);
   }
 
   public updateCurrentRoom(player: Player): void {
