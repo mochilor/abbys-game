@@ -505,8 +505,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":400,
-                 "y":432
+                 "x":204,
+                 "y":390.666666666667
                 }, 
                 {
                  "class":"",
@@ -567,6 +567,54 @@
                  "width":8,
                  "x":216,
                  "y":400
+                }, 
+                {
+                 "class":"",
+                 "gid":205,
+                 "height":8,
+                 "id":437,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":112,
+                 "y":408
+                }, 
+                {
+                 "class":"",
+                 "gid":205,
+                 "height":8,
+                 "id":438,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":328
+                }, 
+                {
+                 "class":"",
+                 "gid":206,
+                 "height":8,
+                 "id":439,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":136,
+                 "y":408
+                }, 
+                {
+                 "class":"",
+                 "gid":206,
+                 "height":8,
+                 "id":440,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":72,
+                 "y":328
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -575,7 +623,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":437,
+ "nextobjectid":441,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -598,12 +646,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":56,
+         "imageheight":64,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":21,
+         "tilecount":24,
          "tileheight":8,
          "tilewidth":8
         }],

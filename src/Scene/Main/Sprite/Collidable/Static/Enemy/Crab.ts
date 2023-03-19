@@ -16,7 +16,7 @@ export default class Crab extends EnemyGameObject {
 
     this.body.setSize(18, 12);
 
-    const forward = this.getProperty('orientation')?.value as number ?? 1;
+    const forward = parseInt(this.getProperty('orientation')?.value as string ?? '1', 10);
 
     this.body.setVelocityX(-24 * forward);
 

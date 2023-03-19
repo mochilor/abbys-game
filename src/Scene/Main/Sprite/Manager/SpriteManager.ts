@@ -15,6 +15,7 @@ import { GameItemLocator, MapGameItemLocator } from '../../GameItem/types';
 import makeGameItemHandler from './GameItemHandler';
 import Crab from '../Collidable/Static/Enemy/Crab';
 import InvisibleWall from '../Collidable/Static/InvisibleWall';
+import Mummy from '../Collidable/Static/Enemy/Mummy';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -86,6 +87,20 @@ export default class SpriteManager {
     });
 
     return crabs;
+  }
+
+  public getMummiesGroup(): Mummy[] {
+    const { enemies } = this.spritesStore;
+
+    const mummies = [];
+
+    enemies.forEach((enemy: EnemyGameObject) => {
+      if (enemy instanceof Mummy) {
+        mummies.push(enemy);
+      }
+    });
+
+    return mummies;
   }
 
   public getInvisibleWallsGroup(): InvisibleWall[] {

@@ -14,17 +14,16 @@ export default class BigFish extends Fish {
 
     this.speed = this.getProperty('speed')?.value as number ?? 0.3;
 
-    const offset = 4;
     const distanceProperty = this.getProperty('distance');
     const distance = distanceProperty ? parseInt(distanceProperty.value as string, 10) : 100;
 
     if (distance <= 0) { // to the left
       this.orientation = -1;
       this.fromX = this.x + distance;
-      this.toX = this.x + offset;
+      this.toX = this.x;
     } else {
       this.orientation = 1;
-      this.fromX = this.x + offset;
+      this.fromX = this.x;
       this.toX = this.x + distance;
     }
 

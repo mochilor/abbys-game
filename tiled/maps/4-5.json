@@ -1266,8 +1266,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":265.916666666667,
-                 "y":108.25
+                 "x":10.5833333333337,
+                 "y":161.916666666667
                 }, 
                 {
                  "class":"",
@@ -1292,6 +1292,42 @@
                  "width":8,
                  "x":488,
                  "y":312
+                }, 
+                {
+                 "class":"",
+                 "gid":207,
+                 "height":8,
+                 "id":663,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":56,
+                 "y":168
+                }, 
+                {
+                 "class":"",
+                 "gid":205,
+                 "height":8,
+                 "id":664,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":424,
+                 "y":144
+                }, 
+                {
+                 "class":"",
+                 "gid":207,
+                 "height":8,
+                 "id":665,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":304,
+                 "y":136
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1300,7 +1336,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":663,
+ "nextobjectid":666,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -1323,12 +1359,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":56,
+         "imageheight":64,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":21,
+         "tilecount":24,
          "tileheight":8,
          "tilewidth":8
         }],
