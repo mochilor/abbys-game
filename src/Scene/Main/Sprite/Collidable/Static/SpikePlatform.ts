@@ -67,4 +67,14 @@ export default class SpikePlatform extends GameObject {
       this.body.setGravityY(0);
     }
   }
+
+  /**
+   * Factory function intended to add new object after main instantiation in SpriteManager.
+   */
+  public static makeAdditional(scene: Phaser.Scene, gameItem: GameItem): SpikePlatform {
+    const platform = new SpikePlatform(scene, gameItem);
+    platform.setDepth(-1);
+
+    return platform;
+  }
 }

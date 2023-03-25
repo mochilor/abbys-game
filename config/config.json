@@ -22,7 +22,7 @@
   },
   "debug": {
     "enable": true,
-    "level": "4_6",
+    "level": "3_6",
     "boundingBoxes": false
   }
 }

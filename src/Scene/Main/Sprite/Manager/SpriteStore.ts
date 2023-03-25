@@ -27,6 +27,7 @@ export type SpriteStore = {
   objects: GameObject[],
   invisibleWalls: InvisibleWall[],
   player: Player,
+  add(sprite: GameObject): void,
 };
 
 export function makeSpriteStore(
@@ -34,8 +35,8 @@ export function makeSpriteStore(
   dynamicGameItems: GameItemCollection,
   staticGameItems: StaticGameItemCollection,
   playerGameItem: GameItem,
-) {
-  const sprites: SpriteStore = {
+): SpriteStore {
+  const sprites = {
     spikes: [],
     doors: [],
     platforms: [],
@@ -48,68 +49,71 @@ export function makeSpriteStore(
     objects: [],
     invisibleWalls: [],
     player: null,
+    add(sprite: GameObject): void {
+      if (sprite instanceof Spike) {
+        sprites.spikes.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Door) {
+        sprites.doors.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Platform) {
+        sprites.platforms.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof SpikePlatform) {
+        sprites.spikePlatforms.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Button) {
+        sprites.buttons.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Spring) {
+        sprites.springs.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Cannon) {
+        sprite.setup();
+        sprites.cannonBalls.push(sprite.getCannonBall());
+        return;
+      }
+
+      if (sprite instanceof EnemyGameObject) {
+        sprites.enemies.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Conveyor) {
+        sprites.conveyors.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof InvisibleWall) {
+        sprites.invisibleWalls.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Player) {
+        sprites.player = sprite;
+        return;
+      }
+
+      sprites.objects.push(sprite);
+    },
   };
 
   const objects = makeSprites(scene, dynamicGameItems, staticGameItems, playerGameItem);
 
   objects.forEach((sprite: GameObject) => {
-    if (sprite instanceof Spike) {
-      sprites.spikes.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Door) {
-      sprites.doors.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Platform) {
-      sprites.platforms.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof SpikePlatform) {
-      sprites.spikePlatforms.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Button) {
-      sprites.buttons.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Spring) {
-      sprites.springs.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Cannon) {
-      sprite.setup();
-      sprites.cannonBalls.push(sprite.getCannonBall());
-      return;
-    }
-
-    if (sprite instanceof EnemyGameObject) {
-      sprites.enemies.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Conveyor) {
-      sprites.conveyors.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof InvisibleWall) {
-      sprites.invisibleWalls.push(sprite);
-      return;
-    }
-
-    if (sprite instanceof Player) {
-      sprites.player = sprite;
-      return;
-    }
-
-    sprites.objects.push(sprite);
+    sprites.add(sprite);
   });
 
   function setupConvetors(): void {

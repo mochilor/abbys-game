@@ -1,22 +1,17 @@
 import { GameItem, MapEventsGameItemCollection } from '../../Scene/Main/GameItem/types';
 import GameObject from '../../Scene/Main/Sprite/GameObject';
-import Player from '../../Scene/Main/Sprite/Player/Player';
 import CannonBall from '../../Scene/Main/Sprite/Collidable/Static/Enemy/CannonBall';
 import Platform from '../../Scene/Main/Sprite/Collidable/Static/Platform';
 import Spike from '../../Scene/Main/Sprite/Collidable/Static/Spike';
 import * as EventDispatcher from '../EventDispatcher';
+import SpikePlatform from '../../Scene/Main/Sprite/Collidable/Static/SpikePlatform';
+import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
 
 let gameScene: Phaser.Scene;
 
 let eventGameItemCollection: MapEventsGameItemCollection;
 
-let playerSprite: Player;
-
-let gameObjects: GameObject[];
-
-let cannonBalls: CannonBall[];
-
-let spikes: Spike[];
+let spriteStore: SpriteStore;
 
 const defaultCaveWall = 33;
 
@@ -81,7 +76,7 @@ function button2Activated(): void {
   const newPlatform = Platform.makeAdditional(gameScene, eventGameItem);
 
   gameScene.physics.add.collider(
-    playerSprite,
+    spriteStore.player,
     newPlatform,
   );
 }
@@ -124,7 +119,7 @@ function button8Activated(): void {
 
 function button9Activated(): void {
   // This event activates a coin that is hidden. It should be the only hidden coin:
-  gameObjects.forEach((child: GameObject) => {
+  spriteStore.objects.forEach((child: GameObject) => {
     if (child.body) {
       child.body.setEnable(true);
     }
@@ -134,21 +129,21 @@ function button9Activated(): void {
 
 function button10Activated(): void {
   // This event deactivates a couple of cannons
-  cannonBalls.forEach((child: CannonBall) => {
+  spriteStore.cannonBalls.forEach((child: CannonBall) => {
     child.deactivate();
   });
 }
 
 function button11Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.forEach((child: Spike) => {
+  spriteStore.spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
 
 function button12Activated(): void {
   // This event deactivates a couple of spikes
-  spikes.forEach((child: Spike) => {
+  spriteStore.spikes.forEach((child: Spike) => {
     child.deactivate();
   });
 }
@@ -159,26 +154,40 @@ function button13Activated(): void {
   removeWalls(eventGameItems, -1);
 
   // This event also activates and deactivates a couple of spikes
-  spikes.forEach((child: Spike) => {
+  spriteStore.spikes.forEach((child: Spike) => {
     child.deactivate();
     child.activate();
   });
 }
 
+function button14Activated(): void {
+  const eventGameItemArray = eventGameItemCollection.getItemByEventName('mapEvent14');
+
+  if (eventGameItemArray.length === 0) {
+    // wrong room!
+    return;
+  }
+
+  const eventGameItem = eventGameItemArray[0];
+
+  const newPlatform = SpikePlatform.makeAdditional(gameScene, eventGameItem);
+
+  gameScene.physics.add.collider(
+    spriteStore.player,
+    newPlatform,
+  );
+
+  spriteStore.add(newPlatform);
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
-  player: Player,
-  gameObjectsGroup: GameObject[],
-  cannonBallsGroup: CannonBall[],
-  spikesGroup: Spike[],
+  spriteStoreObject: SpriteStore,
 ): void {
   gameScene = scene;
   eventGameItemCollection = eventGameItems;
-  playerSprite = player;
-  gameObjects = gameObjectsGroup;
-  cannonBalls = cannonBallsGroup;
-  spikes = spikesGroup;
+  spriteStore = spriteStoreObject;
 
   EventDispatcher.on('button1Activated', button1Activated);
   EventDispatcher.on('button2Activated', button2Activated);
@@ -193,6 +202,7 @@ function listenButtonEvents(
   EventDispatcher.on('button11Activated', button11Activated);
   EventDispatcher.on('button12Activated', button12Activated);
   EventDispatcher.on('button13Activated', button13Activated);
+  EventDispatcher.on('button14Activated', button14Activated);
 }
 
 export default listenButtonEvents;

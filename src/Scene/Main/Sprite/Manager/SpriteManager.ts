@@ -52,14 +52,7 @@ export default class SpriteManager {
     setupColliders(this.scene, this.spritesStore);
 
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
-    listenButtonEvents(
-      this.scene,
-      mapEventGameItems,
-      this.spritesStore.player,
-      this.spritesStore.objects,
-      this.spritesStore.cannonBalls,
-      this.spritesStore.spikes,
-    );
+    listenButtonEvents(this.scene, mapEventGameItems, this.spritesStore);
     listenDoorEvents(this.spritesStore.doors);
   }
 
