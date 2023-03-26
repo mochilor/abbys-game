@@ -1,4 +1,4 @@
-import Title from '../../Scene/Main/Title/types';
+import { Title } from '../../Scene/Main/UI/types';
 import * as EventDispatcher from '../EventDispatcher';
 import { hasSavedGame, resetGame } from '../gameStore';
 

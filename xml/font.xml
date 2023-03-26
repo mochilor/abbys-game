@@ -78,6 +78,9 @@
         <char id="47" x="63" y="0" width="6" height="7" xoffset="-1" yoffset="0" xadvance="5" page="0" chnl="15" /><!-- / -->
         <char id="33" x="63" y="8" width="6" height="7" xoffset="-2" yoffset="0" xadvance="3" page="0" chnl="15" /><!-- ! -->
         <char id="63" x="63" y="16" width="6" height="7" xoffset="0" yoffset="0" xadvance="7" page="0" chnl="15" /><!-- ? -->
-        <char id="32" x="63" y="24" width="6" height="7" xoffset="-1" yoffset="0" xadvance="5" page="0" chnl="15" /><!-- space -->
+        <char id="32" x="56" y="48" width="6" height="7" xoffset="-1" yoffset="0" xadvance="5" page="0" chnl="15" /><!-- space -->
+        <char id="124" x="63" y="24" width="6" height="7" xoffset="0" yoffset="1" xadvance="7" page="0" chnl="15" /><!-- | (pause icon) -->
+        <char id="62" x="62" y="32" width="7" height="7" xoffset="0" yoffset="0" xadvance="7" page="0" chnl="15" /><!-- > (sound on) -->
+        <char id="60" x="62" y="40" width="7" height="7" xoffset="0" yoffset="0" xadvance="7" page="0" chnl="15" /><!-- < (sound off) -->
     </chars>
 </font>

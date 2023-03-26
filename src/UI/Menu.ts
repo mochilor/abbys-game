@@ -1,4 +1,4 @@
-import config from '../../../../config/config.json';
+import config from '../../config/config.json';
 import closeUIElement from './ClosingAnimation';
 import { Menu } from './types';
 
@@ -39,6 +39,7 @@ export default function create(
       const buttonX = text.x;
       buttonBody.setX(buttonX);
       buttonText.setX(buttonX);
+      return;
     }
 
     if (buttonBodys.length === 2) {
@@ -49,6 +50,18 @@ export default function create(
       buttonTexts[0].setX(x0);
       buttonBodys[1].setX(x1);
       buttonTexts[1].setX(x1);
+      return;
+    }
+
+    const offset = 24;
+    let currentY = y + offset;
+
+    for (let n = 0; n < buttonBodys.length; n += 1) {
+      buttonBodys[n].setX(x);
+      buttonBodys[n].setY(currentY);
+      buttonTexts[n].setX(x);
+      buttonTexts[n].setY(currentY);
+      currentY += offset;
     }
   }
 

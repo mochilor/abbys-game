@@ -7,10 +7,12 @@ import RoomName from './Map/RoomName';
 import { getDebugRoomName, addDebugContainer } from './Debug/debug';
 import * as CoinCounter from './GameItem/CoinCounter/CoinCounter';
 import listenDebugEvents from '../../Service/EventListener/debugItemEventListeners';
-import createTitle from './Title/Title';
+import createTitle from './UI/Title';
 import listenTitleEvents from '../../Service/EventListener/titleEventListeners';
 import * as locatorFactory from './GameItem/Locator/Factory';
 import setupBackground from './Background/BackgroundManager';
+import createPauseButton from './UI/PauseButton';
+import listenSettingsEvents from '../../Service/EventListener/settingsEventListener';
 
 interface Data {
   x: number,
@@ -85,11 +87,14 @@ export default class Main extends Phaser.Scene {
 
     player.initBackpack();
     EventDispatcher.on('playerUnfrozen', player.unfreeze, player);
+    EventDispatcher.on('playerUnfrozen', this.createPauseButton, this);
     EventDispatcher.on('playerHasDied', this.reset, this);
     EventDispatcher.on('gameReset', this.reset, this);
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
 
     this.createTitle();
+
+    listenSettingsEvents();
   }
 
   private initCoins(): void {
@@ -110,6 +115,12 @@ export default class Main extends Phaser.Scene {
     }
 
     EventDispatcher.emit('playerUnfrozen');
+  }
+
+  private createPauseButton(): void {
+    const pauseButton = createPauseButton(this);
+    const escapeKey = this.input.keyboard.addKey('ESC');
+    escapeKey.on('down', pauseButton.pause);
   }
 
   private reset(): void {

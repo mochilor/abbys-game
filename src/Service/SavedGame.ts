@@ -13,4 +13,7 @@ export default interface SavedGame {
     x: number,
     y: number,
   },
+  settings: {
+    audio: boolean,
+  },
 }

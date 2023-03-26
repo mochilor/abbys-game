@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import Main from './Scene/Main/Main';
 import Preload from './Scene/Preload/Preload';
 import configuration from '../config/config.json';
+import Pause from './Scene/Pause/Pause';
 
 const config = {
   type: Phaser.WEBGL,
@@ -23,6 +24,7 @@ const config = {
   scene: [
     Preload,
     Main,
+    Pause,
   ],
 };
 

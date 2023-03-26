@@ -10,6 +10,10 @@ type DataManager = {
 
 export default function make(registry: DataManager): GameItemLocator {
   function getGameItemCollection(roomName: RoomName): GameItemCollection {
+    if (getDebugRoomName()) {
+      throw new Error('Debug mode!');
+    }
+
     const savedGame = loadGame();
 
     if (savedGame === null) {

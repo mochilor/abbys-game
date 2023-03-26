@@ -1,9 +1,9 @@
-export type Menu = {
-  quit(): void,
-  addButton(
-    buttonBody: Phaser.GameObjects.Rectangle,
-    buttonText: Phaser.GameObjects.BitmapText,
-  ): void,
-  show(): void,
-  hide(): void,
-};
+export interface Title {
+  quit: () => void,
+  showAlertText: () => void,
+  hideAlertText: () => void,
+}
+
+export interface PauseButton {
+  pause: () => void,
+}

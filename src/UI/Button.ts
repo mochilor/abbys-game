@@ -1,3 +1,5 @@
+import { Button } from './types';
+
 export default function createButton(
   x: integer,
   y: integer,
@@ -5,12 +7,13 @@ export default function createButton(
   textString: string,
   enabled: boolean,
   callback: CallableFunction,
-) {
+  width: integer = 64,
+): Button {
   const body = scene.add.rectangle(
     x,
     y,
-    64,
-    17,
+    width,
+    16,
   );
   body.setDepth(1);
   body.setScrollFactor(0);
@@ -24,7 +27,7 @@ export default function createButton(
     .setScrollFactor(0);
 
   body.setInteractive({ useHandCursor: true });
-  body.on('pointerdown', () => callback());
+  body.on('pointerdown', () => callback.apply(scene, []));
 
   function enable(): void {
     text.setVisible(true);

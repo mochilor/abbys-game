@@ -2,6 +2,7 @@ import RoomName from '../Scene/Main/Map/RoomName';
 import SavedGame from './SavedGame';
 import { roomNames } from './mapStore';
 import { GameItemCollection, GameItem } from '../Scene/Main/GameItem/types';
+import { getSettings } from './Settings';
 
 const fileName = 'cavegame.savefile';
 
@@ -39,6 +40,9 @@ function saveGame(
     room: {
       x: roomName.getX(),
       y: roomName.getY(),
+    },
+    settings: {
+      audio: getSettings().audio,
     },
   };
 
