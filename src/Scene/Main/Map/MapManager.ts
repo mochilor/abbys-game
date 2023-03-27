@@ -36,7 +36,7 @@ export default class MapManager {
     this.layer.depth = -100;
     map.setCollisionBetween(1, 32);
     map.setCollisionBetween(65, 80);
-    map.setCollisionBetween(137, 153);
+    map.setCollisionBetween(137, 156);
     this.scene.physics.add.collider(player, this.layer);
     this.scene.physics.add.collider(spikePlatformsGroup, this.layer);
     this.scene.physics.add.collider(cannonBallsGroup, this.layer);

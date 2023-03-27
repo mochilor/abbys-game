@@ -47,43 +47,28 @@ export function init(coinsTotalCollection: CoinsTotal[]) {
       totals[roomName.zone()] += element.coins;
     });
 
-    function caveTotalCoins(): integer {
-      return totals.cave;
-    }
-
-    function pyramidTotalCoins(): integer {
-      return totals.pyramid;
-    }
-
-    function baseTotalCoins(): integer {
-      return totals.base;
-    }
-
-    function caveCurrentCoins(): integer {
-      return current.cave;
-    }
-
-    function pyramidCurrentCoins(): integer {
-      return current.pyramid;
-    }
-
-    function baseCurrentCoins(): integer {
-      return current.base;
-    }
-
     function add(roomName: RoomName): void {
       current[roomName.zone()] += 1;
       EventDispatcher.emit('coinCounterUpdated', current);
     }
 
+    function getTotalByLevel(level: string): integer {
+      return totals[level] ?? 0;
+    }
+
+    function getCurrentByLevel(level: string): integer {
+      return current[level] ?? 0;
+    }
+
+    function getRemainingByLevel(level: string): integer {
+      return getTotalByLevel(level) - getCurrentByLevel(level);
+    }
+
     return {
-      caveTotalCoins,
-      pyramidTotalCoins,
-      baseTotalCoins,
-      caveCurrentCoins,
-      pyramidCurrentCoins,
-      baseCurrentCoins,
       add,
+      getTotalByLevel,
+      getCurrentByLevel,
+      getRemainingByLevel,
     };
   })();
 }

@@ -6,7 +6,7 @@ import EnemyGameObject from '../Collidable/Static/Enemy/EnemyGameObject';
 import Spring from '../Collidable/Static/Spring';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import listenButtonEvents from '../../../../Service/EventListener/buttonEventListeners';
-import listenDoorEvents from '../../../../Service/EventListener/doorEventListeners';
+import listenGameObjectEvents from '../../../../Service/EventListener/gameObjectEventListeners';
 import listenGameItemEvents from '../../../../Service/EventListener/gameItemEventListeners';
 import CannonBall from '../Collidable/Static/Enemy/CannonBall';
 import { makeSpriteStore, SpriteStore } from './SpriteStore';
@@ -53,7 +53,7 @@ export default class SpriteManager {
 
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems, this.spritesStore);
-    listenDoorEvents(this.spritesStore.doors);
+    listenGameObjectEvents(this.spritesStore.doors, this.spritesStore.platforms);
   }
 
   public getPlayer(): Player {
@@ -117,7 +117,7 @@ export default class SpriteManager {
       child.update();
     });
     this.spritesStore.objects.forEach((child: GameObject) => {
-      child.update();
+      child.update(time);
     });
     this.spritesStore.player.update();
   }

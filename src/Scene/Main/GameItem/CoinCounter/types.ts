@@ -12,11 +12,8 @@ export type CoinsTotal = {
 };
 
 export type CoinCounter = {
-  caveTotalCoins(): integer,
-  pyramidTotalCoins(): integer,
-  baseTotalCoins(): integer,
-  caveCurrentCoins(): integer,
-  pyramidCurrentCoins(): integer,
-  baseCurrentCoins(): integer,
   add(roomName: RoomName): void,
+  getTotalByLevel(level: string): integer,
+  getCurrentByLevel(level: string): integer,
+  getRemainingByLevel(level: string): integer,
 };

@@ -23,6 +23,7 @@ import { GameItem, GameItemCollection, StaticGameItemCollection } from '../GameI
 import Crab from './Collidable/Static/Enemy/Crab';
 import InvisibleWall from './Collidable/Static/InvisibleWall';
 import Mummy from './Collidable/Static/Enemy/Mummy';
+import Counter from './Decoration/Counter';
 
 const playerItemClass = {
   2: Player,
@@ -51,6 +52,7 @@ const staticItemClasses = {
   21: Crab,
   22: InvisibleWall,
   23: Mummy,
+  24: Counter,
 };
 
 const mapEventItemClasses = {

@@ -92,7 +92,7 @@
                         {
                          "name":"level",
                          "type":"string",
-                         "value":"5"
+                         "value":"3"
                         }],
                  "rotation":0,
                  "visible":true,

@@ -29,23 +29,17 @@ function addDebugContainer(): void {
 
   const coinCounter = CoinCounter.getInstance();
 
-  const levels = [
-    {
-      name: 'cave',
-      total: coinCounter.caveTotalCoins(),
-      current: coinCounter.caveCurrentCoins(),
-    },
-    {
-      name: 'pyramid',
-      total: coinCounter.pyramidTotalCoins(),
-      current: coinCounter.pyramidCurrentCoins(),
-    },
-    {
-      name: 'base',
-      total: coinCounter.baseTotalCoins(),
-      current: coinCounter.baseCurrentCoins(),
-    },
-  ];
+  const levelNames = ['cave', 'pyramid', 'base'];
+
+  const levels = [];
+
+  levelNames.forEach((levelName: string) => {
+    levels.push({
+      name: levelName,
+      total: coinCounter.getTotalByLevel(levelName),
+      current: coinCounter.getCurrentByLevel(levelName),
+    });
+  });
 
   const container = document.createElement('div');
   container.id = 'debug-container';
