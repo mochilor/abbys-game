@@ -570,30 +570,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":205,
-                 "height":8,
-                 "id":437,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":112,
-                 "y":408
-                }, 
-                {
-                 "class":"",
-                 "gid":205,
-                 "height":8,
-                 "id":438,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":48,
-                 "y":328
-                }, 
-                {
-                 "class":"",
                  "gid":206,
                  "height":8,
                  "id":439,

@@ -14,6 +14,7 @@ import bigFishSpriteSheetPath from '../../../assets/img/background/fish-2.png';
 import waterDetailsSpriteSheetPath from '../../../assets/img/background/water-details.png';
 import crabSpriteSheetPath from '../../../assets/img/crab-spritesheet.png';
 import mummySpriteSheetPath from '../../../assets/img/mummy-spritesheet.png';
+import countersSpriteSheetPath from '../../../assets/img/counters-spritesheet.png';
 import title from '../../../assets/img/title/title.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
@@ -41,6 +42,7 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('conveyorSpriteSheet', conveyorSpriteSheetPath, { frameWidth: 8, frameHeight: 8 });
     this.load.spritesheet('crabSpriteSheet', crabSpriteSheetPath, { frameWidth: 18, frameHeight: 16 });
     this.load.spritesheet('mummySpriteSheet', mummySpriteSheetPath, { frameWidth: 14, frameHeight: 20 });
+    this.load.spritesheet('countersSpriteSheet', countersSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
 
     // dist folder local path (workaround to load xml file path correctly here)
     // thanks to parcel-reporter-static-files-copy plugin

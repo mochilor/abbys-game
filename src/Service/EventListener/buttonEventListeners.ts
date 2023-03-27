@@ -6,6 +6,7 @@ import Spike from '../../Scene/Main/Sprite/Collidable/Static/Spike';
 import * as EventDispatcher from '../EventDispatcher';
 import SpikePlatform from '../../Scene/Main/Sprite/Collidable/Static/SpikePlatform';
 import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
+import Portal from '../../Scene/Main/Sprite/Collidable/Static/Portal';
 
 let gameScene: Phaser.Scene;
 
@@ -180,6 +181,27 @@ function button14Activated(): void {
   spriteStore.add(newPlatform);
 }
 
+function button15Activated(): void {
+  const eventGameItemArray = eventGameItemCollection.getItemByEventName('mapEvent15');
+
+  if (eventGameItemArray.length === 0) {
+    // wrong room!
+    return;
+  }
+
+  const eventGameItem = eventGameItemArray[0];
+
+  const newPortal = Portal.makeAdditional(gameScene, eventGameItem);
+
+  gameScene.physics.add.overlap(
+    spriteStore.player,
+    newPortal,
+    spriteStore.player.collectItem,
+    null,
+    spriteStore.player,
+  );
+}
+
 function listenButtonEvents(
   scene: Phaser.Scene,
   eventGameItems: MapEventsGameItemCollection,
@@ -203,6 +225,7 @@ function listenButtonEvents(
   EventDispatcher.on('button12Activated', button12Activated);
   EventDispatcher.on('button13Activated', button13Activated);
   EventDispatcher.on('button14Activated', button14Activated);
+  EventDispatcher.on('button15Activated', button15Activated);
 }
 
 export default listenButtonEvents;

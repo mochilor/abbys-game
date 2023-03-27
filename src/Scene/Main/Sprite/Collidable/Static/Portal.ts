@@ -51,4 +51,14 @@ export default class Portal extends GameObject {
   public getRoomName(): RoomName {
     return this.gameItem.roomName;
   }
+
+  /**
+ * Factory function intended to add new object after main instantiation in SpriteManager.
+ */
+  public static makeAdditional(scene: Phaser.Scene, gameItem: GameItem): Portal {
+    const portal = new Portal(scene, gameItem);
+    portal.setDepth(-1);
+
+    return portal;
+  }
 }
