@@ -18,6 +18,8 @@ export default class Platform extends GameObject {
 
   private speed: number = 50;
 
+  private blocked: boolean = false;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'platformImage');
 
@@ -51,9 +53,15 @@ export default class Platform extends GameObject {
     if (speedProperty !== null) {
       this.speed = parseInt(speedProperty.value as string, 10);
     }
+
+    this.blocked = this.getProperty('blocked')?.value === 'blocked';
   }
 
   public update(): void {
+    if (this.blocked) {
+      return;
+    }
+
     if (this.fromX !== null && this.toX !== null) {
       this.body.setVelocityX(this.xDirection * this.speed);
       if (this.x > this.toX) {
@@ -75,6 +83,10 @@ export default class Platform extends GameObject {
 
   public getSpeed(): number {
     return this.speed;
+  }
+
+  public unblock(): void {
+    this.blocked = false;
   }
 
   /**
