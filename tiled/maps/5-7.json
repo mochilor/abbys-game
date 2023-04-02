@@ -2341,7 +2341,6 @@
                  "width":8,
                  "x":376,
                  "y":280
-<<<<<<< HEAD
                 }, 
                 {
                  "class":"",
@@ -2359,6 +2358,18 @@
                  "class":"",
                  "gid":188,
                  "height":8,
+                 "id":1208,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":424,
+                 "y":328
+                }, 
+                {
+                 "class":"",
+                 "gid":188,
+                 "height":8,
                  "id":1209,
                  "name":"",
                  "rotation":0,
@@ -2366,20 +2377,6 @@
                  "width":8,
                  "x":328,
                  "y":328
-                }, 
-                {
-                 "class":"",
-                 "gid":188,
-                 "height":8,
-                 "id":1210,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":424,
-                 "y":328
-=======
->>>>>>> coin-counters
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2388,11 +2385,7 @@
          "y":0
         }],
  "nextlayerid":3,
-<<<<<<< HEAD
- "nextobjectid":1211,
-=======
- "nextobjectid":1207,
->>>>>>> coin-counters
+ "nextobjectid":1210,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -2415,20 +2408,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-<<<<<<< HEAD
          "imageheight":72,
-=======
-         "imageheight":64,
->>>>>>> coin-counters
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-<<<<<<< HEAD
          "tilecount":27,
-=======
-         "tilecount":24,
->>>>>>> coin-counters
          "tileheight":8,
          "tilewidth":8
         }],
