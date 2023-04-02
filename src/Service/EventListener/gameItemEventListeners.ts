@@ -8,66 +8,56 @@ import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
 import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 import { GameItemCollection, GameItem } from '../../Scene/Main/GameItem/types';
 
-let gameItems: GameItemCollection;
-
-let playerItem: GameItem;
-
-let registry: Phaser.Data.DataManager;
-
-function itemDestroyed(item: GameObject) {
-  const uuid = item.getUuid();
-  gameItems.deleteItem(uuid);
-}
-
-function gameSaved(item: Save, backpack: Backpack) {
-  const saveItem = item;
-  saveItem.body.enable = false;
-  saveItem.visible = false;
-
-  playerItem.x = saveItem.x;
-  playerItem.y = saveItem.y;
-
-  const backpackContent = backpack.getContentForSaving();
-  playerItem.properties = backpackContent;
-  playerItem.otherProperties = null;
-
-  saveGame(gameItems, playerItem, item.getRoomName(), registry);
-}
-
-function newRoomReached(
-  newRoomData: RoomName,
-  oldRoomData: RoomName,
-  player: Player,
-): void {
-  const backpack = player.getBackpack();
-  const backpackContent = backpack.getContentForSaving();
-  playerItem.properties = backpackContent;
-  playerItem.x = player.getPositionInNewRoom().x;
-  playerItem.y = player.getPositionInNewRoom().y;
-
-  playerItem.otherProperties = {
-    velocityY: player.body.velocity.y,
-    leftKeyIsDown: player.getController().leftKeyIsDown(),
-    rightKeyIsDown: player.getController().rightKeyIsDown(),
-  };
-
-  registry.set(oldRoomData.getName(), gameItems.getItems());
-  registry.set('player', playerItem);
-}
-
-function playerGotCoin(room: string): void {
-  const roomName = RoomName.fromName(room);
-  CoinCounter.getInstance().add(roomName);
-}
-
 export default function listenGameItemEvents(
-  gameItemCollection: GameItemCollection,
-  player: GameItem,
-  sceneRegistry: Phaser.Data.DataManager,
+  gameItems: GameItemCollection,
+  playerItem: GameItem,
+  registry: Phaser.Data.DataManager,
 ) {
-  gameItems = gameItemCollection;
-  playerItem = player;
-  registry = sceneRegistry;
+  function itemDestroyed(item: GameObject) {
+    const uuid = item.getUuid();
+    gameItems.deleteItem(uuid);
+  }
+
+  function gameSaved(item: Save, backpack: Backpack) {
+    const saveItem = item;
+    saveItem.body.enable = false;
+    saveItem.visible = false;
+
+    playerItem.x = saveItem.x;
+    playerItem.y = saveItem.y;
+
+    const backpackContent = backpack.getContentForSaving();
+    playerItem.properties = backpackContent;
+    playerItem.otherProperties = null;
+
+    saveGame(gameItems, playerItem, item.getRoomName(), registry);
+  }
+
+  function newRoomReached(
+    newRoomData: RoomName,
+    oldRoomData: RoomName,
+    player: Player,
+  ): void {
+    const backpack = player.getBackpack();
+    const backpackContent = backpack.getContentForSaving();
+    playerItem.properties = backpackContent;
+    playerItem.x = player.getPositionInNewRoom().x;
+    playerItem.y = player.getPositionInNewRoom().y;
+
+    playerItem.otherProperties = {
+      velocityY: player.body.velocity.y,
+      leftKeyIsDown: player.getController().leftKeyIsDown(),
+      rightKeyIsDown: player.getController().rightKeyIsDown(),
+    };
+
+    registry.set(oldRoomData.getName(), gameItems.getItems());
+    registry.set('player', playerItem);
+  }
+
+  function playerGotCoin(room: string): void {
+    const roomName = RoomName.fromName(room);
+    CoinCounter.getInstance().add(roomName);
+  }
 
   EventDispatcher.on('itemDestroyed', itemDestroyed);
   EventDispatcher.on('gameSaved', gameSaved);
