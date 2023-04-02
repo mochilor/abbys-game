@@ -1,3 +1,4 @@
+import Robot from '../Collidable/Static/Enemy/Robot';
 import { SpriteStore } from './SpriteStore';
 
 export default function setupColliders(scene: Phaser.Scene, sprites: SpriteStore) {
@@ -72,5 +73,19 @@ export default function setupColliders(scene: Phaser.Scene, sprites: SpriteStore
     sprites.player.touchEnemy,
     null,
     sprites.player,
+  );
+
+  scene.physics.add.overlap(
+    sprites.player,
+    (() => {
+      const areas = [];
+      sprites.enemies.forEach((enemy) => {
+        if (enemy instanceof Robot) {
+          areas.push(enemy.getDangerArea());
+        }
+      });
+
+      return areas;
+    })(),
   );
 }

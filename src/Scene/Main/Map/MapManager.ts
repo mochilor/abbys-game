@@ -8,6 +8,7 @@ import CannonBall from '../Sprite/Collidable/Static/Enemy/CannonBall';
 import Crab from '../Sprite/Collidable/Static/Enemy/Crab';
 import InvisibleWall from '../Sprite/Collidable/Static/InvisibleWall';
 import Mummy from '../Sprite/Collidable/Static/Enemy/Mummy';
+import Robot from '../Sprite/Collidable/Static/Enemy/Robot';
 
 export default class MapManager {
   private scene: Phaser.Scene;
@@ -28,6 +29,7 @@ export default class MapManager {
     crabsGroup: Crab[],
     invisibleWallsGroup: InvisibleWall[],
     mummiesGroup: Mummy[],
+    robotsGroup: Robot[],
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {
@@ -45,6 +47,8 @@ export default class MapManager {
     this.scene.physics.add.collider(crabsGroup, invisibleWallsGroup);
     this.scene.physics.add.collider(mummiesGroup, this.layer);
     this.scene.physics.add.collider(mummiesGroup, invisibleWallsGroup);
+    this.scene.physics.add.collider(robotsGroup, this.layer);
+    this.scene.physics.add.collider(robotsGroup, invisibleWallsGroup);
   }
 
   public updateCurrentRoom(player: Player): void {

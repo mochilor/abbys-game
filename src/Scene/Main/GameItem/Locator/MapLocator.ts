@@ -6,7 +6,7 @@ import {
   dynamicItemClasses,
   staticItemClasses,
   mapEventItemClasses,
-} from '../../Sprite/factory';
+} from '../../Sprite/Factory';
 import RoomName from '../../Map/RoomName';
 import {
   GameItem,

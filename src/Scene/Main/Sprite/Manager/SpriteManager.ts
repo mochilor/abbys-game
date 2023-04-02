@@ -16,6 +16,8 @@ import makeGameItemHandler from './GameItemHandler';
 import Crab from '../Collidable/Static/Enemy/Crab';
 import InvisibleWall from '../Collidable/Static/InvisibleWall';
 import Mummy from '../Collidable/Static/Enemy/Mummy';
+import Robot from '../Collidable/Static/Enemy/Robot';
+import listenEnemyEvents from '../../../../Service/EventListener/enemyEventListeners';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -54,6 +56,7 @@ export default class SpriteManager {
     listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
     listenButtonEvents(this.scene, mapEventGameItems, this.spritesStore);
     listenDoorEvents(this.spritesStore.doors);
+    listenEnemyEvents(this.spritesStore.player);
   }
 
   public getPlayer(): Player {
@@ -94,6 +97,20 @@ export default class SpriteManager {
     });
 
     return mummies;
+  }
+
+  public getRobotsGroup(): Robot[] {
+    const { enemies } = this.spritesStore;
+
+    const robots = [];
+
+    enemies.forEach((enemy: EnemyGameObject) => {
+      if (enemy instanceof Robot) {
+        robots.push(enemy);
+      }
+    });
+
+    return robots;
   }
 
   public getInvisibleWallsGroup(): InvisibleWall[] {

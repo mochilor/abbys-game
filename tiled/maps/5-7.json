@@ -1770,8 +1770,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":203.575757575758,
-                 "y":110.151515151515
+                 "x":294.242424242425,
+                 "y":314.818181818182
                 }, 
                 {
                  "class":"",
@@ -2341,6 +2341,42 @@
                  "width":8,
                  "x":376,
                  "y":280
+                }, 
+                {
+                 "class":"",
+                 "gid":209,
+                 "height":8,
+                 "id":1207,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":376,
+                 "y":320
+                }, 
+                {
+                 "class":"",
+                 "gid":188,
+                 "height":8,
+                 "id":1209,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":328,
+                 "y":328
+                }, 
+                {
+                 "class":"",
+                 "gid":188,
+                 "height":8,
+                 "id":1210,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":424,
+                 "y":328
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2349,7 +2385,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":1207,
+ "nextobjectid":1211,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -2372,12 +2408,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

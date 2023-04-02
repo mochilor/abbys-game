@@ -10,7 +10,7 @@ import Platform from '../Collidable/Static/Platform';
 import Spike from '../Collidable/Static/Spike';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import Spring from '../Collidable/Static/Spring';
-import { makeSprites } from '../factory';
+import { makeSprites } from '../Factory';
 import GameObject from '../GameObject';
 import Player from '../Player/Player';
 
