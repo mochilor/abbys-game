@@ -14,20 +14,25 @@ export default class Counter extends GameObject {
 
   private eventEmitted: boolean = false;
 
+  private initialized: boolean = false;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'countersSpriteSheet');
+  }
 
+  private init(): void {
     this.isComplete = this.getRemainingCoins() === 0;
 
     // shadow
-    scene.add.bitmapText(this.x + 11, this.y - 2, 'font', this.getRemainingCoins().toString())
+    this.scene.add.bitmapText(this.x + 11, this.y - 2, 'font', this.getRemainingCoins().toString())
       .setTintFill(0x717171);
 
     // text
-    scene.add.bitmapText(this.x + 11, this.y - 3, 'font', this.getRemainingCoins().toString())
+    this.scene.add.bitmapText(this.x + 11, this.y - 3, 'font', this.getRemainingCoins().toString())
       .setTintFill(this.isComplete ? 0xbdbdbd : 0x9a9a9a);
 
     this.setFrame(this.getFrame());
+    this.initialized = true;
   }
 
   private getRemainingCoins(): integer {
@@ -65,6 +70,10 @@ export default class Counter extends GameObject {
   }
 
   public update(time: number): void {
+    if (!this.initialized) {
+      this.init();
+    }
+
     if (!this.isComplete) {
       return;
     }

@@ -50,6 +50,7 @@ export function init(coinsTotalCollection: CoinsTotal[]) {
     function add(roomName: RoomName): void {
       current[roomName.zone()] += 1;
       EventDispatcher.emit('coinCounterUpdated', current);
+      // console.log(current);
     }
 
     function getTotalByLevel(level: string): integer {
