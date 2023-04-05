@@ -279,8 +279,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":20.333333333333,
-                 "y":37
+                 "x":34.9999999999997,
+                 "y":316.333333333333
                 }, 
                 {
                  "class":"",
@@ -1117,30 +1117,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":191,
-                 "height":8,
-                 "id":1301,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":144,
-                 "y":408
-                }, 
-                {
-                 "class":"",
-                 "gid":191,
-                 "height":8,
-                 "id":1302,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":136,
-                 "y":408
-                }, 
-                {
-                 "class":"",
                  "gid":194,
                  "height":8,
                  "id":1305,
@@ -1405,6 +1381,30 @@
                  "width":8,
                  "x":64,
                  "y":32
+                }, 
+                {
+                 "class":"",
+                 "gid":209,
+                 "height":8,
+                 "id":1327,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":136,
+                 "y":408
+                }, 
+                {
+                 "class":"",
+                 "gid":206,
+                 "height":8,
+                 "id":1328,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":64,
+                 "y":408
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1413,7 +1413,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":1327,
+ "nextobjectid":1331,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -1436,12 +1436,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

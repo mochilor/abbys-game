@@ -4,7 +4,7 @@ import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.pn
 import blocksImagePath from '../../../assets/img/blocks.png';
 import spearImagePath from '../../../assets/img/spear.png';
 import ballImagePath from '../../../assets/img/ball.png';
-import portalImagePath from '../../../assets/img/portal.png';
+import portalSpriteSheetPath from '../../../assets/img/portal.png';
 import platformImagePath from '../../../assets/img/platform.png';
 import spikePlatformImagePath from '../../../assets/img/spike-platform.png';
 import conveyorSpriteSheetPath from '../../../assets/img/conveyor.png';
@@ -30,11 +30,11 @@ export default class Preload extends Phaser.Scene {
     this.load.image('blocksImage', blocksImagePath);
     this.load.image('spearImage', spearImagePath);
     this.load.image('ballImage', ballImagePath);
-    this.load.image('portalImage', portalImagePath);
     this.load.image('platformImage', platformImagePath);
     this.load.image('spikePlatformImage', spikePlatformImagePath);
     this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.image('titleImage', title);
+    this.load.spritesheet('portalSpriteSheet', portalSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('smallFishSpritesheet', smallFishSpritesheet, { frameWidth: 8, frameHeight: 7 });
     this.load.spritesheet('bigFishSpritesheet', bigFishSpriteSheetPath, { frameWidth: 12, frameHeight: 10 });
     this.load.spritesheet('objects', objectsSpriteSheetsPath, { frameWidth: 8, frameHeight: 8 });
@@ -61,24 +61,53 @@ export default class Preload extends Phaser.Scene {
 
   public create(): void {
     const coinsTotal = [];
+    const portalDestinations = [];
 
     roomNames().forEach((element: string) => {
       const currentTotal = {
         room: element,
         coins: 0,
       };
+
       const map = this.add.tilemap(element);
       const { firstgid } = map.getTileset('objects');
       const data = map.getObjectLayer('objects').objects;
+
+      const coinId = firstgid;
+      const portalId = firstgid + 14;
+
+      function getPropertyValue(
+        mapItem: Phaser.Types.Tilemaps.TiledObject,
+        property: string,
+      ): integer | string | null {
+        for (let n = 0; n < mapItem.properties.length; n += 1) {
+          if (mapItem.properties[n].name === property) {
+            return mapItem.properties[n].value;
+          }
+        }
+
+        return null;
+      }
+
       data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
-        if (mapItem.gid === firstgid) {
+        if (mapItem.gid === coinId) {
           currentTotal.coins += 1;
+        }
+
+        if (mapItem.gid === portalId) {
+          portalDestinations.push({
+            room: getPropertyValue(mapItem, 'destinationRoom'),
+            x: parseInt(getPropertyValue(mapItem, 'destinationX') as string, 10),
+            y: parseInt(getPropertyValue(mapItem, 'destinationY') as string, 10),
+            key: 'PortalDestination',
+          });
         }
       });
       coinsTotal.push(currentTotal);
     });
 
     this.registry.set('coinsTotal', coinsTotal);
+    this.registry.set('portalDestinations', portalDestinations);
     this.registry.set('start', true);
 
     this.scene.start('Main');

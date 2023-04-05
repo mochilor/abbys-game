@@ -517,8 +517,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":474.772727272727,
-                 "y":349.499999999999
+                 "x":168.772727272727,
+                 "y":150.333333333332
                 }, 
                 {
                  "class":"",
@@ -1503,7 +1503,7 @@
                         {
                          "name":"level",
                          "type":"string",
-                         "value":"16"
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -2442,12 +2442,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

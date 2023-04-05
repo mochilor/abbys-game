@@ -25,6 +25,7 @@ import InvisibleWall from './Collidable/Static/InvisibleWall';
 import Mummy from './Collidable/Static/Enemy/Mummy';
 import Counter from './Decoration/Counter';
 import Robot from './Collidable/Static/Enemy/Robot';
+import PortalDestination from './Decoration/PortalDestination';
 
 const playerItemClass = {
   2: Player,
@@ -38,6 +39,7 @@ const dynamicItemClasses = {
 
 const staticItemClasses = {
   4: Spring,
+  5: PortalDestination,
   6: Save,
   7: Spike,
   9: Platform,

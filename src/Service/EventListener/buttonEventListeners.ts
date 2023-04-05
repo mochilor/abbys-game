@@ -7,6 +7,7 @@ import * as EventDispatcher from '../EventDispatcher';
 import SpikePlatform from '../../Scene/Main/Sprite/Collidable/Static/SpikePlatform';
 import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
 import Portal from '../../Scene/Main/Sprite/Collidable/Static/Portal';
+import makeVirtualGameItemRepository from '../../Scene/Main/GameItem/Virtual/VirtualGameItemRepository';
 
 function listenButtonEvents(
   gameScene: Phaser.Scene,

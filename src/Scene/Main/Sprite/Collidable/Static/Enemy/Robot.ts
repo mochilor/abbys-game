@@ -16,7 +16,7 @@ export default class Robot extends EnemyGameObject {
     this.body.setSize(15, 13);
     this.fixBodyOffset(false);
 
-    this.y = gameItem.y + 3;
+    this.y = gameItem.y - 5;
 
     this.dangerArea = scene.add.zone(this.x, this.y, 128, this.height);
     scene.physics.world.enable(this.dangerArea, Phaser.Physics.Arcade.DYNAMIC_BODY);

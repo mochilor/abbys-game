@@ -864,7 +864,7 @@
                         {
                          "name":"destinationX",
                          "type":"string",
-                         "value":"424"
+                         "value":"420"
                         }, 
                         {
                          "name":"destinationY",
@@ -1082,12 +1082,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

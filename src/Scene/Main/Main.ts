@@ -13,6 +13,8 @@ import * as locatorFactory from './GameItem/Locator/Factory';
 import setupBackground from './Background/BackgroundManager';
 import createPauseButton from './UI/PauseButton';
 import listenSettingsEvents from '../../Service/EventListener/settingsEventListener';
+import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRepository';
+import { VirtualGameItem } from './GameItem/Virtual/types';
 
 interface Data {
   x: number,
@@ -52,6 +54,7 @@ export default class Main extends Phaser.Scene {
     EventDispatcher.removeAllListeners();
 
     this.initCoins();
+    this.initPortalDestinations();
     addDebugContainer();
     listenDebugEvents();
 
@@ -105,6 +108,19 @@ export default class Main extends Phaser.Scene {
       this.registry.remove('coinsTotal');
     }
     CoinCounter.reset();
+  }
+
+  private initPortalDestinations(): void {
+    const portalDestinations: VirtualGameItem[] = this.registry.get('portalDestinations');
+    if (portalDestinations) {
+      const virtualGameItemRepository = makeVirtualGameItemRepository();
+
+      portalDestinations.forEach((virtualGameItem: VirtualGameItem) => {
+        virtualGameItemRepository.add(virtualGameItem);
+      });
+
+      this.registry.remove('portalDestinations');
+    }
   }
 
   private createTitle(): void {

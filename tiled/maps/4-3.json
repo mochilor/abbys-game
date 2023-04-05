@@ -360,7 +360,7 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"18"
+                         "value":"24"
                         }, 
                         {
                          "name":"mapEvent15",
@@ -384,6 +384,18 @@
                  "width":8,
                  "x":136,
                  "y":120
+                }, 
+                {
+                 "class":"",
+                 "gid":190,
+                 "height":8,
+                 "id":397,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":272,
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -392,7 +404,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":397,
+ "nextobjectid":398,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
@@ -415,12 +427,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

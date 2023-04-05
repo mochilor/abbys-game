@@ -1,5 +1,5 @@
 import RoomName from '../../Map/RoomName';
-import makeGameItemCollection from '../GameItemCollection';
+import { makeGameItemCollection } from '../Factory';
 import { GameItemLocator, GameItem, GameItemCollection } from '../types';
 
 type DataManager = {

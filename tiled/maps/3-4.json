@@ -418,7 +418,7 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"270"
+                         "value":"280"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -596,7 +596,7 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"270"
+                         "value":"280"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -778,12 +778,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],

@@ -1,6 +1,3 @@
-import makeGameItemCollection from '../GameItemCollection';
-import makeStaticGameItemCollection from '../StaticGameItemCollection';
-import makeMapEventsGameItemCollection from '../MapEventsGameItemCollection';
 import {
   playerItemClass,
   dynamicItemClasses,
@@ -16,8 +13,18 @@ import {
   MapGameItemLocator,
   StaticGameItemCollection,
 } from '../types';
+import {
+  makeGameItem,
+  makeGameItemCollection,
+  makeMapEventsGameItemCollection,
+  makeStaticGameItemCollection,
+} from '../Factory';
+import makeVirtualGameItemRepository from '../Virtual/VirtualGameItemRepository';
+import { VirtualGameItem } from '../Virtual/types';
 
 export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & MapGameItemLocator {
+  const virtualGameItemRepository = makeVirtualGameItemRepository();
+
   function getItemId(className: string, itemClasses: object): integer {
     const keys = Object.keys(itemClasses);
     for (let n = 0; n < keys.length; n += 1) {
@@ -35,20 +42,18 @@ export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & Ma
     const data = map.getObjectLayer('objects').objects;
     const result = [];
     const { firstgid } = map.getTileset('objects');
-    const offset = 4;
 
     data.forEach((mapItem: Phaser.Types.Tilemaps.TiledObject) => {
       if (itemId === mapItem.gid - firstgid + 1) {
-        const item = {
-          uuid: Phaser.Utils.String.UUID(),
-          id: itemId,
-          x: mapItem.x + offset,
-          y: mapItem.y - offset,
-          key: className,
-          rotation: mapItem.rotation,
+        const item = makeGameItem(
+          itemId,
+          mapItem.x,
+          mapItem.y,
+          className,
+          mapItem.rotation,
           roomName,
-          properties: mapItem.properties ?? [],
-        };
+          mapItem.properties ?? [],
+        );
 
         result.push(item);
       }
@@ -75,7 +80,27 @@ export default function make(map: Phaser.Tilemaps.Tilemap): GameItemLocator & Ma
 
   function getStaticGameItemCollection(room: RoomName): StaticGameItemCollection {
     const items = getGameItems(staticItemClasses, room);
-    return makeStaticGameItemCollection(items);
+
+    const virtualItems = virtualGameItemRepository.get(room);
+
+    const additionalItems = [];
+
+    virtualItems.forEach((virtualItem: VirtualGameItem) => {
+      const itemId = getItemId(virtualItem.key, staticItemClasses);
+
+      const item = makeGameItem(
+        itemId,
+        virtualItem.x,
+        virtualItem.y,
+        virtualItem.key,
+        null,
+        room,
+        [],
+      );
+      additionalItems.push(item);
+    });
+
+    return makeStaticGameItemCollection([...items, ...additionalItems]);
   }
 
   function getMapEventsGameItemCollection(room: RoomName): MapEventsGameItemCollection {

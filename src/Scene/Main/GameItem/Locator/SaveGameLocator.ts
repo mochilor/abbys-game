@@ -1,8 +1,8 @@
 import { loadGame } from '../../../../Service/gameStore';
 import RoomName from '../../Map/RoomName';
-import makeGameItemCollection from '../GameItemCollection';
 import { getDebugRoomName } from '../../Debug/debug';
 import { GameItemLocator, GameItem, GameItemCollection } from '../types';
+import { makeGameItemCollection } from '../Factory';
 
 type DataManager = {
   set(name: string, data: any): void,

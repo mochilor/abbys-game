@@ -15,7 +15,7 @@ export default class Portal extends GameObject {
   private destination: Destination;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'portalImage');
+    super(scene, gameItem, 'portalSpriteSheet');
 
     scene.physics.world.enable(this);
 
