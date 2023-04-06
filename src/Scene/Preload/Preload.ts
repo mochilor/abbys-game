@@ -1,7 +1,7 @@
 import playerSpriteSheetPath from '../../../assets/img/player-spritesheet.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
-import blocksImagePath from '../../../assets/img/blocks.png';
+import blocksSpriteSheetPath from '../../../assets/img/blocks.png';
 import spearImagePath from '../../../assets/img/spear.png';
 import ballImagePath from '../../../assets/img/ball.png';
 import portalSpriteSheetPath from '../../../assets/img/portal.png';
@@ -27,13 +27,13 @@ export default class Preload extends Phaser.Scene {
 
   public preload(): void {
     this.load.image('tilesetImage', tilesetPath);
-    this.load.image('blocksImage', blocksImagePath);
     this.load.image('spearImage', spearImagePath);
     this.load.image('ballImage', ballImagePath);
     this.load.image('platformImage', platformImagePath);
     this.load.image('spikePlatformImage', spikePlatformImagePath);
     this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.image('titleImage', title);
+    this.load.spritesheet('blocksSpriteSheet', blocksSpriteSheetPath, { frameWidth: 24, frameHeight: 24 });
     this.load.spritesheet('portalSpriteSheet', portalSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('smallFishSpritesheet', smallFishSpritesheet, { frameWidth: 8, frameHeight: 7 });
     this.load.spritesheet('bigFishSpritesheet', bigFishSpriteSheetPath, { frameWidth: 12, frameHeight: 10 });

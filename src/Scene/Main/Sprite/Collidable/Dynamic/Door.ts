@@ -14,7 +14,7 @@ export default class Door extends GameObject {
   private isLocked: boolean = true;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'blocksImage');
+    super(scene, gameItem, 'blocksSpriteSheet');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
@@ -22,6 +22,17 @@ export default class Door extends GameObject {
     this.level = this.getProperty('level').value as number;
 
     this.setupLocks(scene);
+    this.setFrameFromLevel();
+  }
+
+  private setFrameFromLevel(): void {
+    const frames = {
+      cave: 0,
+      pyramid: 1,
+      base: 2,
+    };
+    const level = this.gameItem.roomName.zone();
+    this.setFrame(frames[level]);
   }
 
   private setupLocks(scene: Phaser.Scene): void {
