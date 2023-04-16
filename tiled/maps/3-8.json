@@ -469,6 +469,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -487,6 +492,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -505,6 +515,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -523,6 +538,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -541,6 +561,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -559,6 +584,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -613,6 +643,11 @@
                          "name":"activable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"13"
                         }],
                  "rotation":0,
                  "visible":true,

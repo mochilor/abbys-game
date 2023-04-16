@@ -46,6 +46,12 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('robotSpriteSheet', robotSpriteSheetPath, { frameWidth: 21, frameHeight: 17 });
     this.load.spritesheet('countersSpriteSheet', countersSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
 
+    // other textures
+    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    graphics.fillStyle(0xFF0000, 1.0);
+    graphics.fillRect(0, 0, 2, 2);
+    graphics.generateTexture('lightTexture', 2, 1);
+
     // dist folder local path (workaround to load xml file path correctly here)
     // thanks to parcel-reporter-static-files-copy plugin
     this.load.bitmapFont('font', font, './xml/font.xml');

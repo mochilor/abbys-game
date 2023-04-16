@@ -8,6 +8,8 @@ export default class Spike extends GameObject {
 
   private activable: boolean = false;
 
+  private event: integer = null;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'objects');
 
@@ -38,6 +40,10 @@ export default class Spike extends GameObject {
       this.activable = this.getProperty('activable').value === '1';
     }
 
+    if (this.getProperty('event')) {
+      this.event = parseInt(this.getProperty('event').value as string, 10);
+    }
+
     this.fixOffsetBasedOnRotation();
   }
 
@@ -57,15 +63,15 @@ export default class Spike extends GameObject {
     return this.angle === -90;
   }
 
-  public deactivate(): void {
-    if (this.deactivable) {
+  public deactivate(event: integer): void {
+    if (this.deactivable && this.event === event) {
       this.body.enable = false;
       this.setVisible(false);
     }
   }
 
-  public activate(): void {
-    if (this.activable) {
+  public activate(event: integer): void {
+    if (this.activable && this.event === event) {
       this.body.enable = true;
       this.setVisible(true);
     }

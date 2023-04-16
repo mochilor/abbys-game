@@ -26,6 +26,7 @@ import Mummy from './Collidable/Static/Enemy/Mummy';
 import Counter from './Decoration/Counter';
 import Robot from './Collidable/Static/Enemy/Robot';
 import PortalDestination from './Decoration/PortalDestination';
+import Light from './Decoration/Light';
 
 const playerItemClass = {
   2: Player,
@@ -42,6 +43,7 @@ const staticItemClasses = {
   5: PortalDestination,
   6: Save,
   7: Spike,
+  8: Light,
   9: Platform,
   12: SeaWeed,
   13: Spear,

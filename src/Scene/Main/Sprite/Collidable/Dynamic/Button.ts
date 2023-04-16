@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { GameItem } from '../../../GameItem/types';
+import RoomName from '../../../Map/RoomName';
 import GameObject from '../../GameObject';
 
 export default class Button extends GameObject {
@@ -18,5 +19,9 @@ export default class Button extends GameObject {
 
   public getEventName(): string {
     return `button${this.getProperty('event').value}Activated`;
+  }
+
+  public getRoomName(): RoomName {
+    return this.gameItem.roomName;
   }
 }

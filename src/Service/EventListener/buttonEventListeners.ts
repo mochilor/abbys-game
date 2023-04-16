@@ -7,7 +7,6 @@ import * as EventDispatcher from '../EventDispatcher';
 import SpikePlatform from '../../Scene/Main/Sprite/Collidable/Static/SpikePlatform';
 import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
 import Portal from '../../Scene/Main/Sprite/Collidable/Static/Portal';
-import makeVirtualGameItemRepository from '../../Scene/Main/GameItem/Virtual/VirtualGameItemRepository';
 
 function listenButtonEvents(
   gameScene: Phaser.Scene,
@@ -136,14 +135,14 @@ function listenButtonEvents(
   function button11Activated(): void {
     // This event deactivates a couple of spikes
     spriteStore.spikes.forEach((child: Spike) => {
-      child.deactivate();
+      child.deactivate(11);
     });
   }
 
   function button12Activated(): void {
     // This event deactivates a couple of spikes
     spriteStore.spikes.forEach((child: Spike) => {
-      child.deactivate();
+      child.deactivate(12);
     });
   }
 
@@ -154,8 +153,8 @@ function listenButtonEvents(
 
     // This event also activates and deactivates a couple of spikes
     spriteStore.spikes.forEach((child: Spike) => {
-      child.deactivate();
-      child.activate();
+      child.deactivate(13);
+      child.activate(13);
     });
   }
 

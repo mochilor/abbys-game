@@ -189,6 +189,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"12"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -207,6 +212,11 @@
                          "name":"deactivable",
                          "type":"string",
                          "value":"1"
+                        }, 
+                        {
+                         "name":"event",
+                         "type":"string",
+                         "value":"12"
                         }],
                  "rotation":0,
                  "visible":true,
@@ -342,8 +352,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":314.666666666667,
-                 "y":44
+                 "x":426,
+                 "y":382
                 }, 
                 {
                  "class":"",
@@ -1196,12 +1206,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":72,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":27,
          "tileheight":8,
          "tilewidth":8
         }],
