@@ -258,4 +258,16 @@ export default class Player extends GameObject {
   public unfreeze(): void {
     this.frozen = false;
   }
+
+  private freeze(): void {
+    this.frozen = true;
+    this.setFrame(0);
+    this.body.setVelocityX(0);
+    this.anims.stop();
+  }
+
+  public prepareToEnding(): void {
+    this.freeze();
+    this.setDepth(10);
+  }
 }

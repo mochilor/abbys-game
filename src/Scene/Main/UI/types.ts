@@ -7,3 +7,7 @@ export interface Title {
 export interface PauseButton {
   pause: () => void,
 }
+
+export interface Ending {
+  start: () => void,
+}

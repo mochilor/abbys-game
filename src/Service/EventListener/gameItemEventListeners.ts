@@ -7,11 +7,14 @@ import Player from '../../Scene/Main/Sprite/Player/Player';
 import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
 import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 import { GameItemCollection, GameItem } from '../../Scene/Main/GameItem/types';
+import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
+import Rubi from '../../Scene/Main/Sprite/Collidable/Static/Rubi';
 
 export default function listenGameItemEvents(
   gameItems: GameItemCollection,
   playerItem: GameItem,
   registry: Phaser.Data.DataManager,
+  spriteStore: SpriteStore,
 ) {
   function itemDestroyed(item: GameObject) {
     const uuid = item.getUuid();
@@ -59,8 +62,14 @@ export default function listenGameItemEvents(
     CoinCounter.getInstance().add(roomName);
   }
 
+  function playerGotRubi(rubi: Rubi): void {
+    spriteStore.player.prepareToEnding();
+    rubi.freeze();
+  }
+
   EventDispatcher.on('itemDestroyed', itemDestroyed);
   EventDispatcher.on('gameSaved', gameSaved);
   EventDispatcher.on('newRoomReached', newRoomReached);
   EventDispatcher.on('playerGotCoin', playerGotCoin);
+  EventDispatcher.on('playerGotRubi', playerGotRubi);
 }

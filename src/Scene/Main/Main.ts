@@ -15,6 +15,7 @@ import createPauseButton from './UI/PauseButton';
 import listenSettingsEvents from '../../Service/EventListener/settingsEventListener';
 import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRepository';
 import { VirtualGameItem } from './GameItem/Virtual/types';
+import createEnding from './UI/Ending';
 
 interface Data {
   x: number,
@@ -97,6 +98,7 @@ export default class Main extends Phaser.Scene {
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
 
     this.createTitle();
+    this.createEnding();
 
     listenSettingsEvents();
   }
@@ -143,6 +145,11 @@ export default class Main extends Phaser.Scene {
   private reset(): void {
     this.registry.reset();
     this.scene.restart({});
+  }
+
+  private createEnding(): void {
+    const ending = createEnding(this.cameras.main, this);
+    EventDispatcher.on('playerGotRubi', ending.start);
   }
 
   update(time: number): void {

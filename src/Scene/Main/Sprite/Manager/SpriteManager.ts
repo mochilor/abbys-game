@@ -53,7 +53,7 @@ export default class SpriteManager {
 
     setupColliders(this.scene, this.spritesStore);
 
-    listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry);
+    listenGameItemEvents(dynamicGameItems, playerGameItem, this.scene.registry, this.spritesStore);
     listenButtonEvents(this.scene, mapEventGameItems, this.spritesStore);
     listenEnemyEvents(this.spritesStore.player);
     listenGameObjectEvents(this.spritesStore.doors, this.spritesStore.platforms);

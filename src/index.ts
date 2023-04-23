@@ -21,6 +21,12 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  fps: {
+    // Defaults:
+    deltaHistory: 10,
+    panicMax: 120,
+    smoothStep: true,
+  },
   scene: [
     Preload,
     Main,

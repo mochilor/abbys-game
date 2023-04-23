@@ -16,6 +16,7 @@ import crabSpriteSheetPath from '../../../assets/img/crab-spritesheet.png';
 import mummySpriteSheetPath from '../../../assets/img/mummy-spritesheet.png';
 import robotSpriteSheetPath from '../../../assets/img/robot-spritesheet.png';
 import countersSpriteSheetPath from '../../../assets/img/counters-spritesheet.png';
+import rubiSpriteSheetPath from '../../../assets/img/rubi-spritesheet.png';
 import title from '../../../assets/img/title/title.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
@@ -45,6 +46,7 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('mummySpriteSheet', mummySpriteSheetPath, { frameWidth: 14, frameHeight: 20 });
     this.load.spritesheet('robotSpriteSheet', robotSpriteSheetPath, { frameWidth: 21, frameHeight: 17 });
     this.load.spritesheet('countersSpriteSheet', countersSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('rubiSpriteSheet', rubiSpriteSheetPath, { frameWidth: 10, frameHeight: 17 });
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });
