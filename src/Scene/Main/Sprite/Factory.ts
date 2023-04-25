@@ -27,7 +27,7 @@ import Counter from './Decoration/Counter';
 import Robot from './Collidable/Static/Enemy/Robot';
 import PortalDestination from './Decoration/PortalDestination';
 import Light from './Decoration/Light';
-import Rubi from './Collidable/Static/Rubi';
+import Rubi from './Collidable/Static/Rubi/Rubi';
 
 const playerItemClass = {
   2: Player,

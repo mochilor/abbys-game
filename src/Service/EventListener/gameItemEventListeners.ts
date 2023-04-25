@@ -8,7 +8,7 @@ import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
 import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 import { GameItemCollection, GameItem } from '../../Scene/Main/GameItem/types';
 import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
-import Rubi from '../../Scene/Main/Sprite/Collidable/Static/Rubi';
+import Rubi from '../../Scene/Main/Sprite/Collidable/Static/Rubi/Rubi';
 
 export default function listenGameItemEvents(
   gameItems: GameItemCollection,

@@ -1,10 +1,13 @@
-import { GameItem } from '../../../GameItem/types';
-import GameObject from '../../GameObject';
+import { GameItem } from '../../../../GameItem/types';
+import GameObject from '../../../GameObject';
+import { makeShaker, Shaker } from './Shaker';
 
 export default class Rubi extends GameObject {
   public static key = 'Rubi';
 
   private tween: Phaser.Tweens.Tween;
+
+  private shaker: Shaker = null;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'rubiSpriteSheet');
@@ -46,6 +49,20 @@ export default class Rubi extends GameObject {
       loop: 0,
       ease: 'linear',
       delay: 2000,
+      onComplete: this.makeReady.bind(this),
     });
+  }
+
+  private makeReady(): void {
+    this.shaker = makeShaker(this.x, this.y);
+  }
+
+  public update(time: number) {
+    if (this.shaker) {
+      const newPosition = this.shaker.shake(time);
+
+      this.x = newPosition.x;
+      this.y = newPosition.y;
+    }
   }
 }

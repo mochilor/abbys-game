@@ -4,7 +4,7 @@ import Save from '../Collidable/Static/Save';
 import { GameItem } from '../../GameItem/types';
 import GameObject from '../GameObject';
 import Button from '../Collidable/Dynamic/Button';
-import Rubi from '../Collidable/Static/Rubi';
+import Rubi from '../Collidable/Static/Rubi/Rubi';
 
 function gotCoin(roomName: string): void {
   EventDispatcher.emit('playerGotCoin', roomName);
