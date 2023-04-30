@@ -5,15 +5,11 @@ import closeUIElement from '../../../UI/ClosingAnimation';
 import createMenu from '../../../UI/Menu';
 import { Title } from './types';
 
-export default function createTitle(
-  camera: Phaser.Cameras.Scene2D.Camera,
-  scene: Phaser.Scene,
-  hasSavedGame: boolean,
-): Title {
+export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean): Title {
   const background = (() => {
     const rectangle = scene.add.rectangle(
-      camera.scrollX,
-      camera.scrollY,
+      0,
+      0,
       config.gameWidth,
       config.gameHeight + 10,
       0x000000,
@@ -28,8 +24,8 @@ export default function createTitle(
 
   const logo = (() => {
     const position = {
-      x: camera.scrollX + config.gameWidth / 2,
-      y: camera.scrollY + config.gameHeight / 3,
+      x: background.x + config.gameWidth / 2,
+      y: background.x + config.gameHeight / 3,
     };
 
     const image = scene.add.image(

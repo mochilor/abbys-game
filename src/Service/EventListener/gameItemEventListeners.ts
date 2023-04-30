@@ -8,7 +8,7 @@ import Save from '../../Scene/Main/Sprite/Collidable/Static/Save';
 import * as CoinCounter from '../../Scene/Main/GameItem/CoinCounter/CoinCounter';
 import { GameItemCollection, GameItem } from '../../Scene/Main/GameItem/types';
 import { SpriteStore } from '../../Scene/Main/Sprite/Manager/SpriteStore';
-import Rubi from '../../Scene/Main/Sprite/Collidable/Static/Rubi/Rubi';
+import Ruby from '../../Scene/Main/Sprite/Collidable/Static/Ruby/Ruby';
 
 export default function listenGameItemEvents(
   gameItems: GameItemCollection,
@@ -62,14 +62,14 @@ export default function listenGameItemEvents(
     CoinCounter.getInstance().add(roomName);
   }
 
-  function playerGotRubi(rubi: Rubi): void {
+  function playerGotRuby(ruby: Ruby): void {
     spriteStore.player.prepareToEnding();
-    rubi.freeze();
+    ruby.freeze();
   }
 
   EventDispatcher.on('itemDestroyed', itemDestroyed);
   EventDispatcher.on('gameSaved', gameSaved);
   EventDispatcher.on('newRoomReached', newRoomReached);
   EventDispatcher.on('playerGotCoin', playerGotCoin);
-  EventDispatcher.on('playerGotRubi', playerGotRubi);
+  EventDispatcher.on('playerGotRuby', playerGotRuby);
 }

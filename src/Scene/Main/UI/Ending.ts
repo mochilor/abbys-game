@@ -1,16 +1,13 @@
 import config from '../../../../config/config.json';
 import { Ending } from './types';
 
-export default function createEnding(
-  camera: Phaser.Cameras.Scene2D.Camera,
-  scene: Phaser.Scene,
-): Ending {
+export default function createEnding(scene: Phaser.Scene): Ending {
   const background = (() => {
     const rectangle = scene.add.rectangle(
-      camera.scrollX,
-      camera.scrollY,
+      0,
+      0,
       config.gameWidth,
-      config.gameHeight + 10,
+      config.gameHeight,
       0x000000,
       1,
     );
@@ -40,5 +37,9 @@ export default function createEnding(
     tween.play();
   }
 
-  return { start };
+  function renderText(): void {
+
+  }
+
+  return { start, renderText };
 }

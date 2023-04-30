@@ -16,6 +16,7 @@ import listenSettingsEvents from '../../Service/EventListener/settingsEventListe
 import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRepository';
 import { VirtualGameItem } from './GameItem/Virtual/types';
 import createEnding from './UI/Ending';
+import listenEndingEvents from '../../Service/EventListener/endingEventListeners';
 
 interface Data {
   x: number,
@@ -98,7 +99,8 @@ export default class Main extends Phaser.Scene {
     EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
 
     this.createTitle();
-    this.createEnding();
+
+    listenEndingEvents(this);
 
     listenSettingsEvents();
   }
@@ -127,7 +129,7 @@ export default class Main extends Phaser.Scene {
 
   private createTitle(): void {
     if (this.registry.get('start')) {
-      const title = createTitle(this.cameras.main, this, hasSavedGame());
+      const title = createTitle(this, hasSavedGame());
       this.registry.remove('start');
       listenTitleEvents(title);
       return;
@@ -145,11 +147,6 @@ export default class Main extends Phaser.Scene {
   private reset(): void {
     this.registry.reset();
     this.scene.restart({});
-  }
-
-  private createEnding(): void {
-    const ending = createEnding(this.cameras.main, this);
-    EventDispatcher.on('playerGotRubi', ending.start);
   }
 
   update(time: number): void {

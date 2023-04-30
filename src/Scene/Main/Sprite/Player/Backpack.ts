@@ -4,7 +4,7 @@ import Save from '../Collidable/Static/Save';
 import { GameItem } from '../../GameItem/types';
 import GameObject from '../GameObject';
 import Button from '../Collidable/Dynamic/Button';
-import Rubi from '../Collidable/Static/Rubi/Rubi';
+import Ruby from '../Collidable/Static/Ruby/Ruby';
 
 function gotCoin(roomName: string): void {
   EventDispatcher.emit('playerGotCoin', roomName);
@@ -14,8 +14,8 @@ function activateButton(eventName: string): void {
   EventDispatcher.emit(eventName);
 }
 
-function gotRubi(rubi: Rubi): void {
-  EventDispatcher.emit('playerGotRubi', rubi);
+function gotRuby(ruby: Ruby): void {
+  EventDispatcher.emit('playerGotRuby', ruby);
 }
 
 export default class Backpack {
@@ -24,7 +24,7 @@ export default class Backpack {
     gameEvents: [],
   };
 
-  private gotRubi: boolean = false;
+  private gotRuby: boolean = false;
 
   constructor(properties: GameItem['properties']) {
     this.setContentFromSaving(properties);
@@ -80,14 +80,14 @@ export default class Backpack {
       activateButton(eventName);
     }
 
-    if (item instanceof Rubi) {
+    if (item instanceof Ruby) {
       destroy = false;
-      if (this.gotRubi) {
+      if (this.gotRuby) {
         return;
       }
 
-      gotRubi(item);
-      this.gotRubi = true;
+      gotRuby(item);
+      this.gotRuby = true;
     }
 
     if (destroy) {
