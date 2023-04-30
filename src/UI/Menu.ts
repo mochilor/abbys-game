@@ -81,10 +81,15 @@ export default function create(
     closeUIElement(scene, [text, ...buttonBodys, ...buttonTexts]);
   }
 
+  function getText(): Phaser.GameObjects.BitmapText {
+    return text;
+  }
+
   return {
     quit,
     addButton,
     show,
     hide,
+    getText,
   };
 }

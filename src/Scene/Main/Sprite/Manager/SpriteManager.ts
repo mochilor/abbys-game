@@ -18,6 +18,7 @@ import InvisibleWall from '../Collidable/Static/InvisibleWall';
 import Mummy from '../Collidable/Static/Enemy/Mummy';
 import Robot from '../Collidable/Static/Enemy/Robot';
 import listenEnemyEvents from '../../../../Service/EventListener/enemyEventListeners';
+import Ruby from '../Collidable/Static/Ruby/Ruby';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -115,6 +116,20 @@ export default class SpriteManager {
 
   public getInvisibleWallsGroup(): InvisibleWall[] {
     return this.spritesStore.invisibleWalls;
+  }
+
+  public getRuby(): Ruby | null {
+    const { objects } = this.spritesStore;
+
+    let ruby = null;
+
+    objects.forEach((object: GameObject) => {
+      if (object instanceof Ruby) {
+        ruby = object;
+      }
+    });
+
+    return ruby;
   }
 
   public update(time: number): void {

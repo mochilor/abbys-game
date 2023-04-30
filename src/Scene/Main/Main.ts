@@ -96,7 +96,7 @@ export default class Main extends Phaser.Scene {
 
     this.createTitle();
 
-    listenEndingEvents(this);
+    listenEndingEvents(this, this.spriteManager);
 
     listenSettingsEvents();
   }

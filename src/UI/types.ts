@@ -6,6 +6,7 @@ export type Menu = {
   ): void,
   show(): void,
   hide(): void,
+  getText(): Phaser.GameObjects.BitmapText,
 };
 
 export type Button = {

@@ -1,7 +1,8 @@
 import config from '../../../../config/config.json';
 import { Ending } from './types';
 import createMenu from '../../../UI/Menu';
-import { Menu } from '../../../UI/types';
+import * as EventDispatcher from '../../../Service/EventDispatcher';
+import closeUIElement from '../../../UI/ClosingAnimation';
 
 export default function createEnding(scene: Phaser.Scene): Ending {
   const background = (() => {
@@ -22,6 +23,23 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     return rectangle;
   })();
 
+  const { x } = background.getCenter();
+  const y = background.getCenter().y - 64;
+
+  const congratulations = createMenu(
+    x,
+    y,
+    scene,
+    'Congratulations!\nYou found the legendary treasure',
+  );
+
+  const secondaryText = createMenu(
+    x,
+    y + 32,
+    scene,
+    'Now is time to go home',
+  );
+
   const tween = scene.tweens.add({
     props: {
       alpha: 1,
@@ -39,29 +57,31 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     tween.play();
   }
 
-  function renderSecondaryText(x: integer, y: integer): void {
-    const secondaryText = createMenu(
-      x,
-      y + 24,
-      scene,
-      'Now try again and find the REAL treasure',
-    );
+  function renderSecondaryText(): void {
     secondaryText.show();
   }
 
-  function renderText(): void {
-    const { x } = background.getCenter();
-    const y = background.getCenter().y - 64;
-    const congratulations = createMenu(
-      x,
-      y,
-      scene,
-      'Congratulations!',
-    );
-    congratulations.show();
-
-    scene.time.delayedCall(3000, renderSecondaryText, [x, y]);
+  function textIsComplete(): void {
+    EventDispatcher.emit('endingText1Complete');
   }
 
-  return { start, renderText };
+  function renderText(): void {
+    congratulations.show();
+
+    scene.time.delayedCall(3000, renderSecondaryText);
+    scene.time.delayedCall(5000, textIsComplete);
+  }
+
+  function hide(): void {
+    closeUIElement(
+      scene,
+      [
+        background,
+        congratulations.getText(),
+        secondaryText.getText(),
+      ],
+    );
+  }
+
+  return { start, renderText, hide };
 }

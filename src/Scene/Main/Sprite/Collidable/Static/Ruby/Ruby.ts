@@ -66,6 +66,38 @@ export default class Ruby extends GameObject {
     }
   }
 
+  public move(x: number, y: number): void {
+    this.setDepth(20);
+    this.scene.tweens.add({
+      props: {
+        y,
+        x,
+        scaleX: 0.2,
+        scaleY: 0.2,
+      },
+      targets: this,
+      duration: 2000,
+      loop: 0,
+      ease: 'linear',
+      onComplete: this.makeReadyToGo.bind(this),
+    });
+  }
+
+  private makeReadyToGo(): void {
+    this.setTintFill(0xffffff);
+    this.scene.tweens.add({
+      props: {
+        alpha: 0,
+        angle: 360,
+      },
+      targets: this,
+      duration: 1000,
+      loop: 0,
+      ease: 'linear',
+    });
+    EventDispatcher.emit('rubyAnimation2Finished', this);
+  }
+
   public update(time: number) {
     if (this.shaker) {
       const newPosition = this.shaker.shake(time);

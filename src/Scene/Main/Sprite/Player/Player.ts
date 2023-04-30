@@ -65,6 +65,8 @@ export default class Player extends GameObject {
   }
 
   update() {
+    this.bubbles.forEach((bubble) => bubble.update(this.x, this.y));
+
     if (this.frozen) {
       return;
     }
@@ -91,8 +93,6 @@ export default class Player extends GameObject {
     if (!this.body.blocked.down) {
       this.setFrame(7);
     }
-
-    this.bubbles.forEach((bubble) => bubble.update(this.x, this.y));
 
     if (this.isJumping) {
       this.jump();
