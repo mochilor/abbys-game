@@ -11,12 +11,11 @@ import createTitle from './UI/Title';
 import listenTitleEvents from '../../Service/EventListener/titleEventListeners';
 import * as locatorFactory from './GameItem/Locator/Factory';
 import setupBackground from './Background/BackgroundManager';
-import createPauseButton from './UI/PauseButton';
 import listenSettingsEvents from '../../Service/EventListener/settingsEventListener';
 import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRepository';
 import { VirtualGameItem } from './GameItem/Virtual/types';
-import createEnding from './UI/Ending';
 import listenEndingEvents from '../../Service/EventListener/endingEventListeners';
+import listenSceneEvents from '../../Service/EventListener/sceneEventListeners';
 
 interface Data {
   x: number,
@@ -92,11 +91,8 @@ export default class Main extends Phaser.Scene {
     const player = this.spriteManager.getPlayer();
 
     player.initBackpack();
-    EventDispatcher.on('playerUnfrozen', player.unfreeze, player);
-    EventDispatcher.on('playerUnfrozen', this.createPauseButton, this);
-    EventDispatcher.on('playerHasDied', this.reset, this);
-    EventDispatcher.on('gameReset', this.reset, this);
-    EventDispatcher.on('newRoomReached', this.scene.restart, this.scene);
+
+    listenSceneEvents(this, player);
 
     this.createTitle();
 
@@ -136,17 +132,6 @@ export default class Main extends Phaser.Scene {
     }
 
     EventDispatcher.emit('playerUnfrozen');
-  }
-
-  private createPauseButton(): void {
-    const pauseButton = createPauseButton(this);
-    const escapeKey = this.input.keyboard.addKey('ESC');
-    escapeKey.on('down', pauseButton.pause);
-  }
-
-  private reset(): void {
-    this.registry.reset();
-    this.scene.restart({});
   }
 
   update(time: number): void {
