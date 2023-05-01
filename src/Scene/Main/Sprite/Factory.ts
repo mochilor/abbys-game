@@ -28,6 +28,7 @@ import Robot from './Collidable/Static/Enemy/Robot';
 import PortalDestination from './Decoration/PortalDestination';
 import Light from './Decoration/Light';
 import Ruby from './Collidable/Static/Ruby/Ruby';
+import Anchor from './Decoration/Anchor';
 
 const playerItemClass = {
   2: Player,
@@ -61,6 +62,7 @@ const staticItemClasses = {
   24: Counter,
   25: Robot,
   26: Ruby,
+  27: Anchor,
 };
 
 const mapEventItemClasses = {

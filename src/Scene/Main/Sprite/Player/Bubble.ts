@@ -1,11 +1,14 @@
 type Bubble = {
   update(playerX: number, playerY: number): void;
+  stop(): void;
 };
 
 function createBubble(scene: Phaser.Scene, x: number, y: number): Bubble {
   let life: integer = 0;
   let resetAt: integer = 100;
   let timer: integer = 0;
+  let canRespawn: boolean = true;
+
   const bubble = scene.add.rectangle(x, y, 1, 1, 0xeeeeee, 0.5);
   bubble.setVisible(false);
 
@@ -21,6 +24,10 @@ function createBubble(scene: Phaser.Scene, x: number, y: number): Bubble {
   setResetTime();
 
   function respawn(playerX: number, playerY: number): void {
+    if (!canRespawn) {
+      return;
+    }
+
     timer = 0;
     bubble.setVisible(true);
     bubble.setX(playerX);
@@ -44,7 +51,11 @@ function createBubble(scene: Phaser.Scene, x: number, y: number): Bubble {
     }
   }
 
-  return { update };
+  function stop(): void {
+    canRespawn = false;
+  }
+
+  return { update, stop };
 }
 
 export { Bubble, createBubble };

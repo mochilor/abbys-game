@@ -19,6 +19,7 @@ import Mummy from '../Collidable/Static/Enemy/Mummy';
 import Robot from '../Collidable/Static/Enemy/Robot';
 import listenEnemyEvents from '../../../../Service/EventListener/enemyEventListeners';
 import Ruby from '../Collidable/Static/Ruby/Ruby';
+import Anchor from '../Decoration/Anchor';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -132,6 +133,10 @@ export default class SpriteManager {
     return ruby;
   }
 
+  public getAnchor(): Anchor | null {
+    return this.spritesStore.anchor;
+  }
+
   public update(time: number): void {
     this.spritesStore.platforms.forEach((child: Platform) => {
       child.update();
@@ -152,5 +157,11 @@ export default class SpriteManager {
       child.update(time);
     });
     this.spritesStore.player.update();
+
+    this.spritesStore.anchor?.update();
+  }
+
+  public add(sprite: GameObject) {
+    this.spritesStore.add(sprite);
   }
 }

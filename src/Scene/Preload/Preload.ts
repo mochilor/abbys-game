@@ -18,6 +18,8 @@ import robotSpriteSheetPath from '../../../assets/img/robot-spritesheet.png';
 import countersSpriteSheetPath from '../../../assets/img/counters-spritesheet.png';
 import rubySpriteSheetPath from '../../../assets/img/ruby-spritesheet.png';
 import title from '../../../assets/img/title/title.png';
+import anchorSpriteSheetPath from '../../../assets/img/anchor-spritesheet.png';
+import anchorRope from '../../../assets/img/anchor-rope.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
 
@@ -34,6 +36,8 @@ export default class Preload extends Phaser.Scene {
     this.load.image('spikePlatformImage', spikePlatformImagePath);
     this.load.image('bgUnderwater', bgUnderwaterPath);
     this.load.image('titleImage', title);
+    this.load.image('anchorRopeImage', anchorRope);
+    this.load.spritesheet('anchorSpriteSheet', anchorSpriteSheetPath, { frameWidth: 33, frameHeight: 37 });
     this.load.spritesheet('blocksSpriteSheet', blocksSpriteSheetPath, { frameWidth: 24, frameHeight: 24 });
     this.load.spritesheet('portalSpriteSheet', portalSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('smallFishSpritesheet', smallFishSpritesheet, { frameWidth: 8, frameHeight: 7 });

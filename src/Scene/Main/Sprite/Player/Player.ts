@@ -270,4 +270,11 @@ export default class Player extends GameObject {
     this.freeze();
     this.setDepth(10);
   }
+
+  public hide(): void {
+    this.setVisible(false);
+    this.bubbles.forEach((bubble) => bubble.stop());
+    this.frozen = true;
+    this.body.setEnable(false);
+  }
 }

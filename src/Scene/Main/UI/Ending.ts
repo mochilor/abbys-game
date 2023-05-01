@@ -3,14 +3,33 @@ import { Ending } from './types';
 import createMenu from '../../../UI/Menu';
 import * as EventDispatcher from '../../../Service/EventDispatcher';
 import closeUIElement from '../../../UI/ClosingAnimation';
+import RoomName from '../Map/RoomName';
+
+let currentRoom = 0;
 
 export default function createEnding(scene: Phaser.Scene): Ending {
+  const rooms = [
+    '3_6',
+    '3_3',
+    '5_0',
+  ];
+
+  const roomTexts = [
+    'Programming, Graphics and Sound\n\nDiego Altamirano (mochilo)',
+    'Additional testing and ideas\n\nIvan and Alvaro',
+    'Thanks for playing!',
+  ];
+
+  const finalText = 'Now try again and find the real treasure!';
+
+  const textObjects = [];
+
   const background = (() => {
     const rectangle = scene.add.rectangle(
       0,
       0,
       config.gameWidth,
-      config.gameHeight,
+      config.gameHeight + 10,
       0x000000,
       1,
     );
@@ -40,6 +59,8 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     'Now is time to go home',
   );
 
+  textObjects.push(congratulations.getText(), secondaryText.getText());
+
   const tween = scene.tweens.add({
     props: {
       alpha: 1,
@@ -50,11 +71,17 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     ease: 'linear',
     paused: true,
     delay: 1000,
+    onComplete: () => EventDispatcher.emit('endingBackgroundComplete'),
   });
 
   function start(): void {
     background.setVisible(true);
     tween.play();
+  }
+
+  function startWithoutAnimation(): void {
+    background.setVisible(true);
+    background.setAlpha(1);
   }
 
   function renderSecondaryText(): void {
@@ -77,11 +104,57 @@ export default function createEnding(scene: Phaser.Scene): Ending {
       scene,
       [
         background,
-        congratulations.getText(),
-        secondaryText.getText(),
+        ...textObjects,
       ],
     );
+
+    textObjects.length = 0;
   }
 
-  return { start, renderText, hide };
+  function renderRoomText(): void {
+    const text = createMenu(
+      x,
+      y,
+      scene,
+      roomTexts[currentRoom],
+    );
+    text.show();
+
+    textObjects.push(text.getText());
+
+    scene.time.delayedCall(3000, hide);
+  }
+
+  function getEndingRoom(): RoomName | null {
+    if (rooms[currentRoom]) {
+      return RoomName.fromName(rooms[currentRoom]);
+    }
+
+    return null;
+  }
+
+  function increaseEndingRoom(): void {
+    currentRoom += 1;
+  }
+
+  function renderFinalText(): void {
+    const text = createMenu(
+      x,
+      y,
+      scene,
+      finalText,
+    );
+    text.show();
+  }
+
+  return {
+    start,
+    startWithoutAnimation,
+    renderText,
+    renderRoomText,
+    hide,
+    getEndingRoom,
+    increaseEndingRoom,
+    renderFinalText,
+  };
 }

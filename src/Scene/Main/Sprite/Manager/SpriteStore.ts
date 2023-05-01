@@ -10,6 +10,7 @@ import Platform from '../Collidable/Static/Platform';
 import Spike from '../Collidable/Static/Spike';
 import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import Spring from '../Collidable/Static/Spring';
+import Anchor from '../Decoration/Anchor';
 import { makeSprites } from '../Factory';
 import GameObject from '../GameObject';
 import Player from '../Player/Player';
@@ -26,6 +27,7 @@ export type SpriteStore = {
   conveyors: Conveyor[],
   objects: GameObject[],
   invisibleWalls: InvisibleWall[],
+  anchor: Anchor | null,
   player: Player,
   add(sprite: GameObject): void,
 };
@@ -48,6 +50,7 @@ export function makeSpriteStore(
     conveyors: [],
     objects: [],
     invisibleWalls: [],
+    anchor: null,
     player: null,
     add(sprite: GameObject): void {
       if (sprite instanceof Spike) {
@@ -98,6 +101,11 @@ export function makeSpriteStore(
 
       if (sprite instanceof InvisibleWall) {
         sprites.invisibleWalls.push(sprite);
+        return;
+      }
+
+      if (sprite instanceof Anchor) {
+        sprites.anchor = sprite;
         return;
       }
 

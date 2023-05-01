@@ -9,6 +9,7 @@ import Crab from '../Sprite/Collidable/Static/Enemy/Crab';
 import InvisibleWall from '../Sprite/Collidable/Static/InvisibleWall';
 import Mummy from '../Sprite/Collidable/Static/Enemy/Mummy';
 import Robot from '../Sprite/Collidable/Static/Enemy/Robot';
+import Anchor from '../Sprite/Decoration/Anchor';
 
 export default class MapManager {
   private scene: Phaser.Scene;
@@ -30,6 +31,7 @@ export default class MapManager {
     invisibleWallsGroup: InvisibleWall[],
     mummiesGroup: Mummy[],
     robotsGroup: Robot[],
+    anchor: Anchor | null,
     map: Phaser.Tilemaps.Tilemap,
     tilesetImage: string,
   ): void {
@@ -49,6 +51,10 @@ export default class MapManager {
     this.scene.physics.add.collider(mummiesGroup, invisibleWallsGroup);
     this.scene.physics.add.collider(robotsGroup, this.layer);
     this.scene.physics.add.collider(robotsGroup, invisibleWallsGroup);
+
+    if (anchor) {
+      this.scene.physics.add.collider(anchor, this.layer);
+    }
   }
 
   public updateCurrentRoom(player: Player): void {
@@ -114,9 +120,6 @@ export default class MapManager {
       },
       '4_8': {
         bottom: '4_7',
-      },
-      '5_0': {
-        top: '3_6',
       },
       '5_8': {
         bottom: '4_7',

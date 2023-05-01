@@ -82,6 +82,7 @@ export default class Main extends Phaser.Scene {
       this.spriteManager.getInvisibleWallsGroup(),
       this.spriteManager.getMummiesGroup(),
       this.spriteManager.getRobotsGroup(),
+      this.spriteManager.getAnchor(),
       map,
       'tilesetImage',
     );
@@ -96,9 +97,13 @@ export default class Main extends Phaser.Scene {
 
     this.createTitle();
 
-    listenEndingEvents(this, this.spriteManager);
+    listenEndingEvents(this, this.spriteManager, this.registry);
 
     listenSettingsEvents();
+
+    if (this.registry.get('endingInProgress')) {
+      EventDispatcher.emit('endingAnimationRunning');
+    }
   }
 
   private initCoins(): void {
