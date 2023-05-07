@@ -1,4 +1,5 @@
 import coinSamplePath from 'url:../../../assets/audio/coin.ogg';
+import springSamplePath from 'url:../../../assets/audio/spring.ogg';
 import playerSpriteSheetPath from '../../../assets/img/player-spritesheet.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
@@ -54,6 +55,7 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('rubySpriteSheet', rubySpriteSheetPath, { frameWidth: 10, frameHeight: 17 });
 
     this.load.audio('coinSample', coinSamplePath);
+    this.load.audio('springSample', springSamplePath);
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });

@@ -8,6 +8,8 @@ export default class Spring extends GameObject {
 
   private isActivated: boolean = false;
 
+  private sample: Phaser.Sound.BaseSound;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'objects');
 
@@ -19,6 +21,8 @@ export default class Spring extends GameObject {
     this.deactivate();
 
     this.body.checkCollision.down = false;
+
+    this.sample = scene.sound.add('springSample', { volume: 0.5 });
   }
 
   private deactivate(): void {
@@ -29,6 +33,7 @@ export default class Spring extends GameObject {
 
   public activate(): void {
     this.setFrame(4);
+    this.sample.play();
   }
 
   public update(): void {
