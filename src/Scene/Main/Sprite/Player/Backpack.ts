@@ -67,6 +67,7 @@ export default class Backpack {
       const roomName = item.getRoomName();
       this.content.coins.push(roomName);
       gotCoin(roomName);
+      item.playSound();
     }
 
     if (item instanceof Save) {

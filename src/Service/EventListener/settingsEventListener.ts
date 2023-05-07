@@ -2,7 +2,7 @@ import * as EventDispatcher from '../EventDispatcher';
 import { hasSavedGame, loadGame } from '../gameStore';
 import { initSettings, getSettings, isInitialized } from '../Settings';
 
-export default function listenSettingsEvents(): void {
+export default function listenSettingsEvents(game: Phaser.Game): void {
   function init(): void {
     if (isInitialized()) {
       return;
@@ -19,6 +19,8 @@ export default function listenSettingsEvents(): void {
   function soundToggled(): void {
     const settings = getSettings();
     settings.audio = !settings.audio;
+
+    game.sound.mute = !settings.audio;
   }
 
   init();

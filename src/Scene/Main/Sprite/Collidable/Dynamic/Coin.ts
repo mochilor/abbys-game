@@ -8,6 +8,8 @@ export default class Coin extends GameObject {
 
   private roomName: RoomName;
 
+  private sample: Phaser.Sound.BaseSound;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'objects');
 
@@ -30,9 +32,15 @@ export default class Coin extends GameObject {
       this.body.setEnable(false);
       this.setVisible(false);
     }
+
+    this.sample = scene.sound.add('coinSample', { volume: 0.5 });
   }
 
   public getRoomName(): string {
     return this.roomName.getName();
+  }
+
+  public playSound(): void {
+    this.sample.play();
   }
 }

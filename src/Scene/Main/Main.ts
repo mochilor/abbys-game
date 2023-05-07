@@ -99,7 +99,7 @@ export default class Main extends Phaser.Scene {
 
     listenEndingEvents(this, this.spriteManager, this.registry);
 
-    listenSettingsEvents();
+    listenSettingsEvents(this.game);
 
     if (this.registry.get('endingInProgress')) {
       EventDispatcher.emit('endingAnimationRunning');
