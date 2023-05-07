@@ -16,6 +16,7 @@ import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRep
 import { VirtualGameItem } from './GameItem/Virtual/types';
 import listenEndingEvents from '../../Service/EventListener/endingEventListeners';
 import listenSceneEvents from '../../Service/EventListener/sceneEventListeners';
+import listenSoundEvents from '../../Service/EventListener/soundEventListener';
 
 interface Data {
   x: number,
@@ -100,6 +101,8 @@ export default class Main extends Phaser.Scene {
     listenEndingEvents(this, this.spriteManager, this.registry);
 
     listenSettingsEvents(this.game);
+
+    listenSoundEvents(this);
 
     if (this.registry.get('endingInProgress')) {
       EventDispatcher.emit('endingAnimationRunning');

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { GameItem } from '../../../GameItem/types';
 import GameObject from '../../GameObject';
+import * as EventDispatcher from '../../../../../Service/EventDispatcher';
 
 export default class Door extends GameObject {
   public static key = 'Door';
@@ -78,6 +79,8 @@ export default class Door extends GameObject {
       this.locks[n].destroy();
       delete this.locks[n];
     }
+
+    EventDispatcher.emit('doorOpen');
 
     this.destroy(); // take care of references to free memory!
   }

@@ -1,5 +1,10 @@
 import coinSamplePath from 'url:../../../assets/audio/coin.ogg';
 import springSamplePath from 'url:../../../assets/audio/spring.ogg';
+import portalSamplePath from 'url:../../../assets/audio/portal.ogg';
+import spearSamplePath from 'url:../../../assets/audio/spear.ogg';
+import saveSamplePath from 'url:../../../assets/audio/save.ogg';
+import buttonSamplePath from 'url:../../../assets/audio/button.ogg';
+import doorSamplePath from 'url:../../../assets/audio/door.ogg';
 import playerSpriteSheetPath from '../../../assets/img/player-spritesheet.png';
 import tilesetPath from '../../../assets/img/tileset.png';
 import objectsSpriteSheetsPath from '../../../assets/img/objects-spritesheets.png';
@@ -56,6 +61,11 @@ export default class Preload extends Phaser.Scene {
 
     this.load.audio('coinSample', coinSamplePath);
     this.load.audio('springSample', springSamplePath);
+    this.load.audio('portalSample', portalSamplePath);
+    this.load.audio('spearSample', spearSamplePath);
+    this.load.audio('saveSample', saveSamplePath);
+    this.load.audio('buttonSample', buttonSamplePath);
+    this.load.audio('doorSample', doorSamplePath);
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });

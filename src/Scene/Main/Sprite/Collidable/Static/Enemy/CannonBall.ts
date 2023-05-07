@@ -16,6 +16,8 @@ export default class CannonBall extends EnemyGameObject {
 
   private deactivable: boolean;
 
+  private isActive: boolean = true;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem, deactivable: boolean) {
     super(scene, gameItem, 'objects');
 
@@ -68,6 +70,10 @@ export default class CannonBall extends EnemyGameObject {
   }
 
   public update(time: number): void {
+    if (!this.isActive) {
+      return;
+    }
+
     if (this.lastDeathTime && (time - this.lastDeathTime > 1000)) {
       this.lastDeathTime = null;
       this.fire();
@@ -102,6 +108,7 @@ export default class CannonBall extends EnemyGameObject {
     if (this.deactivable) {
       this.body.setEnable(false);
       this.setVisible(false);
+      this.isActive = false;
     }
   }
 }
