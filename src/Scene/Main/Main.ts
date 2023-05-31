@@ -17,6 +17,8 @@ import { VirtualGameItem } from './GameItem/Virtual/types';
 import listenEndingEvents from '../../Service/EventListener/endingEventListeners';
 import listenSceneEvents from '../../Service/EventListener/sceneEventListeners';
 import listenSoundEvents from '../../Service/EventListener/soundEventListener';
+import makeSoundPlayer from '../../Service/SoundPlayer';
+import { SoundPlayer } from '../../Service/types';
 
 interface Data {
   x: number,
@@ -47,6 +49,8 @@ export default class Main extends Phaser.Scene {
   private spriteManager: SpriteManager;
 
   private mapManager: MapManager;
+
+  private soundPlayer: SoundPlayer = null;
 
   constructor() {
     super({ key: 'Main' });
@@ -88,6 +92,11 @@ export default class Main extends Phaser.Scene {
       'tilesetImage',
     );
 
+    this.soundPlayer = this.soundPlayer || makeSoundPlayer(this);
+
+    // In case of restart, we need to stop the music
+    this.soundPlayer.stopTitleMusic();
+
     setupBackground(this, roomName);
 
     const player = this.spriteManager.getPlayer();
@@ -102,7 +111,7 @@ export default class Main extends Phaser.Scene {
 
     listenSettingsEvents(this.game);
 
-    listenSoundEvents(this);
+    listenSoundEvents(this, this.soundPlayer);
 
     if (this.registry.get('endingInProgress')) {
       EventDispatcher.emit('endingAnimationRunning');
@@ -136,6 +145,7 @@ export default class Main extends Phaser.Scene {
       const title = createTitle(this, hasSavedGame());
       this.registry.remove('start');
       listenTitleEvents(title);
+      this.soundPlayer.playTitleMusic();
       return;
     }
 

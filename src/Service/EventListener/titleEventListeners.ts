@@ -6,6 +6,7 @@ export default function listenTitleEvents(title: Title): void {
   function continueGame(): void {
     title.quit();
     EventDispatcher.emit('playerUnfrozen');
+    EventDispatcher.emit('titleClosed');
   }
 
   function newGame(): void {
