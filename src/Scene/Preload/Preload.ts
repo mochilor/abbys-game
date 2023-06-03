@@ -23,6 +23,16 @@ import anchorRope from '../../../assets/img/anchor-rope.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
 
+// audio
+import coinSamplePath from 'url:../../../assets/audio/coin.ogg';
+import springSamplePath from 'url:../../../assets/audio/spring.ogg';
+import portalSamplePath from 'url:../../../assets/audio/portal.ogg';
+import spearSamplePath from 'url:../../../assets/audio/spear.ogg';
+import saveSamplePath from 'url:../../../assets/audio/save.ogg';
+import buttonSamplePath from 'url:../../../assets/audio/button.ogg';
+import doorSamplePath from 'url:../../../assets/audio/door.ogg';
+import titleMusic from 'url:../../../assets/audio/music/title.ogg';
+
 export default class Preload extends Phaser.Scene {
   constructor() {
     super({ key: 'Preload' });
@@ -51,6 +61,15 @@ export default class Preload extends Phaser.Scene {
     this.load.spritesheet('robotSpriteSheet', robotSpriteSheetPath, { frameWidth: 21, frameHeight: 17 });
     this.load.spritesheet('countersSpriteSheet', countersSpriteSheetPath, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('rubySpriteSheet', rubySpriteSheetPath, { frameWidth: 10, frameHeight: 17 });
+
+    this.load.audio('coinSample', coinSamplePath);
+    this.load.audio('springSample', springSamplePath);
+    this.load.audio('portalSample', portalSamplePath);
+    this.load.audio('spearSample', spearSamplePath);
+    this.load.audio('saveSample', saveSamplePath);
+    this.load.audio('buttonSample', buttonSamplePath);
+    this.load.audio('doorSample', doorSamplePath);
+    this.load.audio('titleMusic', titleMusic);
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });

@@ -1,5 +1,6 @@
 import { GameItem } from '../../../../GameItem/types';
 import EnemyGameObject from './EnemyGameObject';
+import * as EventDispatcher from '../../../../../../Service/EventDispatcher';
 
 export default class Spear extends EnemyGameObject {
   public static key = 'Spear';
@@ -15,6 +16,8 @@ export default class Spear extends EnemyGameObject {
   private maxDistance: number = 8;
 
   private reverseCrop: boolean = false;
+
+  private started: integer = 0;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'spearImage');
@@ -70,10 +73,17 @@ export default class Spear extends EnemyGameObject {
   }
 
   public update(): void {
+    this.started += 1;
+    if (this.started === 2) {
+      // On first run the event has no effect, probably becasue of camera position
+      EventDispatcher.emit('spearMoving', this);
+    }
+
     if (this.stopCounter > 50) {
       this.isStop = false;
       this.speed *= -1;
       this.stopCounter = 0;
+      EventDispatcher.emit('spearMoving', this);
     }
 
     if (this.isStop) {

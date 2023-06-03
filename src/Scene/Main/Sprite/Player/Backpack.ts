@@ -6,12 +6,13 @@ import GameObject from '../GameObject';
 import Button from '../Collidable/Dynamic/Button';
 import Ruby from '../Collidable/Static/Ruby/Ruby';
 
-function gotCoin(roomName: string): void {
-  EventDispatcher.emit('playerGotCoin', roomName);
+function gotCoin(roomName: string, playSound: boolean): void {
+  EventDispatcher.emit('playerGotCoin', roomName, playSound);
 }
 
 function activateButton(eventName: string): void {
   EventDispatcher.emit(eventName);
+  EventDispatcher.emit('buttonActivated');
 }
 
 function gotRuby(ruby: Ruby): void {
@@ -38,7 +39,7 @@ export default class Backpack {
 
   public init(): void {
     for (let n = 0; n < this.content.coins.length; n += 1) {
-      gotCoin(this.content.coins[n]);
+      gotCoin(this.content.coins[n], false);
     }
 
     if (this.content.gameEvents.length) {
@@ -66,7 +67,7 @@ export default class Backpack {
     if (item instanceof Coin) {
       const roomName = item.getRoomName();
       this.content.coins.push(roomName);
-      gotCoin(roomName);
+      gotCoin(roomName, true);
     }
 
     if (item instanceof Save) {

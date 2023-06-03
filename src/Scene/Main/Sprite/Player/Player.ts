@@ -109,6 +109,7 @@ export default class Player extends GameObject {
         item.getDestination().room,
         item.getRoomName(),
         this,
+        true,
       );
       return;
     }

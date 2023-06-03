@@ -1,5 +1,6 @@
 import { GameItem } from '../../../GameItem/types';
 import GameObject from '../../GameObject';
+import * as EventDispatcher from '../../../../../Service/EventDispatcher';
 
 export default class Spring extends GameObject {
   public static key = 'Spring';
@@ -29,6 +30,7 @@ export default class Spring extends GameObject {
 
   public activate(): void {
     this.setFrame(4);
+    EventDispatcher.emit('springActivated');
   }
 
   public update(): void {

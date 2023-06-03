@@ -1,13 +1,13 @@
 import RoomName from '../Scene/Main/Map/RoomName';
-import SavedGame from './SavedGame';
 import { roomNames } from './mapStore';
 import { GameItemCollection, GameItem } from '../Scene/Main/GameItem/types';
-import { getSettings } from './Settings';
+import { SavedGame, Settings } from './types';
 
-const fileName = 'cavegame.savefile';
+const gameFileName = 'cavegame.savefile';
+const settingsFileName = 'cavegame.settings';
 
 function loadGame(): SavedGame | null {
-  const saveFile = localStorage.getItem(fileName);
+  const saveFile = localStorage.getItem(gameFileName);
 
   if (saveFile === null) {
     return null;
@@ -41,9 +41,6 @@ function saveGame(
       x: roomName.getX(),
       y: roomName.getY(),
     },
-    settings: {
-      audio: getSettings().audio,
-    },
   };
 
   // Update each other room with the last data in memory before saving:
@@ -63,11 +60,27 @@ function saveGame(
     }
   });
 
-  localStorage.setItem(fileName, JSON.stringify(dataToSave));
+  localStorage.setItem(gameFileName, JSON.stringify(dataToSave));
 }
 
 function resetGame(): void {
   localStorage.clear();
+}
+
+function saveSettings(settings: Settings): void {
+  localStorage.setItem(settingsFileName, JSON.stringify(settings));
+}
+
+function loadSettings(): Settings | null {
+  const saveFile = localStorage.getItem(settingsFileName);
+
+  if (saveFile === null) {
+    return null;
+  }
+
+  const parsedSaveFile = JSON.parse(saveFile);
+
+  return parsedSaveFile;
 }
 
 export {
@@ -75,4 +88,6 @@ export {
   hasSavedGame,
   loadGame,
   resetGame,
+  saveSettings,
+  loadSettings,
 };
