@@ -17,7 +17,7 @@ import mummySpriteSheetPath from '../../../assets/img/mummy-spritesheet.png';
 import robotSpriteSheetPath from '../../../assets/img/robot-spritesheet.png';
 import countersSpriteSheetPath from '../../../assets/img/counters-spritesheet.png';
 import rubySpriteSheetPath from '../../../assets/img/ruby-spritesheet.png';
-import title from '../../../assets/img/title/title.png';
+import title from '../../../assets/img/title/title.gif';
 import anchorSpriteSheetPath from '../../../assets/img/anchor-spritesheet.png';
 import anchorRope from '../../../assets/img/anchor-rope.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
