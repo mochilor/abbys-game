@@ -109,7 +109,7 @@ export default class Main extends Phaser.Scene {
 
     listenEndingEvents(this, this.spriteManager, this.registry);
 
-    listenSettingsEvents(this.game);
+    listenSettingsEvents(this.soundPlayer);
 
     listenSoundEvents(this, this.soundPlayer);
 

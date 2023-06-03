@@ -96,6 +96,10 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
     musicIsPlaying = false;
   }
 
+  function setMuteStatus(status: boolean): void {
+    scene.game.sound.mute = status;
+  }
+
   return {
     playCoinSample,
     playSpringSample,
@@ -107,5 +111,6 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
     playTitleMusic,
     fadeTitleMusic,
     stopTitleMusic,
+    setMuteStatus,
   };
 }

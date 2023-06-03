@@ -1,26 +1,29 @@
 import * as EventDispatcher from '../EventDispatcher';
-import { hasSavedGame, loadGame } from '../gameStore';
+import { loadSettings, saveSettings } from '../gameStore';
 import { initSettings, getSettings, isInitialized } from '../Settings';
+import { SoundPlayer } from '../types';
 
-export default function listenSettingsEvents(game: Phaser.Game): void {
+export default function listenSettingsEvents(soundPlayer: SoundPlayer): void {
   function init(): void {
     if (isInitialized()) {
+      soundPlayer.setMuteStatus(!getSettings().audio);
       return;
     }
 
-    let savedSettings = null;
-    if (hasSavedGame()) {
-      savedSettings = loadGame().settings;
-    }
+    const savedSettings = loadSettings();
 
     initSettings(savedSettings);
+
+    soundPlayer.setMuteStatus(!getSettings().audio);
   }
 
   function soundToggled(): void {
     const settings = getSettings();
     settings.audio = !settings.audio;
 
-    game.sound.mute = !settings.audio;
+    soundPlayer.setMuteStatus(!settings.audio);
+
+    saveSettings(settings);
   }
 
   init();
