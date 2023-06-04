@@ -29,6 +29,7 @@ import PortalDestination from './Decoration/PortalDestination';
 import Light from './Decoration/Light';
 import Ruby from './Collidable/Static/Ruby/Ruby';
 import Anchor from './Decoration/Anchor';
+import TextSprite from './Decoration/TextSprite';
 
 const playerItemClass = {
   2: Player,
@@ -63,6 +64,7 @@ const staticItemClasses = {
   25: Robot,
   26: Ruby,
   27: Anchor,
+  28: TextSprite,
 };
 
 const mapEventItemClasses = {

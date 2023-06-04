@@ -6,18 +6,21 @@
   "bg": false,
   "levelColors": {
     "cave": {
-      "bg": "b5b99a"
+      "bg": "b5b99a",
+      "text": "264149"
     },
     "pyramid": {
       "bg": "f1c3b3",
       "layer-1": "c48d80",
       "layer-2": "678390",
-      "layer-3": "536e7b"
+      "layer-3": "536e7b",
+      "text": "616161"
     },
     "base": {
       "bg": "574834",
       "layer-1": "3a2519",
-      "layer-2": "1a1112"
+      "layer-2": "1a1112",
+      "text": "3f5352"
     }
   },
   "debug": {

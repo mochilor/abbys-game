@@ -26,20 +26,19 @@ export default function createButton(
     .setDepth(2)
     .setScrollFactor(0);
 
-  body.setInteractive({ useHandCursor: true });
-  body.on('pointerdown', () => callback.apply(scene, []));
-
   function enable(): void {
     text.setVisible(true);
     text.setAlpha(1);
     body.setVisible(true);
     body.setFillStyle(enabledColor);
+    body.setInteractive({ useHandCursor: true });
+    body.on('pointerdown', () => callback.apply(scene, []));
   }
 
   function disable(): void {
     text.setAlpha(0.5);
     body.setFillStyle(disabledColor);
-    body.disableInteractive();
+    body.removeInteractive();
   }
 
   function hide(): void {
@@ -54,9 +53,9 @@ export default function createButton(
     body.setVisible(true);
   }
 
-  enable();
-
-  if (!enabled) {
+  if (enabled) {
+    enable();
+  } else {
     disable();
   }
 
