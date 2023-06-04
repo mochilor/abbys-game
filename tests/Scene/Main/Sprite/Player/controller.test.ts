@@ -33,20 +33,4 @@ describe('Controller', () => {
     rightKey.isDown = true;
     expect(controller.move()).toBe(0);
   });
-
-  test('returns left key status when asked', () => {
-    leftKey.isDown = true;
-    expect(controller.leftKeyIsDown()).toBe(true);
-
-    leftKey.isDown = false;
-    expect(controller.leftKeyIsDown()).toBe(false);
-  });
-
-  test('returns right key status when asked', () => {
-    rightKey.isDown = true;
-    expect(controller.rightKeyIsDown()).toBe(true);
-
-    rightKey.isDown = false;
-    expect(controller.rightKeyIsDown()).toBe(false);
-  });
 });

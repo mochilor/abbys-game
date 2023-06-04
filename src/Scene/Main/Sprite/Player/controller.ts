@@ -4,8 +4,6 @@ type Key = {
 
 type Controller = {
   move(): integer,
-  leftKeyIsDown(): boolean,
-  rightKeyIsDown(): boolean,
 };
 
 function createController(leftKey: Key, rightKey: Key): Controller {
@@ -23,15 +21,7 @@ function createController(leftKey: Key, rightKey: Key): Controller {
     return direction;
   }
 
-  function leftKeyIsDown(): boolean {
-    return leftKey.isDown;
-  }
-
-  function rightKeyIsDown(): boolean {
-    return rightKey.isDown;
-  }
-
-  return { move, leftKeyIsDown, rightKeyIsDown };
+  return { move };
 }
 
 export { Controller, createController };

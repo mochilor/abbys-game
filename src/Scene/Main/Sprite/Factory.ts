@@ -69,12 +69,14 @@ const mapEventItemClasses = {
   11: GameEvent,
 };
 
-function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
-  const leftKey = scene.input.keyboard.addKey('LEFT');
-  leftKey.isDown = playerItem.otherProperties?.leftKeyIsDown ?? false;
+let leftKey: Phaser.Input.Keyboard.Key = null;
 
-  const rightKey = scene.input.keyboard.addKey('RIGHT');
-  rightKey.isDown = playerItem.otherProperties?.rightKeyIsDown ?? false;
+let rightKey: Phaser.Input.Keyboard.Key = null;
+
+function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
+  // movement keys need to be reused when the scene is restarted (i.e. when a new room is reached)
+  leftKey = scene.input.keyboard.addKey(leftKey ?? 'LEFT');
+  rightKey = scene.input.keyboard.addKey(rightKey ?? 'RIGHT');
 
   const controller = createController(leftKey, rightKey);
 

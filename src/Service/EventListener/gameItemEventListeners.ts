@@ -49,8 +49,6 @@ export default function listenGameItemEvents(
 
     playerItem.otherProperties = {
       velocityY: player.body.velocity.y,
-      leftKeyIsDown: player.getController().leftKeyIsDown(),
-      rightKeyIsDown: player.getController().rightKeyIsDown(),
     };
 
     registry.set(oldRoomData.getName(), gameItems.getItems());

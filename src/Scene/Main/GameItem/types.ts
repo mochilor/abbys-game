@@ -17,8 +17,6 @@ export type GameItem = {
   }[],
   otherProperties?: {
     velocityY: number,
-    leftKeyIsDown: boolean,
-    rightKeyIsDown: boolean,
   }
 };
 

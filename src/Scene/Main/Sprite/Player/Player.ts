@@ -240,10 +240,6 @@ export default class Player extends GameObject {
     this.body.velocity.y = velocityY;
   }
 
-  public getController(): Controller {
-    return this.controller;
-  }
-
   public touchEnemy(): void {
     this.die();
   }
