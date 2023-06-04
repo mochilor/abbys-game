@@ -146,6 +146,7 @@ export default class Main extends Phaser.Scene {
       this.registry.remove('start');
       listenTitleEvents(title);
       this.soundPlayer.playTitleMusic();
+      this.input.on('pointerdown', () => EventDispatcher.emit('titleTouched'));
       return;
     }
 

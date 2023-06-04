@@ -6,6 +6,8 @@ import createMenu from '../../../UI/Menu';
 import { Title } from './types';
 
 export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean): Title {
+  let initialized: boolean = false;
+
   const background = (() => {
     const rectangle = scene.add.rectangle(
       0,
@@ -13,7 +15,7 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
       config.gameWidth,
       config.gameHeight + 10,
       0x000000,
-      0.75,
+      1,
     );
     rectangle.setOrigin(0, 0);
     rectangle.setDepth(1);
@@ -24,8 +26,8 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
 
   const logo = (() => {
     const position = {
-      x: background.x + config.gameWidth / 2,
-      y: background.x + config.gameHeight / 3,
+      x: config.gameWidth / 2,
+      y: (config.gameHeight / 2) - 8,
     };
 
     const image = scene.add.image(
@@ -55,12 +57,14 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     EventDispatcher.emit('continueButtonPressed');
   }
 
+  const baseButtonX = (config.gameWidth / 2);
+  const baseButtonY = (config.gameHeight / 2);
   const buttonOffsetX = 42;
   const buttonOffsetY = 22;
 
   const newGameButton = createButton(
-    logo.x - buttonOffsetX,
-    logo.getBottomCenter().y + buttonOffsetY,
+    baseButtonX - buttonOffsetX,
+    baseButtonY + buttonOffsetY,
     scene,
     'New game',
     true,
@@ -68,8 +72,8 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
   );
 
   const continueButton = createButton(
-    logo.x + buttonOffsetX,
-    logo.getBottomCenter().y + buttonOffsetY,
+    baseButtonX + buttonOffsetX,
+    baseButtonY + buttonOffsetY,
     scene,
     'Continue',
     hasSavedGame,
@@ -77,8 +81,8 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
   );
 
   const alertMenu = createMenu(
-    logo.getBottomCenter().x,
-    logo.getBottomCenter().y + buttonOffsetY,
+    baseButtonX,
+    baseButtonY + buttonOffsetY,
     scene,
     'Are you sure?\nYour previous game will be lost!',
   );
@@ -100,6 +104,9 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     true,
     cancel,
   );
+
+  newGameButton.hide();
+  continueButton.hide();
 
   alertMenu.addButton(...confirmButton.contents());
   alertMenu.addButton(...cancelButton.contents());
@@ -128,9 +135,40 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     alertMenu.hide();
   }
 
+  function init(): void {
+    if (initialized) {
+      return;
+    }
+
+    initialized = true;
+
+    scene.tweens.add({
+      targets: logo,
+      duration: 300,
+      ease: 'linear',
+      props: {
+        y: config.gameHeight / 3,
+      },
+      onComplete: () => {
+        newGameButton.show();
+        continueButton.show();
+      },
+    });
+
+    scene.tweens.add({
+      targets: background,
+      duration: 300,
+      ease: 'linear',
+      props: {
+        alpha: 0.8,
+      },
+    });
+  }
+
   return {
     quit,
     showAlertText,
     hideAlertText,
+    init,
   };
 }

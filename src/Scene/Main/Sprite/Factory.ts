@@ -87,7 +87,7 @@ function makePlayer(scene: Phaser.Scene, playerItem: GameItem): Player {
     new Backpack(playerItem.properties),
   );
 
-  player.setVelocityY(playerItem.otherProperties?.velocityY ?? 0); // still needed?
+  player.setVelocityY(playerItem.otherProperties?.velocityY ?? 0);
 
   return player;
 }

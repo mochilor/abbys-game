@@ -27,8 +27,13 @@ export default function listenTitleEvents(title: Title): void {
     title.hideAlertText();
   }
 
+  function initTitle(): void {
+    title.init();
+  }
+
   EventDispatcher.on('continueButtonPressed', continueGame);
   EventDispatcher.on('newGameButtonPressed', newGame);
   EventDispatcher.on('confirmButtonPressed', confirm);
   EventDispatcher.on('cancelButtonPressed', cancel);
+  EventDispatcher.on('titleTouched', initTitle);
 }
