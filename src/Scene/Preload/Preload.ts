@@ -22,6 +22,7 @@ import anchorSpriteSheetPath from '../../../assets/img/anchor-spritesheet.png';
 import anchorRope from '../../../assets/img/anchor-rope.png';
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import font from '../../../assets/font/font.png';
+import smallFont from '../../../assets/font/small-font.png';
 
 // audio
 import coinSamplePath from 'url:../../../assets/audio/coin.ogg';
@@ -80,6 +81,7 @@ export default class Preload extends Phaser.Scene {
     // dist folder local path (workaround to load xml file path correctly here)
     // thanks to parcel-reporter-static-files-copy plugin
     this.load.bitmapFont('font', font, './xml/font.xml');
+    this.load.bitmapFont('smallFont', smallFont, './xml/small-font.xml');
 
     mapFiles().forEach((element: string[]) => {
       // dist folder local path

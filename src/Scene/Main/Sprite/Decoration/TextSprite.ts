@@ -14,7 +14,7 @@ export default class TextSprite extends GameObject {
 
     const wording = this.getProperty('text')?.value as string ?? '';
 
-    this.text = scene.add.bitmapText(gameItem.x, gameItem.y, 'font', wording);
+    this.text = scene.add.bitmapText(gameItem.x, gameItem.y, 'smallFont', wording);
 
     tintText(this, gameItem.roomName);
   }

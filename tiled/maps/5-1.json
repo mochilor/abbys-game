@@ -1068,24 +1068,6 @@
                  "class":"",
                  "gid":212,
                  "height":8,
-                 "id":164,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"FIND THE TREASURE"
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":116,
-                 "y":224
-                }, 
-                {
-                 "class":"",
-                 "gid":212,
-                 "height":8,
                  "id":165,
                  "name":"",
                  "properties":[
@@ -1098,7 +1080,7 @@
                  "visible":true,
                  "width":8,
                  "x":80,
-                 "y":52
+                 "y":53
                 }, 
                 {
                  "class":"",
@@ -1115,8 +1097,26 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":27,
+                 "x":36,
                  "y":147
+                }, 
+                {
+                 "class":"",
+                 "gid":212,
+                 "height":8,
+                 "id":167,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"DANGER"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":196,
+                 "y":203
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1125,7 +1125,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":167,
+ "nextobjectid":168,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
