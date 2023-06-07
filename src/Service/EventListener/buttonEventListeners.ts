@@ -17,7 +17,10 @@ function listenButtonEvents(
   const defaultPyramidWall = 89;
   const defaultBaseWall = 161;
 
-  function removeWalls(eventGameItems: GameItem[], newTileIndex: integer = defaultCaveWall): void {
+  function removeWalls(
+    eventGameItems: GameItem[],
+    newTileIndex: integer | null = defaultCaveWall,
+  ): void {
     let tileStart: GameItem = null;
     let tileEnd: GameItem = null;
 
@@ -55,14 +58,8 @@ function listenButtonEvents(
     });
   }
 
-  function button1Activated(): void {
-    const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
-
-    removeWalls(eventGameItems);
-  }
-
-  function button2Activated(): void {
-    const eventGameItemArray = eventGameItemCollection.getItemByEventName('mapEvent2');
+  function activatePlatform(eventName: string): void {
+    const eventGameItemArray = eventGameItemCollection.getItemByEventName(eventName);
 
     if (eventGameItemArray.length === 0) {
       // wrong room!
@@ -77,6 +74,19 @@ function listenButtonEvents(
       spriteStore.player,
       newPlatform,
     );
+
+    spriteStore.add(newPlatform);
+  }
+
+  function button1Activated(): void {
+    const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent1');
+
+    removeWalls(eventGameItems);
+  }
+
+  function button2Activated(): void {
+    // This event activates a platform that is hidden.
+    activatePlatform('mapEvent2');
   }
 
   function button3Activated(): void {
@@ -199,6 +209,22 @@ function listenButtonEvents(
     );
   }
 
+  function button16Activated(): void {
+    // This event activates a platform that is hidden.
+    activatePlatform('mapEvent16');
+  }
+
+  function button17Activated(): void {
+    const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent17');
+
+    removeWalls(eventGameItems, null);
+
+    // This event also deactivates a couple of spikes
+    spriteStore.spikes.forEach((child: Spike) => {
+      child.deactivate(17);
+    });
+  }
+
   EventDispatcher.on('button1Activated', button1Activated);
   EventDispatcher.on('button2Activated', button2Activated);
   EventDispatcher.on('button3Activated', button3Activated);
@@ -214,6 +240,8 @@ function listenButtonEvents(
   EventDispatcher.on('button13Activated', button13Activated);
   EventDispatcher.on('button14Activated', button14Activated);
   EventDispatcher.on('button15Activated', button15Activated);
+  EventDispatcher.on('button16Activated', button16Activated);
+  EventDispatcher.on('button17Activated', button17Activated);
 }
 
 export default listenButtonEvents;

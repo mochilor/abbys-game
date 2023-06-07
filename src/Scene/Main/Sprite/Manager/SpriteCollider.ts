@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import Robot from '../Collidable/Static/Enemy/Robot';
 import { SpriteStore } from './SpriteStore';
 

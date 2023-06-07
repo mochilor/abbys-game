@@ -882,18 +882,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":185,
-                 "height":8,
-                 "id":269,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":472.727,
-                 "y":280
-                }, 
-                {
-                 "class":"",
                  "gid":191,
                  "height":8,
                  "id":270,
@@ -1245,12 +1233,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":64,
+         "imageheight":80,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":24,
+         "tilecount":30,
          "tileheight":8,
          "tilewidth":8
         }],
