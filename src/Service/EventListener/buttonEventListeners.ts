@@ -225,6 +225,12 @@ function listenButtonEvents(
     });
   }
 
+  function button18Activated(): void {
+    const eventGameItems = eventGameItemCollection.getItemByEventName('mapEvent18');
+
+    removeWalls(eventGameItems, defaultPyramidWall);
+  }
+
   EventDispatcher.on('button1Activated', button1Activated);
   EventDispatcher.on('button2Activated', button2Activated);
   EventDispatcher.on('button3Activated', button3Activated);
@@ -242,6 +248,7 @@ function listenButtonEvents(
   EventDispatcher.on('button15Activated', button15Activated);
   EventDispatcher.on('button16Activated', button16Activated);
   EventDispatcher.on('button17Activated', button17Activated);
+  EventDispatcher.on('button18Activated', button18Activated);
 }
 
 export default listenButtonEvents;

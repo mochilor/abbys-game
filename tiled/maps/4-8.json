@@ -1658,18 +1658,6 @@
                  "width":8,
                  "x":200,
                  "y":456
-                }, 
-                {
-                 "class":"",
-                 "gid":185,
-                 "height":8,
-                 "id":1243,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":448,
-                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1701,12 +1689,12 @@
          "columns":3,
          "firstgid":185,
          "image":"..\/..\/assets\/img\/objects.png",
-         "imageheight":72,
+         "imageheight":80,
          "imagewidth":24,
          "margin":0,
          "name":"objects",
          "spacing":0,
-         "tilecount":27,
+         "tilecount":30,
          "tileheight":8,
          "tilewidth":8
         }],

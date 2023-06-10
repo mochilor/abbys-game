@@ -627,24 +627,6 @@
                  "width":8,
                  "x":464,
                  "y":240
-                }, 
-                {
-                 "class":"",
-                 "gid":212,
-                 "height":8,
-                 "id":1362,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"EXIT"
-                        }],
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":88,
-                 "y":164
                 }],
          "opacity":1,
          "type":"objectgroup",
