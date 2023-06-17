@@ -47,13 +47,13 @@ describe('CoinCounter', () => {
     CoinCounter.init(coinsTotalCollection);
     const instance = CoinCounter.getInstance();
 
-    expect(instance.caveTotalCoins()).toBe(6);
-    expect(instance.pyramidTotalCoins()).toBe(4);
-    expect(instance.baseTotalCoins()).toBe(10);
+    expect(instance.getTotalByLevel('cave')).toBe(6);
+    expect(instance.getTotalByLevel('pyramid')).toBe(4);
+    expect(instance.getTotalByLevel('base')).toBe(10);
 
-    expect(instance.caveCurrentCoins()).toBe(0);
-    expect(instance.pyramidCurrentCoins()).toBe(0);
-    expect(instance.baseCurrentCoins()).toBe(0);
+    expect(instance.getCurrentByLevel('cave')).toBe(0);
+    expect(instance.getCurrentByLevel('pyramid')).toBe(0);
+    expect(instance.getCurrentByLevel('base')).toBe(0);
 
     instance.add(RoomName.fromName('1_1'));
     instance.add(RoomName.fromName('3_3'));
@@ -67,14 +67,14 @@ describe('CoinCounter', () => {
     instance.add(RoomName.fromName('1_8'));
     instance.add(RoomName.fromName('10_9'));
 
-    expect(instance.caveCurrentCoins()).toBe(4);
-    expect(instance.pyramidCurrentCoins()).toBe(4);
-    expect(instance.baseCurrentCoins()).toBe(3);
+    expect(instance.getCurrentByLevel('cave')).toBe(4);
+    expect(instance.getCurrentByLevel('pyramid')).toBe(4);
+    expect(instance.getCurrentByLevel('base')).toBe(3);
 
     CoinCounter.reset();
 
-    expect(instance.caveCurrentCoins()).toBe(0);
-    expect(instance.pyramidCurrentCoins()).toBe(0);
-    expect(instance.baseCurrentCoins()).toBe(0);
+    expect(instance.getCurrentByLevel('cave')).toBe(0);
+    expect(instance.getCurrentByLevel('pyramid')).toBe(0);
+    expect(instance.getCurrentByLevel('base')).toBe(0);
   });
 });

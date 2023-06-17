@@ -50,6 +50,10 @@ export default class RoomName {
       return 'pyramid';
     }
 
-    return 'base';
+    if (this.y < 10) {
+      return 'base';
+    }
+
+    return 'secret';
   }
 }

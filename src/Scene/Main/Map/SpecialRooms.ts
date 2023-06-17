@@ -27,6 +27,27 @@ export default function getNewRoomNameSpecialCase(
     '7_8': {
       right: '7_8',
     },
+    '2_10': {
+      left: '4_10',
+    },
+    '3_10': {
+      bottom: '3_10',
+    },
+    '4_10': {
+      bottom: '4_10',
+      right: '2_10',
+    },
+    '2_11': {
+      right: '3_10',
+      left: '3_10',
+    },
+    '2_12': {
+      right: '2_10',
+      bottom: '3_10',
+    },
+    '1_12': {
+      bottom: '4_10',
+    },
   };
 
   const specialRoom = specialRooms[roomName.getName()];

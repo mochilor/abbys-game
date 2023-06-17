@@ -21,11 +21,17 @@
       "layer-1": "3a2519",
       "layer-2": "1a1112",
       "text": "3f5352"
+    },
+    "secret": {
+      "bg": "374952",
+      "layer-1": "4c7382",
+      "layer-2": "85a6af",
+      "text": "a69535"
     }
   },
   "debug": {
     "enable": true,
-    "level": "2_6",
+    "level": "1_12",
     "boundingBoxes": false
   }
 }

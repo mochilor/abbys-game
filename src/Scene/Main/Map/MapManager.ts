@@ -39,9 +39,10 @@ export default class MapManager {
     const tileset = map.addTilesetImage('tileset', tilesetImage);
     this.layer = map.createLayer('main', tileset, 0, 0);
     this.layer.depth = -100;
-    map.setCollisionBetween(1, 32);
-    map.setCollisionBetween(65, 80);
-    map.setCollisionBetween(137, 156);
+    map.setCollisionBetween(1, 32); // cave
+    map.setCollisionBetween(65, 80); // pyramid
+    map.setCollisionBetween(137, 156); // base
+    map.setCollisionBetween(185, 200); // secret
     this.scene.physics.add.collider(player, this.layer);
     this.scene.physics.add.collider(spikePlatformsGroup, this.layer);
     this.scene.physics.add.collider(cannonBallsGroup, this.layer);

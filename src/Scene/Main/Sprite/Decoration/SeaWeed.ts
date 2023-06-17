@@ -25,5 +25,7 @@ export default class SeaWeed extends GameObject {
     });
 
     tintShallow(this, gameItem.roomName);
+
+    this.setDepth(-1);
   }
 }
