@@ -27,11 +27,14 @@
       "layer-1": "4c7382",
       "layer-2": "85a6af",
       "text": "a69535"
+    },
+    "end": {
+      "bg": "000000"
     }
   },
   "debug": {
     "enable": true,
-    "level": "1_12",
+    "level": "0_12",
     "boundingBoxes": false
   }
 }

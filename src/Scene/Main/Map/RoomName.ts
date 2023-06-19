@@ -54,6 +54,10 @@ export default class RoomName {
       return 'base';
     }
 
-    return 'secret';
+    if (this.y < 13) {
+      return 'secret';
+    }
+
+    return 'end';
   }
 }

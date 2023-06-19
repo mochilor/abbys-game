@@ -43,6 +43,7 @@ export default class MapManager {
     map.setCollisionBetween(65, 80); // pyramid
     map.setCollisionBetween(137, 156); // base
     map.setCollisionBetween(185, 200); // secret
+    map.setCollisionBetween(233, 248); // end
     this.scene.physics.add.collider(player, this.layer);
     this.scene.physics.add.collider(spikePlatformsGroup, this.layer);
     this.scene.physics.add.collider(cannonBallsGroup, this.layer);

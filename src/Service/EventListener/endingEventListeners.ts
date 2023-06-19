@@ -15,7 +15,7 @@ export default function listenEndingEvents(
 
   function start(): void {
     ending = createEnding(scene);
-    ending.start();
+    ending.init();
   }
 
   function showEndingText(): void {

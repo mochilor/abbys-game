@@ -12,6 +12,7 @@ export interface PauseButton {
 }
 
 export interface Ending {
+  init: () => void,
   start: () => void,
   startWithoutAnimation: () => void,
   renderText: () => void,

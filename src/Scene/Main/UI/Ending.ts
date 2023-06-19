@@ -74,6 +74,11 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     onComplete: () => EventDispatcher.emit('endingBackgroundComplete'),
   });
 
+  function init(): void {
+    this.start();
+    currentRoom = 0; // Just in case the end has to run again on the same game
+  }
+
   function start(): void {
     background.setVisible(true);
     tween.play();
@@ -148,6 +153,7 @@ export default function createEnding(scene: Phaser.Scene): Ending {
   }
 
   return {
+    init,
     start,
     startWithoutAnimation,
     renderText,
