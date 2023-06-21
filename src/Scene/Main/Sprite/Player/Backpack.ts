@@ -4,7 +4,7 @@ import Save from '../Collidable/Static/Save';
 import { GameItem } from '../../GameItem/types';
 import GameObject from '../GameObject';
 import Button from '../Collidable/Dynamic/Button';
-import Ruby from '../Collidable/Static/Ruby/Ruby';
+import Ruby from '../Collidable/Static/Ruby';
 
 function gotCoin(roomName: string, playSound: boolean): void {
   EventDispatcher.emit('playerGotCoin', roomName, playSound);

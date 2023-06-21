@@ -19,6 +19,6 @@ export interface Ending {
   renderRoomText: () => void,
   hide: () => void,
   increaseEndingRoom: () => void,
-  getEndingRoom: () => RoomName | null,
+  getEndingRoom: (isRealEnding: boolean) => RoomName | null,
   renderFinalText: () => void,
 }

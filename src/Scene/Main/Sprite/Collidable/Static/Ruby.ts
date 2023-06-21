@@ -1,14 +1,11 @@
-import { GameItem } from '../../../../GameItem/types';
-import GameObject from '../../../GameObject';
-import { makeShaker, Shaker } from './Shaker';
-import * as EventDispatcher from '../../../../../../Service/EventDispatcher';
+import { GameItem } from '../../../GameItem/types';
+import GameObject from '../../GameObject';
+import * as EventDispatcher from '../../../../../Service/EventDispatcher';
 
 export default class Ruby extends GameObject {
   public static key = 'Ruby';
 
   private tween: Phaser.Tweens.Tween;
-
-  private shaker: Shaker = null;
 
   private isRealRuby: boolean = false;
 
@@ -19,10 +16,15 @@ export default class Ruby extends GameObject {
 
     scene.physics.world.enable(this);
 
+    const frameOffset = this.isRealRuby ? 10 : 0;
+
     scene.anims.create({
       key: 'ruby',
       frameRate: 16,
-      frames: 'rubySpriteSheet',
+      frames: this.anims.generateFrameNumbers(
+        'rubySpriteSheet',
+        { start: 0 + frameOffset, end: 9 + frameOffset },
+      ),
       repeat: -1,
       repeatDelay: 4000,
     });
@@ -59,11 +61,7 @@ export default class Ruby extends GameObject {
   }
 
   private makeReady(): void {
-    if (this.isRealRuby) {
-      this.shaker = makeShaker(this.x, this.y);
-    } else {
-      EventDispatcher.emit('rubyAnimation1Finished', this);
-    }
+    EventDispatcher.emit('rubyAnimation1Finished', this);
   }
 
   public move(x: number, y: number): void {
@@ -98,12 +96,7 @@ export default class Ruby extends GameObject {
     EventDispatcher.emit('rubyAnimation2Finished', this);
   }
 
-  public update(time: number) {
-    if (this.shaker) {
-      const newPosition = this.shaker.shake(time);
-
-      this.x = newPosition.x;
-      this.y = newPosition.y;
-    }
+  public isReal(): boolean {
+    return this.isRealRuby;
   }
 }

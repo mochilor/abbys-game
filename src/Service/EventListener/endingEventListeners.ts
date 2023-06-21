@@ -5,6 +5,9 @@ import createEnding from '../../Scene/Main/UI/Ending';
 import { Ending } from '../../Scene/Main/UI/types';
 import * as EventDispatcher from '../EventDispatcher';
 import config from '../../../config/config.json';
+import Ruby from '../../Scene/Main/Sprite/Collidable/Static/Ruby';
+
+let isRealEnding: boolean = false;
 
 export default function listenEndingEvents(
   scene: Phaser.Scene,
@@ -13,9 +16,10 @@ export default function listenEndingEvents(
 ): void {
   let ending: Ending;
 
-  function start(): void {
+  function start(ruby: Ruby): void {
     ending = createEnding(scene);
     ending.init();
+    isRealEnding = ruby.isReal();
   }
 
   function showEndingText(): void {
@@ -73,7 +77,7 @@ export default function listenEndingEvents(
     }
 
     ending = createEnding(scene);
-    const nextRoom = ending.getEndingRoom();
+    const nextRoom = ending.getEndingRoom(isRealEnding);
 
     if (!nextRoom) {
       ending.renderFinalText();

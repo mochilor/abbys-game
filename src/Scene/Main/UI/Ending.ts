@@ -8,13 +8,8 @@ import RoomName from '../Map/RoomName';
 let currentRoom = 0;
 
 export default function createEnding(scene: Phaser.Scene): Ending {
-  const rooms = [
-    '3_6',
-    '3_3',
-    '5_0',
-  ];
-
   const roomTexts = [
+    'Add some text here',
     'Programming, Graphics and Sound\n\nDiego Altamirano (mochilo)',
     'Additional testing and ideas\n\nIvan and Alvaro',
     'Thanks for playing!',
@@ -130,9 +125,29 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     scene.time.delayedCall(3000, hide);
   }
 
-  function getEndingRoom(): RoomName | null {
-    if (rooms[currentRoom]) {
-      return RoomName.fromName(rooms[currentRoom]);
+  function rooms(isRealEnding: boolean): string[] {
+    if (isRealEnding) {
+      return [
+        '2_9',
+        '5_5',
+        '5_2',
+        '5_0',
+      ];
+    }
+
+    return [
+      '5_7',
+      '3_6',
+      '3_3',
+      '5_0',
+    ];
+  }
+
+  function getEndingRoom(isRealEnding: boolean): RoomName | null {
+    const allRooms = rooms(isRealEnding);
+
+    if (allRooms[currentRoom]) {
+      return RoomName.fromName(allRooms[currentRoom]);
     }
 
     return null;

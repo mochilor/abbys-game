@@ -27,7 +27,7 @@ import Counter from './Decoration/Counter';
 import Robot from './Collidable/Static/Enemy/Robot';
 import PortalDestination from './Decoration/PortalDestination';
 import Light from './Decoration/Light';
-import Ruby from './Collidable/Static/Ruby/Ruby';
+import Ruby from './Collidable/Static/Ruby';
 import Anchor from './Decoration/Anchor';
 import TextSprite from './Decoration/TextSprite';
 

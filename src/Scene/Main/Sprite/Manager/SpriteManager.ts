@@ -18,7 +18,7 @@ import InvisibleWall from '../Collidable/Static/InvisibleWall';
 import Mummy from '../Collidable/Static/Enemy/Mummy';
 import Robot from '../Collidable/Static/Enemy/Robot';
 import listenEnemyEvents from '../../../../Service/EventListener/enemyEventListeners';
-import Ruby from '../Collidable/Static/Ruby/Ruby';
+import Ruby from '../Collidable/Static/Ruby';
 import Anchor from '../Decoration/Anchor';
 
 export default class SpriteManager {

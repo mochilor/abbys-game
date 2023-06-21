@@ -10,6 +10,8 @@ export default class Robot extends EnemyGameObject {
 
   private target: Player = null;
 
+  private automove: boolean = false;
+
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem, 'robotSpriteSheet');
     scene.physics.world.enable(this);
@@ -29,6 +31,18 @@ export default class Robot extends EnemyGameObject {
     });
 
     this.removeTarget();
+
+    const orientation = parseInt(this.getProperty('orientation')?.value as string ?? '1', 10);
+
+    this.flipX = orientation < 0;
+
+    this.automove = !!parseInt(this.getProperty('automove')?.value as string ?? '0', 10);
+
+    if (this.automove) {
+      this.play('robotWalk');
+      this.fixBodyOffset(orientation < 0);
+      this.body.setVelocityX(20 * orientation);
+    }
   }
 
   private fixBodyOffset(isFlipped: boolean): void {
@@ -57,6 +71,10 @@ export default class Robot extends EnemyGameObject {
   }
 
   public update(): void {
+    if (this.automove) {
+      return;
+    }
+
     this.dangerArea.setX(this.x);
 
     const { touching, wasTouching } = this.dangerArea.body;
