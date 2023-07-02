@@ -7,7 +7,7 @@ import RoomName from '../Map/RoomName';
 
 let currentRoom = 0;
 
-export default function createEnding(scene: Phaser.Scene): Ending {
+export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean): Ending {
   const roomTexts = [
     'Add some text here',
     'Programming, Graphics and Sound\n\nDiego Altamirano (mochilo)',
@@ -15,7 +15,7 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     'Thanks for playing!',
   ];
 
-  const finalText = 'Now try again and find the real treasure!';
+  const finalText = isRealEnding ? 'CONGRATULATIONS!' : 'Now try again and find the real treasure!';
 
   const textObjects = [];
 
@@ -44,7 +44,7 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     x,
     y,
     scene,
-    'Congratulations!\nYou found the legendary treasure',
+    `Congratulations!\nYou found the ${isRealEnding ? 'REAL' : 'legendary'} treasure`,
   );
 
   const secondaryText = createMenu(
@@ -125,7 +125,7 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     scene.time.delayedCall(3000, hide);
   }
 
-  function rooms(isRealEnding: boolean): string[] {
+  function rooms(): string[] {
     if (isRealEnding) {
       return [
         '2_9',
@@ -143,8 +143,8 @@ export default function createEnding(scene: Phaser.Scene): Ending {
     ];
   }
 
-  function getEndingRoom(isRealEnding: boolean): RoomName | null {
-    const allRooms = rooms(isRealEnding);
+  function getEndingRoom(): RoomName | null {
+    const allRooms = rooms();
 
     if (allRooms[currentRoom]) {
       return RoomName.fromName(allRooms[currentRoom]);

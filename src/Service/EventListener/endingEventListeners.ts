@@ -17,9 +17,9 @@ export default function listenEndingEvents(
   let ending: Ending;
 
   function start(ruby: Ruby): void {
-    ending = createEnding(scene);
-    ending.init();
     isRealEnding = ruby.isReal();
+    ending = createEnding(scene, isRealEnding);
+    ending.init();
   }
 
   function showEndingText(): void {
@@ -67,7 +67,7 @@ export default function listenEndingEvents(
   }
 
   function prepareNextEndingRoom(): void {
-    ending = createEnding(scene);
+    ending = createEnding(scene, isRealEnding);
     ending.start();
   }
 
@@ -76,8 +76,8 @@ export default function listenEndingEvents(
       return;
     }
 
-    ending = createEnding(scene);
-    const nextRoom = ending.getEndingRoom(isRealEnding);
+    ending = createEnding(scene, isRealEnding);
+    const nextRoom = ending.getEndingRoom();
 
     if (!nextRoom) {
       ending.renderFinalText();
@@ -93,7 +93,7 @@ export default function listenEndingEvents(
   }
 
   function setupEndingAnimation(): void {
-    ending = createEnding(scene);
+    ending = createEnding(scene, isRealEnding);
     ending.startWithoutAnimation();
     ending.renderRoomText();
     ending.increaseEndingRoom();
