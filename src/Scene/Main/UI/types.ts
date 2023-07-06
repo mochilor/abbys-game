@@ -1,4 +1,5 @@
 import RoomName from '../Map/RoomName';
+import Ruby from '../Sprite/Collidable/Static/Ruby';
 
 export interface Title {
   quit: () => void,
@@ -20,5 +21,5 @@ export interface Ending {
   hide: () => void,
   increaseEndingRoom: () => void,
   getEndingRoom: () => RoomName | null,
-  renderFinalText: () => void,
+  renderFinalText: (ruby: Ruby | null) => void,
 }

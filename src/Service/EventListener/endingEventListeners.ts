@@ -80,7 +80,12 @@ export default function listenEndingEvents(
     const nextRoom = ending.getEndingRoom();
 
     if (!nextRoom) {
-      ending.renderFinalText();
+      let ruby = null;
+      if (isRealEnding) {
+        ruby = spriteManager.getRuby();
+      }
+
+      ending.renderFinalText(ruby);
       return;
     }
 

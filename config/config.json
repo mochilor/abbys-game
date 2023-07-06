@@ -33,7 +33,7 @@
     }
   },
   "debug": {
-    "enable": true,
+    "enable": false,
     "level": "0_13",
     "boundingBoxes": false
   }

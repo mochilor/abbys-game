@@ -4,6 +4,7 @@ import createMenu from '../../../UI/Menu';
 import * as EventDispatcher from '../../../Service/EventDispatcher';
 import closeUIElement from '../../../UI/ClosingAnimation';
 import RoomName from '../Map/RoomName';
+import Ruby from '../Sprite/Collidable/Static/Ruby';
 
 let currentRoom = 0;
 
@@ -157,7 +158,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
     currentRoom += 1;
   }
 
-  function renderFinalText(): void {
+  function renderFinalText(ruby: Ruby | null): void {
     const text = createMenu(
       x,
       y,
@@ -165,6 +166,13 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
       finalText,
     );
     text.show();
+
+    if (ruby) {
+      ruby.stopBounce();
+      ruby.setDepth(10);
+      ruby.setX(x);
+      ruby.setY(y + 32);
+    }
   }
 
   return {

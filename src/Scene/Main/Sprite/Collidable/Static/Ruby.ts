@@ -5,7 +5,7 @@ import * as EventDispatcher from '../../../../../Service/EventDispatcher';
 export default class Ruby extends GameObject {
   public static key = 'Ruby';
 
-  private tween: Phaser.Tweens.Tween;
+  private bounceTween: Phaser.Tweens.Tween;
 
   private isRealRuby: boolean = false;
 
@@ -31,7 +31,7 @@ export default class Ruby extends GameObject {
 
     this.play('ruby');
 
-    this.tween = scene.tweens.add({
+    this.bounceTween = scene.tweens.add({
       props: {
         y: '-=8',
       },
@@ -43,10 +43,13 @@ export default class Ruby extends GameObject {
     });
   }
 
-  public freeze(): void {
-    this.tween.stop();
-    this.setDepth(10);
+  public stopBounce(): void {
+    this.bounceTween.stop();
+  }
 
+  public freeze(): void {
+    this.stopBounce();
+    this.setDepth(10);
     this.scene.tweens.add({
       props: {
         y: '-=64',
