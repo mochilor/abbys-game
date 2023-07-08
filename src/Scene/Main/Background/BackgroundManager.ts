@@ -6,6 +6,6 @@ export default function setupBackground(scene: Phaser.Scene, roomName: RoomName)
 
   const currentBgColor = bgColors[roomName.zone()].bg;
 
-  document.body.setAttribute('style', `background-color: #${currentBgColor};`);
+  // document.body.setAttribute('style', `background-color: #${currentBgColor};`);
   scene.cameras.main.setBackgroundColor(currentBgColor);
 }
