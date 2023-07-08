@@ -10,6 +10,8 @@ export interface Title {
 
 export interface PauseButton {
   pause: () => void,
+  hide: () => void,
+  show: () => void,
 }
 
 export interface Ending {

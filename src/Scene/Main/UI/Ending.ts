@@ -30,7 +30,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
       1,
     );
     rectangle.setOrigin(0, 0);
-    rectangle.setDepth(1);
+    rectangle.setDepth(2);
     rectangle.setScrollFactor(0);
     rectangle.setVisible(false);
     rectangle.setAlpha(0);

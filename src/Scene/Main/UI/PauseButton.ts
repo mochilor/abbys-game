@@ -32,10 +32,22 @@ export default function createPauseButton(scene: Phaser.Scene): PauseButton {
   const stroke = graphics.strokeRect(bodyX, bodyY, width, width);
   stroke.setScrollFactor(0);
 
-  scene.add.bitmapText(x, y, 'font', '|')
+  const pauseSymbol = scene.add.bitmapText(x, y, 'font', '|')
     .setOrigin(0.5, 0.4)
     .setDepth(2)
     .setScrollFactor(0);
 
-  return { pause };
+  function hide(): void {
+    stroke.setVisible(false);
+    pauseSymbol.setVisible(false);
+    body.disableInteractive();
+  }
+
+  function show(): void {
+    stroke.setVisible(true);
+    pauseSymbol.setVisible(true);
+    body.setInteractive();
+  }
+
+  return { pause, hide, show };
 }
