@@ -46,13 +46,9 @@ export default class Anchor extends GameObject {
 
     if (this.body.blocked.down) {
       this.body.setGravityY(0);
-      this.scene.time.delayedCall(1000, this.emitBottomEvent, [], this);
+      EventDispatcher.emit('anchorTouchedBottom', this);
       this.isFalling = false;
     }
-  }
-
-  public emitBottomEvent(): void {
-    EventDispatcher.emit('anchorTouchedBottom', this);
   }
 
   public startMovingUp(): void {

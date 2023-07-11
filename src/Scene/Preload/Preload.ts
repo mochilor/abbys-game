@@ -33,6 +33,7 @@ import saveSamplePath from 'url:../../../assets/audio/save.ogg';
 import buttonSamplePath from 'url:../../../assets/audio/button.ogg';
 import doorSamplePath from 'url:../../../assets/audio/door.ogg';
 import titleMusic from 'url:../../../assets/audio/music/title.ogg';
+import endingMusic from 'url:../../../assets/audio/music/ending.ogg';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -71,6 +72,7 @@ export default class Preload extends Phaser.Scene {
     this.load.audio('buttonSample', buttonSamplePath);
     this.load.audio('doorSample', doorSamplePath);
     this.load.audio('titleMusic', titleMusic);
+    this.load.audio('endingMusic', endingMusic);
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });

@@ -59,11 +59,15 @@ export default function listenEndingEvents(
   }
 
   function anchorMoveUp(anchor: Anchor): void {
-    anchor.startMovingUp();
+    const move = () => {
+      anchor.startMovingUp();
 
-    const player = spriteManager.getPlayer();
-    player.hide();
-    registry.set('endingInProgress', true);
+      const player = spriteManager.getPlayer();
+      player.hide();
+      registry.set('endingInProgress', true);
+    };
+
+    scene.time.delayedCall(1000, move, [], this);
   }
 
   function prepareNextEndingRoom(): void {

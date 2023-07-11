@@ -48,6 +48,14 @@ export default function listenSoundEvents(scene: Phaser.Scene, soundPlayer: Soun
     soundPlayer.fadeTitleMusic();
   }
 
+  function playEndingMusic(): void {
+    soundPlayer.playEndingMusic();
+  }
+
+  function prepareEndingMusic(): void {
+    soundPlayer.prepareEndingMusic();
+  }
+
   EventDispatcher.on('playerGotCoin', playCoinSample);
   EventDispatcher.on('springActivated', playSpringSample);
   EventDispatcher.on('newRoomReached', playPortalSample);
@@ -56,4 +64,7 @@ export default function listenSoundEvents(scene: Phaser.Scene, soundPlayer: Soun
   EventDispatcher.on('buttonActivated', playButtonSample);
   EventDispatcher.on('doorOpen', playDoorSample);
   EventDispatcher.on('titleClosed', fadeTitleMusic);
+  EventDispatcher.on('anchorTouchedBottom', prepareEndingMusic);
+  EventDispatcher.on('anchorTouchedBottom', playDoorSample);
+  EventDispatcher.on('anchorTouchedTop', playEndingMusic);
 }

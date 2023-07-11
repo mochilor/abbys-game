@@ -16,9 +16,13 @@ let doorSample: Phaser.Sound.BaseSound = null;
 
 let titleMusic: Phaser.Sound.BaseSound = null;
 
+let endingMusic: Phaser.Sound.BaseSound = null;
+
 let init = false;
 
-let musicIsPlaying = true;
+let titleMusicIsPlaying = true;
+
+let endingMusicIsPlaying = false;
 
 export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
   function initSamples(): void {
@@ -37,6 +41,8 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
     doorSample = scene.sound.add('doorSample');
 
     titleMusic = scene.sound.add('titleMusic');
+
+    endingMusic = scene.sound.add('endingMusic');
 
     init = true;
   }
@@ -59,14 +65,14 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
 
   function playSpearSample(): void {
     if (!spearSample.isPlaying) {
-      spearSample.play({ volume: 0.2, mute: musicIsPlaying });
+      spearSample.play({ volume: 0.2, mute: titleMusicIsPlaying || endingMusicIsPlaying });
     }
   }
 
   function playSaveSample(): void {
     // This sounds is played on start, because the player is touching a save game item,
     // therefore needs to be muted
-    saveSample.play({ volume: 0.7, mute: musicIsPlaying });
+    saveSample.play({ volume: 0.7, mute: titleMusicIsPlaying });
   }
 
   function playButtonSample(): void {
@@ -78,7 +84,7 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
   }
 
   function playTitleMusic(): void {
-    musicIsPlaying = true;
+    titleMusicIsPlaying = true;
     titleMusic.play({ volume: 1, loop: true });
   }
 
@@ -88,16 +94,29 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
       volume: 0,
       duration: 1000,
     });
-    musicIsPlaying = false;
+    titleMusicIsPlaying = false;
   }
 
   function stopTitleMusic(): void {
     titleMusic.stop();
-    musicIsPlaying = false;
+    titleMusicIsPlaying = false;
   }
 
   function setMuteStatus(status: boolean): void {
     scene.game.sound.mute = status;
+  }
+
+  function playEndingMusic(): void {
+    if (endingMusicIsPlaying) {
+      return;
+    }
+
+    endingMusic.play({ volume: 1 });
+    endingMusicIsPlaying = true;
+  }
+
+  function prepareEndingMusic(): void {
+    endingMusicIsPlaying = false;
   }
 
   return {
@@ -112,5 +131,7 @@ export default function makeSoundPlayer(scene: Phaser.Scene): SoundPlayer {
     fadeTitleMusic,
     stopTitleMusic,
     setMuteStatus,
+    playEndingMusic,
+    prepareEndingMusic,
   };
 }

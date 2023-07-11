@@ -16,6 +16,8 @@ export type SoundPlayer = {
   fadeTitleMusic: () => void,
   stopTitleMusic: () => void,
   setMuteStatus: (status: boolean) => void,
+  playEndingMusic: () => void,
+  prepareEndingMusic: () => void,
 };
 
 export interface SavedGame {

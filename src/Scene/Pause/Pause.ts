@@ -5,6 +5,15 @@ import { getSettings } from '../../Service/Settings';
 import * as EventDispatcher from '../../Service/EventDispatcher';
 import { Button } from '../../UI/types';
 
+function getSoundButtonText(): string {
+  const soundCharacters = {
+    0: '<',
+    1: '>',
+  };
+
+  return `Sound ${soundCharacters[+getSettings().audio]}`;
+}
+
 export default class Pause extends Phaser.Scene {
   private soundButton: Button;
 
@@ -28,7 +37,7 @@ export default class Pause extends Phaser.Scene {
       0,
       0,
       this,
-      this.getSoundButtonText(),
+      getSoundButtonText(),
       true,
       this.toggleSound,
     );
@@ -72,18 +81,9 @@ export default class Pause extends Phaser.Scene {
     this.scene.start('Main', {});
   }
 
-  private getSoundButtonText(): string {
-    const soundCharacters = {
-      0: '<',
-      1: '>',
-    };
-
-    return `Sound ${soundCharacters[+getSettings().audio]}`;
-  }
-
   private toggleSound(): void {
     EventDispatcher.emit('soundToggled');
     const text = this.soundButton.contents()[1];
-    text.text = this.getSoundButtonText();
+    text.text = getSoundButtonText();
   }
 }
