@@ -179,8 +179,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":460.166666666667,
-                 "y":242.166666666667
+                 "x":276.666666666667,
+                 "y":127.666666666667
                 }, 
                 {
                  "class":"",
@@ -629,7 +629,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":1368,
+ "nextobjectid":1369,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

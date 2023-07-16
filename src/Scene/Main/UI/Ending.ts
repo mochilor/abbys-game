@@ -5,14 +5,16 @@ import * as EventDispatcher from '../../../Service/EventDispatcher';
 import closeUIElement from '../../../UI/ClosingAnimation';
 import RoomName from '../Map/RoomName';
 import Ruby from '../Sprite/Collidable/Static/Ruby';
+import Coin from '../Sprite/Collidable/Dynamic/Coin';
+import * as CoinCounter from '../GameItem/CoinCounter/CoinCounter';
 
 let currentRoom = 0;
 
 export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean): Ending {
   const roomTexts = [
-    'Add some text here',
-    'Programming, Graphics and Sound\n\nDiego Altamirano (mochilo)',
-    'Additional testing and ideas\n\nIvan and Alvaro',
+    '',
+    'Programming, Graphics and Sound\n\nDiego Altamirano',
+    'Additional testing and ideas\n\nIvan Altamirano\n\nAlvaro Altamirano',
     'Thanks for playing!',
   ];
 
@@ -158,7 +160,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
     currentRoom += 1;
   }
 
-  function renderFinalText(ruby: Ruby | null): void {
+  function renderFinalText(ruby: Ruby | null, coin: Coin | null): void {
     const text = createMenu(
       x,
       y,
@@ -172,6 +174,22 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
       ruby.setDepth(10);
       ruby.setX(x);
       ruby.setY(y + 32);
+    }
+
+    if (coin) {
+      coin.setDepth(10);
+
+      const coinCounter = CoinCounter.getInstance();
+      const total = coinCounter.getTotal();
+      const current = coinCounter.getCurrent();
+
+      const coinText = createMenu(
+        coin.x,
+        coin.y + 16,
+        scene,
+        `${current} / ${total}`,
+      );
+      coinText.show();
     }
   }
 

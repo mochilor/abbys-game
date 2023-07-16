@@ -4,6 +4,8 @@ export type CoinZones = {
   cave: integer,
   pyramid: integer,
   base: integer,
+  secret: integer,
+  end: integer,
 };
 
 export type CoinsTotal = {
@@ -16,4 +18,6 @@ export type CoinCounter = {
   getTotalByLevel(level: string): integer,
   getCurrentByLevel(level: string): integer,
   getRemainingByLevel(level: string): integer,
+  getTotal(): integer,
+  getCurrent(): integer,
 };

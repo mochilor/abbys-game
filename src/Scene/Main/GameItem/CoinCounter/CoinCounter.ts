@@ -8,12 +8,16 @@ const totals: CoinZones = {
   cave: 0,
   pyramid: 0,
   base: 0,
+  secret: 0,
+  end: 0,
 };
 
 let current: CoinZones = {
   cave: 0,
   pyramid: 0,
   base: 0,
+  secret: 0,
+  end: 0,
 };
 
 export function getInstance(): CoinCounter {
@@ -33,6 +37,8 @@ export function reset(): void {
     cave: 0,
     pyramid: 0,
     base: 0,
+    secret: 0,
+    end: 0,
   };
 }
 
@@ -50,7 +56,6 @@ export function init(coinsTotalCollection: CoinsTotal[]) {
     function add(roomName: RoomName): void {
       current[roomName.zone()] += 1;
       EventDispatcher.emit('coinCounterUpdated', current);
-      // console.log(current);
     }
 
     function getTotalByLevel(level: string): integer {
@@ -65,11 +70,21 @@ export function init(coinsTotalCollection: CoinsTotal[]) {
       return getTotalByLevel(level) - getCurrentByLevel(level);
     }
 
+    function getTotal(): integer {
+      return Object.values(totals).reduce((a, b) => a + b, 0);
+    }
+
+    function getCurrent(): integer {
+      return Object.values(current).reduce((a, b) => a + b, 0);
+    }
+
     return {
       add,
       getTotalByLevel,
       getCurrentByLevel,
       getRemainingByLevel,
+      getTotal,
+      getCurrent,
     };
   })();
 }

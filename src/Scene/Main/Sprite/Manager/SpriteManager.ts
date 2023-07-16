@@ -20,6 +20,7 @@ import Robot from '../Collidable/Static/Enemy/Robot';
 import listenEnemyEvents from '../../../../Service/EventListener/enemyEventListeners';
 import Ruby from '../Collidable/Static/Ruby';
 import Anchor from '../Decoration/Anchor';
+import listenEndingEvents from '../../../../Service/EventListener/endingEventListeners';
 
 export default class SpriteManager {
   private scene: Phaser.Scene;
@@ -59,6 +60,7 @@ export default class SpriteManager {
     listenButtonEvents(this.scene, mapEventGameItems, this.spritesStore);
     listenEnemyEvents(this.spritesStore.player);
     listenGameObjectEvents(this.spritesStore.doors, this.spritesStore.platforms);
+    listenEndingEvents(this.scene, this, this.scene.registry, mapEventGameItems);
   }
 
   public getPlayer(): Player {

@@ -14,7 +14,6 @@ import setupBackground from './Background/BackgroundManager';
 import listenSettingsEvents from '../../Service/EventListener/settingsEventListener';
 import makeVirtualGameItemRepository from './GameItem/Virtual/VirtualGameItemRepository';
 import { VirtualGameItem } from './GameItem/Virtual/types';
-import listenEndingEvents from '../../Service/EventListener/endingEventListeners';
 import listenSceneEvents from '../../Service/EventListener/sceneEventListeners';
 import listenSoundEvents from '../../Service/EventListener/soundEventListener';
 import makeSoundPlayer from '../../Service/SoundPlayer';
@@ -106,8 +105,6 @@ export default class Main extends Phaser.Scene {
     listenSceneEvents(this, player);
 
     this.createTitle();
-
-    listenEndingEvents(this, this.spriteManager, this.registry);
 
     listenSettingsEvents(this.soundPlayer);
 

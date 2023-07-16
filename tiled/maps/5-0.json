@@ -627,6 +627,24 @@
                  "width":8,
                  "x":116,
                  "y":-24
+                }, 
+                {
+                 "class":"",
+                 "gid":259,
+                 "height":8,
+                 "id":100,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"endingEvent",
+                         "type":"string",
+                         "value":"coinCounter"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":124,
+                 "y":168
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -635,7 +653,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":100,
+ "nextobjectid":101,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

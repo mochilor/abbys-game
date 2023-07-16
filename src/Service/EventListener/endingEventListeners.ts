@@ -6,6 +6,8 @@ import { Ending } from '../../Scene/Main/UI/types';
 import * as EventDispatcher from '../EventDispatcher';
 import config from '../../../config/config.json';
 import Ruby from '../../Scene/Main/Sprite/Collidable/Static/Ruby';
+import { MapEventsGameItemCollection } from '../../Scene/Main/GameItem/types';
+import Coin from '../../Scene/Main/Sprite/Collidable/Dynamic/Coin';
 
 let isRealEnding: boolean = false;
 
@@ -13,6 +15,7 @@ export default function listenEndingEvents(
   scene: Phaser.Scene,
   spriteManager: SpriteManager,
   registry: Phaser.Data.DataManager,
+  eventGameItemCollection: MapEventsGameItemCollection,
 ): void {
   let ending: Ending;
 
@@ -85,11 +88,20 @@ export default function listenEndingEvents(
 
     if (!nextRoom) {
       let ruby = null;
+      let coinCounter = null;
       if (isRealEnding) {
         ruby = spriteManager.getRuby();
       }
 
-      ending.renderFinalText(ruby);
+      const eventGameItemArray = eventGameItemCollection.getItemByEventName('endingEvent');
+
+      if (eventGameItemArray.length !== 0) {
+        const eventGameItem = eventGameItemArray[0];
+        coinCounter = new Coin(scene, eventGameItem);
+      }
+
+      ending.renderFinalText(ruby, coinCounter);
+
       return;
     }
 
