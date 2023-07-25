@@ -19,6 +19,8 @@ export default class Player extends GameObject {
 
   private controller: Controller;
 
+  private touchController: Controller = null;
+
   private backpack: Backpack;
 
   private portalDestination: { x: number, y: number };
@@ -73,7 +75,11 @@ export default class Player extends GameObject {
 
     const baseVelocityX: number = 100;
 
-    const direction = this.controller.move();
+    let direction = this.touchController?.move();
+
+    if (!direction) {
+      direction = this.controller.move();
+    }
 
     let velocityX = baseVelocityX * direction;
 
@@ -273,5 +279,9 @@ export default class Player extends GameObject {
     this.bubbles.forEach((bubble) => bubble.stop());
     this.frozen = true;
     this.body.setEnable(false);
+  }
+
+  public addTouchController(controller: Controller): void {
+    this.touchController = controller;
   }
 }

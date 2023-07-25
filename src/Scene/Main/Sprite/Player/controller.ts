@@ -8,7 +8,7 @@ type Controller = {
 
 function createController(leftKey: Key, rightKey: Key): Controller {
   function move(): integer {
-    let direction: number = 0;
+    let direction: integer = 0;
 
     if (leftKey.isDown) {
       direction -= 1;

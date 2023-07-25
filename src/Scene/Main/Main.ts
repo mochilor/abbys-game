@@ -18,6 +18,7 @@ import listenSceneEvents from '../../Service/EventListener/sceneEventListeners';
 import listenSoundEvents from '../../Service/EventListener/soundEventListener';
 import makeSoundPlayer from '../../Service/SoundPlayer';
 import { SoundPlayer } from '../../Service/types';
+import listenHudButtonEvents from '../../Service/EventListener/hudButtonsEventListener';
 
 interface Data {
   x: number,
@@ -109,6 +110,8 @@ export default class Main extends Phaser.Scene {
     listenSettingsEvents(this.soundPlayer);
 
     listenSoundEvents(this, this.soundPlayer);
+
+    listenHudButtonEvents(player);
 
     if (this.registry.get('endingInProgress')) {
       EventDispatcher.emit('endingAnimationRunning');
