@@ -19,6 +19,10 @@ export default class MapManager {
 
   private layer: Phaser.Tilemaps.TilemapLayer;
 
+  private roomX: integer = null;
+
+  private roomY: integer = null;
+
   constructor(scene: Phaser.Scene, roomName: RoomName) {
     this.scene = scene;
     this.roomName = roomName;
@@ -106,6 +110,14 @@ export default class MapManager {
     // Add 1 to screen sizes to prevent reloacting cameras when player is exactly at the border:
     const roomX = Math.floor(player.x / (screenSizeX + 1));
     const roomY = Math.floor(player.y / (screenSizeY + 1));
+
+    if (roomY === this.roomY && roomX === this.roomX) {
+      return;
+    }
+
+    this.roomY = roomY;
+    this.roomX = roomX;
+
     const cameraX = roomX * screenSizeX;
     const cameraY = roomY * screenSizeY;
 
