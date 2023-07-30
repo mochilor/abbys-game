@@ -1,3 +1,4 @@
+import * as EventDispatcher from '../EventDispatcher';
 import Player from '../../Scene/Main/Sprite/Player/Player';
 import { createController } from '../../Scene/Main/Sprite/Player/controller';
 
@@ -31,4 +32,11 @@ export default function listenHudButtonEvents(player: Player): void {
     rightControllerButton.style.opacity = '100%';
     rightKey.isDown = false;
   });
+
+  function enable(): void {
+    leftControllerButton.classList.remove('hidden');
+    rightControllerButton.classList.remove('hidden');
+  }
+
+  EventDispatcher.on('screenLocked', enable);
 }

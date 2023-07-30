@@ -13,7 +13,7 @@ export default function createButton(
     x,
     y,
     width,
-    16,
+    18,
   );
   body.setDepth(1);
   body.setScrollFactor(0);

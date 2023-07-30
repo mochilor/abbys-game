@@ -53,7 +53,7 @@ export default function create(
       return;
     }
 
-    const offset = 24;
+    const offset = 28;
     let currentY = y + offset;
 
     for (let n = 0; n < buttonBodys.length; n += 1) {

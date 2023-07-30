@@ -36,15 +36,18 @@
     #controller-right div {
       transform: scaleX(-1);
     }
+    .hidden {
+      visibility: hidden;
+    }
   </style>
   <title>Cave!</title>
 </head>
 <body>
   <div id="game-container">
-    <div class="controller" id="controller-left">
+    <div class="controller hidden" id="controller-left">
       <div></div>
     </div>
-    <div class="controller" id="controller-right">
+    <div class="controller hidden" id="controller-right">
       <div></div>
     </div>
     <div id="gamediv"></div>

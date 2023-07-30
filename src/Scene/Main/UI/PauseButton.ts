@@ -2,7 +2,7 @@ import config from '../../../../config/config.json';
 import { PauseButton } from './types';
 
 export default function createPauseButton(scene: Phaser.Scene): PauseButton {
-  const margin = 15;
+  const margin = 16;
 
   function pause(): void {
     scene.scene.pause();
@@ -11,7 +11,7 @@ export default function createPauseButton(scene: Phaser.Scene): PauseButton {
 
   const x = config.gameWidth - margin;
   const y = margin;
-  const width = 16;
+  const width = 20;
 
   const body = scene.add.rectangle(
     x,
