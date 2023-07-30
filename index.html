@@ -7,6 +7,7 @@
   <style>
     body {
       background-color: #000000;
+      overflow: hidden;
     }
     * {
       margin-top: 0!important;
@@ -17,20 +18,35 @@
     }
     .controller {
       position: absolute;
-      width: 30%;
+      width: 20%;
       height: 100%;
       z-index: 100;
     }
+    .controller div {
+      height: 100%;
+      width: 100%;
+      background-image: url(/assets/img/controller.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      image-rendering: pixelated;
+    }
     #controller-right {
       right: 0;
+    }
+    #controller-right div {
+      transform: scaleX(-1);
     }
   </style>
   <title>Cave!</title>
 </head>
 <body>
   <div id="game-container">
-    <div class="controller" id="controller-left"></div>
-    <div class="controller" id="controller-right"></div>
+    <div class="controller" id="controller-left">
+      <div></div>
+    </div>
+    <div class="controller" id="controller-right">
+      <div></div>
+    </div>
     <div id="gamediv"></div>
   </div>
   <script type="module" src="src/index.ts"></script>
