@@ -1,8 +1,8 @@
 {
   "gameWidth": 256,
-  "gameHeight": 256,
+  "gameHeight": 192,
   "roomWidth": 512,
-  "roomHeight": 512,
+  "roomHeight": 384,
   "bg": false,
   "levelColors": {
     "cave": {
@@ -33,8 +33,8 @@
     }
   },
   "debug": {
-    "enable": false,
-    "level": "3_9",
+    "enable": true,
+    "level": "4_3",
     "boundingBoxes": false
   }
 }

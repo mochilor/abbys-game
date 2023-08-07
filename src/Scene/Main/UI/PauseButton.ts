@@ -24,7 +24,7 @@ export default function createPauseButton(scene: Phaser.Scene): PauseButton {
   body.on('pointerdown', () => pause.apply(scene, []));
 
   const graphics = scene.add.graphics();
-  graphics.lineStyle(1, 0xffffff, 1);
+  graphics.lineStyle(2, 0xffffff, 1);
 
   const bodyX = x - (width / 2);
   const bodyY = y - (width / 2);
