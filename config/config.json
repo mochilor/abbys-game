@@ -34,7 +34,7 @@
   },
   "debug": {
     "enable": true,
-    "level": "5_6",
+    "level": "6_9",
     "boundingBoxes": false
   }
 }
