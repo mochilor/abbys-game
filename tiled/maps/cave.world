@@ -3,7 +3,7 @@
         {
             "regexp": "(\\d+)-(\\d+)\\.json",
             "multiplierX": 512,
-            "multiplierY": 512,
+            "multiplierY": 384,
             "offsetX": 0,
             "offsetY": 0
         }
