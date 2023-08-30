@@ -8,7 +8,7 @@ export default class TextSprite extends GameObject {
   private text: Phaser.GameObjects.BitmapText;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'conveyorSpriteSheet');
+    super(scene, gameItem, '');
 
     this.setVisible(false);
 
