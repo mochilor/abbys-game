@@ -41,7 +41,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
   })();
 
   const { x } = background.getCenter();
-  const y = background.getCenter().y - 64;
+  const y = background.getCenter().y - 32;
 
   const congratulations = createMenu(
     x,
@@ -52,7 +52,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
 
   const secondaryText = createMenu(
     x,
-    y + 32,
+    y + 24,
     scene,
     'Now is time to go home',
   );

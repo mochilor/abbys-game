@@ -54,7 +54,7 @@ export default class Ruby extends GameObject {
     this.setDepth(10);
     this.scene.tweens.add({
       props: {
-        y: '-=64',
+        y: '-=40',
       },
       targets: this,
       duration: 2000,

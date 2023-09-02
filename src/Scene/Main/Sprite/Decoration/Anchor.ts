@@ -53,7 +53,7 @@ export default class Anchor extends GameObject {
 
   public startMovingUp(): void {
     this.setFrame(1);
-    this.body.setVelocityY(-32);
+    this.body.setVelocityY(-26);
     this.isMovingUp = true;
   }
 
