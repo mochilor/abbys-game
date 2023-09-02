@@ -18,8 +18,10 @@ export default class Ruby extends GameObject {
 
     const frameOffset = this.isRealRuby ? 10 : 0;
 
+    const key = `ruby${this.isRealRuby ? 'Real' : ''}`;
+
     scene.anims.create({
-      key: 'ruby',
+      key,
       frameRate: 16,
       frames: this.anims.generateFrameNumbers(
         'rubySpriteSheet',
@@ -29,7 +31,7 @@ export default class Ruby extends GameObject {
       repeatDelay: 4000,
     });
 
-    this.play('ruby');
+    this.play(key);
 
     this.bounceTween = scene.tweens.add({
       props: {
