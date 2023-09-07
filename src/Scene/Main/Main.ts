@@ -19,6 +19,8 @@ import listenSoundEvents from '../../Service/EventListener/soundEventListener';
 import makeSoundPlayer from '../../Service/SoundPlayer';
 import { SoundPlayer } from '../../Service/types';
 import listenHudButtonEvents from '../../Service/EventListener/hudButtonsEventListener';
+import makePauseTimer from '../Pause/PauseTimer';
+import { PauseTimeCounter } from '../Pause/types';
 
 interface Data {
   x: number,
@@ -51,6 +53,8 @@ export default class Main extends Phaser.Scene {
   private mapManager: MapManager;
 
   private soundPlayer: SoundPlayer = null;
+
+  private pauseTimer: PauseTimeCounter = null;
 
   constructor() {
     super({ key: 'Main' });
@@ -116,6 +120,8 @@ export default class Main extends Phaser.Scene {
     if (this.registry.get('endingInProgress')) {
       EventDispatcher.emit('endingAnimationRunning');
     }
+
+    this.pauseTimer = makePauseTimer(this);
   }
 
   private initCoins(): void {
@@ -153,8 +159,11 @@ export default class Main extends Phaser.Scene {
     EventDispatcher.emit('playerUnfrozen');
   }
 
-  update(time: number): void {
+  update(realTime: number): void {
     this.mapManager.updateCurrentRoom(this.spriteManager.getPlayer());
+
+    const time = realTime - this.pauseTimer.calculatePauseTime(realTime);
+
     this.spriteManager.update(time);
   }
 }

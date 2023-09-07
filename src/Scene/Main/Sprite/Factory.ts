@@ -117,9 +117,9 @@ function makeSprites(
     sprites.push(makeSingleSprite(scene, item));
   });
 
-  // Player no tiene que tener gameItem y se tiene que crear en cada room
-  // Al persistirn em meoria o fichero, hay que guaradart los items
-  // y el player (en dos entradas separadas)
+  // Player has no GameItem and must be created for each room.
+  // When saving in memory or file, we have to store the items and the player
+  // in two separate entries.
   sprites.push(makePlayer(scene, playerGameItem));
 
   return sprites;
