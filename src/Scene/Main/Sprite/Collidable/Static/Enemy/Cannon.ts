@@ -8,9 +8,9 @@ export default class Cannon extends GameObject {
   private cannonBall: CannonBall;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'objects');
+    super(scene, gameItem);
+    this.setFrame('objects_08');
     this.setAngle(gameItem.rotation);
-    this.setFrame(8);
 
     this.fixOffsetBasedOnRotation();
   }

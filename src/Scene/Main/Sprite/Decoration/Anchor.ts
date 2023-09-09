@@ -14,17 +14,17 @@ export default class Anchor extends GameObject {
   private isMovingUp: boolean = false;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'anchorSpriteSheet');
+    super(scene, gameItem);
+    this.setFrame('anchor_0');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
 
     this.body.setSize(8, 37);
 
-    this.rope = scene.add.tileSprite(this.x, this.y - this.ropeOffset, 1, 256, 'anchorRopeImage');
+    this.rope = scene.add.tileSprite(this.x, this.y - this.ropeOffset, 1, 256, 'sprites');
+    this.rope.setFrame('anchor-rope');
     this.rope.setOrigin(0, 1);
-
-    this.setFrame(0);
   }
 
   public fall(): void {
@@ -52,7 +52,7 @@ export default class Anchor extends GameObject {
   }
 
   public startMovingUp(): void {
-    this.setFrame(1);
+    this.setFrame('anchor_1');
     this.body.setVelocityY(-26);
     this.isMovingUp = true;
   }

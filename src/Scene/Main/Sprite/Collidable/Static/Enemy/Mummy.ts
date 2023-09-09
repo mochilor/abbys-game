@@ -1,6 +1,8 @@
 import { GameItem } from '../../../../GameItem/types';
 import EnemyGameObject from './EnemyGameObject';
 
+const framePrefix = 'mummy_';
+
 export default class Mummy extends EnemyGameObject {
   public static key = 'Mummy';
 
@@ -17,7 +19,9 @@ export default class Mummy extends EnemyGameObject {
   private hasBorn: boolean = false;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'mummySpriteSheet');
+    super(scene, gameItem);
+    this.setFrame(`${framePrefix}00`);
+
     scene.physics.world.enable(this);
     this.body.setSize(10, 20);
 
@@ -36,14 +40,29 @@ export default class Mummy extends EnemyGameObject {
     scene.anims.create({
       key: 'mummyWalk',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('mummySpriteSheet', { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: framePrefix,
+          end: 7,
+          zeroPad: 2,
+        },
+      ),
       repeat: -1,
     });
 
     scene.anims.create({
       key: 'mummyDeath',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('mummySpriteSheet', { start: 8, end: 13 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: framePrefix,
+          start: 8,
+          end: 13,
+          zeroPad: 2,
+        },
+      ),
       repeat: 0,
     });
 
@@ -58,7 +77,7 @@ export default class Mummy extends EnemyGameObject {
   }
 
   private startWalking(): void {
-    this.setFrame(8);
+    this.setFrame(`${framePrefix}08`);
     this.play('mummyWalk');
     this.body.setVelocityX(-24 * this.forward);
     this.body.enable = true;
@@ -67,7 +86,7 @@ export default class Mummy extends EnemyGameObject {
   private die(): void {
     this.body.enable = false;
     this.stop();
-    this.setFrame(8);
+    this.setFrame(`${framePrefix}08`);
     this.play('mummyDeath');
   }
 

@@ -15,7 +15,8 @@ export default class Ball extends EnemyGameObject {
   private startingY: number;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'ballImage');
+    super(scene, gameItem);
+    this.setFrame('ball');
 
     this.radius = parseInt(this.getProperty('radius')?.value as string ?? '0', 10);
 

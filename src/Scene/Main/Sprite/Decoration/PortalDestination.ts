@@ -5,8 +5,8 @@ export default class PortalDestination extends GameObject {
   public static key = 'PortalDestination';
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'portalSpriteSheet');
+    super(scene, gameItem);
 
-    this.setFrame(1);
+    this.setFrame('portal_1');
   }
 }

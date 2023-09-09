@@ -6,8 +6,8 @@ export default abstract class Fish extends GameObject {
 
   protected speed: number;
 
-  constructor(scene: Phaser.Scene, gameItem: GameItem, texture: string, depth: integer) {
-    super(scene, gameItem, texture);
+  constructor(scene: Phaser.Scene, gameItem: GameItem, type: string, depth: integer) {
+    super(scene, gameItem);
     this.x += 4;
     this.y -= 4;
 
@@ -17,12 +17,18 @@ export default abstract class Fish extends GameObject {
 
     this.setDepth(depth);
 
-    const key = `fish-${texture}`;
+    const key = `fish-${type}`;
 
     scene.anims.create({
       key,
       frameRate: this.speed * 60,
-      frames: texture,
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: `${key}_`,
+          end: type === 'big' ? 8 : 4,
+        },
+      ),
       repeat: -1,
     });
 

@@ -13,7 +13,7 @@ export default class Robot extends EnemyGameObject {
   private automove: boolean = false;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'robotSpriteSheet');
+    super(scene, gameItem);
     scene.physics.world.enable(this);
     this.body.setSize(15, 13);
     this.fixBodyOffset(false);
@@ -26,7 +26,13 @@ export default class Robot extends EnemyGameObject {
     scene.anims.create({
       key: 'robotWalk',
       frameRate: 16,
-      frames: this.anims.generateFrameNumbers('robotSpriteSheet', { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'robot_',
+          end: 7,
+        },
+      ),
       repeat: -1,
     });
 
@@ -61,7 +67,7 @@ export default class Robot extends EnemyGameObject {
   public removeTarget(): void {
     this.target = null;
     this.stop();
-    this.setFrame(8);
+    this.setFrame('robot_8');
   }
 
   private reverse(target: Player): void {

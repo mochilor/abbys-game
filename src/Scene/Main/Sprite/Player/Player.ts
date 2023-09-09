@@ -14,6 +14,8 @@ import SpikePlatform from '../Collidable/Static/SpikePlatform';
 import Conveyor from '../Collidable/Static/Conveyor';
 import { GameItem } from '../../GameItem/types';
 
+const framePrefix = 'player_';
+
 export default class Player extends GameObject {
   public static key = 'Player';
 
@@ -43,7 +45,9 @@ export default class Player extends GameObject {
     controller: Controller,
     backpack: Backpack,
   ) {
-    super(scene, gameItem, 'playerSpritesheet');
+    super(scene, gameItem);
+    this.setFrame(`${framePrefix}0`);
+
     scene.physics.world.enable(this);
     this.controller = controller;
     this.backpack = backpack;
@@ -51,12 +55,17 @@ export default class Player extends GameObject {
     this.body.setGravityY(100);
     this.body.setSize(10, 21);
 
-    this.setFrame(0);
-
     scene.anims.create({
       key: 'playerWalk',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('playerSpritesheet', { start: 1, end: 6 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: framePrefix,
+          start: 1,
+          end: 6,
+        },
+      ),
       repeat: -1,
     });
 
@@ -93,11 +102,11 @@ export default class Player extends GameObject {
       this.play('playerWalk', true);
       this.setFlipX(direction < 0);
     } else {
-      this.setFrame(0);
+      this.setFrame(`${framePrefix}0`);
     }
 
     if (!this.body.blocked.down) {
-      this.setFrame(7);
+      this.setFrame(`${framePrefix}7`);
     }
 
     if (this.isJumping) {
@@ -137,7 +146,7 @@ export default class Player extends GameObject {
 
   private jump(): void {
     this.jumpTimer += 1;
-    this.setFrame(8);
+    this.setFrame(`${framePrefix}8`);
 
     if (this.jumpTimer < 15) {
       this.body.setVelocityY(-this.jumpSpeed);
@@ -264,7 +273,7 @@ export default class Player extends GameObject {
 
   private freeze(): void {
     this.frozen = true;
-    this.setFrame(0);
+    this.setFrame(`${framePrefix}0`);
     this.body.setVelocityX(0);
     this.anims.stop();
   }

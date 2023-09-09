@@ -20,7 +20,9 @@ export default class Spear extends EnemyGameObject {
   private started: integer = 0;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'spearImage');
+    super(scene, gameItem);
+
+    this.setFrame('spear');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

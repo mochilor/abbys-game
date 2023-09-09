@@ -9,7 +9,8 @@ export default class Crab extends EnemyGameObject {
   private stopAt: number = null;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'crabSpriteSheet');
+    super(scene, gameItem);
+    this.setFrame('crab_00');
 
     scene.physics.world.enable(this);
     this.setY(this.y -= 4);
@@ -23,14 +24,30 @@ export default class Crab extends EnemyGameObject {
     scene.anims.create({
       key: 'crabWalk',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('crabSpriteSheet', { start: 1, end: 5 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'crab_',
+          start: 1,
+          end: 5,
+          zeroPad: 2,
+        },
+      ),
       repeat: -1,
     });
 
     scene.anims.create({
       key: 'crabStop',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('crabSpriteSheet', { start: 6, end: 12 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'crab_',
+          start: 6,
+          end: 12,
+          zeroPad: 2,
+        },
+      ),
       repeat: 0,
     });
 
@@ -55,7 +72,7 @@ export default class Crab extends EnemyGameObject {
     ) {
       this.stopAt = time;
       this.stop();
-      this.setFrame(0);
+      this.setFrame('crab_00');
       if (Math.random() > 0.4) {
         this.playAfterDelay('crabStop', Math.random() * 200);
       }

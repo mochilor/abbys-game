@@ -11,14 +11,13 @@ export default class Spike extends GameObject {
   private event: integer = null;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'objects');
+    super(scene, gameItem);
+    this.setFrame('objects_06');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
 
     this.setAngle(gameItem.rotation);
-
-    this.setFrame(6);
 
     if (this.isFacingUp()) {
       this.body.checkCollision.down = false;

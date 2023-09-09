@@ -19,7 +19,8 @@ export default class SpikePlatform extends GameObject {
   private startAt: number = null;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'spikePlatformImage');
+    super(scene, gameItem);
+    this.setFrame('spike-platform');
     this.y += 2;
 
     scene.physics.world.enable(this);

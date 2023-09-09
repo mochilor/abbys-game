@@ -9,7 +9,8 @@ export default class Coin extends GameObject {
   private roomName: RoomName;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'objects');
+    super(scene, gameItem);
+    this.setFrame('objects_00');
 
     this.roomName = gameItem.roomName;
 
@@ -18,7 +19,14 @@ export default class Coin extends GameObject {
     scene.anims.create({
       key: 'coin',
       frameRate: 7,
-      frames: this.anims.generateFrameNumbers('objects', { start: 0, end: 2 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'objects_',
+          end: 2,
+          zeroPad: 2,
+        },
+      ),
       repeat: -1,
     });
 

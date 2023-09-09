@@ -10,7 +10,7 @@ export default class BigFish extends Fish {
   private toX: number;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'bigFishSpritesheet', -1);
+    super(scene, gameItem, 'big', -1);
 
     this.speed = this.getProperty('speed')?.value as number ?? 0.3;
 

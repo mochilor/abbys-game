@@ -6,7 +6,7 @@ export default class SeaWeed extends GameObject {
   public static key = 'SeaWeed';
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'waterDetails');
+    super(scene, gameItem);
 
     // x and y offset!
     this.x += 4;
@@ -15,7 +15,13 @@ export default class SeaWeed extends GameObject {
     scene.anims.create({
       key: 'seaweed',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('waterDetails', {}),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'seaweed_',
+          end: 7,
+        },
+      ),
       repeat: -1,
     });
 

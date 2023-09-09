@@ -1,0 +1,1646 @@
+{
+    "frames": [
+        {
+            "filename": "platform",
+            "frame": {
+                "w": 40,
+                "h": 8,
+                "x": 0,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "anchor_0",
+            "frame": {
+                "w": 33,
+                "h": 37,
+                "x": 0,
+                "y": 8
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "anchor_1",
+            "frame": {
+                "w": 33,
+                "h": 37,
+                "x": 33,
+                "y": 8
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "spike-platform",
+            "frame": {
+                "w": 32,
+                "h": 20,
+                "x": 0,
+                "y": 45
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "spear",
+            "frame": {
+                "w": 5,
+                "h": 32,
+                "x": 66,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "blocks_0",
+            "frame": {
+                "w": 24,
+                "h": 24,
+                "x": 0,
+                "y": 65
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "blocks_1",
+            "frame": {
+                "w": 24,
+                "h": 24,
+                "x": 24,
+                "y": 65
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "blocks_2",
+            "frame": {
+                "w": 24,
+                "h": 24,
+                "x": 48,
+                "y": 45
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_0",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 48,
+                "y": 69
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_1",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 72,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_2",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 72,
+                "y": 17
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_3",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 72,
+                "y": 34
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_4",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 72,
+                "y": 51
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_5",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 72,
+                "y": 68
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_6",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 0,
+                "y": 89
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_7",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 21,
+                "y": 89
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "robot_8",
+            "frame": {
+                "w": 21,
+                "h": 17,
+                "x": 42,
+                "y": 89
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_0",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 69,
+                "y": 85
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_1",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 83,
+                "y": 85
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_2",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 93,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_3",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 93,
+                "y": 21
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_4",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 93,
+                "y": 42
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_5",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 93,
+                "y": 63
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_6",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 0,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_7",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 14,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "player_8",
+            "frame": {
+                "w": 14,
+                "h": 21,
+                "x": 28,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_00",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 32,
+                "y": 45
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_01",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 42,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_02",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 56,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_03",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 70,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_04",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 84,
+                "y": 106
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_05",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 107,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_06",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 107,
+                "y": 20
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_07",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 107,
+                "y": 40
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_08",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 107,
+                "y": 60
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_09",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 107,
+                "y": 80
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_10",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 98,
+                "y": 100
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_11",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 121,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_12",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 121,
+                "y": 20
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "mummy_13",
+            "frame": {
+                "w": 14,
+                "h": 20,
+                "x": 121,
+                "y": 40
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_00",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 112,
+                "y": 100
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_01",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 0,
+                "y": 127
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_02",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 18,
+                "y": 127
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_03",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 36,
+                "y": 127
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_04",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 54,
+                "y": 126
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_05",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 72,
+                "y": 126
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_06",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 90,
+                "y": 126
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_07",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 112,
+                "y": 116
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_08",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 135,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_09",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 135,
+                "y": 16
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_10",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 135,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_11",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 135,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "crab_12",
+            "frame": {
+                "w": 18,
+                "h": 16,
+                "x": 130,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_00",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 121,
+                "y": 80
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_01",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 131,
+                "y": 80
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_02",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 141,
+                "y": 80
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_03",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 130,
+                "y": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_04",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 140,
+                "y": 97
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_05",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 130,
+                "y": 114
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_06",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 140,
+                "y": 114
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_07",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 0,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_08",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 10,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_09",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 20,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_10",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 30,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_12",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 40,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_11",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 50,
+                "y": 143
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_13",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 60,
+                "y": 142
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_14",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 70,
+                "y": 142
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_15",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 80,
+                "y": 142
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_16",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 90,
+                "y": 142
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_18",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 100,
+                "y": 142
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_17",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 110,
+                "y": 132
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ruby_19",
+            "frame": {
+                "w": 10,
+                "h": 17,
+                "x": 120,
+                "y": 132
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "ball",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 130,
+                "y": 131
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_0",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 148,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_1",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 153,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_2",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 153,
+                "y": 16
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_3",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 153,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_4",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 153,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_5",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 151,
+                "y": 80
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_6",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 151,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seaweed_7",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 150,
+                "y": 112
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "portal_0",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 150,
+                "y": 128
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "portal_1",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 146,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "counters_0",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 130,
+                "y": 147
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "counters_1",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 0,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "counters_2",
+            "frame": {
+                "w": 16,
+                "h": 16,
+                "x": 146,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_0",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 16,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_1",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 28,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_2",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 40,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_3",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 52,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_4",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 64,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_5",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 76,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_6",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 88,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_7",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 100,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-big_8",
+            "frame": {
+                "w": 12,
+                "h": 10,
+                "x": 112,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_01",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 40,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_02",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 162,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_03",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 48,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_04",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 162,
+                "y": 152
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_05",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 56,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_06",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 162,
+                "y": 160
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_07",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 162,
+                "y": 168
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_08",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 121,
+                "y": 60
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_09",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 121,
+                "y": 68
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_10",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 97,
+                "y": 84
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_11",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 97,
+                "y": 92
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_00",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 124,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_01",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 132,
+                "y": 163
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_02",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 110,
+                "y": 149
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_03",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 118,
+                "y": 149
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_04",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_05",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 8
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_06",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 16
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_07",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 24
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_08",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_09",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 40
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_10",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "conveyor_11",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 56
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "objects_00",
+            "frame": {
+                "w": 8,
+                "h": 8,
+                "x": 170,
+                "y": 64
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-small_0",
+            "frame": {
+                "w": 8,
+                "h": 7,
+                "x": 170,
+                "y": 72
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-small_1",
+            "frame": {
+                "w": 8,
+                "h": 7,
+                "x": 170,
+                "y": 79
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-small_2",
+            "frame": {
+                "w": 8,
+                "h": 7,
+                "x": 170,
+                "y": 86
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-small_3",
+            "frame": {
+                "w": 8,
+                "h": 7,
+                "x": 170,
+                "y": 93
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "fish-small_4",
+            "frame": {
+                "w": 8,
+                "h": 7,
+                "x": 170,
+                "y": 100
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "anchor-rope",
+            "frame": {
+                "w": 1,
+                "h": 4,
+                "x": 71,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Gamma V2",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

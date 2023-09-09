@@ -10,7 +10,8 @@ export default class Ruby extends GameObject {
   private isRealRuby: boolean = false;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'rubySpriteSheet');
+    super(scene, gameItem);
+    this.setFrame('ruby_00');
 
     this.isRealRuby = !!parseInt(this.getProperty('final')?.value as string ?? '0', 10);
 
@@ -23,9 +24,14 @@ export default class Ruby extends GameObject {
     scene.anims.create({
       key,
       frameRate: 16,
-      frames: this.anims.generateFrameNumbers(
-        'rubySpriteSheet',
-        { start: 0 + frameOffset, end: 9 + frameOffset },
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'ruby_',
+          start: 0 + frameOffset,
+          end: 9 + frameOffset,
+          zeroPad: 2,
+        },
       ),
       repeat: -1,
       repeatDelay: 4000,

@@ -9,7 +9,7 @@ export default class SmallFish extends Fish {
   private verticalSpeed: number;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'smallFishSpritesheet', -100);
+    super(scene, gameItem, 'small', -100);
 
     this.verticalSpeed = this.getProperty('verticalSpeed')?.value as number ?? 0.07 * (Math.random() - 0.5);
 

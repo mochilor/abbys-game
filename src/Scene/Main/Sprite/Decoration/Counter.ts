@@ -1,4 +1,3 @@
-import { GameItem } from '../../GameItem/types';
 import GameObject from '../GameObject';
 import * as CoinCounter from '../../GameItem/CoinCounter/CoinCounter';
 import * as EventDispatcher from '../../../../Service/EventDispatcher';
@@ -15,10 +14,6 @@ export default class Counter extends GameObject {
   private eventEmitted: boolean = false;
 
   private initialized: boolean = false;
-
-  constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'countersSpriteSheet');
-  }
 
   private init(): void {
     this.isComplete = this.getRemainingCoins() === 0;
@@ -43,17 +38,21 @@ export default class Counter extends GameObject {
     return coinCounter.getRemainingByLevel(level);
   }
 
-  private getFrame(): integer {
+  private getFrame(): string {
     const level = this.getLevel();
 
-    switch (level) {
-      case 'cave':
-        return 0;
-      case 'pyramid':
-        return 1;
-      default:
-        return 2;
-    }
+    const levelNumber = () => {
+      switch (level) {
+        case 'cave':
+          return '0';
+        case 'pyramid':
+          return '1';
+        default:
+          return '2';
+      }
+    };
+
+    return `counters_${levelNumber()}`;
   }
 
   public getLevel(): string {

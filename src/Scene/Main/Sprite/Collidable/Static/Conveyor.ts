@@ -7,7 +7,8 @@ export default class Conveyor extends GameObject {
   private direction: integer;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'conveyorSpriteSheet');
+    super(scene, gameItem);
+    this.setFrame('conveyor_00');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
@@ -22,21 +23,44 @@ export default class Conveyor extends GameObject {
 
     scene.anims.create({
       key: 'conveyor-wheel-left',
-      frames: this.anims.generateFrameNumbers('conveyorSpriteSheet', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'conveyor_',
+          end: 3,
+          zeroPad: 2,
+        },
+      ),
       frameRate,
       repeat: -1,
     });
 
     scene.anims.create({
       key: 'conveyor-center',
-      frames: this.anims.generateFrameNumbers('conveyorSpriteSheet', { start: 4, end: 7 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'conveyor_',
+          start: 4,
+          end: 7,
+          zeroPad: 2,
+        },
+      ),
       frameRate,
       repeat: -1,
     });
 
     scene.anims.create({
       key: 'conveyor-wheel-right',
-      frames: this.anims.generateFrameNumbers('conveyorSpriteSheet', { start: 8, end: 11 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'conveyor_',
+          start: 8,
+          end: 11,
+          zeroPad: 2,
+        },
+      ),
       frameRate,
       repeat: -1,
     });

@@ -7,11 +7,11 @@ export default class Save extends GameObject {
   public static key = 'Save';
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'objects');
+    super(scene, gameItem);
+
+    this.setFrame('objects_05');
 
     scene.physics.world.enable(this);
-
-    this.setFrame(5);
   }
 
   public resetBody() {

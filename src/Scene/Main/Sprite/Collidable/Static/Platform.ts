@@ -21,7 +21,8 @@ export default class Platform extends GameObject {
   private blocked: boolean = false;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'platformImage');
+    super(scene, gameItem);
+    this.setFrame('platform');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();

@@ -19,13 +19,12 @@ export default class CannonBall extends EnemyGameObject {
   private isActive: boolean = true;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem, deactivable: boolean) {
-    super(scene, gameItem, 'objects');
+    super(scene, gameItem);
+    this.setFrame('objects_09');
 
     scene.physics.world.enable(this);
     this.body.setImmovable();
     this.body.setSize(6, 6);
-
-    this.setFrame(9);
 
     this.fixOffsetBasedOnRotation();
 
@@ -61,7 +60,15 @@ export default class CannonBall extends EnemyGameObject {
     scene.anims.create({
       key: 'cannonBall',
       frameRate: 12,
-      frames: this.anims.generateFrameNumbers('objects', { start: 9, end: 11 }),
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'objects_',
+          start: 9,
+          end: 11,
+          zeroPad: 2,
+        },
+      ),
       repeat: -1,
       yoyo: true,
     });

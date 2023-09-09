@@ -15,7 +15,7 @@ export default abstract class GameObject extends Phaser.GameObjects.Sprite {
   constructor(
     scene: Phaser.Scene,
     gameItem: GameItem,
-    texture: string,
+    texture: string = 'sprites',
   ) {
     super(scene, gameItem.x, gameItem.y, texture);
     scene.add.existing(this);
