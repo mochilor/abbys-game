@@ -59,10 +59,8 @@ export default class Preload extends Phaser.Scene {
     graphics.fillRect(0, 0, 2, 2);
     graphics.generateTexture('lightTexture', 2, 1);
 
-    mapFiles().forEach((element: string[]) => {
-      // dist folder local path
-      const file = `./maps/${element[1]}`;
-      this.load.tilemapTiledJSON(element[0], file);
+    mapFiles().forEach((element: [string, object]) => {
+      this.load.tilemapTiledJSON(element[0], element[1]);
     });
 
     progressBar(this);

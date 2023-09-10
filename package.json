@@ -36,10 +36,6 @@
   },
   "staticFiles": [
     {
-      "staticPath": "tiled/maps",
-      "staticOutPath": "maps"
-    },
-    {
       "staticPath": "xml",
       "staticOutPath": "xml"
     }

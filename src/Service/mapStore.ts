@@ -1,11 +1,11 @@
-import maplist from '../../assets/maplist.json';
+import maps from '../../assets/maps.json';
 
-function mapFiles(): [string, string][] {
-  return Object.entries(maplist);
+function mapFiles(): [string, object][] {
+  return Object.entries(maps);
 }
 
 function roomNames(): string[] {
-  return Object.keys(maplist);
+  return Object.keys(maps);
 }
 
 export { mapFiles, roomNames };
