@@ -8,7 +8,8 @@ export default class TextSprite extends GameObject {
   private text: Phaser.GameObjects.BitmapText;
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'emptyImage');
+    super(scene, gameItem);
+    this.setFrame('empty');
 
     this.setVisible(false);
 

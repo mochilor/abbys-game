@@ -23,9 +23,6 @@ import smallFont from '../../../assets/font/small-font.png';
 import spritesAtlas from '../../../assets/sprites_atlas.json';
 import sprites from '../../../assets/img/sprites.png';
 
-// other assets
-import emptyImage from '../../../assets/img/empty.gif';
-
 // some functions
 import { mapFiles, roomNames } from '../../Service/mapStore';
 import progressBar from './ProgressBar';
@@ -43,7 +40,6 @@ export default class Preload extends Phaser.Scene {
 
     this.load.image('tilesetImage', tilesetPath);
     this.load.image('titleImage', title);
-    this.load.image('emptyImage', emptyImage);
 
     this.load.atlas('sprites', sprites, spritesAtlas);
 

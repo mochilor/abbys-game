@@ -5,7 +5,8 @@ export default class InvisibleWall extends GameObject {
   public static key = 'InvisibleWall';
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
-    super(scene, gameItem, 'emptyImage');
+    super(scene, gameItem);
+    this.setFrame('empty');
 
     scene.physics.world.enable(this, Phaser.Physics.Arcade.STATIC_BODY);
 

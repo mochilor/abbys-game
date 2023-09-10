@@ -14,6 +14,7 @@ export default class Robot extends EnemyGameObject {
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem);
+    this.setFrame('robot_0');
     scene.physics.world.enable(this);
     this.body.setSize(15, 13);
     this.fixBodyOffset(false);
