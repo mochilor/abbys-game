@@ -562,12 +562,6 @@
                  "height":8,
                  "id":1530,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"speed",
-                         "type":"string",
-                         "value":"0.3"
-                        }],
                  "rotation":0,
                  "visible":true,
                  "width":8,
