@@ -35,8 +35,8 @@ export default class Preload extends Phaser.Scene {
   public preload(): void {
     // dist folder local path (workaround to load xml file path correctly here)
     // thanks to parcel-reporter-static-files-copy plugin
-    this.load.bitmapFont('font', font, './xml/font.xml');
     this.load.bitmapFont('smallFont', smallFont, './xml/small-font.xml');
+    this.load.bitmapFont('font', font, './xml/font.xml');
 
     this.load.image('tilesetImage', tilesetPath);
     this.load.image('titleImage', title);
@@ -66,8 +66,6 @@ export default class Preload extends Phaser.Scene {
     });
 
     progressBar(this);
-
-    // this.load.pack();
   }
 
   public create(): void {

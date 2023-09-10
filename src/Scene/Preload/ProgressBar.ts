@@ -28,7 +28,7 @@ export default function progressBar(scene: Phaser.Scene): void {
           config.gameWidth / 2,
           (config.gameHeight / 2) - (boxHeight),
           'smallFont',
-          'LOADING...',
+          'LOADING',
         );
         loadingText.setOrigin(0.5, 0.5);
       } catch (error) {
