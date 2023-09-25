@@ -390,13 +390,13 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"224"
+                         "value":"222"
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":8,
                  "x":380,
-                 "y":40
+                 "y":36
                 }, 
                 {
                  "class":"",
@@ -568,13 +568,13 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"224"
+                         "value":"222"
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":8,
                  "x":40,
-                 "y":264
+                 "y":262
                 }, 
                 {
                  "class":"",
@@ -657,8 +657,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":352,
-                 "y":24
+                 "x":44.6666666666667,
+                 "y":181.333333333333
                 }, 
                 {
                  "class":"",

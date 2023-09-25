@@ -501,8 +501,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":131.939393939394,
-                 "y":107.583333333332
+                 "x":177.272727272727,
+                 "y":295.916666666665
                 }, 
                 {
                  "class":"",
@@ -1257,7 +1257,7 @@
                  "visible":true,
                  "width":8,
                  "x":152,
-                 "y":136
+                 "y":132
                 }, 
                 {
                  "class":"",
@@ -1452,13 +1452,13 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"220"
+                         "value":"218"
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":8,
                  "x":148,
-                 "y":300
+                 "y":298
                 }, 
                 {
                  "class":"",

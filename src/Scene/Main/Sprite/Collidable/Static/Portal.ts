@@ -16,9 +16,26 @@ export default class Portal extends GameObject {
 
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem);
-    this.setFrame('portal_0');
+    scene.anims.create({
+      key: 'portal_on',
+      frameRate: 16,
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'portal_',
+          start: 0,
+          end: 7,
+        },
+      ),
+      repeat: -1,
+    });
+
+    this.play('portal_on');
 
     scene.physics.world.enable(this);
+
+    this.body.setSize(14, 14);
+    this.body.setOffset(1, 8);
 
     let room: RoomName;
     let x: integer;

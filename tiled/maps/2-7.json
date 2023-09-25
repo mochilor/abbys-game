@@ -506,13 +506,25 @@
                         {
                          "name":"destinationY",
                          "type":"string",
-                         "value":"232"
+                         "value":"230"
                         }],
                  "rotation":0,
                  "visible":true,
                  "width":8,
                  "x":44,
-                 "y":176
+                 "y":172
+                }, 
+                {
+                 "class":"",
+                 "gid":250,
+                 "height":8,
+                 "id":1179,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":52.5,
+                 "y":49.6666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -521,7 +533,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":1179,
+ "nextobjectid":1180,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

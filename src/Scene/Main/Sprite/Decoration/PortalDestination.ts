@@ -7,6 +7,20 @@ export default class PortalDestination extends GameObject {
   constructor(scene: Phaser.Scene, gameItem: GameItem) {
     super(scene, gameItem);
 
-    this.setFrame('portal_1');
+    scene.anims.create({
+      key: 'portal_off',
+      frameRate: 16,
+      frames: this.anims.generateFrameNames(
+        'sprites',
+        {
+          prefix: 'portal_',
+          start: 8,
+          end: 16,
+        },
+      ),
+      repeat: -1,
+    });
+
+    this.play('portal_off');
   }
 }
