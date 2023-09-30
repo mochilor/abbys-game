@@ -30,6 +30,8 @@ import Light from './Decoration/Light';
 import Ruby from './Collidable/Static/Ruby';
 import Anchor from './Decoration/Anchor';
 import TextSprite from './Decoration/TextSprite';
+import Water from './Decoration/Water';
+import Sunlight from './Decoration/Sunlight';
 
 const playerItemClass = {
   2: Player,
@@ -65,6 +67,8 @@ const staticItemClasses = {
   26: Ruby,
   27: Anchor,
   28: TextSprite,
+  29: Water,
+  30: Sunlight,
 };
 
 const mapEventItemClasses = {
