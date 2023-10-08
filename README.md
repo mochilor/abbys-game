@@ -9,7 +9,9 @@ Explore the underwater labyrinth and find your way to the deepest cave, avoiding
 
 ## What is this about?
 
-Abyss is an adventure HTML indie-game made with ❤️ using [Phaser](https://github.com/photonstorm/phaser) js framework. Its gameplay and visual style is inspired on classical hits and modern indie gems: from "Sonic the hedgehog" and "Metroid" to "La Mulana", "Fez" and "You have to win the game", among many others.
+Abyss is an adventure HTML game made with ❤️ using [Phaser](https://github.com/photonstorm/phaser) js framework. Its gameplay and visual style is inspired on classical hits and modern indie gems: from "Sonic the hedgehog" and "Metroid" to "La Mulana", "Fez" and "You have to win the game", among many others.
+
+<div align="center"><img src="assets/img/readme/gameplay.png"></div>
 
 ## Gameplay
 
@@ -25,12 +27,11 @@ make run
 
 Then you will be able to play at [http://localhost:1234/](http://localhost:1234/)
 
-Alternatively, just run `docker-compose up -d` (or `docker compose -d`, depending on what you have in your system).
-
-To stop the server, just run:
+Alternatively, if you have `npm` installed, you can do:
 
 ```
-make stop
+npm install
+npx parcel index.html
 ```
 
 ## License
