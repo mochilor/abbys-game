@@ -7,11 +7,13 @@ Dive into the depths in search of the Great Ruby, a legendary treasure, the last
 
 Explore the underwater labyrinth and find your way to the deepest cave, avoiding nasty dangers and enemies through secret doors and rooms. Will you be able to find all the golden coins?
 
+## What is this about?
+
+Abyss is an adventure HTML indie-game made with ❤️ using [Phaser](https://github.com/photonstorm/phaser) js framework. Its gameplay and visual style is inspired on classical hits and modern indie gems: from "Sonic the hedgehog" and "Metroid" to "La Mulana", "Fez" and "You have to win the game", among many others.
+
 ## Gameplay
 
 Use cursor keys to move left and right (directional buttons are provided for mobile devices). Find golden coins to open secret doors and press buttons to gain access to new areas.
-
-<div align="center"><img src="assets/img/readme/player.gif"></div>
 
 ## How to run the game
 
@@ -34,3 +36,5 @@ make stop
 ## License
 
 This game is released under the [Mit License](https://opensource.org/licenses/MIT).
+
+<div align="center"><img src="assets/img/readme/player.gif"></div>
