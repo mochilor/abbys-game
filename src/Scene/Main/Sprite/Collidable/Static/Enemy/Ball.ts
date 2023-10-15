@@ -25,6 +25,7 @@ export default class Ball extends EnemyGameObject {
     this.ballAngle = Math.PI * 0.8;
     this.startingX = this.x;
     this.startingY = this.y;
+    this.setDepth(1);
     // this.setOrigin();
   }
 
