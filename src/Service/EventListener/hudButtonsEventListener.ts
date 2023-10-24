@@ -1,4 +1,3 @@
-import * as EventDispatcher from '../EventDispatcher';
 import Player from '../../Scene/Main/Sprite/Player/Player';
 import { createController } from '../../Scene/Main/Sprite/Player/controller';
 
@@ -33,10 +32,13 @@ export default function listenHudButtonEvents(player: Player): void {
     rightKey.isDown = false;
   });
 
-  function enable(): void {
-    leftControllerButton.classList.remove('hidden');
-    rightControllerButton.classList.remove('hidden');
-  }
+  document.addEventListener('fullscreenchange', () => {
+    // if (navigator.maxTouchPoints > 0) {
+    //   return;
+    // }
 
-  EventDispatcher.on('screenLocked', enable);
+    // // If we go full screen on computer, hide controls
+    // leftControllerButton.classList.add('hidden');
+    // rightControllerButton.classList.add('hidden');
+  });
 }

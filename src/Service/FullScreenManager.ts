@@ -1,5 +1,3 @@
-import * as EventDispatcher from './EventDispatcher';
-
 const gameContainer = document.getElementById('game-container');
 
 function enterFullScreen(): void {
@@ -12,7 +10,6 @@ function enterFullScreen(): void {
   screen.orientation.lock('landscape')
     .then(() => {
       // This means that we are in a mobile device
-      EventDispatcher.emit('screenLocked');
     })
     .catch((error) => console.error(error));
 }
