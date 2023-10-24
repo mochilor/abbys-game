@@ -1,6 +1,10 @@
 const gameContainer = document.getElementById('game-container');
 
-function enterFullScreen(): void {
+export default function enterFullScreen(): void {
+  if (process.env.BUILD === 'itchio') {
+    return;
+  }
+
   if (!gameContainer.requestFullscreen || document.fullscreenElement) {
     return;
   }
@@ -13,12 +17,3 @@ function enterFullScreen(): void {
     })
     .catch((error) => console.error(error));
 }
-
-function exitFullScreen(): void {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-    screen.orientation.unlock();
-  }
-}
-
-export { enterFullScreen, exitFullScreen };

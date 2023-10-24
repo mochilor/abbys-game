@@ -15,12 +15,15 @@ type: docker
 name: build_prod_image
 
 steps:
-- name: parcel_build
+- name: npm install
   image: node
   commands:
     - node $(which npm) install
-    - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
-- name: itch.io_build
+- name: parcel_build (itch.io)
+  image: node
+  commands:
+    - BUILD=itchio node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
+- name: itch.io push
   image: itchio/butler
   environment:
     BUTLER_API_KEY:
@@ -28,6 +31,11 @@ steps:
   commands:
     - butler login
     - butler push dist mochil0/abyss:html5
+- name: parcel_build (default)
+  image: node
+  commands:
+    - rm -rf dist
+    - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
 - name: docker_build
   image: plugins/docker
   settings:

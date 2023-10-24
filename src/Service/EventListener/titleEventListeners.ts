@@ -1,7 +1,7 @@
 import { Title } from '../../Scene/Main/UI/types';
 import * as EventDispatcher from '../EventDispatcher';
 import { hasSavedGame, resetGame } from '../gameStore';
-import { enterFullScreen } from '../FullScreenManager';
+import enterFullScreen from '../FullScreenManager';
 
 export default function listenTitleEvents(title: Title): void {
   function continueGame(): void {
@@ -29,7 +29,7 @@ export default function listenTitleEvents(title: Title): void {
   }
 
   function initTitle(): void {
-    // enterFullScreen();
+    enterFullScreen();
     title.init();
   }
 
