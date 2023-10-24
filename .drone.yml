@@ -19,7 +19,7 @@ steps:
   image: node
   commands:
     - node $(which npm) install
-    - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html
+    - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
 - name: docker_build
   image: plugins/docker
   settings:
