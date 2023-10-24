@@ -20,7 +20,8 @@
       position: absolute;
       width: 20%;
       height: 100%;
-      z-index: -1;
+      z-index: 100;
+      visibility: hidden;
     }
     .controller div {
       height: 100%;
@@ -38,6 +39,12 @@
     }
     .hidden {
       visibility: hidden;
+    }
+
+    @media only screen and (hover: none) and (pointer: coarse){
+      .controller {
+        visibility: visible;
+      }
     }
   </style>
   <title>Cave!</title>

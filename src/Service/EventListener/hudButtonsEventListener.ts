@@ -31,14 +31,4 @@ export default function listenHudButtonEvents(player: Player): void {
     rightControllerButton.style.opacity = '100%';
     rightKey.isDown = false;
   });
-
-  document.addEventListener('fullscreenchange', () => {
-    // if (navigator.maxTouchPoints > 0) {
-    //   return;
-    // }
-
-    // // If we go full screen on computer, hide controls
-    // leftControllerButton.classList.add('hidden');
-    // rightControllerButton.classList.add('hidden');
-  });
 }
