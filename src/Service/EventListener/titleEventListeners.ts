@@ -29,7 +29,7 @@ export default function listenTitleEvents(title: Title): void {
   }
 
   function initTitle(): void {
-    enterFullScreen();
+    // enterFullScreen();
     title.init();
   }
 
