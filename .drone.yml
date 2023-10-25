@@ -19,10 +19,12 @@ steps:
   image: node
   commands:
     - node $(which npm) install
+
 - name: parcel_build (itch.io)
   image: node
   commands:
     - BUILD=itchio node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
+
 - name: itch.io push
   image: itchio/butler
   environment:
@@ -31,11 +33,13 @@ steps:
   commands:
     - butler login
     - butler push dist mochil0/abyss:html5
+
 - name: parcel_build (default)
   image: node
   commands:
     - rm -rf dist
     - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
+
 - name: docker_build
   image: plugins/docker
   settings:
@@ -46,6 +50,7 @@ steps:
       from_secret: docker_password
     registry:  registry.digitalocean.com
     tags: ["${DRONE_BUILD_FINISHED}", latest]
+
 - name: remove_old_images
   image: digitalocean/doctl:latest
   environment:
