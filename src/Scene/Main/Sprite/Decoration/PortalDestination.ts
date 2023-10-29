@@ -15,7 +15,7 @@ export default class PortalDestination extends GameObject {
         {
           prefix: 'portal_',
           start: 8,
-          end: 16,
+          end: 15,
         },
       ),
       repeat: -1,

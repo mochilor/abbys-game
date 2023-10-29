@@ -19,23 +19,8 @@ export default function progressBar(scene: Phaser.Scene): void {
   );
 
   const bar = scene.add.graphics();
-  let loadingText = null;
 
   scene.load.on('progress', (value: number) => {
-    if (loadingText === null) {
-      try {
-        loadingText = scene.add.bitmapText(
-          config.gameWidth / 2,
-          (config.gameHeight / 2) - (boxHeight),
-          'smallFont',
-          'LOADING',
-        );
-        loadingText.setOrigin(0.5, 0.5);
-      } catch (error) {
-        // The font was not loaded yet, no problem
-      }
-    }
-
     const barWidth = boxWidth - (boxBorderWidth * 2);
     const barHeight = boxHeight - (boxBorderWidth * 2);
 
