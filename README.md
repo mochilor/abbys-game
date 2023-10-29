@@ -7,6 +7,8 @@ Dive into the depths in search of the Great Ruby, a legendary treasure, the last
 
 Explore the underwater labyrinth and find your way to the deepest cave, avoiding nasty dangers and enemies through secret doors and rooms. Will you be able to find all the golden coins?
 
+Play the game at https://mochil0.itch.io/abyss.
+
 ## What is this about?
 
 Abyss is an adventure HTML game made with ❤️ using [Phaser](https://github.com/photonstorm/phaser) js framework. Its gameplay and visual style is inspired on classical hits and modern indie gems: from "Sonic the hedgehog" and "Metroid" to "La Mulana", "Fez" and "You have to win the game", among many others.
