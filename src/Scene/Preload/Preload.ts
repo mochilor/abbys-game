@@ -1,13 +1,22 @@
 // audio
 import coinSamplePath from 'url:../../../assets/audio/coin.ogg';
+import coinSamplePathMp3 from 'url:../../../assets/audio/coin.mp3';
 import springSamplePath from 'url:../../../assets/audio/spring.ogg';
+import springSamplePathMp3 from 'url:../../../assets/audio/spring.mp3';
 import portalSamplePath from 'url:../../../assets/audio/portal.ogg';
+import portalSamplePathMp3 from 'url:../../../assets/audio/portal.mp3';
 import spearSamplePath from 'url:../../../assets/audio/spear.ogg';
+import spearSamplePathMp3 from 'url:../../../assets/audio/spear.mp3';
 import saveSamplePath from 'url:../../../assets/audio/save.ogg';
+import saveSamplePathMp3 from 'url:../../../assets/audio/save.mp3';
 import buttonSamplePath from 'url:../../../assets/audio/button.ogg';
+import buttonSamplePathMp3 from 'url:../../../assets/audio/button.mp3';
 import doorSamplePath from 'url:../../../assets/audio/door.ogg';
+import doorSamplePathMp3 from 'url:../../../assets/audio/door.mp3';
 import titleMusic from 'url:../../../assets/audio/music/title.ogg';
+import titleMusicMp3 from 'url:../../../assets/audio/music/title.mp3';
 import endingMusic from 'url:../../../assets/audio/music/ending.ogg';
+import endingMusicMp3 from 'url:../../../assets/audio/music/ending.mp3';
 
 // tileset
 import tilesetPath from '../../../assets/img/tileset.png';
@@ -43,15 +52,15 @@ export default class Preload extends Phaser.Scene {
 
     this.load.atlas('sprites', sprites, spritesAtlas);
 
-    this.load.audio('coinSample', coinSamplePath);
-    this.load.audio('springSample', springSamplePath);
-    this.load.audio('portalSample', portalSamplePath);
-    this.load.audio('spearSample', spearSamplePath);
-    this.load.audio('saveSample', saveSamplePath);
-    this.load.audio('buttonSample', buttonSamplePath);
-    this.load.audio('doorSample', doorSamplePath);
-    this.load.audio('titleMusic', titleMusic);
-    this.load.audio('endingMusic', endingMusic);
+    this.load.audio('coinSample', [coinSamplePath, coinSamplePathMp3]);
+    this.load.audio('springSample', [springSamplePath, springSamplePathMp3]);
+    this.load.audio('portalSample', [portalSamplePath, portalSamplePathMp3]);
+    this.load.audio('spearSample', [spearSamplePath, spearSamplePathMp3]);
+    this.load.audio('saveSample', [saveSamplePath, saveSamplePathMp3]);
+    this.load.audio('buttonSample', [buttonSamplePath, buttonSamplePathMp3]);
+    this.load.audio('doorSample', [doorSamplePath, doorSamplePathMp3]);
+    this.load.audio('titleMusic', [titleMusic, titleMusicMp3]);
+    this.load.audio('endingMusic', [endingMusic, endingMusicMp3]);
 
     // other textures
     const graphics = this.make.graphics({ x: 0, y: 0, add: false });
