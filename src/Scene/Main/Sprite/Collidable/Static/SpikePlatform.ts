@@ -26,9 +26,6 @@ export default class SpikePlatform extends GameObject {
     scene.physics.world.enable(this);
     this.body.setImmovable();
 
-    this.body.setSize(32, 16);
-    this.body.setOffset(0, 4);
-
     this.isFalling = false;
     this.restartTime = 3500;
     this.body.setGravityY(0);
