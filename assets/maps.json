@@ -110072,7 +110072,7 @@
         "objects": [
           {
             "class": "",
-            "gid": 252,
+            "gid": 244,
             "height": 8,
             "id": 361,
             "name": "",
@@ -110084,7 +110084,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 362,
             "name": "",
@@ -110096,7 +110096,7 @@
           },
           {
             "class": "",
-            "gid": 252,
+            "gid": 244,
             "height": 8,
             "id": 363,
             "name": "",
@@ -110108,7 +110108,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 364,
             "name": "",
@@ -110120,7 +110120,7 @@
           },
           {
             "class": "",
-            "gid": 252,
+            "gid": 244,
             "height": 8,
             "id": 365,
             "name": "",
@@ -110132,7 +110132,7 @@
           },
           {
             "class": "",
-            "gid": 261,
+            "gid": 253,
             "height": 8,
             "id": 368,
             "name": "",
@@ -110144,7 +110144,7 @@
           },
           {
             "class": "",
-            "gid": 261,
+            "gid": 253,
             "height": 8,
             "id": 369,
             "name": "",
@@ -110156,7 +110156,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 378,
             "name": "",
@@ -110168,7 +110168,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 379,
             "name": "",
@@ -110180,7 +110180,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 380,
             "name": "",
@@ -110192,7 +110192,7 @@
           },
           {
             "class": "",
-            "gid": 258,
+            "gid": 250,
             "height": 8,
             "id": 385,
             "name": "",
@@ -110211,7 +110211,7 @@
           },
           {
             "class": "",
-            "gid": 259,
+            "gid": 251,
             "height": 8,
             "id": 386,
             "name": "",
@@ -110230,7 +110230,7 @@
           },
           {
             "class": "",
-            "gid": 262,
+            "gid": 254,
             "height": 8,
             "id": 387,
             "name": "",
@@ -110249,7 +110249,7 @@
           },
           {
             "class": "",
-            "gid": 262,
+            "gid": 254,
             "height": 8,
             "id": 388,
             "name": "",
@@ -110268,7 +110268,7 @@
           },
           {
             "class": "",
-            "gid": 269,
+            "gid": 261,
             "height": 8,
             "id": 389,
             "name": "",
@@ -110280,7 +110280,7 @@
           },
           {
             "class": "",
-            "gid": 270,
+            "gid": 262,
             "height": 8,
             "id": 390,
             "name": "",
@@ -110292,19 +110292,19 @@
           },
           {
             "class": "",
-            "gid": 250,
+            "gid": 242,
             "height": 8,
             "id": 391,
             "name": "",
             "rotation": 0,
             "visible": true,
             "width": 8,
-            "x": 20,
-            "y": 167.25
+            "x": 85.5,
+            "y": 160.25
           },
           {
             "class": "",
-            "gid": 258,
+            "gid": 250,
             "height": 8,
             "id": 392,
             "name": "",
@@ -110323,7 +110323,7 @@
           },
           {
             "class": "",
-            "gid": 259,
+            "gid": 251,
             "height": 8,
             "id": 393,
             "name": "",
@@ -110357,7 +110357,7 @@
           },
           {
             "class": "",
-            "gid": 269,
+            "gid": 261,
             "height": 8,
             "id": 396,
             "name": "",
@@ -110369,7 +110369,7 @@
           },
           {
             "class": "",
-            "gid": 254,
+            "gid": 246,
             "height": 8,
             "id": 397,
             "name": "",
@@ -110381,7 +110381,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 398,
             "name": "",
@@ -110393,7 +110393,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 399,
             "name": "",
@@ -110405,7 +110405,7 @@
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 400,
             "name": "",
@@ -110414,6 +110414,18 @@
             "width": 8,
             "x": 120,
             "y": 384
+          },
+          {
+            "class": "",
+            "gid": 246,
+            "height": 8,
+            "id": 401,
+            "name": "",
+            "rotation": 0,
+            "visible": true,
+            "width": 8,
+            "x": 32,
+            "y": 168
           }
         ],
         "opacity": 1,
@@ -110424,7 +110436,7 @@
       }
     ],
     "nextlayerid": 3,
-    "nextobjectid": 401,
+    "nextobjectid": 402,
     "orientation": "orthogonal",
     "renderorder": "right-down",
     "tiledversion": "1.9.0",
@@ -110434,18 +110446,18 @@
         "columns": 8,
         "firstgid": 1,
         "image": "../../assets/img/tileset.png",
-        "imageheight": 248,
+        "imageheight": 240,
         "imagewidth": 64,
         "margin": 0,
         "name": "tileset",
         "spacing": 0,
-        "tilecount": 248,
+        "tilecount": 240,
         "tileheight": 8,
         "tilewidth": 8
       },
       {
         "columns": 3,
-        "firstgid": 249,
+        "firstgid": 241,
         "image": "../../assets/img/objects.png",
         "imageheight": 80,
         "imagewidth": 24,
@@ -179642,43 +179654,43 @@
         "objects": [
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 979,
             "name": "",
             "rotation": 0,
             "visible": true,
             "width": 8,
-            "x": 144,
+            "x": 136,
             "y": 136
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 980,
             "name": "",
             "rotation": 0,
             "visible": true,
             "width": 8,
-            "x": 173,
-            "y": 106.25
+            "x": 176,
+            "y": 104
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 981,
             "name": "",
             "rotation": 0,
             "visible": true,
             "width": 8,
-            "x": 116.625,
-            "y": 162.875
+            "x": 113,
+            "y": 164
           },
           {
             "class": "",
-            "gid": 260,
+            "gid": 252,
             "height": 8,
             "id": 982,
             "name": "",
@@ -179690,7 +179702,7 @@
           },
           {
             "class": "",
-            "gid": 264,
+            "gid": 256,
             "height": 8,
             "id": 985,
             "name": "",
@@ -179709,7 +179721,7 @@
           },
           {
             "class": "",
-            "gid": 264,
+            "gid": 256,
             "height": 8,
             "id": 986,
             "name": "",
@@ -179721,7 +179733,7 @@
           },
           {
             "class": "",
-            "gid": 264,
+            "gid": 256,
             "height": 8,
             "id": 987,
             "name": "",
@@ -179733,7 +179745,7 @@
           },
           {
             "class": "",
-            "gid": 264,
+            "gid": 256,
             "height": 8,
             "id": 988,
             "name": "",
@@ -179752,7 +179764,7 @@
           },
           {
             "class": "",
-            "gid": 264,
+            "gid": 256,
             "height": 8,
             "id": 989,
             "name": "",
@@ -179771,7 +179783,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 990,
             "name": "",
@@ -179783,7 +179795,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 991,
             "name": "",
@@ -179795,7 +179807,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 992,
             "name": "",
@@ -179807,7 +179819,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 993,
             "name": "",
@@ -179819,7 +179831,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 994,
             "name": "",
@@ -179831,7 +179843,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 995,
             "name": "",
@@ -179843,7 +179855,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 996,
             "name": "",
@@ -179855,7 +179867,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 997,
             "name": "",
@@ -179867,7 +179879,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 998,
             "name": "",
@@ -179879,7 +179891,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 999,
             "name": "",
@@ -179891,7 +179903,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1000,
             "name": "",
@@ -179903,7 +179915,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1001,
             "name": "",
@@ -179915,7 +179927,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1002,
             "name": "",
@@ -179927,7 +179939,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1003,
             "name": "",
@@ -179939,7 +179951,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1004,
             "name": "",
@@ -179951,7 +179963,7 @@
           },
           {
             "class": "",
-            "gid": 255,
+            "gid": 247,
             "height": 8,
             "id": 1005,
             "name": "",
@@ -179963,7 +179975,7 @@
           },
           {
             "class": "",
-            "gid": 257,
+            "gid": 249,
             "height": 8,
             "id": 1006,
             "name": "",
@@ -179987,7 +179999,7 @@
           },
           {
             "class": "",
-            "gid": 263,
+            "gid": 255,
             "height": 8,
             "id": 1007,
             "name": "",
@@ -180016,7 +180028,7 @@
           },
           {
             "class": "",
-            "gid": 257,
+            "gid": 249,
             "height": 8,
             "id": 1008,
             "name": "",
@@ -180028,7 +180040,7 @@
           },
           {
             "class": "",
-            "gid": 252,
+            "gid": 244,
             "height": 8,
             "id": 1009,
             "name": "",
@@ -180040,7 +180052,7 @@
           },
           {
             "class": "",
-            "gid": 254,
+            "gid": 246,
             "height": 8,
             "id": 1011,
             "name": "",
@@ -180052,15 +180064,63 @@
           },
           {
             "class": "",
-            "gid": 250,
+            "gid": 242,
             "height": 8,
             "id": 1012,
             "name": "",
             "rotation": 0,
             "visible": true,
             "width": 8,
-            "x": 121.5,
-            "y": 13.25
+            "x": 154.5,
+            "y": 14.25
+          },
+          {
+            "class": "",
+            "gid": 256,
+            "height": 8,
+            "id": 1013,
+            "name": "",
+            "rotation": 0,
+            "visible": true,
+            "width": 8,
+            "x": 81.25,
+            "y": 145.25
+          },
+          {
+            "class": "",
+            "gid": 256,
+            "height": 8,
+            "id": 1014,
+            "name": "",
+            "rotation": 0,
+            "visible": true,
+            "width": 8,
+            "x": 103,
+            "y": 155.75
+          },
+          {
+            "class": "",
+            "gid": 256,
+            "height": 8,
+            "id": 1015,
+            "name": "",
+            "rotation": 0,
+            "visible": true,
+            "width": 8,
+            "x": 146,
+            "y": 154.75
+          },
+          {
+            "class": "",
+            "gid": 256,
+            "height": 8,
+            "id": 1016,
+            "name": "",
+            "rotation": 0,
+            "visible": true,
+            "width": 8,
+            "x": 173,
+            "y": 149.25
           }
         ],
         "opacity": 1,
@@ -180071,7 +180131,7 @@
       }
     ],
     "nextlayerid": 3,
-    "nextobjectid": 1013,
+    "nextobjectid": 1017,
     "orientation": "orthogonal",
     "renderorder": "right-down",
     "tiledversion": "1.9.0",
@@ -180086,13 +180146,13 @@
         "margin": 0,
         "name": "tileset",
         "spacing": 0,
-        "tilecount": 248,
+        "tilecount": 240,
         "tileheight": 8,
         "tilewidth": 8
       },
       {
         "columns": 3,
-        "firstgid": 249,
+        "firstgid": 241,
         "image": "../../assets/img/objects.png",
         "imageheight": 80,
         "imagewidth": 24,
