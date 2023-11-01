@@ -19,6 +19,8 @@ export default class Spring extends GameObject {
     this.body.setOffset(0, 6);
 
     this.body.checkCollision.down = false;
+    this.body.checkCollision.right = false;
+    this.body.checkCollision.left = false;
   }
 
   private deactivate(): void {

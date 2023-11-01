@@ -1442,18 +1442,6 @@
                 }, 
                 {
                  "class":"",
-                 "gid":249,
-                 "height":8,
-                 "id":1245,
-                 "name":"",
-                 "rotation":0,
-                 "visible":true,
-                 "width":8,
-                 "x":128,
-                 "y":40
-                }, 
-                {
-                 "class":"",
                  "gid":252,
                  "height":8,
                  "id":1247,
@@ -1977,7 +1965,7 @@
          "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/img\/tileset.png",
-         "imageheight":248,
+         "imageheight":240,
          "imagewidth":64,
          "margin":0,
          "name":"tileset",

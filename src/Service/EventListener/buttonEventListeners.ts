@@ -231,6 +231,11 @@ function listenButtonEvents(
     removeWalls(eventGameItems, defaultPyramidWall);
   }
 
+  function button19Activated(): void {
+    // This event activates a platform that is hidden.
+    activatePlatform('mapEvent19');
+  }
+
   EventDispatcher.on('button1Activated', button1Activated);
   EventDispatcher.on('button2Activated', button2Activated);
   EventDispatcher.on('button3Activated', button3Activated);
@@ -249,6 +254,7 @@ function listenButtonEvents(
   EventDispatcher.on('button16Activated', button16Activated);
   EventDispatcher.on('button17Activated', button17Activated);
   EventDispatcher.on('button18Activated', button18Activated);
+  EventDispatcher.on('button19Activated', button19Activated);
 }
 
 export default listenButtonEvents;

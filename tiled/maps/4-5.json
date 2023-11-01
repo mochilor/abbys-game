@@ -556,7 +556,7 @@
                  "visible":true,
                  "width":8,
                  "x":428,
-                 "y":56
+                 "y":59
                 }, 
                 {
                  "class":"",
@@ -1319,7 +1319,7 @@
          "columns":8,
          "firstgid":1,
          "image":"..\/..\/assets\/img\/tileset.png",
-         "imageheight":248,
+         "imageheight":240,
          "imagewidth":64,
          "margin":0,
          "name":"tileset",
