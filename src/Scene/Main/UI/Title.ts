@@ -123,7 +123,7 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     );
   }
 
-  const versionText = process.env.VERSION;
+  const versionText = process.env.VERSION ?? 'DEV';
 
   const version = scene.add.bitmapText(
     config.gameWidth - 32,

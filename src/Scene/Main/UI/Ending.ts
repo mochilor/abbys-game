@@ -7,6 +7,7 @@ import RoomName from '../Map/RoomName';
 import Ruby from '../Sprite/Collidable/Static/Ruby';
 import Coin from '../Sprite/Collidable/Dynamic/Coin';
 import * as CoinCounter from '../GameItem/CoinCounter/CoinCounter';
+import makeCoinCounterDisplay from '../../../UI/CoinCounterDisplay';
 
 let currentRoom = 0;
 
@@ -177,19 +178,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
     }
 
     if (coin) {
-      coin.setDepth(10);
-
-      const coinCounter = CoinCounter.getInstance();
-      const total = coinCounter.getTotal();
-      const current = coinCounter.getCurrent();
-
-      const coinText = createMenu(
-        coin.x,
-        coin.y + 16,
-        scene,
-        `${current} / ${total}`,
-      );
-      coinText.show();
+      makeCoinCounterDisplay(scene, coin);
     }
   }
 
