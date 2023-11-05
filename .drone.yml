@@ -23,7 +23,7 @@ steps:
 - name: parcel_build (itch.io)
   image: node
   commands:
-    - BUILD=itchio node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
+    - VERSION="${DRONE_TAG}" BUILD=itchio node --max-old-space-size=512 ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
 
 - name: itch.io push
   image: itchio/butler
@@ -38,7 +38,7 @@ steps:
   image: node
   commands:
     - rm -rf dist
-    - node ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
+    - VERSION="${DRONE_TAG}" node --max-old-space-size=512 ./node_modules/.bin/parcel build --log-level verbose --no-source-maps index.html --public-url ./
 
 - name: docker_build
   image: plugins/docker
@@ -64,10 +64,8 @@ steps:
     - /app/doctl registry repo delete-manifest cavegame $(echo $OLD_DIGESTS) --force
 
 trigger:
-  branch:
-  - master
   event:
-  - push
+  - tag
 
 # depends_on:
 # - tests

@@ -123,6 +123,18 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     );
   }
 
+  const versionText = process.env.VERSION;
+
+  const version = scene.add.bitmapText(
+    config.gameWidth - 32,
+    config.gameHeight - 16,
+    'smallFont',
+    versionText,
+  )
+    .setDepth(2)
+    .setScrollFactor(0)
+    .setAlpha(0.4);
+
   function showAlertText(): void {
     newGameButton.hide();
     continueButton.hide();
@@ -139,6 +151,8 @@ export default function createTitle(scene: Phaser.Scene, hasSavedGame: boolean):
     if (initialized) {
       return;
     }
+
+    version.setVisible(false);
 
     initialized = true;
 
