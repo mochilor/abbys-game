@@ -68,7 +68,7 @@
          "objects":[
                 {
                  "class":"",
-                 "gid":251,
+                 "gid":243,
                  "height":8,
                  "id":200,
                  "name":"",
@@ -86,7 +86,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":251,
+                 "gid":243,
                  "height":8,
                  "id":202,
                  "name":"",
@@ -104,7 +104,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":250,
+                 "gid":242,
                  "height":8,
                  "id":203,
                  "name":"",
@@ -116,7 +116,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":264,
+                 "gid":256,
                  "height":8,
                  "id":215,
                  "name":"",
@@ -128,7 +128,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":264,
+                 "gid":256,
                  "height":8,
                  "id":222,
                  "name":"",
@@ -140,7 +140,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":264,
+                 "gid":256,
                  "height":8,
                  "id":223,
                  "name":"",
@@ -152,7 +152,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":264,
+                 "gid":256,
                  "height":8,
                  "id":224,
                  "name":"",
@@ -175,7 +175,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":272,
+                 "gid":264,
                  "height":8,
                  "id":225,
                  "name":"",
@@ -193,7 +193,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":272,
+                 "gid":264,
                  "height":8,
                  "id":226,
                  "name":"",
@@ -211,7 +211,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":272,
+                 "gid":264,
                  "height":8,
                  "id":227,
                  "name":"",
@@ -229,7 +229,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":257,
+                 "gid":249,
                  "height":8,
                  "id":229,
                  "name":"",
@@ -257,7 +257,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":255,
+                 "gid":247,
                  "height":8,
                  "id":230,
                  "name":"",
@@ -269,7 +269,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":255,
+                 "gid":247,
                  "height":8,
                  "id":231,
                  "name":"",
@@ -281,7 +281,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":255,
+                 "gid":247,
                  "height":8,
                  "id":232,
                  "name":"",
@@ -293,7 +293,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":255,
+                 "gid":247,
                  "height":8,
                  "id":233,
                  "name":"",
@@ -305,7 +305,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":255,
+                 "gid":247,
                  "height":8,
                  "id":234,
                  "name":"",
@@ -317,7 +317,7 @@
                 }, 
                 {
                  "class":"",
-                 "gid":254,
+                 "gid":246,
                  "height":8,
                  "id":236,
                  "name":"",
@@ -349,13 +349,13 @@
          "margin":0,
          "name":"tileset",
          "spacing":0,
-         "tilecount":248,
+         "tilecount":240,
          "tileheight":8,
          "tilewidth":8
         }, 
         {
          "columns":3,
-         "firstgid":249,
+         "firstgid":241,
          "image":"..\/..\/assets\/img\/objects.png",
          "imageheight":80,
          "imagewidth":24,
