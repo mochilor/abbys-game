@@ -6,7 +6,6 @@ import closeUIElement from '../../../UI/ClosingAnimation';
 import RoomName from '../Map/RoomName';
 import Ruby from '../Sprite/Collidable/Static/Ruby';
 import Coin from '../Sprite/Collidable/Dynamic/Coin';
-import * as CoinCounter from '../GameItem/CoinCounter/CoinCounter';
 import makeCoinCounterDisplay from '../../../UI/CoinCounterDisplay';
 
 let currentRoom = 0;
@@ -15,7 +14,7 @@ export default function createEnding(scene: Phaser.Scene, isRealEnding: boolean)
   const roomTexts = [
     '',
     'Programming, Graphics and Sound\n\nDiego Altamirano',
-    'Additional testing and ideas\n\nIvan Altamirano\n\nAlvaro Altamirano',
+    'Additional testing and ideas\n\nIvan and Alvaro',
     'Thanks for playing!',
   ];
 

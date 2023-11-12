@@ -28,14 +28,11 @@ export default function getNewRoomNameSpecialCase(
       right: '7_8',
     },
     '2_10': {
-      left: '4_10',
+      left: '2_12',
     },
     '3_10': {
       bottom: '3_10',
-    },
-    '4_10': {
-      bottom: '4_10',
-      right: '2_10',
+      right: '2_11',
     },
     '2_11': {
       right: '3_10',
@@ -46,7 +43,7 @@ export default function getNewRoomNameSpecialCase(
       bottom: '3_10',
     },
     '1_12': {
-      bottom: '4_10',
+      bottom: '2_12',
     },
   };
 
