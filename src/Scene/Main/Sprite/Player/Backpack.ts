@@ -10,8 +10,8 @@ function gotCoin(roomName: string, playSound: boolean): void {
   EventDispatcher.emit('playerGotCoin', roomName, playSound);
 }
 
-function activateButton(eventName: string): void {
-  EventDispatcher.emit(eventName);
+function activateButton(eventName: string, firstTime: boolean): void {
+  EventDispatcher.emit(eventName, firstTime);
   EventDispatcher.emit('buttonActivated');
 }
 
@@ -44,7 +44,7 @@ export default class Backpack {
 
     if (this.content.gameEvents.length) {
       this.content.gameEvents.forEach((eventName: string) => {
-        activateButton(eventName);
+        activateButton(eventName, false);
       });
     }
   }
@@ -78,7 +78,7 @@ export default class Backpack {
     if (item instanceof Button) {
       const eventName = item.getEventName();
       this.content.gameEvents.push(eventName);
-      activateButton(eventName);
+      activateButton(eventName, true);
     }
 
     if (item instanceof Ruby) {
